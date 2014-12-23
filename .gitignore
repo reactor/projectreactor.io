@@ -1,0 +1,6 @@
+.DS_Store
+output
+tmp
+.idea
+*.log
+*.lock

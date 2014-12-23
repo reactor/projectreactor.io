@@ -1,0 +1,22 @@
+{
+  "name": "projectreactor.io",
+  "version": "2.0.0",
+  "homepage": "http://projectreactor.io",
+  "authors": [
+    "Jon Brisbin <jbrisbin@pivotal.io>"
+  ],
+  "description": "Project Reactor Main website",
+  "main": "index.html",
+  "license": "Apache 2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic-ui": "~1.4.0"
+  }
+}

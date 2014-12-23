@@ -61,6 +61,8 @@ data_sources:
     # The encoding to use for input files. If your input files are not in
     # UTF-8 (which they should be!), change this.
     encoding: utf-8
+  -
+    type: static
 
 # Configuration for the “check” command, which run unit tests on the site.
 checks:
