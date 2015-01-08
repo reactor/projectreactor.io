@@ -4,3 +4,9 @@ tmp
 .idea
 *.log
 *.lock
+.sass-cache
+*.idea
+*.iml
+.gradle
+build
+

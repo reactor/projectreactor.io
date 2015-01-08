@@ -1,0 +1,24 @@
+.home .ui.segment {
+  border-radius: 0; }
+.home .ui.menu .header a {
+  line-height: 1.0 !important;
+  font-size: .8rem; }
+.home .masthead {
+  background-image: url(/assets/nuclear_reactor.jpg); }
+  .home .masthead nav {
+    margin-top: 2rem !important;
+    margin-bottom: 6rem; }
+  .home .masthead h1 {
+    margin-bottom: 0; }
+  .home .masthead h4 {
+    margin-top: 0;
+    margin-bottom: 2rem; }
+  .home .masthead .information p {
+    line-height: 1.3; }
+  .home .masthead .information li {
+    margin-bottom: 1rem; }
+.home .main .ui.page.grid {
+  margin-top: 5rem;
+  margin-bottom: 5rem; }
+.home .build.snippet code {
+  color: #000000 !important; }

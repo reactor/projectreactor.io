@@ -1,0 +1,53 @@
+ext {
+  ratpackVersion = '0.9.9'
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+}
+
+buildscript {
+  repositories {
+    maven { url 'http://repo.spring.io/libs-snapshot' }
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.0.M2'
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+group = 'io.projectreactor'
+version = '0.4.0.BUILD-SNAPSHOT'
+
+jar {
+  baseName = 'projectreactor-home'
+}
+
+repositories {
+  maven { url 'http://repo.spring.io/libs-snapshot' }
+  maven { url 'http://oss.jfrog.org/artifactory/repo' }
+  mavenCentral()
+}
+
+dependencies {
+  // Spring Boot
+  compile('org.springframework.boot:spring-boot-starter-web') {
+    exclude module: 'spring-boot-starter-tomcat'
+  }
+
+  compile "io.projectreactor:reactor-core:2.0.0.M2"
+
+  compile "io.ratpack:ratpack-core:$ratpackVersion",
+      "io.ratpack:ratpack-groovy:$ratpackVersion",
+      "io.ratpack:ratpack-jackson:$ratpackVersion"
+  compile 'org.springframework.boot:spring-boot-ratpack:1.0.0.BUILD-SNAPSHOT'
+
+  runtime 'javax.el:javax.el-api:3.0.0'
+
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.2.1'
+}
