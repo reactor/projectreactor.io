@@ -7,15 +7,18 @@ ext {
 buildscript {
   repositories {
     maven { url 'http://repo.spring.io/libs-snapshot' }
+    jcenter()
     mavenCentral()
   }
   dependencies {
-    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.0.M2'
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.2.BUILD-SNAPSHOT',
+        'org.asciidoctor:asciidoctor-gradle-plugin:1.5.2'
   }
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'org.asciidoctor.convert'
 
 group = 'io.projectreactor'
 version = '0.4.0.BUILD-SNAPSHOT'
@@ -46,6 +49,22 @@ dependencies {
   runtime 'javax.el:javax.el-api:3.0.0'
 
   testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+asciidoctorj {
+  version = '1.5.2'
+}
+
+asciidoctor {
+  separateOutputDirs = false
+  outputDir = sourceSets.main.resources.srcDirs + '/public/docs'
+
+  attributes docinfo1: true,
+      'source-highlighter': 'coderay',
+      'hide-uri-scheme': true,
+      sectanchors: true,
+      sectlinks: true,
+      icons: 'font'
 }
 
 task wrapper(type: Wrapper) {
