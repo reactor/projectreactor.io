@@ -18,6 +18,12 @@ link:/docs/api/[Javadoc]:: Documentation on the Reactor API.
 
 Reactor is a foundational library for building reactive fast-data applications on the JVM. You can use any JVM langauge, from Java 7 or Java 8, to Scala, Groovy, or even Nashorn JavaScript. It's designed to be fast and efficient to enable you to write asynchronous applications that can manage extremely high workloads with very little overhead. It builds on the extreme throughput capabilities of the https://github.com/LMAX-Exchange/disruptor[Disruptor RingBuffer] to achieve throughput in the 10's of _millions_ of operations per second (even up to 100's if you have enough hardware horsepower).footnoteref:[benchmark,Reactor microbenchmarks are maintained in a https://github.com/reactor/reactor-benchmark[separate GitHub repository]]
 
+=== Reactive Streams
+
+The Reactor team are core contributors to the https://github.com/reactive-streams/reactive-streams[Reactive Streams Specification]. Reactive Streams is "an initiative to provide a standard for asynchronous stream processing with non-blocking back pressure on the JVM."
+
+There are certain characteristics of a system that "speaks" Reactive Streams beyond just using a common, shared API. The components inside Reactor's `Stream` actions behave in a predictable way since they implement the Reactive Streams standard. This is a type of inter-operability among implementations that goes far beyond a common set of interfaces. In fact, Reactive Streams implementations can largely be depended upon to Just Work(TM).
+
 [[getting-started]]
 == Getting Started
 
@@ -62,23 +68,27 @@ import reactor.rx.stream.Broadcaster;
 
 public class ReactorHelloWorld {
   public static void main(String... args) throws InterruptedException {
-    Environment.initialize();
+    Environment.initialize(); // <1>
 
-    Broadcaster<String> sink = Streams.broadcast(Environment.get());
+    Broadcaster<String> sink = Streams.broadcast(Environment.get()); // <2>
 
-    sink.dispatchOn(Environment.cachedDispatcher()) // <1>
-        .map(String::toUpperCase) // <2>
-        .consume(s -> System.out.printf("s=%s%n", s)); // <3>
+    sink.dispatchOn(Environment.cachedDispatcher()) // <3>
+        .map(String::toUpperCase) // <4>
+        .consume(s -> System.out.printf("s=%s%n", s)); // <5>
 
-    sink.onNext("Hello World!");
+    sink.onNext("Hello World!"); // <6>
 
-    Thread.sleep(500);
+    Thread.sleep(500); // <7>
   }
 }
 ----
-<1> Dispatch tasks onto a load-balanced `Dispatcher`.
-<2> Transform the input to upper-case and send to next stage.
-<3> Consume the transformed input and print to STDOUT.
+<1> If using Reactor's static `Environment` instance, it must be initialized before calling `Environment.get()`. You could also do this in a `static {}` block.
+<2> A `Broadcaster` is a special kind of `Stream` that allows publishing of values.
+<3> Dispatch downstream tasks onto a load-balanced `Dispatcher`.
+<4> Transform input to upper-case and implicitly broadcast downstream.
+<5> Consume the transformed input and print to STDOUT.
+<6> Publish a value into the `Stream`.
+<7> Block the `main` thread until work on other threads is complete, otherwise we won't see any output.
 
 [pass]
 </div>
@@ -86,4 +96,4 @@ public class ReactorHelloWorld {
 [[dispatching]]
 === Dispatching is Fundamental
 
-In Reactor, you'll find a lot of references to, and talk about, dispatching. Unlike almost all other asynchronous frameworks out there, Reactor takes dispatching tasks very seriously and it is a first-class concern. It might be tempting to think that what thread a task should be executed on is not something you as a developer want to have to worry about. But when you're dealing with asynchronous tasks, you quickly discover that it's impossible to develop a sane API around a set of blocking calls that have to tie up a thread to wait for work. As soon as your first task is complete and you want to notify the "next" task that a result is available, you find out just how important it is to assign a `Dispatcher` to your composition and let the framework handle when and where to execute your callback.
+In Reactor, you'll find a lot of references to "dispatching". Reactor takes executing tasks very seriously, so it's considered a first-class concern in the framework. It might be tempting to say "but I don't want to have to worry about which thread my tasks are executed on." Having dispatching as a first-class concern, however, means you don't have to worry about blocking in recursive asynchronous tasks because the `Dispatcher` implementation will manage queueing and execution for you.

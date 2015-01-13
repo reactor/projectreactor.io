@@ -1,4 +1,7 @@
+:doctype: book
+
 = Reference
+In-depth reference documentation for most components in Reactor.
 
 ++++
 include::../nav.html[]
@@ -7,4 +10,16 @@ include::../breadcrumb.html[tags="pre"]
 include::../breadcrumb.html[tags="post"]
 ++++
 
-this is the reference.
+== Streams
+
+[horizontal]
+<<streams.adoc#basics,Basics>>::
+Using a `Stream` and the Reactive Streams standard to compose pipelines.
+<<streams.adoc#work-queue,Work Queue>>::
+Using a `Stream` as a work queue for concurrent, parallel work.
+
+== Event Bus
+
+[horizontal]
+<<event-bus.adoc#basics,Basics>>::
+Using an `EventBus` to publish and respond to events.

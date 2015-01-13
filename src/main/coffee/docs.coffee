@@ -1,2 +1,3 @@
 (($) ->
-  acc = $('.ui.accordion').accordion()) jQuery
+  $('.ui.accordion').accordion()
+) jQuery

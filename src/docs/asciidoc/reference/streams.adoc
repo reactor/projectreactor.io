@@ -1,0 +1,56 @@
+= Streams
+
+++++
+include::../nav.html[]
+include::breadcrumb.html[tags="pre"]
+  <div class="active section">Streams</div>
+include::breadcrumb.html[tags="post"]
+++++
+
+[[basics]]
+== Stream Basics
+
+It's not an overstatement to say the `Stream` is the Reactor library's _raison d'être_. It is an incredibly useful and flexible component. It can be used to simply compose asynchronous actions together or it can function as an asynchronous work queue that forks and joins arbitrary compositions or other Reactive Streams componets coming from one of the other implementors of the standard.footnoteref:[reactive-streams-implementors, Currently http://akka.io[Akka Streams], http://ratpack.io[Ratpack], and https://github.com/ReactiveX/RxJava[RxJava]]
+
+There are basically two rough categories of streams: a "hot" `Stream` and a "cold" `Stream`. A "hot" `Stream` is unbounded and capable of accepting input data like a sink. A "cold" `Stream` is bounded and generally created from a fixed collection of data like a `List` or other `Iterable`.
+
+[pass]
+<div class="ui segment">
+
+[NOTE]
+====
+Reactor uses an `Environment` to keep sets of `Dispatcher` instances around for shared use in a given JVM (and classloader). An `Environment` instance can be created and passed around in an application to avoid classloading segregation issues or the static helpers can be used. Throughout the examples on this site, we'll use the static helpers and encourage you to do likewise. Somewhere in your application you'll need to initialize the static `Environment` if you plan on using the static helper methods.
+
+[source,java]
+----
+static {
+  Environment.initialize();
+}
+----
+====
+
+[pass]
+</div>
+
+=== Broadcasting Values
+
+[pass]
+<div class="ui segment">
+
+[source,java]
+----
+Broadcaster<String> sink = Streams.broadcast(Environment.get()); // <1>
+
+sink.map(String::toUpperCase)
+    .consume(s -> System.out.printf("%s greeting = %s%n", Thread.currentThread(), s));
+
+sink.onNext("Hello World!");
+----
+
+[pass]
+</div>
+
+[[work-queue]]
+== Stream as Work Queue
+
+TODO: pattern for using a Stream as a work queue
