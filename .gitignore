@@ -9,4 +9,9 @@ tmp
 *.iml
 .gradle
 build
-
+src/main/resources/public/docs/index.html
+src/main/resources/public/docs/reference/index.html
+src/main/resources/public/javascripts/docs.js
+src/main/resources/public/javascripts/projectreactor.js
+src/main/resources/public/stylesheets/docs.css
+src/main/resources/public/stylesheets/projectreactor.css
