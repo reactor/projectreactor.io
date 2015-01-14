@@ -10,7 +10,7 @@ include::../breadcrumb.html[tags="pre"]
 include::../breadcrumb.html[tags="post"]
 ++++
 
-== Streams
+== Streaming
 
 [horizontal]
 <<streams.adoc#basics,Basics>>::
@@ -21,5 +21,29 @@ Using a `Stream` as a work queue for concurrent, parallel work.
 == Event Bus
 
 [horizontal]
-<<event-bus.adoc#basics,Basics>>::
-Using an `EventBus` to publish and respond to events.
+<<event-bus.adoc#publish-subscribe,Publish/Subscribe>>::
+Using an `EventBus` to publish and respond to events using Publish/Subscribe.
+<<event-bus.adoc#request-reply,Request/Reply>>::
+Using an `EventBus` to publish and respond to events using Request/Reply.
+
+== Disruptor RingBuffer
+
+[horizontal]
+<<processor.adoc#basics,Basics>>::
+Using a Disruptor RingBuffer-based `Processor` to publish and respond to events at extremely high throughput.
+
+== Spring Support
+
+[horizontal]
+<<spring.adoc#basics,Basics>>::
+Writing Reactor applications that are deployed inside a Spring `ApplicationContext`.
+
+== Example Applications
+
+[horizontal]
+https://github.com/reactor/reactor-quickstart[Quickstart]::
+An example application showing several ways to use basic components in Reactor.
+https://github.com/reactor/reactor-samples[Samples]::
+A simple sample application that demonstrates Reactor functionality in JUnit tests.
+https://github.com/SpringOne2GX-2014/reactive-geocoder/[reactive-geocoder]::
+A more advanced example application that combines Reactor with the Ratpack web framework.

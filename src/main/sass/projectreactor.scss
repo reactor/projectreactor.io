@@ -1,3 +1,5 @@
+$small-font-size: .9rem;
+
 html {
 }
 
@@ -8,7 +10,7 @@ html {
 
   .ui.menu .header a {
     line-height: 1.0 !important;
-    font-size: .8rem;
+    font-size: $small-font-size;
   }
 
   .masthead {

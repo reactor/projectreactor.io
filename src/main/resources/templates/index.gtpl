@@ -16,7 +16,7 @@ html {
               }
             }
             div(class: 'right menu') {
-              a(class: 'item', href: '/doc', title: 'Documentation') {
+              a(class: 'item', href: '/docs', title: 'Documentation') {
                 i(class: 'book icon') {}
               }
               a(class: 'item', href: 'https://github.com/reactor/reactor/', title: 'Source Code') {
@@ -61,7 +61,7 @@ html {
               div(class: 'ui icon header') {
                 i(class: 'book icon') {}
               }
-              p 'Learn about Reactor through <a href="#">code samples</a>, <a href="#">reference documentation</a>, and the <a href="#">API Javadoc</a>.'
+              p 'Learn about Reactor through <a href="#">code samples</a>, <a href="/docs">reference documentation</a>, and the <a href="/docs/api">API Javadoc</a>.'
             }
             div(class: 'column') {
               div(class: 'ui icon header') {

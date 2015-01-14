@@ -12,6 +12,8 @@ build
 src/main/resources/public/docs/index.html
 src/main/resources/public/docs/reference/index.html
 src/main/resources/public/docs/reference/streams.html
+src/main/resources/public/docs/reference/processor.html
+src/main/resources/public/docs/reference/spring.html
 src/main/resources/public/docs/reference/event-bus.html
 src/main/resources/public/javascripts/docs.js
 src/main/resources/public/javascripts/projectreactor.js

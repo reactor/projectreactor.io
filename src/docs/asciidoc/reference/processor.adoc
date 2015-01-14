@@ -1,0 +1,56 @@
+= Processor
+Using the Disruptor RingBuffer-based Processor for uber high throughput.
+
+++++
+include::../nav.html[]
+include::breadcrumb.html[tags="pre"]
+  <div class="active section">Processor</div>
+include::breadcrumb.html[tags="post"]
+++++
+
+[[basics]]
+== Processor Basics
+
+Reactor's link:/docs/api/index.html?reactor/core/dispatch/processor/Processor.html[Processor] component is essentially a https://github.com/LMAX-Exchange/disruptor[Disruptor RingBuffer] adapted to Reactor's API. Its purpose is to provide as close to bare-metal effeciency as possible while still maintaing Reactor's use of functional abstractions like `Consumer` and `Supplier`. It is intended for situations where you need to pool an object for reuse and dispatch tasks onto another thread with extremely low overhead and extremely high throughput.
+
+To create a `Processor`, you use a "spec" helper and specify the important configuration options before the `Processor` is created since you can't change them afterward.
+
+[pass]
+<div class="ui segment">
+
+[source,java]
+----
+Processor<Buffer> processor = new ProcessorSpec<Buffer>()
+		.singleThreadedProducer() // <1>
+		.dataBufferSize(4 * 1024) // <2>
+		.dataSupplier(() -> new Buffer()) // <3>
+		.consume(buff -> service.readInput(buff)) // <4>
+		.get();
+----
+<1> Input data is read via a single thread, so make this as efficient as possible.
+<2> Fix a limit of 4K elements in this `Processor`.
+<3> At creation time, pre-instantiate `dataBufferSize` elements by invoking this factory supplier. Any object is usable.
+<4> When an `Operation` is commited, invoke this callback.
+
+[pass]
+</div>
+
+During the normal flow of your application, you can use the `Processor` to efficiently react to input data by working with an `Operation`. The flow is basically this: `.prepare()` to do work by allocating a slot from the underlying RingBuffer; manipulate the object occupying that slot; commit the `Operation` to invoke the callback. If all slots in the RingBuffer have been allocated, then the `.prepare()` method will block the caller until a slot becomes available. This is an excellent way for your application to generate backpressure, which will prevent an overflow of data your input consumers can't handle. It's also very memory-efficient since the RingBuffer is really a super-high-speed object pool. 
+
+Using the `Processor`, it's possible to create an application that produces _zero_ garbage and need never halt for GC.
+
+[pass]
+<div class="ui segment">
+
+[source,java]
+----
+Operation<Buffer> op = processor.prepare(); // <1>
+op.get().append("Hello World!").flip(); // <2>
+op.commit(); // <3>
+----
+<1> Allocate a `Buffer` from a slot in the RingBuffer.
+<2> Manipulate the `Buffer` by writing data into it.
+<3> Commit the `Operation` and invoke the callback on the RingBuffer's execution thread.
+
+[pass]
+</div>
