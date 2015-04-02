@@ -29,7 +29,7 @@ import java.util.Map;
 public class Application {
 
 	private static final Logger LOG             = LoggerFactory.getLogger(Application.class);
-	private static final String CURRENT_VERSION = "2.0.0.M2";
+	private static final String CURRENT_VERSION = "2.0.0.RELEASE";
 
 	@Bean
 	public MarkupTemplateEngine markupTemplateEngine() {
@@ -68,8 +68,8 @@ public class Application {
 
 	private static final Map<String, Object> createModel(String title, String type) {
 		Map<String, Object> model = new HashMap<>();
-		model.put("title", "Home");
-		model.put("type", "home");
+		model.put("title", title);
+		model.put("type", type);
 		model.put("currentVersion", CURRENT_VERSION);
 		return model;
 	}
