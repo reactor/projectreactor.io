@@ -36,10 +36,10 @@ To use it, you simply declare a pipeline of composable, functional tasks on the 
 [pass]
 <div class="ui segment">
 
-.Streams.broadcast()
+.Broadcaster.create()
 [source,java]
 ----
-Broadcaster<String> sink = Streams.broadcast(Environment.get()); // <1>
+Broadcaster<String> sink = Broadcaster.create(Environment.get()); // <1>
 
 sink.map(String::toUpperCase) // <2>
     .consume(s -> System.out.printf("%s greeting = %s%n", Thread.currentThread(), s)); // <3>
