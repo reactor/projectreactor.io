@@ -11,7 +11,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.2.BUILD-SNAPSHOT',
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE',
         'org.asciidoctor:asciidoctor-gradle-plugin:1.5.2'
   }
 }
@@ -39,7 +39,7 @@ dependencies {
     exclude module: 'spring-boot-starter-tomcat'
   }
 
-  compile "io.projectreactor:reactor-core:2.0.0.M2"
+  compile "io.projectreactor:reactor-core:2.0.0.BUILD-SNAPSHOT"
 
   compile "io.ratpack:ratpack-core:$ratpackVersion",
       "io.ratpack:ratpack-groovy:$ratpackVersion",
@@ -68,5 +68,5 @@ asciidoctor {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.2.1'
+  gradleVersion = '2.3'
 }
