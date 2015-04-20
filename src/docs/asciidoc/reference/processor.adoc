@@ -1,5 +1,5 @@
-= Processor
-Using the Disruptor RingBuffer-based Processor for uber high throughput.
+= RingBuffer Processor
+Using the Disruptor RingBuffer-based Reactive Streams Processor for über high throughput.
 
 ++++
 include::../nav.html[]
@@ -9,48 +9,77 @@ include::breadcrumb.html[tags="post"]
 ++++
 
 [[basics]]
-== Processor Basics
+== RingBufferProcessor Basics
 
-Reactor's link:/docs/api/index.html?reactor/core/dispatch/processor/Processor.html[Processor] component is essentially a https://github.com/LMAX-Exchange/disruptor[Disruptor RingBuffer] adapted to Reactor's API. Its purpose is to provide as close to bare-metal effeciency as possible while still maintaing Reactor's use of functional abstractions like `Consumer` and `Supplier`. It is intended for situations where you need to pool an object for reuse and dispatch tasks onto another thread with extremely low overhead and extremely high throughput.
+Reactor's link:/docs/api/index.html?reactor/core/processor/RingBufferProcessor.html[RingBufferProcessor] component is essentially a https://github.com/LMAX-Exchange/disruptor[Disruptor RingBuffer] adapted to the Reactive Streams API. Its purpose is to provide as close to bare-metal efficiency as possible. It is intended for situations where you need to dispatch tasks onto another thread with extremely low overhead and extremely high throughput and manage backpressure in your workflow.
 
-To create a `Processor`, you use a "spec" helper and specify the important configuration options before the `Processor` is created since you can't change them afterward.
-
-[pass]
-<div class="ui segment">
-
-[source,java]
-----
-Processor<Buffer> processor = new ProcessorSpec<Buffer>()
-		.singleThreadedProducer() // <1>
-		.dataBufferSize(4 * 1024) // <2>
-		.dataSupplier(() -> new Buffer()) // <3>
-		.consume(buff -> service.readInput(buff)) // <4>
-		.get();
-----
-<1> Input data is read via a single thread, so make this as efficient as possible.
-<2> Fix a limit of 4K elements in this `Processor`.
-<3> At creation time, pre-instantiate `dataBufferSize` elements by invoking this factory supplier. Any object is usable.
-<4> When an `Operation` is commited, invoke this callback.
-
-[pass]
-</div>
-
-During the normal flow of your application, you can use the `Processor` to efficiently react to input data by working with an `Operation`. The flow is basically this: `.prepare()` to do work by allocating a slot from the underlying RingBuffer; manipulate the object occupying that slot; commit the `Operation` to invoke the callback. If all slots in the RingBuffer have been allocated, then the `.prepare()` method will block the caller until a slot becomes available. This is an excellent way for your application to generate backpressure, which will prevent an overflow of data your input consumers can't handle. It's also very memory-efficient since the RingBuffer is really a super-high-speed object pool. 
-
-Using the `Processor`, it's possible to create an application that produces _zero_ garbage and need never halt for GC.
+To create a `RingBufferProcessor`, you use static `create` helper methods.
 
 [pass]
 <div class="ui segment">
 
 [source,java]
 ----
-Operation<Buffer> op = processor.prepare(); // <1>
-op.get().append("Hello World!").flip(); // <2>
-op.commit(); // <3>
+Processor<Integer, Integer> p = RingBufferProcessor.create("test", 32); // <1>
+Stream<Integer> s = Streams.wrap(p); // <2>
+
+s.consume(i -> System.out.println(Thread.currentThread() + " data=" + i)); // <3>
+s.consume(i -> System.out.println(Thread.currentThread() + " data=" + i)); // <4>
+s.consume(i -> System.out.println(Thread.currentThread() + " data=" + i)); // <5>
+
+input.subscribe(p); // <6>
 ----
-<1> Allocate a `Buffer` from a slot in the RingBuffer.
-<2> Manipulate the `Buffer` by writing data into it.
-<3> Commit the `Operation` and invoke the callback on the RingBuffer's execution thread.
+<1> Create a `Processor` with an internal RingBuffer capacity of 32 slots.
+<2> Create a Reactor `Stream` from this Reactive Streams `Processor`.
+<3> Each call to `consume` creates a Disruptor `EventProcessor` on its own `Thread`.
+<4> Each call to `consume` creates a Disruptor `EventProcessor` on its own `Thread`.
+<5> Each call to `consume` creates a Disruptor `EventProcessor` on its own `Thread`.
+<6> Subscribe this `Processor` to a Reactive Streams `Publisher`.
 
 [pass]
 </div>
+
+Each element of data passed to the Processor's `Subscribe.onNext(Buffer)` method will be "broadcast" to all consumers. There's no round-robin distribution with this `Processor` because that's in the `RingBufferWorkProcessor`, discussed below. If you passed the integers 1, 2 and 3 into the `Processor`, you would see output in the console similar to this:
+
+----
+Thread[test-2,5,main] data=1
+Thread[test-1,5,main] data=1
+Thread[test-3,5,main] data=1
+Thread[test-1,5,main] data=2
+Thread[test-2,5,main] data=2
+Thread[test-1,5,main] data=3
+Thread[test-3,5,main] data=2
+Thread[test-2,5,main] data=3
+Thread[test-3,5,main] data=3
+----
+
+Each thread is receiving all values passed into the `Processor` and each thread gets the values in an ordered way since it's using the `RingBuffer` internally to manage the slots available to publish values.
+
+[[work]]
+== RingBufferWorkProcessor
+
+Unlike the standard `RingBufferProcessor`, which broadcasts its values to all consumers, the `RingBufferWorkProcessor` partitions the incoming values based on the number of consumers. Values come into the `Processor` and are sent to the various threads (because each consumer has its own thread) in a round-robin fashion, while still using the internal `RingBuffer` to efficiently manage the publication of values by providing backpressure to the producer when appropriate.
+
+To use the `RingBufferWorkProcessor`, the only thing you have to change from the above code sample is the reference to the static `create` method. You'll use the one on the `RingBufferWorkProcessor` class itself instead. The rest of the code remains identical.
+
+[pass]
+<div class="ui segment">
+
+[source,java]
+----
+Processor<Integer, Integer> p = RingBufferWorkProcessor.create("test", 32); // <1>
+----
+<1> Create a `Processor` with an internal RingBuffer capacity of 32 slots.
+
+[pass]
+</div>
+
+Now when values are published to the `Processor`, they will not be broadcast to every consumer, but be partitioned based on the number of consumers. When we run this sample, we see output like this now:
+
+----
+Thread[test-2,5,main] data=3
+Thread[test-3,5,main] data=2
+Thread[test-1,5,main] data=1
+----
+
+Reactor's `Processor` components can be used to create extremely efficient, low-latency work pools into which you can safely dump 10's of millions of events per second (assuming your business logic can handle that volume). When the slots are full and all consumers are busy, the `Processor` will produce backpressure on the upstream components in the usual RingBuffer way.

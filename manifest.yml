@@ -1,0 +1,7 @@
+---
+applications:
+- name: projectreactor
+  memory: 1G
+  path: ./build/libs/projectreactor-home-0.4.0.BUILD-SNAPSHOT.jar
+  host:
+  domain: projectreactor.io

@@ -36,25 +36,27 @@ To add Reactor to an existing project, you just need to include the appropriate 
 [source,groovy]
 ----
 ext {
-  reactorVersion = '2.0.0.M2'
+  reactorVersion = '2.0.0.RELEASE'
 }
 
 repositories {
-  // maven { url 'http://repo.spring.io/libs-milestone' } // <1>
-  // maven { url 'http://repo.spring.io/libs-snapshot' } // <2>
+  maven { url 'http://repo.spring.io/libs-release' } // <1>
+  // maven { url 'http://repo.spring.io/libs-milestone' } // <2>
+  // maven { url 'http://repo.spring.io/libs-snapshot' } // <3>
 }
 
 dependencies {
   compile "io.projectreactor:reactor-core:$reactorVersion"
 }
 ----
-<1> Uncomment to use a milestone version.
-<2> Uncomment to use a snapshot version.
+<1> Uncomment to use a release version.
+<2> Uncomment to use a milestone version.
+<3> Uncomment to use a snapshot version.
 
 [pass]
 </div>
 
-Now that you've added the Reactor library to your project, you can start using the `Stream` class to perform high-volume, low-latency, asynchronous work. It's really almost deceptively simple. Here's a completle Hello World to get you started.
+Now that you've added the Reactor library to your project, you can start using the `Stream` class to perform high-volume, low-latency, asynchronous work. It's really almost deceptively simple. Here's a complete Hello World to get you started.
 
 [pass]
 <div class="ui segment">
@@ -70,7 +72,7 @@ public class ReactorHelloWorld {
   public static void main(String... args) throws InterruptedException {
     Environment.initialize(); // <1>
 
-    Broadcaster<String> sink = Streams.broadcast(Environment.get()); // <2>
+    Broadcaster<String> sink = Broadcaster.create(Environment.get()); // <2>
 
     sink.dispatchOn(Environment.cachedDispatcher()) // <3>
         .map(String::toUpperCase) // <4>
