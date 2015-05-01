@@ -1,5 +1,5 @@
 ext {
-  ratpackVersion = '0.9.9'
+  ratpackVersion = '0.9.15'
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 }
@@ -39,7 +39,7 @@ dependencies {
     exclude module: 'spring-boot-starter-tomcat'
   }
 
-  compile "io.projectreactor:reactor-core:2.0.0.BUILD-SNAPSHOT"
+  compile "io.projectreactor:reactor-core:2.0.1.BUILD-SNAPSHOT"
 
   compile "io.ratpack:ratpack-core:$ratpackVersion",
       "io.ratpack:ratpack-groovy:$ratpackVersion",
