@@ -46,7 +46,11 @@ repositories {
 }
 
 dependencies {
+  //Core stuff (Dispatchers, Functional interfaces...)
   compile "io.projectreactor:reactor-core:$reactorVersion"
+
+  //Everything Stream
+  compile "io.projectreactor:reactor-stream:$reactorVersion"
 }
 ----
 <1> Uncomment to use a release version.
