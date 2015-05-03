@@ -1,5 +1,5 @@
 ext {
-  ratpackVersion = '0.9.15'
+  ratpackVersion = '0.9.16'
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 }
@@ -28,6 +28,7 @@ jar {
 }
 
 repositories {
+  mavenLocal()
   maven { url 'http://repo.spring.io/libs-snapshot' }
   maven { url 'http://oss.jfrog.org/artifactory/repo' }
   mavenCentral()

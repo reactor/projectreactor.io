@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import ratpack.error.ClientErrorHandler;
 import ratpack.func.Action;
 import ratpack.groovy.Groovy;
-import ratpack.groovy.markuptemplates.internal.MarkupTemplateRenderer;
+import ratpack.groovy.template.internal.MarkupTemplateRenderer;
 import ratpack.handling.Chain;
-import ratpack.spring.annotation.EnableRatpack;
+import ratpack.spring.config.EnableRatpack;
 
 import java.util.HashMap;
 import java.util.Map;
