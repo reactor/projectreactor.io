@@ -10,33 +10,73 @@ include::../breadcrumb.html[tags="pre"]
 include::../breadcrumb.html[tags="post"]
 ++++
 
-== Streaming
+== Introducing Reactor
+
+[horizontal]
+<<gettingstarted.adoc#start,Power Up>>::
+What is Reactor and how it could help you ?
+<<gettingstarted.adoc#reactivestreams,Reactive Streams>>::
+Why is Reactor tied to the Reactive Streams ?
+<<gettingstarted.adoc#rx,Reactive Extensions>>::
+What are Reactive Extensions and why Reactor `Streams` derive from them ?
+
+== Reactor-Core
+=== Dispatching tasks efficiently with Processors and Dispatchers
+
+[horizontal]
+<<core.adoc#fn,Functions>>::
+Using Functional interfaces to organize your Reactor code.
+<<core.adoc#core,Core>>::
+Using Environment and Dispatchers to compute or schedule (a)synchronous tasks.
+<<processor.adoc#basics,Processor>>::
+Using a `Processor` to compute asynchronous tasks with back-pressure support.
+<<core.adoc#io,Codecs and Buffer>>::
+Working with Codecs and Buffer to marshall/unmarshall bytes efficiently.
+
+== Reactor-Stream
+=== Coordinating (a)synchornous tasks with Streams and Promises
 
 [horizontal]
 <<streams.adoc#basics,Basics>>::
-Using a `Stream` and the Reactive Streams standard to compose pipelines.
+Using a `Stream` or a `Promise` and the Reactive Streams standard to compose pipelines.
+<<streams.adoc#micro-batch,MicroBatching>>::
+Using a `Stream` as a `Micro Batch` strategy to aggregate small payloads.
+<<streams.adoc#microservice,MicroService>>::
+Using a `Stream` or a `Promise` to deal with remote `MicroService` latency.
+<<streams.adoc#analytics,Analytics>>::
+Using a `Stream` to compute metrics and any inline stateful processing.
 <<streams.adoc#work-queue,Work Queue>>::
-Using a `Stream` as a work queue for concurrent, parallel work.
+Using a `Stream` as a partitioned work queue for concurrent, parallel work.
+<<streams.adoc#flowcontrol,Flow Control>>::
+Using a `Stream` and Reactive Streams standard to control, back-off or overflow massive data throughput.
+<<streams.adoc#combine,Combinatory Operations>>::
+Combining multiple Reactive Streams data `Publishers` in an controlled fashion.
 
-== Event Bus
+== Reactor-Bus
+===  Routing data with the Event Bus
 
 [horizontal]
 <<event-bus.adoc#publish-subscribe,Publish/Subscribe>>::
 Using an `EventBus` to publish and respond to events using Publish/Subscribe.
 <<event-bus.adoc#request-reply,Request/Reply>>::
 Using an `EventBus` to publish and respond to events using Request/Reply.
+<<event-bus.adoc#registry,Registry>>::
+Using a `Registry` to cache in-memory values.
 
-== Disruptor RingBuffer-powered Reactive Streams Processor
-
-[horizontal]
-<<processor.adoc#basics,Basics>>::
-Using a Disruptor RingBuffer-based `Processor` to publish and respond to events at extremely high throughput.
-
-== TCP and HTTP
+== Reactor-Net
+===  Going beyond the JVM: Asynchronous TCP, UDP and HTTP
 
 [horizontal]
-<<tcp.adoc#basics,Basics>>:: Using Reactor's TCP support to create high-performance TCP clients and servers.
-<<http.adoc#basics,Basics>>:: Using Reactor's HTTP support to create high-performance HTTP clients and servers.
+<<net.adoc#basics,Overview>>::
+How is Reactor Net module working ?
+<<tcp.adoc#basics,Basics>>::
+Using Reactor's TCP support to create high-performance TCP clients and servers.
+<<tcp.adoc#backpressure,Backpressure>>::
+Using Reactor and Reactive Stream standard for flow-control with TCP network peers.
+<<http.adoc#basics,Basics>>::
+Using Reactor's HTTP support to create high-performance HTTP clients and servers.
+<<http.adoc#basics,Basics>>::
+Using Reactor's HTTP support to create high-performance HTTP clients and servers.
 
 == Spring Support
 
@@ -51,5 +91,3 @@ https://github.com/reactor/reactor-quickstart[Quickstart]::
 An example application showing several ways to use basic components in Reactor.
 https://github.com/reactor/reactor-samples[Samples]::
 A simple sample application that demonstrates Reactor functionality in JUnit tests.
-https://github.com/SpringOne2GX-2014/reactive-geocoder/[reactive-geocoder]::
-A more advanced example application that combines Reactor with the Ratpack web framework.
