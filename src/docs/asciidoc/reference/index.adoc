@@ -34,7 +34,7 @@ Using a `Processor` to compute asynchronous tasks with back-pressure support.
 Working with Codecs and Buffer to marshall/unmarshall bytes efficiently.
 
 == Reactor-Stream
-=== Coordinating (a)synchornous tasks with Streams and Promises
+=== Coordinating (a)synchronous tasks with Streams and Promises
 
 [horizontal]
 <<streams.adoc#basics,Basics>>::
