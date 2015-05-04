@@ -69,14 +69,14 @@ Using a `Registry` to cache in-memory values.
 [horizontal]
 <<net.adoc#basics,Overview>>::
 How is Reactor Net module working ?
-<<tcp.adoc#basics,Basics>>::
+<<tcp.adoc#basics,TCP 101>>::
 Using Reactor's TCP support to create high-performance TCP clients and servers.
 <<tcp.adoc#backpressure,Backpressure>>::
 Using Reactor and Reactive Stream standard for flow-control with TCP network peers.
-<<http.adoc#basics,Basics>>::
+<<http.adoc#basics,HTTP 101>>::
 Using Reactor's HTTP support to create high-performance HTTP clients and servers.
-<<http.adoc#basics,Basics>>::
-Using Reactor's HTTP support to create high-performance HTTP clients and servers.
+<<net.adoc#basics,End-To-End>>::
+Combining Reactor Net, Stream and Core to create standalone Ingesters or Data (micro)Services
 
 == Spring Support
 
