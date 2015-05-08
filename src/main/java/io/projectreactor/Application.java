@@ -58,6 +58,8 @@ public class Application {
 			chain.get("", ctx -> {
 				Map<String, Object> model = createModel("Home", "home");
 				ctx.render(Groovy.groovyMarkupTemplate(model, "templates/index.gtpl"));
+			}).get("docs/reference/streams.html", ctx -> {
+				ctx.redirect("index.html");
 			});
 		};
 	}
