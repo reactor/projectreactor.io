@@ -1,8 +1,6 @@
 reactor
 reactor.bus
 reactor.bus.alloc
-reactor.bus.batcher
-reactor.bus.batcher.spec
 reactor.bus.filter
 reactor.bus.publisher
 reactor.bus.registry
@@ -27,7 +25,6 @@ reactor.core.queue.internal
 reactor.core.reactivestreams
 reactor.core.support
 reactor.fn
-reactor.fn.batch
 reactor.fn.support
 reactor.fn.timer
 reactor.fn.tuple
