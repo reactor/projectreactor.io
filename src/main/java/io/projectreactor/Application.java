@@ -29,7 +29,7 @@ import java.util.Map;
 public class Application {
 
 	private static final Logger LOG             = LoggerFactory.getLogger(Application.class);
-	private static final String CURRENT_VERSION = "2.0.1.RELEASE";
+	private static final String CURRENT_VERSION = "2.0.2.RELEASE";
 
 	@Bean
 	public MarkupTemplateEngine markupTemplateEngine() {
