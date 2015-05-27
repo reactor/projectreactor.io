@@ -40,7 +40,7 @@ dependencies {
     exclude module: 'spring-boot-starter-tomcat'
   }
 
-  compile "io.projectreactor:reactor-core:2.0.2.RELEASE"
+  compile "io.projectreactor:reactor-core:2.0.3.RELEASE"
 
   compile "io.ratpack:ratpack-core:$ratpackVersion",
       "io.ratpack:ratpack-groovy:$ratpackVersion",
