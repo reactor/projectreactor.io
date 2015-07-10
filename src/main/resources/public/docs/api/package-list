@@ -1,6 +1,6 @@
 reactor
+reactor.alloc
 reactor.bus
-reactor.bus.alloc
 reactor.bus.filter
 reactor.bus.publisher
 reactor.bus.registry
@@ -10,11 +10,7 @@ reactor.bus.spec
 reactor.bus.support
 reactor.bus.timer
 reactor.core
-reactor.core.alloc
-reactor.core.alloc.factory
-reactor.core.alloc.spec
 reactor.core.config
-reactor.core.convert
 reactor.core.dispatch
 reactor.core.dispatch.wait
 reactor.core.internal
@@ -30,6 +26,7 @@ reactor.fn.timer
 reactor.fn.tuple
 reactor.groovy.config
 reactor.groovy.support
+reactor.io
 reactor.io.buffer
 reactor.io.codec
 reactor.io.codec.compress
