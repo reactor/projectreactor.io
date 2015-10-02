@@ -2,6 +2,7 @@ package io.projectreactor;
 
 import groovy.text.markup.MarkupTemplateEngine;
 import groovy.text.markup.TemplateConfiguration;
+import io.projectreactor.ratpack.EnableRatpack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,6 @@ import ratpack.func.Action;
 import ratpack.groovy.Groovy;
 import ratpack.groovy.template.internal.MarkupTemplateRenderer;
 import ratpack.handling.Chain;
-import ratpack.spring.config.EnableRatpack;
 
 import java.util.HashMap;
 import java.util.Map;

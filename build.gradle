@@ -11,7 +11,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE',
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE',
         'org.asciidoctor:asciidoctor-gradle-plugin:1.5.2'
   }
 }
@@ -44,8 +44,8 @@ dependencies {
 
   compile "io.ratpack:ratpack-core:$ratpackVersion",
       "io.ratpack:ratpack-groovy:$ratpackVersion",
-      "io.ratpack:ratpack-jackson:$ratpackVersion"
-  compile 'org.springframework.boot:spring-boot-ratpack:1.0.0.BUILD-SNAPSHOT'
+      "io.ratpack:ratpack-jackson:$ratpackVersion",
+      "io.ratpack:ratpack-spring-boot:$ratpackVersion"
 
   runtime 'javax.el:javax.el-api:3.0.0'
 
