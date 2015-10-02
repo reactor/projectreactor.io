@@ -58,7 +58,7 @@ asciidoctorj {
 
 asciidoctor {
   separateOutputDirs = false
-  outputDir = sourceSets.main.resources.srcDirs + '/public'
+  outputDir = sourceSets.main.resources.srcDirs + '/public/docs'
 
   attributes docinfo1: true,
       'source-highlighter': 'coderay',
