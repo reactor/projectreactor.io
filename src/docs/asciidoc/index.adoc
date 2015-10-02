@@ -81,9 +81,9 @@ import reactor.rx.Streams;
 
 public class ReactorHelloWorld {
   public static void main(String... args) throws InterruptedException {
-    Processor<String, String> asyncProcessor = Processors.topic(); // <1>
+    Processor<String, String> sink = Processors.topic(); // <1>
 
-    Streams.create(asyncProcessor) // <2>
+    Streams.create(sink) // <2>
         .map(String::toUpperCase) // <3>
         .consume(s -> System.out.printf("s=%s%n", s)); // <4>
 
@@ -96,7 +96,7 @@ public class ReactorHelloWorld {
 <1> Create an asynchronous message passing processor, signals coming in onXXX will be dispatched asynchronously.
 <2> Decorate the Processor with the Reactor Stream API.
 <3> Transform input to upper-case and implicitly broadcast downstream.
-<4> Consume the transformed input and print to STDOUT. This will start the subscriber thread attached to our asyncProcessor.
+<4> Consume the transformed input and print to STDOUT. This will start the subscriber thread attached to our sink.
 <5> Publish a value into the `Processor`.
 <6> Release `Processor` resources (non daemon thread) allowing for JVM exit.
 

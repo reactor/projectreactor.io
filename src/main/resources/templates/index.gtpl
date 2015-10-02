@@ -45,7 +45,7 @@ html {
               }
             }
             div(class: 'nine wide column') {
-              script(src: "https://gist.github.com/jbrisbin/8b060119acc69f5e6dfd.js") {}
+              script(src: "https://gist.github.com/smaldini/a537f7a1f6b77d59b5d4") {}
             }
           }
         }
