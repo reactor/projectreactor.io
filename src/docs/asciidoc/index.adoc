@@ -36,7 +36,7 @@ To add Reactor to an existing project, you just need to include the appropriate 
 [source,groovy]
 ----
 ext {
-  reactorVersion = '2.0.4.RELEASE'
+  reactorVersion = '2.0.6.RELEASE'
 }
 
 repositories {
