@@ -1,7 +1,7 @@
 :doctype: book
 
 = Documentation
-Project Reactor reference documentation, code samples, and Javadoc.
+Project Reactor NEXT reference documentation, code samples, and Javadoc.
 
 ++++
 include::nav.html[]
@@ -36,17 +36,17 @@ To add Reactor to an existing project, you just need to include the appropriate 
 [source,groovy]
 ----
 ext {
-  reactorVersion = '2.0.6.RELEASE'
+  reactorVersion = '2.1.0.BUILD-SNAPSHOT'
 }
 
 repositories {
-  maven { url 'http://repo.spring.io/libs-release' } // <1>
+  // maven { url 'http://repo.spring.io/libs-release' } // <1>
   // maven { url 'http://repo.spring.io/libs-milestone' } // <2>
-  // maven { url 'http://repo.spring.io/libs-snapshot' } // <3>
+   maven { url 'http://repo.spring.io/libs-snapshot' } // <3>
 }
 
 dependencies {
-  //Core stuff (Dispatchers, Functional interfaces...)
+  //Core stuff (Processors, Functional interfaces...)
   compile "io.projectreactor:reactor-core:$reactorVersion"
 
   //Everything Stream
@@ -57,7 +57,7 @@ dependencies {
 
   //Everything Net
   //compile "io.projectreactor:reactor-net:$reactorVersion"
-  //compile "io.netty:netty-all:4.0.27.final"
+  //compile "io.netty:netty-all:4.0.31.final"
 }
 ----
 <1> Uncomment to use a release version.
@@ -75,38 +75,30 @@ Now that you've added the Reactor library to your project, you can start using t
 .ReactorHelloWorld.java
 [source,java]
 ----
-import reactor.Environment;
+import reactor.Processors;
+import org.reactivestreams.Processor;
 import reactor.rx.Streams;
-import reactor.rx.stream.Broadcaster;
 
 public class ReactorHelloWorld {
   public static void main(String... args) throws InterruptedException {
-    Environment.initialize(); // <1>
+    Processor<String, String> asyncProcessor = Processors.topic(); // <1>
 
-    Broadcaster<String> sink = Broadcaster.create(Environment.get()); // <2>
+    Streams.create(asyncProcessor) // <2>
+        .map(String::toUpperCase) // <3>
+        .consume(s -> System.out.printf("s=%s%n", s)); // <4>
 
-    sink.dispatchOn(Environment.cachedDispatcher()) // <3>
-        .map(String::toUpperCase) // <4>
-        .consume(s -> System.out.printf("s=%s%n", s)); // <5>
+    sink.onNext("Hello World!"); // <5>
 
-    sink.onNext("Hello World!"); // <6>
-
-    Thread.sleep(500); // <7>
+    sink.onComplete(); // <6>
   }
 }
 ----
-<1> If using Reactor's static `Environment` instance, it must be initialized before calling `Environment.get()`. You could also do this in a `static {}` block.
-<2> A `Broadcaster` is a special kind of `Stream` that allows publishing of values.
-<3> Dispatch downstream tasks onto a load-balanced `Dispatcher`.
-<4> Transform input to upper-case and implicitly broadcast downstream.
-<5> Consume the transformed input and print to STDOUT.
-<6> Publish a value into the `Stream`.
-<7> Block the `main` thread until work on other threads is complete, otherwise we won't see any output.
+<1> Create an asynchronous message passing processor, signals coming in onXXX will be dispatched asynchronously.
+<2> Decorate the Processor with the Reactor Stream API.
+<3> Transform input to upper-case and implicitly broadcast downstream.
+<4> Consume the transformed input and print to STDOUT. This will start the subscriber thread attached to our asyncProcessor.
+<5> Publish a value into the `Processor`.
+<6> Release `Processor` resources (non daemon thread) allowing for JVM exit.
 
 [pass]
 </div>
-
-[[dispatching]]
-=== Dispatching is Fundamental
-
-In Reactor, you'll find a lot of references to "dispatching". Reactor takes executing tasks very seriously, so it's considered a first-class concern in the framework. It might be tempting to say "but I don't want to have to worry about which thread my tasks are executed on." Having dispatching as a first-class concern, however, means you don't have to worry about blocking in recursive asynchronous tasks because the `Dispatcher` implementation will manage queueing and execution for you.
