@@ -9,13 +9,6 @@ tmp
 *.iml
 .gradle
 build
-src/main/resources/public/docs/index.html
-src/main/resources/public/docs/reference/index.html
-src/main/resources/public/docs/reference/streams.html
-src/main/resources/public/docs/reference/processor.html
-src/main/resources/public/docs/reference/spring.html
-src/main/resources/public/docs/reference/event-bus.html
-src/main/resources/public/javascripts/docs.js
-src/main/resources/public/javascripts/projectreactor.js
-src/main/resources/public/stylesheets/docs.css
-src/main/resources/public/stylesheets/projectreactor.css
+src/main/resources/public/docs/reference/*
+src/main/resources/public/docs/raw/*
+src/main/resources/public/docs/api/*
