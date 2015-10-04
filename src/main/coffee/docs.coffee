@@ -1,3 +1,0 @@
-(($) ->
-  $('.ui.accordion').accordion()
-) jQuery

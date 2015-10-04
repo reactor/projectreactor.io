@@ -3,19 +3,18 @@ html {
   head {
     title "${model.title} | Project Reactor"
 
-    include template: 'templates/_head.gtpl'
+    link(rel: 'stylesheet', href: '/stylesheets/semantic.min.css') {}
+    link(rel: 'stylesheet', href: '/stylesheets/projectreactor.css') {}
+
+    script(src: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js') {}
+    script(src: '/javascripts/semantic.min.js') {}
   }
   body(class: "${model.type}") {
     section(class: 'ui inverted masthead segment') {
       div(class: 'ui page grid') {
         div(class: 'column') {
           nav(class: 'ui inverted menu') {
-            div(class: 'header item') {
-              a(href: '/') {
-                yield 'Project Reactor'
-              }
-            }
-            div(class: 'right menu') {
+            div(class: 'right') {
               a(class: 'item', href: '/docs', title: 'Documentation') {
                 i(class: 'book icon') {}
               }
@@ -32,7 +31,7 @@ html {
           }
 
           div(class: 'ui grid information') {
-            div(class: 'seven wide column') {
+            div(class: 'seven wide column pane') {
               h1(class: 'ui inverted header') { yield('Project Reactor') }
               h4(class: 'ui inverted header') { yield('Reactive FastData for a New Age') }
               newLine()
