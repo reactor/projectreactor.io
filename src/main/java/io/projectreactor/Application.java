@@ -29,21 +29,6 @@ import java.util.Map;
 public class Application {
 
 	private static final Logger LOG             = LoggerFactory.getLogger(Application.class);
-	private static final String CURRENT_VERSION = "2.1.0.BUILD-SNAPSHOT";
-
-	@Bean
-	public MarkupTemplateEngine markupTemplateEngine() {
-		TemplateConfiguration config = new TemplateConfiguration();
-		config.setAutoIndent(true);
-		config.setAutoNewLine(true);
-		config.setCacheTemplates(false);
-		return new MarkupTemplateEngine(config);
-	}
-
-	@Bean
-	public MarkupTemplateRenderer markupTemplateRenderer() {
-		return new MarkupTemplateRenderer(markupTemplateEngine());
-	}
 
 	@Bean
 	public ClientErrorHandler clientErrorHandler() {
@@ -55,10 +40,7 @@ public class Application {
 	@Bean
 	public Action<Chain> ratpack() {
 		return chain -> {
-			chain.get("", ctx -> {
-				Map<String, Object> model = createModel("Home", "home");
-				ctx.render(Groovy.groovyMarkupTemplate(model, "templates/index.gtpl"));
-			}).get("docs/reference/streams.html", ctx -> {
+			chain.get("docs/reference/streams.html", ctx -> {
 				ctx.redirect("index.html");
 			});
 		};
@@ -66,14 +48,6 @@ public class Application {
 
 	public static void main(String... args) {
 		SpringApplication.run(Application.class, args);
-	}
-
-	private static final Map<String, Object> createModel(String title, String type) {
-		Map<String, Object> model = new HashMap<>();
-		model.put("title", title);
-		model.put("type", type);
-		model.put("currentVersion", CURRENT_VERSION);
-		return model;
 	}
 
 }

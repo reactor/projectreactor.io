@@ -1,0 +1,20 @@
+body {
+  margin-top: 3rem; }
+
+.admonitionblock .content .listingblock, .admonitionblock .content p {
+  font-size: 0.9rem !important; }
+
+.ui.menu .header a {
+  line-height: 1.0 !important;
+  font-size: 0.9rem; }
+
+.ui.breadcrumb {
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 2rem; }
+
+.sectionbody p:last-child {
+  margin-bottom: 1rem; }
+.sectionbody .ui.segment {
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
