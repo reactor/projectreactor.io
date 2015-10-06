@@ -15,9 +15,27 @@ module.exports = (grunt) ->
       }
     },
 
+    sass: {
+      options: {
+        sourcemap: 'none'
+      },
+
+      projectreactor: {
+        files: {
+          'src/main/resources/public/stylesheets/projectreactor.css': 'src/main/sass/projectreactor.scss',
+          'src/main/resources/public/stylesheets/docs.css': 'src/main/sass/docs.scss'
+        }
+      }
+    },
+
     watch: {
       options: {
         livereload: true
+      },
+
+      sass: {
+        files: ['src/main/sass/**'],
+        tasks: ['sass:projectreactor', 'shell:resources']
       },
 
       asciidoc: {
@@ -29,9 +47,10 @@ module.exports = (grunt) ->
   }
 
   grunt.loadNpmTasks 'grunt-shell'
+  grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
-  grunt.registerTask 'assemble', ['shell:asciidoc']
+  grunt.registerTask 'assemble', ['sass:projectreactor', 'shell:asciidoc']
 
   grunt.registerTask 'build', ['assemble',
                                'shell:build']
