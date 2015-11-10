@@ -11,14 +11,12 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE',
-        'org.asciidoctor:asciidoctor-gradle-plugin:1.5.2'
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE'
   }
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
-apply plugin: 'org.asciidoctor.convert'
 
 group = 'io.projectreactor'
 version = '0.4.0.BUILD-SNAPSHOT'
@@ -50,22 +48,6 @@ dependencies {
   runtime 'javax.el:javax.el-api:3.0.0'
 
   testCompile 'org.springframework.boot:spring-boot-starter-test'
-}
-
-asciidoctorj {
-  version = '1.5.2'
-}
-
-asciidoctor {
-  separateOutputDirs = false
-  outputDir = sourceSets.main.resources.srcDirs + '/public/docs'
-
-  attributes docinfo1: true,
-      'source-highlighter': 'coderay',
-      'hide-uri-scheme': true,
-      sectanchors: true,
-      sectlinks: true,
-      icons: 'font'
 }
 
 task wrapper(type: Wrapper) {

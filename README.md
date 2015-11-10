@@ -6,7 +6,8 @@ It's a normal Spring Boot project, so if you don't plan on hacking the SASS or C
 
 		$ ./gradlew bootRun
 
-If you plan on changing the SASS CSS or CoffeeScript, you'll need to compile those artifacts into the project using `grunt`:
+If you plan on changing the SASS CSS or JavaScript, you'll need to compile those artifacts into the project using
+`gulp`:
 
 		$ grunt watch
 

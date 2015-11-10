@@ -1,0 +1,382 @@
+
+a {
+  color: $reactorPrimary;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  background-color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.5em;
+  font-size: 15px;
+  color: $reactorTextColor;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+::-moz-selection {
+  background: $reactorPrimary;
+  color: white;
+  text-shadow: 0 0 0 white;
+}
+::selection {
+  background: $reactorPrimary;
+  color: white;
+  text-shadow: 0 0 0 white;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+section.key-features {
+  text-align: center;
+  @extend .container;
+  padding: 70px 0 50px;
+  h1 {
+    font-size: 3em;
+    font-weight: 100;
+  }
+  p.desc {
+    font-weight: bold;
+    color: #959ea7;
+    font-size: 0.9em;
+    margin-bottom: 30px;
+  }
+  .row {
+    @include clearfix();
+    padding: 10px 20px;
+    article {
+      width: 50%;
+      float: left;
+      padding: 0;
+      text-align: left;
+      div {
+        position: relative;
+        padding: 10px 40px;
+        padding-left: 100px;
+        h1 {
+          font-size: 1.1em;
+          text-transform: uppercase;
+          font-weight: bold;
+          margin: 0;
+        }
+        span.icon {
+          position: absolute;
+          left: 20px;
+          top: 15px;
+          height: 60px;
+          width: 60px;
+          @include border-radius(30px);
+          border: 1px solid #eaf2f6;
+          span.fa {
+            font-size: 30px;
+            position: absolute;
+            top: 14px;
+            left: 14px;
+          }
+        }
+        p {
+          font-size: 1em;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+}
+
+
+section.getting-started {
+  padding: 50px 0 30px;
+  h1 {
+    font-weight: 100;
+    font-size: 2.3em;
+    strong {
+      font-weight: bold;
+    }
+  }
+  p.description {
+    padding: 10px 0 25px;
+  }
+  article {
+    @extend .container;
+    text-align: center;
+    .row {
+      width: 600px;
+      margin: 0 auto;
+      pre.hide {
+        display: none;
+      }
+      .files {
+        padding-bottom: 8px;
+        a {
+          padding: 0 10px;
+          color: #888;
+          cursor: pointer;
+          span {
+            margin-right: 2px;
+          }
+          &.active {
+            color: $reactorPrimary;
+            font-weight: bold;
+          }
+          &:hover {
+            text-decoration: none;
+            color: $reactorPrimary;
+          }
+        }        
+      }
+      pre {
+        text-align: left;
+        display: block;
+        margin: 6px;
+        background: #f1f5f7;
+        background-color: white;
+        border: 4px solid $reactorBackgroundLight;
+        code {
+          display: block;
+          padding: 30px;
+          font-size: 0.9em;
+          strong {
+            text-decoration: underline;
+          }
+          a.btn {
+            padding: 0 2px 2Px 2px;
+            margin: 0;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+        &:hover {
+          background-color: white;
+        }
+      }
+    }
+  }
+}
+
+section.quick-links {
+  background: $reactorBackgroundLight;
+  padding: 0;
+  .row {
+    @include clearfix();
+    @extend .container;
+    .col-xs-4 {
+      float: left;
+      width: 33%;
+    }
+  }
+  article {
+    text-align: center;
+    span.fa {
+      font-size: 50px;
+      margin-bottom: 15px;
+      @include transition-property(color);
+      @include transition-duration($reactorDurationTransition);
+    }
+    div {
+      cursor: pointer;
+      padding: 40px 40px 30px 40px;
+      display: block;
+      color: $reactorTextColor;
+      text-decoration: none;
+      &:hover {
+        span.fa {
+          color: $reactorPrimary;
+        }
+      }
+    }
+  }
+}
+
+#footer {
+  text-align: center;
+  padding-bottom: 30px;
+  background: url('../img/foot-logo.png') no-repeat top center;
+  background-size: 42px 40px;
+  padding-top: 75px;
+  nav, nav ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+  ul {
+    li {
+      display: inline;
+      list-style: none;
+      border-left: 1px solid #ced6dd;
+      padding-left: 10px;
+      margin-left: 10px;
+      a {
+        color: #4e5964;
+        text-decoration: none;
+        &:hover {
+          color: $reactorPrimary;
+        }
+      }
+    }
+  }
+  div.sponsor {
+    padding-top: 10px;
+    color: #CCC;
+    padding-right: 46px;
+    a {
+      margin-left: 5px;
+      text-decoration: none;
+      &.spring {
+        position: absolute;
+        margin-left: 3px;
+        width: 46px;
+        img {
+          position: absolute;
+          top: 3px;
+          left: 0;
+        }
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#header {
+  $h: 860px;
+  background: $reactorBackgroundLight url(../img/background.jpg) no-repeat center bottom;
+  height: $h;
+  .header-content {
+    position: relative;
+    padding: 0 20px;
+    height: $h;
+    //background-color: $reactorTextColor;
+    //color: white;
+    .heading {
+      @extend .container;
+      @include clearfix();
+      padding: 20px 0;
+    }
+  }
+  .brand {
+    height: $h - 70px;
+    position: relative;
+  }
+  h1#logo {
+    margin: 0;
+    padding: 0;
+    float: left;
+    a {
+      display: block;
+      background: url(../img/logo-2x.png) no-repeat;
+      height: 30px;
+      width: 190px;
+      background-size: 190px 30px;
+      text-indent: -6000em;
+    }
+  }
+  #nav {
+    float: right;
+  }
+  #nav, #nav ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  #nav {
+    @include clearfix();
+    padding-top:2px;
+  }
+  #nav ul {
+    li {
+      display: block;
+      float: left;
+      list-style: none;
+      padding: 0 12px;
+      margin: 0;
+      a {
+        color: $reactorTextColor;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9em;
+        @include transition-property(color);
+        @include transition-duration($reactorDurationTransition);
+
+        &:hover {
+          color: $reactorPrimary;
+        }
+      }
+      &:last-child {
+        border: 0 none;
+      }
+    }
+  }
+  .reactive-fastdata {
+    padding: 30px 0;
+    text-align: center;
+    h2 {
+      font-weight: 100;
+      font-size: 2.0em;
+      line-height: 1.3em;
+      strong {
+        font-size: 1.6em;
+        font-weight: 500;
+        display: block;
+      }
+    }
+    p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      font-weight: 100;
+    }
+  }
+  .gist-code {
+    position: absolute;
+    bottom: -50px;
+    left: 0px;
+    right: 0;
+    .steps {
+      list-style: none;
+      width: 100px;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      margin-left: -80px;
+      li {
+        $r: 8px;
+        display: block;
+        float: left;
+        height: $r;
+        width: $r;
+        @include border-radius($r);
+        margin: 3px;
+        border: 2px solid white;
+        background: #2f3a42;
+        cursor: pointer;
+        &.active, &.active:hover {
+          background: rgba(255,255,255,0.5);
+          border: 2px solid $reactorPrimary;
+        }
+        &:hover {
+          background: $reactorPrimary;
+        }
+      }
+    }
+    .gist-code-wrap {
+      width: 700px;
+      margin: 0 auto;
+    }
+    .hide {
+      display: none;
+    }
+  }
+}

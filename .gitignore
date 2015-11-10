@@ -8,6 +8,7 @@ tmp
 *.idea
 *.iml
 .gradle
+node_modules
 build
 src/main/resources/public/docs/reference/*
 src/main/resources/public/docs/raw/*

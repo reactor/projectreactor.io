@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2011-2015 Pivotal Software Inc, All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Project Reactor</title>
+    <meta name="description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon-precomposed" href="assets/img/apple-touch-icon-precomposed.png" />
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link href="assets/css/app.css" media="all" rel="stylesheet" />
+</head>
+<body>
+<div class="website">
+    <header id="header">
+        <div class="header-content">
+            <div class="heading">
+                <h1 id="logo"><a href="/">Project Reactor</a></h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="docs">Documentation</a></li>
+                        <li><a href="https://github.com/reactor/reactor/">Github</a></li>
+                        <li><a href="https://github.com/reactor/reactor/issues">Issue Tracker</a></li>
+                        <li><a href="http://stackoverflow.com/search?q=%23reactor">Community Discussion</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="reactive-fastdata">
+                <h2>
+                    <strong>Reactive FastData</strong>
+                    for a New Age
+                </h2>
+                <p>
+                    Reactor is a foundational library for building reactive fast-data applications on the JVM. It is an implementation of the <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams Specification</a>. You can use Reactor to power an application that has a low tolerance for latency and demands extremely high throughput.
+                </p>
+                <p class="mobile-only" style="padding-top:20px;">
+                    <a class="btn btn-primary">View codes</a>
+                </p>
+            </div>
+            <div id="code" class="gist-code">
+                <div class="gist-code-wrap">
+                    <div class="item">
+                        <script src="https://gist.github.com/smaldini/a537f7a1f6b77d59b5d4.js?file=ProcessorStream.java"></script>
+                    </div>
+                    <div class="item hide">
+                        <script src="https://gist.github.com/smaldini/e5a5e5179055b440eac7.js?file=Aeron.java"></script>
+                    </div>
+                    <div class="item hide">
+                        <script src="https://gist.github.com/smaldini/8763d0ad2233ba52d35a.js?file=Spring.java"></script>
+                    </div>
+                    <div class="item hide">
+                        <script src="https://gist.github.com/smaldini/31cb77baef4c6fe3ccef.js?file=ReactorNet.java"></script>
+                    </div>
+                    <div class="item hide">
+                        <script src="https://gist.github.com/smaldini/c9cfc68055bdce3890e8.js?file=Multicast.java"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <section class="key-features">
+            <h1>Reactor key features</h1>
+            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br /> sed do eiusmod tempor incididunt ut labore</p>
+            <div class="row">
+                <article>
+                    <div>
+                        <span class="icon">
+                            <span style="left: 22px;" class="fa fa-flash"></span>
+                        </span>
+                        <h1>Extremely Fast</h1>
+                        <p>Reactor is designed to be extraordinarily fast and can sustain throughput rates on the order of 10's of millions of operations per second.</p>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <span class="icon">
+                            <span style="left: 16px;" class="fa fa-magic"></span>
+                        </span>
+                        <h1>Succinct but Powerful</h1>
+                        <p>Reactor has an extremely powerful, yet succinct API for declaring data transformations and functional composition.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="row">
+                <article>
+                    <div>
+                        <span class="icon">
+                            <span style="left: 17px" class="fa fa-hand-peace-o"></span>
+                        </span>
+                        <h1>Mechanically Sympathetic</h1>
+                        <p>Reactor makes use of the concept of <a href="http://mechanical-sympathy.blogspot.fr/">Mechanical Sympathy</a> by building on top of the <a href="https://lmax-exchange.github.io/disruptor/">Disruptor RingBuffer</a>.</p>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <span class="icon">
+                            <span class="fa fa-gg"></span>
+                        </span>
+                        <h1>Fully Reactive</h1>
+                        <p>Reactor is designed to be functional and reactive to allow for easy composition of operations.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="quick-links">
+            <div class="row">
+                <article class="col-xs-4">
+                    <div>
+                        <span class="fa fa-book"></span><br />
+                        Learn about Reactor through <a>code samples</a>, <a href="http://projectreactor.io/docs/">reference documentation</a>, and the <a href="http://projectreactor.io/docs/api/">API Javadoc</a>.
+                    </div>
+                </article>
+                <article class="col-xs-4">
+                    <div>
+                        <span class="fa fa-code"></span><br />
+                        Browse the <a href="https://github.com/reactor/reactor/">source code on GitHub</a> or get involved in the project.
+                    </div>
+                </article>
+                <article class="col-xs-4">
+                    <div>
+                        <span class="fa fa-weixin"></span><br />
+                        Interact with the community on <a href="https://groups.google.com/forum/#!forum/reactor-framework">Google Groups</a> or <a href="http://stackoverflow.com/search?q=%23reactor">StackOverflow #reactor</a>.
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="getting-started">
+            <article>
+                <h1>Getting started with <strong>Reactor</strong></h1>
+                <p class="description">
+                    To use the core components of Reactor like EventBus, Stream, and others, just use the reactor-core artifact. 
+                    Just replace <code>${reactorVersion}</code><br /> in the examples below with the version you want to use (the latest is 2.0.0.RELEASE).
+                </p>
+                <div class="row">
+                    <div id="files" class="files">
+                        <a onclick="showFile(1)" class="active"><span class="fa fa-file-o"></span> build.gradle</a>
+                        <a onclick="showFile(2)"><span class="fa fa-file-o"></span> pom.xml</a>
+                    </div>
+                    <div id="codes">
+                        <pre><code><strong>build.gradle</strong>
+repositories {
+  maven { url 'http://repo.spring.io/libs-milestone' }
+}
+
+dependencies {
+  compile "io.projectreactor:reactor-core:${reactorVersion}"
+}</code></pre>
+                        <pre class="hide"><code><strong>pom.xml</strong>
+&lt;repositories&gt;
+  &lt;repository&gt;
+    &lt;id&gt;spring-milestone&lt;/id&gt;
+    &lt;name&gt;Spring Milestones&lt;/name&gt;
+    &lt;url&gt;https://repo.spring.io/libs-milestone&lt;/url&gt;
+  &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;io.projectreactor&lt;/groupId&gt;
+    &lt;artifactId&gt;reactor-core&lt;/artifactId&gt;
+    &lt;version&gt;2.1.0.BUILD-SNAPSHOT&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+    <footer id="footer">
+        © 2015 Reactor
+        <nav>
+            <ul>
+                <li><a href="https://github.com/reactor">Github</a></li>
+                <li><a href="https://twitter.com/projectreactor">Twitter</a></li>
+            </ul>
+        </nav>
+        <div class="sponsor">
+            powered by
+            <a href="http://pivotal.io/" class="pivotal">
+                <img height="12px" src="assets/img/pivotal.png" />
+            </a>
+            &
+            <a href="http://spring.io/" class="spring">
+                <img height="16px" src="assets/img/spring.png" />
+            </a>
+        </div>
+    </footer>
+</div>
+
+<!--
+   © Copyright Reactor Project
+   Author: damien@vitrac.me, smaldini@pivotal.io
+-->
+
+<script src="assets/js/vendor.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
