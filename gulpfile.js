@@ -47,7 +47,7 @@ gulp.task('serve', ['scripts', 'copy', 'styles'], require('./tasks/serve')(confi
 // Environment
 if (process.env.NODE_ENV == 'production') {
     gutil.log("Starting ", gutil.colors.yellow("Production environment"));
-    gulp.task('assemble', ['production', 'scripts', 'copy', 'styles']);
+    gulp.task('assemble', ['production', 'scripts', 'copy', 'styles'], 'gradle');
     gulp.task('default', ['assemble']);
 } else {
     gutil.log("Starting ", gutil.colors.yellow("Dev environment"));
