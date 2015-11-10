@@ -51,5 +51,6 @@ if (process.env.NODE_ENV == 'production') {
     gulp.task('default', ['assemble']);
 } else {
     gutil.log("Starting ", gutil.colors.yellow("Dev environment"));
+    gulp.task('assemble', ['serve']);
     gulp.task('default', ['serve']);
 }
