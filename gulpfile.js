@@ -2,7 +2,8 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     config = require('./configDefault'),
-    merge = require('merge');
+    merge = require('merge'),
+    shell = require('gulp-shell');
 
 config = config.build;
 
@@ -15,6 +16,11 @@ gulp.task('production', function(){
     var configProduction = require('./configProduction');
     config = merge(config, configProduction);
 });
+
+// gradle wrapper
+gulp.task('gradle', shell.task([
+    './gradlew build'
+]));
 
 gulp.task('clean:copy', cleaner('copy'));
 gulp.task('clean:scripts', cleaner('scripts'));
