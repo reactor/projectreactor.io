@@ -44,14 +44,14 @@ gulp.task('copy', ['copy:src', 'copy:fontAwesome']);
 // Bundle and watch for changes to all files appropriately
 gulp.task('serve', ['scripts', 'copy', 'styles'], require('./tasks/serve')(config));
 
+gulp.task('assemble', ['production', 'scripts', 'copy', 'styles']);
+
 // Environment
 if (process.env.NODE_ENV == 'production') {
     gutil.log("Starting ", gutil.colors.yellow("Production environment"));
-    gulp.task('assemble', ['production', 'scripts', 'copy', 'styles']);
     gulp.task('package', ['assemble', 'gradle']);
     gulp.task('default', ['package']);
 } else {
     gutil.log("Starting ", gutil.colors.yellow("Dev environment"));
-    gulp.task('assemble', ['serve']);
     gulp.task('default', ['serve']);
 }
