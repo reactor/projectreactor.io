@@ -17,6 +17,11 @@ gulp.task('production', function(){
     config = merge(config, configProduction);
 });
 
+// gradle wrapper
+gulp.task('gradle', shell.task([
+    './gradlew build'
+]));
+
 gulp.task('clean:copy', cleaner('copy'));
 gulp.task('clean:scripts', cleaner('scripts'));
 
@@ -36,18 +41,17 @@ gulp.task('copy:src', ['clean:copy'], copy("internal"));
 gulp.task('copy:fontAwesome', ['clean:fonts'], copy ("awesome"));
 gulp.task('copy', ['copy:src', 'copy:fontAwesome']);
 
+// Bundle and watch for changes to all files appropriately
+gulp.task('serve', ['scripts', 'copy', 'styles'], require('./tasks/serve')(config));
 
 // Environment
 if (process.env.NODE_ENV == 'production') {
     gutil.log("Starting ", gutil.colors.yellow("Production environment"));
-    gulp.task('assemble', ['production', 'scripts', 'copy', 'styles'], new function (){
-        return shell.task(['./gradlew build']);
-    });
-    gulp.task('default', ['assemble']);
+    gulp.task('assemble', ['production', 'scripts', 'copy', 'styles']);
+    gulp.task('package', ['assemble', 'gradle']);
+    gulp.task('default', ['package']);
 } else {
     gutil.log("Starting ", gutil.colors.yellow("Dev environment"));
-
-    // Bundle and watch for changes to all files appropriately
-    gulp.task('serve', ['scripts', 'copy', 'styles'], require('./tasks/serve')(config));
+    gulp.task('assemble', ['serve']);
     gulp.task('default', ['serve']);
 }
