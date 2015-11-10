@@ -46,7 +46,7 @@
             <div class="reactive-fastdata">
                 <h2>
                     Build <strong>Efficient</strong> <a
-                        href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive</a> <I>Apps and
+                        href="http://www.reactive-streams.org/">Reactive</a> <I>Apps and
                     Libraries</I>
                 </h2>
                 <p>
@@ -111,8 +111,23 @@
                         <span class="icon">
                             <span style="left: 17px" class="fa fa-hand-peace-o"></span>
                         </span>
-                        <h1>Mechanically Sympathetic</h1>
-                        <p>Reactor makes use of the concept of <a href="http://mechanical-sympathy.blogspot.fr/">Mechanical Sympathy</a> by building on top of the <a href="https://lmax-exchange.github.io/disruptor/">Disruptor RingBuffer</a>.</p>
+                        <h1>Friendly Adoption</h1>
+                        <ul>
+                        <li><b>As a Reactive Engine/SPI</b> with <i>reactor-core, reactor-net,
+                            reactor-aeron</i>. They are
+                             exposing reactive streams constructs for focused use
+                            cases, eventually combined with <a href="http://spring.io">Spring</a>, <a
+                                    href="http://reactivex.io">
+                                RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/java.html">Akka
+                                Streams</a>,
+                            <a href="http://ratpack.io">Ratpack
+                            </a> and
+                            others</li>
+                        <li><b>As a Reactive Consumable API</b> with <i>reactor-stream or reactor-bus</i> which
+                            expand the
+                            contract to
+                            composition and eventing use cases</li>
+                        </ul>
                     </div>
                 </article>
                 <article>
@@ -121,7 +136,13 @@
                             <span class="fa fa-gg"></span>
                         </span>
                         <h1>Fully Reactive</h1>
-                        <p>Reactor is designed to be functional and reactive to allow for easy composition of operations.</p>
+                        <p>Reactor is designed to be fully non-blocking with efficient buffers and
+                            demand management. Its <a href="https://github.com/reactive-streams/reactive-streams-jvm">reactive flow-control</a> implementation leaves not
+                                much risk for
+                            asynchronous
+                            publishing going rogue in
+                            uncontrolled
+                            overflow situations.</p>
                     </div>
                 </article>
             </div>
