@@ -17,14 +17,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Asciidoctor 1.5.2">
     <meta name="author" content="Project Reactor NEXT reference documentation, code samples, and Javadoc.">
     <title>Documentation</title>
     <link rel="stylesheet" href="../assets/css/app.css"/>
     <link rel="stylesheet" href="../assets/css/docs.css"/>
-    <link rel="icon" type="image/png" href="../favicon.ico" />
+    <link rel="icon" type="image/png" href="../favicon.ico"/>
     <!--
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.6.2/semantic.min.css"/>
@@ -34,186 +35,251 @@
 </head>
 <body class="book">
 <div id="header-doc">
-<h1>Documentation</h1>
-<div class="details">
-<span id="author" class="author">Project Reactor NEXT reference documentation, code samples, and Javadoc.</span><br>
-</div>
+    <h1>Documentation</h1>
+
+    <div class="details">
+        <span id="author" class="author">Project Reactor NEXT reference documentation, code samples, and Javadoc.</span><br>
+    </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<nav class="ui fixed inverted menu">
-	<div class="right menu">
-		<a class="item" href="/">
-			Project Reactor
-		</a>
-		<a class="item" href="https://github.com/reactor/reactor/" title="Source Code">
-			<i class="github icon"></i>
-		</a>
-		<a class="item" href="https://github.com/reactor/reactor/issues" title="Bug Tracker">
-			<i class="bug icon"></i>
-		</a>
-		<a class="item" href="http://stackoverflow.com/search?q=%23reactor" title="Community Discussion">
-			<i class="comments icon"></i>
-		</a>
-	</div>
-</nav>
-<div class="ui breadcrumb">
-  <div class="divider"> / </div>
-  <a class="section" title="Project Reactor Documentation" href="/docs/">docs</a>
-  <div class="divider"> / </div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a href="#getting-started">Getting Started</a></dt>
-<dd>
-<p>How to get going quickly with Reactor.</p>
-</dd>
-<dt class="hdlist1"><a href="/docs/reference/">Reference</a></dt>
-<dd>
-<p>Reference documentation covering the basic components of Reactor as well as more advanced concepts.</p>
-</dd>
-<dt class="hdlist1"><a href="/docs/api/">Javadoc</a></dt>
-<dd>
-<p>Documentation on the Reactor API.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="introduction"><a class="anchor" href="#introduction"></a>What is Reactor?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Reactor is a foundational library for building reactive fast-data applications on the JVM. You can use any JVM langauge, from Java 7 or Java 8, to Scala, Groovy, or even Nashorn JavaScript. It&#8217;s designed to be fast and efficient to enable you to write asynchronous applications that can manage extremely high workloads with very little overhead. It builds on the extreme throughput capabilities of the <a href="https://github.com/LMAX-Exchange/disruptor">Disruptor RingBuffer</a> to achieve throughput in the 10&#8217;s of <em>millions</em> of operations per second (even up to 100&#8217;s if you have enough hardware horsepower).<span class="footnote" id="_footnote_benchmark">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</span></p>
-</div>
-<div class="sect2">
-<h3 id="_reactive_streams"><a class="anchor" href="#_reactive_streams"></a>Reactive Streams</h3>
-<div class="paragraph">
-<p>The Reactor team are core contributors to the <a href="https://github.com/reactive-streams/reactive-streams">Reactive Streams Specification</a>. Reactive Streams is "an initiative to provide a standard for asynchronous stream processing with non-blocking back pressure on the JVM."</p>
-</div>
-<div class="paragraph">
-<p>There are certain characteristics of a system that "speaks" Reactive Streams beyond just using a common, shared API. The components inside Reactor&#8217;s <code>Stream</code> actions behave in a predictable way since they implement the Reactive Streams standard. This is a type of inter-operability among implementations that goes far beyond a common set of interfaces. In fact, Reactive Streams implementations can largely be depended upon to Just Work&#8482;.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting Started</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To add Reactor to an existing project, you just need to include the appropriate artifact. The basic components of Reactor like <code>EventBus</code> and <code>Stream</code> are in the <code>reactor-core</code> artifact. Additional functionality is in the <code>reactor-net</code>, <code>reactor-groovy</code>, and <code>reactor-logback</code> modules.</p>
-</div>
-<div class="ui segment">
-<div class="listingblock">
-<div class="title">build.gradle</div>
-<div class="content">
+    <div id="preamble">
+        <div class="sectionbody">
+            <nav class="ui fixed inverted menu">
+                <div class="right menu">
+                    <a class="item" href="/">
+                        Project Reactor
+                    </a>
+                    <a class="item" href="https://github.com/reactor/reactor/" title="Source Code">
+                        <i class="github icon"></i>
+                    </a>
+                    <a class="item" href="https://github.com/reactor/reactor/issues" title="Bug Tracker">
+                        <i class="bug icon"></i>
+                    </a>
+                    <a class="item" href="http://stackoverflow.com/search?q=%23reactor" title="Community Discussion">
+                        <i class="comments icon"></i>
+                    </a>
+                </div>
+            </nav>
+            <div class="ui breadcrumb">
+                <div class="divider"> /</div>
+                <a class="section" title="Project Reactor Documentation" href="/docs/">docs</a>
+
+                <div class="divider"> /</div>
+            </div>
+            <div class="dlist">
+                <dl>
+                    <dt class="hdlist1"><a href="#getting-started">Getting Started</a></dt>
+                    <dd>
+                        <p>How to get going quickly with Reactor.</p>
+                    </dd>
+                    <dt class="hdlist1"><a href="/core/docs/reference/">Core Reference</a></dt>
+                    <dd>
+                        <p>Reference documentation covering the basic components of Reactor as well as more advanced
+                            concepts.</p>
+                    </dd>
+                    <dt class="hdlist1"><a href="/core/docs/api/">Core Javadoc</a></dt>
+                    <dd>
+                        <p>Documentation on the Reactor Core API (reactor-core)</p>
+                    </dd>
+                    <dt class="hdlist1"><a href="/io/docs/reference/">IO Reference</a></dt>
+                    <dd>
+                        <p>Reference documentation covering the IO and Networking components of Reactor as well as more
+                            advanced
+                            concepts.</p>
+                    </dd>
+                    <dt class="hdlist1"><a href="/io/docs/api/">IO Javadoc</a></dt>
+                    <dd>
+                        <p>Documentation on the Reactor IO API (reactor-codec, reactor-net, reactor-aeron).</p>
+                    </dd>
+                    <dt class="hdlist1"><a href="/framework/docs/reference/">Framework Reference</a></dt>
+                    <dd>
+                        <p>Reference documentation covering the basic components of Reactor as well as more advanced
+                            concepts.</p>
+                    </dd>
+                    <dt class="hdlist1"><a href="/framework/docs/api/">Framework Javadoc</a></dt>
+                    <dd>
+                        <p>Documentation on the Reactor Framework API (reactor-stream, reactor-bus, reactor-alloc)</p>
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="introduction"><a class="anchor" href="#introduction"></a>What is Reactor?</h2>
+
+        <div class="sectionbody">
+            <div class="paragraph">
+                <p>Reactor is a foundational library for building reactive fast-data applications on the JVM. You can
+                    use any JVM langauge, from Java 7 or Java 8, to Scala, Groovy, or even Nashorn JavaScript. It&#8217;s
+                    designed to be fast and efficient to enable you to write asynchronous applications that can manage
+                    extremely high workloads with very little overhead. It builds on the extreme throughput capabilities
+                    of the <a href="https://github.com/LMAX-Exchange/disruptor">Disruptor RingBuffer</a> to achieve
+                    throughput in the 10&#8217;s of <em>millions</em> of operations per second (even up to 100&#8217;s
+                    if you have enough hardware horsepower).<span class="footnote" id="_footnote_benchmark">[<a
+                            id="_footnoteref_1" class="footnote" href="#_footnote_1"
+                            title="View footnote.">1</a>]</span></p>
+            </div>
+            <div class="sect2">
+                <h3 id="_reactive_streams"><a class="anchor" href="#_reactive_streams"></a>Reactive Streams</h3>
+
+                <div class="paragraph">
+                    <p>The Reactor team are core contributors to the <a
+                            href="https://github.com/reactive-streams/reactive-streams">Reactive Streams
+                        Specification</a>. Reactive Streams is "an initiative to provide a standard for asynchronous
+                        stream processing with non-blocking back pressure on the JVM."</p>
+                </div>
+                <div class="paragraph">
+                    <p>There are certain characteristics of a system that "speaks" Reactive Streams beyond just using a
+                        common, shared API. The components inside Reactor&#8217;s <code>Stream</code> actions behave in
+                        a predictable way since they implement the Reactive Streams standard. This is a type of
+                        inter-operability among implementations that goes far beyond a common set of interfaces. In
+                        fact, Reactive Streams implementations can largely be depended upon to Just Work&#8482;.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting Started</h2>
+
+        <div class="sectionbody">
+            <div class="paragraph">
+                <p>To add Reactor to an existing project, you just need to include the appropriate artifact. The basic
+                    components of Reactor like <code>EventBus</code> and <code>Stream</code> are in the <code>reactor-core</code>
+                    artifact. Additional functionality is in the <code>reactor-net</code>, <code>reactor-groovy</code>,
+                    and <code>reactor-logback</code> modules.</p>
+            </div>
+            <div class="ui segment">
+                <div class="listingblock">
+                    <div class="title">build.gradle</div>
+                    <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">ext {
-  reactorVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.1.0.BUILD-SNAPSHOT</span><span class="delimiter">'</span></span>
-}
+    reactorVersion = <span class="string"><span class="delimiter">'</span><span
+            class="content">2.1.0.BUILD-SNAPSHOT</span><span class="delimiter">'</span></span>
+    }
 
-repositories {
-  <span class="comment">// maven { url 'http://repo.spring.io/libs-release' } </span><i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="comment">// maven { url 'http://repo.spring.io/libs-milestone' } </span><i class="conum" data-value="2"></i><b>(2)</b>
-   maven { url <span class="string"><span class="delimiter">'</span><span class="content">http://repo.spring.io/libs-snapshot</span><span class="delimiter">'</span></span> } <i class="conum" data-value="3"></i><b>(3)</b>
-}
+    repositories {
+    <span class="comment">// maven { url 'http://repo.spring.io/libs-release' } </span><i class="conum"
+                                                                                          data-value="1"></i><b>(1)</b>
+    <span class="comment">// maven { url 'http://repo.spring.io/libs-milestone' } </span><i class="conum"
+                                                                                            data-value="2"></i><b>(2)</b>
+    maven { url <span class="string"><span class="delimiter">'</span><span class="content">http://repo.spring.io/libs-snapshot</span><span
+            class="delimiter">'</span></span> } <i class="conum" data-value="3"></i><b>(3)</b>
+    }
 
-dependencies {
-  <span class="comment">//Core stuff (Processors, Functional interfaces...)</span>
-  compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-core:</span><span class="inline"><span class="inline-delimiter">$</span>reactorVersion</span><span class="delimiter">&quot;</span></span>
+    dependencies {
+    <span class="comment">//Core stuff (Processors, Functional interfaces...)</span>
+    compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-core:</span><span
+            class="inline"><span class="inline-delimiter">$</span>reactorVersion</span><span
+            class="delimiter">&quot;</span></span>
 
-  <span class="comment">//Everything Stream</span>
-  compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-stream:</span><span class="inline"><span class="inline-delimiter">$</span>reactorVersion</span><span class="delimiter">&quot;</span></span>
+    <span class="comment">//Everything Stream</span>
+    compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-stream:</span><span
+            class="inline"><span class="inline-delimiter">$</span>reactorVersion</span><span
+            class="delimiter">&quot;</span></span>
 
-  <span class="comment">//Everything Routing (Event Bus)</span>
-  <span class="comment">//compile &quot;io.projectreactor:reactor-bus:$reactorVersion&quot;</span>
+    <span class="comment">//Everything Routing (Event Bus)</span>
+    <span class="comment">//compile &quot;io.projectreactor:reactor-bus:$reactorVersion&quot;</span>
 
-  <span class="comment">//Everything Net</span>
-  <span class="comment">//compile &quot;io.projectreactor:reactor-net:$reactorVersion&quot;</span>
-  <span class="comment">//compile &quot;io.netty:netty-all:4.0.31.final&quot;</span>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Uncomment to use a release version.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Uncomment to use a milestone version.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Uncomment to use a snapshot version.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="paragraph">
-<p>Now that you&#8217;ve added the Reactor library to your project, you can start using the <code>Stream</code> class to perform high-volume, low-latency, asynchronous work. It&#8217;s really almost deceptively simple. Here&#8217;s a complete Hello World to get you started.</p>
-</div>
-<div class="ui segment">
-<div class="listingblock">
-<div class="title">ReactorHelloWorld.java</div>
-<div class="content">
+    <span class="comment">//Everything Net</span>
+    <span class="comment">//compile &quot;io.projectreactor:reactor-net:$reactorVersion&quot;</span>
+    <span class="comment">//compile &quot;io.netty:netty-all:4.0.31.final&quot;</span>
+    }</code></pre>
+                    </div>
+                </div>
+                <div class="colist arabic">
+                    <table>
+                        <tr>
+                            <td><i class="conum" data-value="1"></i><b>1</b></td>
+                            <td>Uncomment to use a release version.</td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="2"></i><b>2</b></td>
+                            <td>Uncomment to use a milestone version.</td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="3"></i><b>3</b></td>
+                            <td>Uncomment to use a snapshot version.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="paragraph">
+                <p>Now that you&#8217;ve added the Reactor library to your project, you can start using the
+                    <code>Stream</code> class to perform high-volume, low-latency, asynchronous work. It&#8217;s really
+                    almost deceptively simple. Here&#8217;s a complete Hello World to get you started.</p>
+            </div>
+            <div class="ui segment">
+                <div class="listingblock">
+                    <div class="title">ReactorHelloWorld.java</div>
+                    <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">reactor.Processors</span>;
-<span class="keyword">import</span> <span class="include">org.reactivestreams.Processor</span>;
-<span class="keyword">import</span> <span class="include">reactor.rx.Streams</span>;
+    <span class="keyword">import</span> <span class="include">org.reactivestreams.Processor</span>;
+    <span class="keyword">import</span> <span class="include">reactor.rx.Streams</span>;
 
-<span class="directive">public</span> <span class="type">class</span> <span class="class">ReactorHelloWorld</span> {
-  <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span>... args) <span class="directive">throws</span> <span class="exception">InterruptedException</span> {
-    Processor&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; sink = Processors.topic(); <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="directive">public</span> <span class="type">class</span> <span class="class">ReactorHelloWorld</span> {
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span>
+    main(<span class="predefined-type">String</span>... args) <span class="directive">throws</span> <span
+            class="exception">InterruptedException</span> {
+    Processor&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; sink =
+    Processors.topic(); <i class="conum" data-value="1"></i><b>(1)</b>
 
     Streams.create(sink) <i class="conum" data-value="2"></i><b>(2)</b>
-        .map(<span class="predefined-type">String</span>::toUpperCase) <i class="conum" data-value="3"></i><b>(3)</b>
-        .consume(s -&gt; <span class="predefined-type">System</span>.out.printf(<span class="string"><span class="delimiter">&quot;</span><span class="content">s=%s%n</span><span class="delimiter">&quot;</span></span>, s)); <i class="conum" data-value="4"></i><b>(4)</b>
+    .map(<span class="predefined-type">String</span>::toUpperCase) <i class="conum" data-value="3"></i><b>(3)</b>
+    .consume(s -&gt; <span class="predefined-type">System</span>.out.printf(<span class="string"><span
+            class="delimiter">&quot;</span><span class="content">s=%s%n</span><span
+            class="delimiter">&quot;</span></span>, s)); <i class="conum" data-value="4"></i><b>(4)</b>
 
-    sink.onNext(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World!</span><span class="delimiter">&quot;</span></span>); <i class="conum" data-value="5"></i><b>(5)</b>
+    sink.onNext(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World!</span><span
+            class="delimiter">&quot;</span></span>); <i class="conum" data-value="5"></i><b>(5)</b>
 
     sink.onComplete(); <i class="conum" data-value="6"></i><b>(6)</b>
-  }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Create an asynchronous message passing processor, signals coming in onXXX will be dispatched asynchronously.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Decorate the Processor with the Reactor Stream API.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Transform input to upper-case and implicitly broadcast downstream.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Consume the transformed input and print to STDOUT. This will start the subscriber thread attached to our sink.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Publish a value into the <code>Processor</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Release <code>Processor</code> resources (non daemon thread) allowing for JVM exit.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
+    }
+    }</code></pre>
+                    </div>
+                </div>
+                <div class="colist arabic">
+                    <table>
+                        <tr>
+                            <td><i class="conum" data-value="1"></i><b>1</b></td>
+                            <td>Create an asynchronous message passing processor, signals coming in onXXX will be
+                                dispatched asynchronously.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="2"></i><b>2</b></td>
+                            <td>Decorate the Processor with the Reactor Stream API.</td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="3"></i><b>3</b></td>
+                            <td>Transform input to upper-case and implicitly broadcast downstream.</td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="4"></i><b>4</b></td>
+                            <td>Consume the transformed input and print to STDOUT. This will start the subscriber thread
+                                attached to our sink.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="5"></i><b>5</b></td>
+                            <td>Publish a value into the <code>Processor</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><i class="conum" data-value="6"></i><b>6</b></td>
+                            <td>Release <code>Processor</code> resources (non daemon thread) allowing for JVM exit.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="footnotes">
-<hr>
-<div class="footnote" id="_footnote_1">
-<a href="#_footnoteref_1">1</a>. Reactor microbenchmarks are maintained in a <a href="https://github.com/reactor/reactor-benchmark">separate GitHub repository</a>
-</div>
+    <hr>
+    <div class="footnote" id="_footnote_1">
+        <a href="#_footnoteref_1">1</a>. Reactor microbenchmarks are maintained in a <a
+            href="https://github.com/reactor/reactor-benchmark">separate GitHub repository</a>
+    </div>
 </div>
 <div id="footer">
     © 2015 Reactor <em>Feat. <a href="http://twitter.com/oodamien">D.</a></em>
@@ -226,11 +292,11 @@ dependencies {
     <div class="sponsor">
         powered by
         <a href="http://pivotal.io/" class="pivotal">
-            <img height="12px" src="../assets/img/pivotal.png" />
+            <img height="12px" src="../assets/img/pivotal.png"/>
         </a>
         &
         <a href="http://spring.io/" class="spring">
-            <img height="16px" src="../assets/img/spring.png" />
+            <img height="16px" src="../assets/img/spring.png"/>
         </a>
     </div>
 </div>
