@@ -1,4 +1,6 @@
 
+
+
 a {
   color: $reactorPrimary;
   text-decoration: none;
@@ -8,7 +10,7 @@ a {
 }
 
 body {
-  background-color: white;
+  background-color: #f1f1f1;
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.5em;
   font-size: 15px;
@@ -40,15 +42,31 @@ h1, h2, h3, h4 {
 section.key-features {
   text-align: center;
   @extend .container;
-  padding: 70px 0 50px;
-  h1 {
-    font-size: 3em;
-    font-weight: 100;
+  padding: 2em 0 3em;
+  line-height: 1.8em;
+  >h1 {
+    font-size: 1.6em;
+    font-weight: normal;
+    //text-transform: uppercase;
+    //background-color: #F2F2F2;
+    //box-shadow: inset 0 -1px 0 $reactorTextColor; //rgba(0,0,0,0.08);
+    color: white;
+    margin: 1em 0 2em;
+    //height: 20px;
+    font-family: 'Montserrat', sans-serif;
+    span {
+      color: $reactorTextColor;
+      //background: white;
+      display: block;
+      width: 320px;
+      padding: 4px 0;
+      margin: 0 auto;
+    }
   }
   p.desc {
     font-weight: bold;
     color: #959ea7;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-bottom: 30px;
   }
   .row {
@@ -65,9 +83,20 @@ section.key-features {
         padding-left: 100px;
         h1 {
           font-size: 1.1em;
-          text-transform: uppercase;
+          //text-transform: uppercase;
           font-weight: bold;
           margin: 0;
+          font-family: 'Montserrat', sans-serif;
+        }
+        ul {
+          margin: 0;
+          padding: 0 0 0 15px;
+          li {
+            margin-left: 4px;
+          }
+        }
+        h1+ul {
+          margin-top: 10px;
         }
         span.icon {
           position: absolute;
@@ -75,8 +104,10 @@ section.key-features {
           top: 15px;
           height: 60px;
           width: 60px;
+          background: $reactorPrimary;
+          color: white;
           @include border-radius(30px);
-          border: 1px solid #eaf2f6;
+          //border: 1px solid #eaf2f6;
           span.fa {
             font-size: 30px;
             position: absolute;
@@ -187,7 +218,7 @@ section.quick-links {
       cursor: pointer;
       padding: 40px 40px 30px 40px;
       display: block;
-      color: $reactorTextColor;
+      color: white;
       text-decoration: none;
       &:hover {
         span.fa {
@@ -199,51 +230,35 @@ section.quick-links {
 }
 
 #footer {
-  text-align: center;
-  padding-bottom: 30px;
-  background: url('../img/foot-logo.png') no-repeat top center;
-  background-size: 42px 40px;
-  padding-top: 75px;
+  text-align: left;
+  padding: 30px 0 40px;
+  background-color: $reactorBackgroundLight;
+  color: white;
+  .footer-content {
+    @include clearfix();
+    @extend .container;
+
+    max-width: 1000px;
+  }
   nav, nav ul {
-    display: inline;
+    //display: inline;
     margin: 0;
     padding: 0;
+    a {
+      color: white;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+  }
+  nav {
+    padding-bottom: 15px;
   }
   ul {
     li {
       display: inline;
       list-style: none;
-      border-left: 1px solid #ced6dd;
-      padding-left: 10px;
-      margin-left: 10px;
+      margin-right: 20px;
       a {
-        color: #4e5964;
-        text-decoration: none;
-        &:hover {
-          color: $reactorPrimary;
-        }
-      }
-    }
-  }
-  div.sponsor {
-    padding-top: 10px;
-    color: #CCC;
-    padding-right: 46px;
-    a {
-      margin-left: 5px;
-      text-decoration: none;
-      &.spring {
-        position: absolute;
-        margin-left: 3px;
-        width: 46px;
-        img {
-          position: absolute;
-          top: 3px;
-          left: 0;
-        }
-      }
-      &:hover {
-        text-decoration: none;
       }
     }
   }
@@ -251,66 +266,72 @@ section.quick-links {
 
 #header {
   $h: 860px;
-  background: $reactorBackgroundLight url(../img/background.jpg) no-repeat center bottom;
-  height: $h;
+  border-top: 4px solid $reactorPrimary;
+  background: $reactorBackgroundLight ; // url(../img/background.jpg) no-repeat center 40px;
+  //height: $h;
   .header-content {
     position: relative;
     padding: 0 20px;
-    height: $h;
+    // height: $h;
     //background-color: $reactorTextColor;
     //color: white;
     .heading {
       @extend .container;
       @include clearfix();
-      padding: 20px 0;
+      padding: 0;
     }
   }
-  .brand {
+  /*.brand {
     height: $h - 70px;
     position: relative;
-  }
+  }*/
   h1#logo {
     margin: 0;
     padding: 0;
     float: left;
+    margin-top: 7px;
     a {
       display: block;
       background: url(../img/logo-2x.png) no-repeat;
-      height: 30px;
-      width: 190px;
-      background-size: 190px 30px;
+      height: 40px;
+      width: 253px;
+      background-size: 253px 40px;
       text-indent: -6000em;
     }
-  }
-  #nav {
-    float: right;
   }
   #nav, #nav ul {
     display: block;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
   }
   #nav {
     @include clearfix();
-    padding-top:2px;
+    padding: 0;
+    float: right;
+    margin: 0;
   }
   #nav ul {
     li {
       display: block;
       float: left;
       list-style: none;
-      padding: 0 12px;
       margin: 0;
+      padding: 0;
       a {
-        color: $reactorTextColor;
+        color: white;
         text-decoration: none;
-        font-weight: bold;
+        font-weight: 500;
+        display: block;
+        text-transform: uppercase;
         font-size: 0.9em;
-        @include transition-property(color);
+        line-height: 55px;
+        margin: 0;
+        padding: 0 12px;
+        @include transition-property(background-color);
         @include transition-duration($reactorDurationTransition);
-
         &:hover {
-          color: $reactorPrimary;
+          background: $reactorPrimary;
         }
       }
       &:last-child {
@@ -318,7 +339,7 @@ section.quick-links {
       }
     }
   }
-  .reactive-fastdata {
+  /*.reactive-fastdata {
     padding: 30px 0;
     text-align: center;
     h2 {
@@ -338,8 +359,8 @@ section.quick-links {
       line-height: 1.8em;
       font-weight: 100;
     }
-  }
-  .gist-code {
+  }*/
+  /*.gist-code {
     position: absolute;
     bottom: -50px;
     left: 0px;
@@ -378,5 +399,157 @@ section.quick-links {
     .hide {
       display: none;
     }
+  }*/
+}
+
+section.applications {
+  @extend .container;
+  //padding: 0em 0 6em;
+  // background: url('../img/foot-logo.png') no-repeat bottom center;
+  background-size: 42px 40px;
+  .row {
+
+    @include clearfix();
+    padding: 10px 20px 0px;
+    article {
+      width: 25%;
+      float: left;
+      div {
+        border: 1px solid $reactorBackgroundLight;
+        margin: 10px;
+        padding: 40px 0 30px;
+        position: relative;
+        overflow: hidden;
+        &:after {
+          content: "\f1e0";
+          font-family: FontAwesome;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: inherit;
+          position: absolute;
+          font-size: 200px;
+          color: #e8e8e8;
+          bottom: 40px;
+          right: -40px;
+          //margin: -300px 0 0 -200px;
+          z-index: 1;
+        }
+        @include transition-property(background-color);
+        @include transition-duration($reactorDurationTransition);
+        &:hover {
+          background: white;
+          &:after {
+            color: #F1F1F1;
+          }
+        }
+        &.puzzle-piece {
+          &:after {
+            content: "\f12e";
+          }
+        }
+        &.plus {
+          &:after {
+            content: "\f067";
+          }
+        }
+      }
+      span.version {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: auto;
+      }
+      text-align: center;
+      span.icon {
+        font-size: 2em;
+        margin-bottom: 8px;
+        display: block;
+        height: 35px;
+      }
+      h1 {
+        font-size: 1.2em;
+        margin: 0;
+        padding: 0 0 0.4em;
+        font-family: 'Montserrat', sans-serif;
+        z-index: 2;
+        position: relative;
+      }
+      p {
+        margin: 0;
+        padding: 0 1em 0.7em 1em;
+        z-index: 2;
+        position: relative;
+        &.github {
+          padding: 0.7em 1em 0.2em 1em;
+          a {
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+          }
+        }
+      }
+      a {
+        z-index: 2;
+        position: relative;
+      }
+    }
   }
+}
+
+section.welcome {
+  //@extend .container;
+  padding: 2em 0 3em;
+  margin: 2em 0 2em;
+  text-align: left;
+  font-size: 1.2em;
+  background: url('../img/intro.png') no-repeat 0 0;
+  background-size: 323px 309px;
+  article {
+    max-width: 800px;
+    margin-left: 380px;
+    h2 {
+      font-size: 1.8em;
+      line-height: 0.7em;
+      font-weight: normal;
+      font-family: 'Karla';
+      strong {
+        display: block;
+        font-weight: normal;
+        text-align: left;
+        font-size: 1.3em;
+      }
+    }
+    p {
+      font-weight: lighter;
+      line-height: 1.7em;
+    }
+  }
+}
+
+span.logo-gray {
+  display: block;
+  margin: 0 auto;
+  width: 28px;
+  height: 26px;
+  background: url('../img/logo-gray.png') no-repeat 0 0;
+  background-size: 28px 26px;
+}
+span.logo-framework {
+  display: block;
+  margin: 0 auto;
+  width: 34px;
+  height: 32px;
+  background: url('../img/logo-framework.png') no-repeat 0 0;
+  background-size: 34px 32px;
+}
+
+span.version {
+  display: inline;
+  background: $reactorTextColor;
+  color: white;
+  border-radius: 3px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1Px 4px 2px;
+  line-height: 14px;
 }
