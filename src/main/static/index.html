@@ -63,16 +63,54 @@
             </article>
         </section>
 
-        <section id="applications">
+        <section id="brands">
             <div class="row">
                 <article>
-                    <div>
+                    <div class="reactor">
                         <span class="icon">
                             <span class="logo-reactor"></span>
                         </span>
                         <h1>Reactor Core</h1>
                         <span class="version">2.1.0.M1</span>
-                        <p>Non-Blocking Foundation for modern Reactive Systems</p>
+                        <p>Non-Blocking Foundation for<br />modern Reactive Systems</p>
+                        <a href="core/docs/reference/">Read more</a>
+                    </div>
+                </article>
+                <article>
+                    <div class="share-alt">
+                        <span class="icon">
+                            <span class="fa fa-share-alt"></span>
+                        </span>
+                        <h1>Reactor IO</h1>
+                        <span class="version">2.1.0.M1</span>
+                        <p>HTTP, TCP, UDP, Encoding,<br />Unicast and Multicast</p>
+                        <a href="io/docs/reference/">Read more</a>
+                    </div>
+                </article>
+                <article>
+                    <div class="puzzle-piece">
+                        <span class="icon">
+                            <span class="fa fa-puzzle-piece"></span>
+                        </span>
+                        <h1>Reactor Framework</h1>
+                        <span class="version">2.1.0.M1</span>
+                        <p>Enhanced API for Stream<br />Composition and Eventing</p>
+                        <a href="framework/docs/reference/">Read more</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!--<section id="applications">
+            <div class="row">
+                <article>
+                    <div class="reactor">
+                        <span class="icon">
+                            <span class="logo-reactor"></span>
+                        </span>
+                        <h1>Reactor Core</h1>
+                        <span class="version">2.1.0.M1</span>
+                        <p>Non-Blocking Foundation for<br />modern Reactive Systems</p>
                         <a href="core/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-core"><span class="fa fa-github"></span> Github
@@ -81,13 +119,13 @@
                     </div>
                 </article>
                 <article>
-                    <div>
+                    <div class="share-alt">
                         <span class="icon">
                             <span class="fa fa-share-alt"></span>
                         </span>
                         <h1>Reactor IO</h1>
                         <span class="version">2.1.0.M1</span>
-                        <p>HTTP, TCP, UDP, Encoding, Unicast and Multicast</p>
+                        <p>HTTP, TCP, UDP, Encoding,<br />Unicast and Multicast</p>
                         <a href="io/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-io"><span class="fa fa-github"></span> Github</a>
@@ -101,7 +139,7 @@
                         </span>
                         <h1>Reactor Framework</h1>
                         <span class="version">2.1.0.M1</span>
-                        <p>Enhanced API for Stream Composition and Eventing</p>
+                        <p>Enhanced API for Stream<br />Composition and Eventing</p>
                         <a href="framework/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor"><span class="fa fa-github"></span> Github</a>
@@ -114,7 +152,7 @@
                             <span class="fa fa-plus"></span>
                         </span>
                         <h1>Extentions</h1>
-                        <p>Incubating tommorow's Reactor</p>
+                        <p>Incubating<br />tommorow's Reactor</p>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-extensions"><span class="fa fa-github"></span>
                                 Github</a>
@@ -122,82 +160,50 @@
                     </div>
                 </article>
             </div>
-        </section>
+        </section>-->
 
         <section id="key-features">
-            <h1><span>Reactor key features</span></h1>
-            <p class="desc"></p>
-            <div class="row">
-                <article>
-                    <div>
-                        <span class="icon">
-                            <span style="left: 22px;" class="fa fa-flash"></span>
-                        </span>
-                        <h1>Turbo Message Passing</h1>
-                        <p>
-                            Reactor <i>Processors</i>, <i>Operators</i> and <i>Timers</i> can <b>sustain high throughput rates</b> on the order of 10's of
-                            millions of messages per second. Plus its <b>low memory footprint</b> should go under most of the radars.
-                        </p>
-                    </div>
-                </article>
-
-                <article>
-                    <div>
-                        <span class="icon">
-                            <span class="fa fa-gg"></span>
-                        </span>
-                        <h1>Fully Reactive</h1>
-                        <p>
-                            Reactor is designed to be <b>fully non-blocking</b> with efficient buffers and
-                            demand management. Its <a href="https://github.com/reactive-streams/reactive-streams-jvm">reactive flow-control</a> implementation leaves not
-                            much risk for asynchronous publishing going rogue in uncontrolled overflow situations.
-                        </p>
-                    </div>
-                </article>
-            </div>
-            <div class="row">
-                <article>
-                    <div>
-                        <span class="icon">
-                            <span style="left: 17px" class="fa fa-hand-peace-o"></span>
-                        </span>
-                        <h1>Friendly Adoption</h1>
-                        <ul>
-                            <li>
-                                <strong>As a Reactive Engine/SPI</strong> : Reactive streams constructs for focused use
-                                cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
-                                RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/java.html">Akka
-                                Streams</a>, <a href="http://ratpack.io">Ratpack</a> and others
-                            </li>
-                            <li>
-                                <strong>As a Reactive Consumable API</strong> with <i>reactor-stream or reactor-bus</i> which
-                                expand the
-                                contract to
-                                composition and eventing use cases
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-                <article>
-                    <div>
-                        <span class="icon">
-                            <span style="left: 16px;" class="fa fa-magic"></span>
-                        </span>
-                        <h1>Guardian of the Latency</h1>
-                        <p style="margin-bottom: 0">An insidious enemy sit between your <b>#CloudReady #distributed #microservices</b> and
-                            efficient
-                            scalability : <b>Latency</b>. Fortunately, Reactor offers non-blocking and
-                            backpressure-ready IO
-                            solutions including:
-                        </p>
-                        <ul>
-                            <li><strong>Decoding/Encoding</strong> : reactor-codec</li>
-                            <li><strong>Client/Server</strong> for TCP, UDP, HTTP/WS : reactor-net</li>
-                            <li><strong>Unicast/Multicast</strong> : reactor-aeron</li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
+            <article class="turbo-message-passing">
+                <div>
+                    <!--<span class="icon">
+                        <span style="left: 22px;" class="fa fa-flash"></span>
+                    </span>-->
+                    <h1>Turbo Message Passing</h1>
+                    <p>
+                        Reactor <i>Processors</i>, <i>Operators</i> and <i>Timers</i> can <b>sustain high throughput rates</b> on the order of 10's of
+                        millions of messages per second. Plus its <b>low memory footprint</b> should go under most of the radars.
+                    </p>
+                </div>
+            </article>
+            <article class="friendly-adoption">
+                <div>
+                    <!--<span class="icon">
+                        <span style="left: 17px" class="fa fa-hand-peace-o"></span>
+                    </span>-->
+                    <h1>Friendly Adoption</h1>
+                    <p>
+                        <strong>As a Reactive Engine/SPI</strong> with <i>reactor-core, reactor-net,
+                        reactor-aeron</i>. They are exposing reactive streams constructs for focused use
+                        cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
+                        RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/java.html">Akka
+                        Streams</a>, <a href="http://ratpack.io">Ratpack</a>...
+                    </p>
+                </div>
+            </article>
+            <article class="guardian-of-the-latency">
+                <div>
+                    <!--<span class="icon">
+                        <span style="left: 16px;" class="fa fa-magic"></span>
+                    </span>-->
+                    <h1>Guardian of the Latency</h1>
+                    <p style="margin-bottom: 0">An insidious enemy sit between your <b>#CloudReady #distributed #microservices</b> and
+                        efficient
+                        scalability : <b>Latency</b>. Fortunately, Reactor offers non-blocking and
+                        backpressure-ready IO
+                        solutions including:
+                    </p>
+                </div>
+            </article>
         </section>
 
     </div>

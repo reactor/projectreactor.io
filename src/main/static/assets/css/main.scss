@@ -74,7 +74,6 @@ body {
     @extend .container;
     @include clearfix();
     position: relative;
-    //padding: 0 20px;
   }
   h1#logo {
     margin: 7px 0 0 0;
@@ -87,6 +86,7 @@ body {
       width: 253px;
       background-size: 253px 40px;
       text-indent: -6000em;
+      margin: 8px 0;
     }
   }
   #nav, #nav ul {
@@ -113,7 +113,7 @@ body {
         display: block;
         text-transform: uppercase;
         font-size: 0.9em;
-        line-height: 55px;
+        line-height: 71px;
         margin: 0;
         padding: 0 12px;
         @include transition-property(background-color);
@@ -193,11 +193,12 @@ section#welcome {
   }
 }
 
-// Applications
+// Applications (documentations)
 
 section#applications {
   @extend .container;
-  background-size: 42px 40px;
+  padding: 1.5em 0 0.2em;
+  margin: 0 -1.5em;
   .row {
     @include clearfix();
     padding: 10px 20px 0px;
@@ -206,13 +207,15 @@ section#applications {
       float: left;
       text-align: center;
       div {
-        border: 1px solid $reactorBackgroundLight;
+        border: 1px solid #CCC;
         margin: 10px;
         padding: 40px 0 30px;
         position: relative;
         overflow: hidden;
+        height: 260px;
+        background-color: #F9F9F9;
         &:after {
-          content: "\f1e0";
+          //content: "\f1e0";
           font-family: FontAwesome;
           font-weight: normal;
           text-decoration: inherit;
@@ -222,6 +225,8 @@ section#applications {
           bottom: 40px;
           right: -40px;
           z-index: 1;
+          @include transition-property(color);
+          @include transition-duration($reactorDurationTransition);
         }
         @include transition-property(background-color);
         @include transition-duration($reactorDurationTransition);
@@ -229,8 +234,17 @@ section#applications {
           background: white;
           &:after { color: #F1F1F1; }
         }
+        &.share-alt {
+          &:after { content: "\f1e0"; }
+        }
         &.puzzle-piece {
           &:after { content: "\f12e"; }
+        }
+        &.reactor {
+          background-image: url('../img/reactor-bg.png');
+          background-repeat: no-repeat;
+          background-position: right bottom;
+          background-size: 146px 139px;
         }
         &.plus {
           &:after { content: "\f067"; }
@@ -260,6 +274,7 @@ section#applications {
         margin: 0;
         padding: 0 1em 0.7em 1em;
         z-index: 2;
+        font-size: 0.9em;
         position: relative;
         &.github {
           padding: 0.7em 1em 0.2em 1em;
@@ -278,20 +293,21 @@ section#applications {
 }
 
 // Key Features
-
+/*
 section#key-features {
-  @extend .container;
-  text-align: center;
-  padding: 2em 0 3em;
-  line-height: 1.8em;
+  //@extend .container;
+  // text-align: center;
+  // padding: 2em 0 3em;
+  // line-height: 1.8em;
+  background-color: $reactorPrimary;
+  color: white;
   >h1 {
     font-size: 1.6em;
     font-weight: normal;
-    color: white;
     margin: 1em 0 2em;
     font-family: $reactorFontSpecial;
     span {
-      color: $reactorTextColor;
+      color: white;
       display: block;
       width: 320px;
       padding: 0.2em 0;
@@ -308,7 +324,7 @@ section#key-features {
     @include clearfix();
     padding: 10px 20px;
     article {
-      width: 50%;
+      width: 33%;
       float: left;
       padding: 0;
       text-align: left;
@@ -322,15 +338,15 @@ section#key-features {
           font-weight: bold;
           margin: 0;
         }
-        ul {
+        /!*ul {
           margin: 0;
           padding: 0 0 0 15px;
           li { margin-left: 4px; }
         }
         h1+ul {
           margin-top: 10px;
-        }
-        span.icon {
+        }*!/
+        /!*span.icon {
           position: absolute;
           left: 20px;
           top: 15px;
@@ -345,6 +361,9 @@ section#key-features {
             top: 14px;
             left: 14px;
           }
+        }*!/
+        a {
+          color: white;
         }
         p {
           font-size: 1em;
@@ -353,13 +372,108 @@ section#key-features {
       }
     }
   }
-}
+}*/
 
 span.logo-reactor {
   display: block;
   margin: 0 auto;
-  width: 28px;
-  height: 26px;
-  background: url('../img/logo-gray.png') no-repeat 0 0;
-  background-size: 28px 26px;
+  width: 57px;
+  height: 53px;
+  background: url('../img/logo-white.png') no-repeat 0 0;
+  background-size: 57px 53px;
+}
+
+section#key-features {
+  article {
+    border-top: 1px solid #CCC;
+    padding: 3.5em 0 4em;
+    font-family: $reactorFontSpecial;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    &:first-child {
+      border-top: 0 none;
+    }
+    div {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 0 2em;
+      padding-right: 350px;
+      position: relative;
+    }
+    h1 {
+      font-family: $reactorFontSpecial;
+      font-size: 30px;
+      line-height: 30px;
+      font-weight: 400;
+    }
+    span.icon {
+      position: absolute;
+      top: 10px;
+      font-size: 60px;
+      right: 10px;
+
+    }
+    &.turbo-message-passing {
+
+    }
+    &.friendly-adoption {
+      div {
+        padding-right: 0;
+        padding-left: 350px;
+      }
+      background: #ebf1e7;
+    }
+    &.guardian-of-the-latency {
+
+    }
+  }
+}
+
+section#brands {
+  background: $reactorPrimary;
+  color: white;
+  font-family: $reactorFontSpecial;
+  padding: 4.5em 0 5em;
+  div.row {
+    @extend .container;
+    @include clearfix();
+  }
+
+  article {
+    float: left;
+    width: 33%;
+    text-align: center;
+    span.version {
+      display: none;
+    }
+    a {
+      color: white;
+    }
+    p {
+      margin: 0;
+    }
+    h1 {
+      text-transform: uppercase;
+      font-family: $reactorFontSpecial;
+      font-weight: 400;
+      line-height: 20px;
+      font-size: 25px;
+
+    }
+    span.icon {
+      display: block;
+      font-size: 70px;
+      height: 70px;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      span.logo-reactor {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        margin-left: -28px;
+      }
+    }
+  }
 }
