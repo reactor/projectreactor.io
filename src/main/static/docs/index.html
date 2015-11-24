@@ -64,7 +64,7 @@
                         <h1>Reactor Core</h1>
                         <span class="version">2.1.0.M1</span>
                         <p>Non-Blocking Foundation for<br />modern Reactive Systems</p>
-                        <a href="core/docs/reference/" class="btn btn-primary">Read more</a>
+                        <a href="../core/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-core"><span class="fa fa-github"></span> Github
                             </a>
@@ -79,7 +79,7 @@
                         <h1>Reactor IO</h1>
                         <span class="version">2.1.0.M1</span>
                         <p>HTTP, TCP, UDP, Encoding,<br />Unicast and Multicast</p>
-                        <a href="io/docs/reference/" class="btn btn-primary">Read more</a>
+                        <a href="../io/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-io"><span class="fa fa-github"></span> Github</a>
                         </p>
@@ -93,7 +93,7 @@
                         <h1>Reactor Framework</h1>
                         <span class="version">2.1.0.M1</span>
                         <p>Enhanced API for Stream<br />Composition and Eventing</p>
-                        <a href="framework/docs/reference/" class="btn btn-primary">Read more</a>
+                        <a href="../framework/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor"><span class="fa fa-github"></span> Github</a>
                         </p>
@@ -281,63 +281,25 @@ dependencies {
                     <div class="paragraph">
                         <p>Now that you&#8217;ve added the Reactor library to your project, you can start using the
                             <code>Stream</code> class to perform high-volume, low-latency, asynchronous work. It&#8217;s really
-                            almost deceptively simple. Here&#8217;s a complete Hello World to get you started.</p>
+                            almost deceptively simple. </p>
                     </div>
-                    <div class="ui segment">
-                        <div class="listingblock">
-                            <div class="title">ReactorHelloWorld.java</div>
-                            <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">reactor.Processors</span>;
-<span class="keyword">import</span> <span class="include">org.reactivestreams.Processor</span>;
-<span class="keyword">import</span> <span class="include">reactor.rx.Streams</span>;
-
-<span class="directive">public</span> <span class="type">class</span> <span class="class">ReactorHelloWorld</span> {
-    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span>... args) <span class="directive">throws</span> <span
-                class="exception">InterruptedException</span> {
-        Processor&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; sink = Processors.topic(); <i class="conum" data-value="1"></i><b>(1)</b>
-        Streams.create(sink) <i class="conum" data-value="2"></i><b>(2)</b>
-            .map(<span class="predefined-type">String</span>::toUpperCase) <i class="conum" data-value="3"></i><b>(3)</b>
-            .consume(s -&gt; <span class="predefined-type">System</span>.out.printf(<span class="string"><span
-                    class="delimiter">&quot;</span><span class="content">s=%s%n</span><span
-                    class="delimiter">&quot;</span></span>, s)); <i class="conum" data-value="4"></i><b>(4)</b>
-        sink.onNext(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World!</span><span
-                class="delimiter">&quot;</span></span>); <i class="conum" data-value="5"></i><b>(5)</b>
-        sink.onComplete(); <i class="conum" data-value="6"></i><b>(6)</b>
-    }
-}</code></pre>
+                    <div id="code" class="gist-code">
+                        <div class="gist-code-wrap">
+                            <div class="item">
+                                <script src="https://gist.github.com/smaldini/a537f7a1f6b77d59b5d4.js?file=ProcessorStream.java"></script>
                             </div>
-                        </div>
-                        <div class="colist arabic">
-                            <table>
-                                <tr>
-                                    <td><i class="conum" data-value="1"></i><b>1</b></td>
-                                    <td>Create an asynchronous message passing processor, signals coming in onXXX will be
-                                        dispatched asynchronously.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><i class="conum" data-value="2"></i><b>2</b></td>
-                                    <td>Decorate the Processor with the Reactor Stream API.</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="conum" data-value="3"></i><b>3</b></td>
-                                    <td>Transform input to upper-case and implicitly broadcast downstream.</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="conum" data-value="4"></i><b>4</b></td>
-                                    <td>Consume the transformed input and print to STDOUT. This will start the subscriber thread
-                                        attached to our sink.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><i class="conum" data-value="5"></i><b>5</b></td>
-                                    <td>Publish a value into the <code>Processor</code>.</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="conum" data-value="6"></i><b>6</b></td>
-                                    <td>Release <code>Processor</code> resources (non daemon thread) allowing for JVM exit.</td>
-                                </tr>
-                            </table>
+                            <div class="item hide">
+                                <script src="https://gist.github.com/smaldini/e5a5e5179055b440eac7.js?file=Aeron.java"></script>
+                            </div>
+                            <div class="item hide">
+                                <script src="https://gist.github.com/smaldini/8763d0ad2233ba52d35a.js?file=Spring.java"></script>
+                            </div>
+                            <div class="item hide">
+                                <script src="https://gist.github.com/smaldini/31cb77baef4c6fe3ccef.js?file=ReactorNet.java"></script>
+                            </div>
+                            <div class="item hide">
+                                <script src="https://gist.github.com/smaldini/c9cfc68055bdce3890e8.js?file=Multicast.java"></script>
+                            </div>
                         </div>
                     </div>
                 </div>
