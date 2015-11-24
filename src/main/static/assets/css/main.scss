@@ -169,26 +169,46 @@ body {
 
 section#welcome {
   padding: 2.2em 0 3em;
-  margin: 2em 0 2em;
+  //margin: 2em 0 2em;
   text-align: left;
   font-size: 1.2em;
-  background: url('../img/intro.png') no-repeat 0 0;
-  background-size: 323px 309px;
+  height: 360px;
+  font-family: $reactorFontSpecial;
+  background: url('../img/homepage-bg.jpg') no-repeat center 0;
   article {
-    max-width: 800px;
-    margin-left: 380px;
+    color: white;
+    text-align: center;
+    span.logo-reactor {
+      display: block;
+      margin-top: 80px;
+      margin-bottom: 60px;
+    }
     h1 {
+      color: white;
       font: normal 1.8em/0.7em $reactorFontSpecial;
       strong {
-        display: block;
+        display: inline;
         font-weight: normal;
         text-align: left;
+        background: rgba(52,48,45,.7);
         font-size: 1.3em;
+        padding: 2px 10px;
       }
+    }
+    a {
+      color: white;
     }
     p {
       font-weight: lighter;
-      line-height: 1.7em;
+      line-height: 40px;
+      font-size: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      span {
+        background: rgba(52,48,45,.7);
+        padding: 8px 10px;
+      }
     }
   }
 }
@@ -292,95 +312,41 @@ section#applications {
   }
 }
 
-// Key Features
-/*
-section#key-features {
-  //@extend .container;
-  // text-align: center;
-  // padding: 2em 0 3em;
-  // line-height: 1.8em;
-  background-color: $reactorPrimary;
-  color: white;
-  >h1 {
-    font-size: 1.6em;
-    font-weight: normal;
-    margin: 1em 0 2em;
-    font-family: $reactorFontSpecial;
-    span {
-      color: white;
-      display: block;
-      width: 320px;
-      padding: 0.2em 0;
-      margin: 0 auto;
-    }
-  }
-  p.desc {
-    font-weight: bold;
-    color: #959ea7;
-    font-size: 1em;
-    margin-bottom: 3em;
-  }
-  .row {
-    @include clearfix();
-    padding: 10px 20px;
-    article {
-      width: 33%;
-      float: left;
-      padding: 0;
-      text-align: left;
-      div {
-        position: relative;
-        padding: 0.5em 3em;
-        padding-left: 100px;
-        h1 {
-          font-family: $reactorFontSpecial;
-          font-size: 1.1em;
-          font-weight: bold;
-          margin: 0;
-        }
-        /!*ul {
-          margin: 0;
-          padding: 0 0 0 15px;
-          li { margin-left: 4px; }
-        }
-        h1+ul {
-          margin-top: 10px;
-        }*!/
-        /!*span.icon {
-          position: absolute;
-          left: 20px;
-          top: 15px;
-          height: 60px;
-          width: 60px;
-          background: $reactorPrimary;
-          color: white;
-          @include border-radius(30px);
-          span.fa {
-            font-size: 30px;
-            position: absolute;
-            top: 14px;
-            left: 14px;
-          }
-        }*!/
-        a {
-          color: white;
-        }
-        p {
-          font-size: 1em;
-          margin-top: 8px;
-        }
-      }
-    }
-  }
-}*/
+span.logo-reactor {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  background: url('../img/reactor.png') no-repeat 0 0;
+  background-size: 100px 100px;
+}
+
+span.logo-io {
+  display: block;
+  margin: 0 auto;
+  width: 132px;
+  height: 100px;
+  background: url('../img/io.png') no-repeat 0 0;
+  background-size: 132px 100px;
+}
+
+
+span.logo-stream {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  background: url('../img/stream.png') no-repeat 0 0;
+  background-size: 100px 100px;
+}
 
 span.logo-reactor {
   display: block;
   margin: 0 auto;
-  width: 57px;
-  height: 53px;
-  background: url('../img/logo-white.png') no-repeat 0 0;
-  background-size: 57px 53px;
+  width: 100px;
+  height: 100px;
+  background: url('../img/reactor.png') no-repeat 0 0;
+  background-size: 100px 100px;
 }
 
 section#key-features {
@@ -434,12 +400,11 @@ section#brands {
   background: $reactorPrimary;
   color: white;
   font-family: $reactorFontSpecial;
-  padding: 4.5em 0 5em;
+  padding: 3.5em 0 5em;
   div.row {
     @extend .container;
     @include clearfix();
   }
-
   article {
     float: left;
     width: 33%;
@@ -452,6 +417,8 @@ section#brands {
     }
     p {
       margin: 0;
+      padding: 0 1em;
+      font-size: 1.1em;
     }
     h1 {
       text-transform: uppercase;
@@ -463,17 +430,10 @@ section#brands {
     }
     span.icon {
       display: block;
-      font-size: 70px;
-      height: 70px;
+      height: 100px;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       position: relative;
-      span.logo-reactor {
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        margin-left: -28px;
-      }
     }
   }
 }
