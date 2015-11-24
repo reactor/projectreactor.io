@@ -1,9 +1,5 @@
 @import "compass";
 
-body {
-  margin-top: 3rem;
-}
-
 .admonitionblock .content .listingblock, .admonitionblock .content p {
   font-size: 0.9rem !important;
 }
@@ -59,16 +55,6 @@ audio:not([controls]) {
 
 script {
   display: none !important
-}
-
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%
-}
-
-body {
-  margin: 0
 }
 
 a {
@@ -226,17 +212,6 @@ table {
   box-sizing: border-box
 }
 
-body {
-  background-color: white;
-  font-family: 'Source Sans Pro', sans-serif;
-  line-height: 1.3em;
-  font-size: 14px;
-  color: #4e5964;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  cursor: auto
-}
 
 a:hover {
   cursor: pointer
@@ -647,20 +622,20 @@ p a > code:hover {
   color: rgba(0, 0, 0, .9)
 }
 
-#header-doc, #content, #footnotes, #footer {
-  width: 100%;
-  margin-left: auto;
+#header-doc, #content, #footnotes {
+  // width: 100%;
+  /*margin-left: auto;
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 62.5em;
+  max-width: 62.5em;*/
   *zoom: 1;
   position: relative;
-  padding-left: .9375em;
-  padding-right: .9375em
+  /*padding-left: .9375em;
+  padding-right: .9375em*/
 }
 
-#header-doc:before, #header-doc:after, #content:before, #content:after, #footnotes:before, #footnotes:after, #footer:before, #footer:after {
+#header-doc:before, #header-doc:after, #content:before, #content:after {
   content: " ";
   display: table
 }
@@ -877,12 +852,6 @@ p a > code:hover {
 
 #content #toc > :last-child {
   margin-bottom: 0
-}
-
-
-#footer-text {
-  color: rgba(255, 255, 255, .8);
-  line-height: 1.44
 }
 
 .sect1 {
@@ -1967,12 +1936,12 @@ p {
     display: block
   }
   #footer {
-    background: none !important;
-    padding: 0 .9375em
+    // background: none !important;
+    //padding: 0 .9375em
   }
   #footer-text {
-    color: rgba(0, 0, 0, .6) !important;
-    font-size: .9em
+    //color: rgba(0, 0, 0, .6) !important;
+    //font-size: .9em
   }
   .hide-on-print {
     display: none !important
@@ -2351,4 +2320,12 @@ table.CodeRay td.code > pre {
 
 .CodeRay .head .head {
   color: #f4f
+}
+
+#main {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: white;
+  padding: 0 3.5em;
+  @include clearfix();
 }

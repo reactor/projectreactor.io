@@ -13,18 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+// Compass
+@import "compass";
+
+// Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,700);
 
+// Main colors
 $reactorPrimary: #6db33f;
 $reactorTextColor: #34302d;
 $reactorBackgroundLight: #34302d;
+
+// Duration effect
 $reactorDurationTransition: 0.2s;
 
+// Fonts
+$reactorFontMain: 'Source Sans Pro', sans-serif;
+$reactorFontSpecial: 'Montserrat', sans-serif;
+$reactorFontSpecial2: 'Karla', 'Montserrat', sans-serif;
+
+// Font Awesome
 @import '../../../../../node_modules/font-awesome/scss/font-awesome.scss';
+
+// Normalize CSS
 @import 'normalize';
-@import "compass";
-@import "github";
+
+// Imports
 @import "button";
-@import "application";
-@import "mobile";
+@import "main";
+@import "responsive";
 

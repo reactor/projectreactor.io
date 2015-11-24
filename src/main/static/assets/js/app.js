@@ -1,56 +1,19 @@
-var links, codes;
-
-function showFile(file) {
-    if (!links) {
-        return;
-    }
-    links.removeClass('active');
-    codes.addClass('hide');
-    
-    $(links.get(file - 1)).addClass('active');
-    $(codes.get(file - 1)).removeClass('hide');
-}
+/*
+ * Copyright (c) 2011-2016 Pivotal Software Inc, All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 $(function(){
-    links = $("#files a");
-    codes = $('#codes pre');
-
-    var current = 0;
-    var items = $("#code>.gist-code-wrap>.item");
-    var ul = $("<ul />").addClass("steps");
-    var max = items.length;
-
-    for (var i=0; i<items.length; i++) {
-        ul.append($("<li />").data('index', i).click(function(){
-            show($(this).data('index'));
-        }));
-    }
-    $($(ul).find('li').get(current)).addClass('active');
-    $("#code").prepend(ul);
-
-    function show(index) {
-        var _this = $(ul.find('li').get(index));
-        $(ul.find('li').get(current)).removeClass('active');
-        $(items.get(current)).addClass('hide');
-        $(items.get(_this.data('index'))).removeClass('hide');
-        _this.addClass('active');
-        current = _this.data('index');
-    }
-
-    function animateList() {
-        setTimeout(function(){
-            var index = current + 1;
-            if (index >= max)
-                index = 0;
-            show(index);
-            animateList();
-        }, 10 * 1000);
-    }
-
-    animateList();
-
-    /*$("#code>.gist-code-wrap>.item").each(function(){
-        var ob = $(this);
-        ob.addClass('hide');
-    });*/
+    // Main JS
 });
