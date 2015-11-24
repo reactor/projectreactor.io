@@ -4,13 +4,13 @@ var gulp = require('gulp'),
     config = require('./configDefault'),
     merge = require('merge'),
     shell = require('gulp-shell'),
-    runSequence = require('gulp-run-sequence');
+    runSequence = require('gulp-run-sequence'),
+    clean = require('gulp-clean');
 
 config = config.build;
 
 // Cleaner for cleaning on a per-task basis
 var copy = require('./tasks/copy')(config);
-var cleaner = require('./tasks/clean')(config);
 
 // Prepare prod build
 gulp.task('production', function(){
@@ -24,13 +24,23 @@ gulp.task('gradle', shell.task([
     ])
 );
 
-gulp.task('clean:copy', cleaner('copy'));
-gulp.task('clean:scripts', cleaner('scripts'));
+gulp.task('clean:copy', function() {
+    return gulp.src('copy').pipe(clean());
+});
 
-gulp.task('clean:styles', cleaner('styles'));
-gulp.task('clean:scripts', cleaner('scripts'));
-gulp.task('clean:fonts', cleaner('fonts'));
-gulp.task('clean', ['clean:copy', 'clean:scripts', 'clean:styles', 'clean:scripts', 'clean:fonts']);
+gulp.task('clean:scripts', function() {
+    return gulp.src('scripts').pipe(clean());
+});
+
+gulp.task('clean:styles', function() {
+    return gulp.src('styles').pipe(clean());
+});
+
+gulp.task('clean:fonts', function() {
+    return gulp.src('fonts').pipe(clean());
+});
+
+gulp.task('cleanAll', ['clean:copy', 'clean:scripts', 'clean:styles', 'clean:scripts', 'clean:fonts']);
 
 // Concat scripts (described in config)
 gulp.task('scripts', ['clean:scripts'], require('./tasks/scripts')(config));
@@ -46,7 +56,9 @@ gulp.task('copy', ['copy:src', 'copy:fontAwesome']);
 // Bundle and watch for changes to all files appropriately
 gulp.task('serve', ['scripts', 'copy', 'styles'], require('./tasks/serve')(config));
 
-gulp.task('assemble', ['production', 'scripts', 'copy', 'styles']);
+gulp.task('assemble', function(cb) {
+    runSequence('cleanAll', 'production', 'scripts', 'copy', 'styles', cb);
+});
 
 // Environment
 if (process.env.NODE_ENV == 'production') {
