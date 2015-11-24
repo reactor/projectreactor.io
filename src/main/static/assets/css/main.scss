@@ -174,7 +174,7 @@ section#welcome {
   font-size: 1.2em;
   height: 360px;
   font-family: $reactorFontSpecial;
-  background: #dfe7c9 url('../img/homepage-bg.jpg') no-repeat center 0;
+  background: #e5e2b6 url('../img/homepage-bg.jpg') no-repeat center 0;
   article {
     color: white;
     text-align: center;
@@ -376,21 +376,44 @@ section#key-features {
     span.icon {
       position: absolute;
       top: 10px;
-      font-size: 60px;
       right: 10px;
 
     }
     &.turbo-message-passing {
+      background: url('../img/turbomessage-bg.jpg') no-repeat right 20px;
+      background-size: 446px 353px;
+      span.icon {
+        display: block;
+        width: 166px;
+        height: 166px;
+        right: 100px;
+        background: url('../img/clock.png') no-repeat right center;
+        background-size: 166px 166px;
+      }
 
     }
     &.friendly-adoption {
       div {
         padding-right: 0;
         padding-left: 350px;
+        text-align: right;
       }
-      background: #ebf1e7;
+      background: white url('../img/friendlyadoption-bg.jpg') no-repeat left center;
+      background-size: 458px 385px;
+      //background: #ebf1e7;
     }
     &.guardian-of-the-latency {
+      background: url('../img/guardian-bg.jpg') no-repeat right center;
+      background-size: 520px 309px;
+
+      span.icon {
+        display: block;
+        width: 216px;
+        height: 140px;
+        right: 40px;
+        background: url('../img/cloudfoundry.png') no-repeat right center;
+        background-size: 216px 140px;
+      }
 
     }
   }
