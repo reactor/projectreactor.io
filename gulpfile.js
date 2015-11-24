@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     config = require('./configDefault'),
     merge = require('merge'),
-    shell = require('gulp-shell');
+    shell = require('gulp-shell'),
+    runSequence = require('gulp-run-sequence');
 
 config = config.build;
 
@@ -19,8 +20,9 @@ gulp.task('production', function(){
 
 // gradle wrapper
 gulp.task('gradle', shell.task([
-    './gradlew build'
-]));
+        './gradlew build'
+    ])
+);
 
 gulp.task('clean:copy', cleaner('copy'));
 gulp.task('clean:scripts', cleaner('scripts'));
@@ -49,8 +51,12 @@ gulp.task('assemble', ['production', 'scripts', 'copy', 'styles']);
 // Environment
 if (process.env.NODE_ENV == 'production') {
     gutil.log("Starting ", gutil.colors.yellow("Production environment"));
-    gulp.task('package', ['assemble']);
-    gulp.task('default', ['package', 'gradle']);
+
+    gulp.task('package', function(cb) {
+        runSequence('assemble', 'gradle', cb);
+    });
+
+    gulp.task('default', ['package']);
 } else {
     gutil.log("Starting ", gutil.colors.yellow("Dev environment"));
     gulp.task('default', ['serve']);
