@@ -26,7 +26,7 @@ var dist = './src/main/resources/public/';
 
 module.exports = function(config){
     return function(){
-        var pipe = gulp.src([root+'assets/css/app.scss', root+'assets/css/docs.scss'])
+        var pipe = gulp.src([root+'assets/css/reactor.scss', root+'assets/css/docs.scss'])
             .pipe(compass({
                 sass: root+'assets/css',
                 image: root+'assets/img',
