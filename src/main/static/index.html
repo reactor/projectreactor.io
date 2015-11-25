@@ -27,20 +27,15 @@
     <link rel="apple-touch-icon-precomposed" href="assets/img/apple-touch-icon-precomposed.png" />
     <link rel="icon" type="image/png" href="favicon.ico" />
     <link href="assets/css/reactor.css" media="all" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon-57×57-precomposed.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple-touch-icon-72×72-precomposed.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple-touch-icon-114×114-precomposed.png" />
 </head>
 <body>
 
 <div class="application-container">
-
-    <div id="sidebar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="docs">Documentation</a></li>
-            <li><a href="https://github.com/reactor/reactor/issues">Issue Tracker</a></li>
-            <li><a href="http://stackoverflow.com/search?q=%23reactor">Community Discussion</a></li>
-        </ul>
-    </div>
-
+    <div id="sidebar"></div>
     <div class="application-main-content website">
         <div class="application-content">
             <header id="header">
@@ -52,6 +47,7 @@
                     <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
                     <nav id="nav">
                         <ul>
+                            <li class="hide"><a href="/">Home</a></li>
                             <li><a href="docs">Documentation</a></li>
                             <li><a href="https://github.com/reactor/reactor/issues">Issue Tracker</a></li>
                             <li><a href="http://stackoverflow.com/search?q=%23reactor">Community Discussion</a></li>
@@ -59,9 +55,7 @@
                     </nav>
                 </div>
             </header>
-
             <div class="content" id="content">
-
                 <section id="welcome">
                     <article>
                         <span class="logo-reactor"></span>
@@ -71,17 +65,11 @@
                             </strong>
                         </h1>
                         <p>
-                            <span>
-                                Reactor is a foundational library for building non-blocking applications on
-                            </span>
-                            <br />
-                            <span>
-                                the JVM based on the <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams Specification</a>
-                            </span>
+                            <span>Reactor is a foundational library for building non-blocking applications on</span><br />
+                            <span>the JVM based on the <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams Specification</a></span>
                         </p>
                     </article>
                 </section>
-
                 <section id="brands">
                     <div class="row">
                         <article>
@@ -127,7 +115,6 @@
                         </article>
                     </div>
                 </section>
-
                 <section id="key-features">
                     <article class="turbo-message-passing">
                         <div>
@@ -164,7 +151,6 @@
                         </div>
                     </article>
                 </section>
-
             </div>
             <footer id="footer">
                 <div class="footer-content">
@@ -183,7 +169,9 @@
         </div>
     </div>
 </div>
+
 <!--
+
 
 ██████╗ ███████╗ █████╗  ██████╗████████╗ ██████╗ ██████╗     ██████╗ ██████╗  ██████╗      ██╗███████╗ ██████╗████████╗
 ██╔══██╗██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗    ██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝██╔════╝╚══██╔══╝
@@ -193,6 +181,7 @@
 ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝ ╚═════╝   ╚═╝
 
 -->
+
 <script src="assets/js/vendor.js"></script>
 <script src="assets/js/app.js"></script>
 </body>

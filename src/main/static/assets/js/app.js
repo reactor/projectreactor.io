@@ -35,5 +35,9 @@ $(function(){
             navVisible = false;
             $(toggle_el).removeClass("open-sidebar");
         }
-    })
+    });
+
+    var uls = $("#nav").html();
+    $("#sidebar").html(uls);
+
 });
