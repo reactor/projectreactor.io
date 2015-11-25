@@ -326,7 +326,7 @@ p aside {
 }
 
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
-  font-weight: 100;
+  font-weight: 400;
   font-style: normal;
   color: #71b741;
   text-rendering: optimizeLegibility;
@@ -554,7 +554,7 @@ h1 strong, h2 strong, h3 strong, #toctitle strong, .sidebarblock > .content > .t
   letter-spacing: 0;
   padding: .1em .5ex;
   word-spacing: -.15em;
-  background-color: #f7f7f8;
+  background-color: #FFF;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   line-height: 1.45;
@@ -674,7 +674,7 @@ p a > code:hover {
   padding-top: .25em;
   padding-bottom: .25em;
   padding-left: .25em;
-  color: rgba(0, 0, 0, .6);
+  color: #34302d;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -1006,11 +1006,11 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 }
 
 .literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint {
-  background: #f3f6f8
+  background: #FFF
 }
 
 .sidebarblock .literalblock pre, .sidebarblock .listingblock pre:not(.highlight), .sidebarblock .listingblock pre[class="highlight"], .sidebarblock .listingblock pre[class^="highlight "], .sidebarblock .listingblock pre.CodeRay, .sidebarblock .listingblock pre.prettyprint {
-  background: #f3f6f8
+  background: #FFF
 }
 
 .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] {
@@ -1040,7 +1040,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 }
 
 .literalblock.output pre {
-  color: #f7f7f8;
+  color: #FFF;
   background-color: rgba(0, 0, 0, .9)
 }
 
@@ -2324,8 +2324,11 @@ table.CodeRay td.code > pre {
 
 #main {
   max-width: 1100px;
-  margin: 0 auto;
-  background: white;
-  padding: 0 3.5em;
+  //margin: 0 auto;
+  // background: white;
+  //padding: 0 3.5em;
   @include clearfix();
+  color: #34302d;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0 auto;
 }

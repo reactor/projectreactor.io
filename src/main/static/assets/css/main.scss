@@ -81,12 +81,29 @@ body {
     float: left;
     a {
       display: block;
-      background: url(../img/logo-2x.png) no-repeat;
+      background: url(../img/logo-2x.png) no-repeat 0 0;
       height: 40px;
       width: 253px;
-      background-size: 253px 40px;
+      background-size: 253px 80px;
       text-indent: -6000em;
       margin: 8px 0;
+      &:hover {
+        strong{
+          @include opacity(1);
+        }
+      }
+      strong {
+        display: block;
+        background: url(../img/logo-2x.png) no-repeat 0 -40px;
+        background-size: 253px 80px;
+        height: 40px;
+        width: 253px;
+        text-indent: -6000em;
+        margin: 8px 0;
+        @include transition-property(opacity);
+        @include transition-duration($reactorDurationTransition);
+        @include opacity(0);
+      }
     }
   }
   #nav, #nav ul {
@@ -216,12 +233,12 @@ section#welcome {
 // Applications (documentations)
 
 section#applications {
-  @extend .container;
+  //@extend .container;
   padding: 1.5em 0 0.2em;
-  margin: 0 -1.5em;
+  //margin: 0 -1.5em;
   .row {
     @include clearfix();
-    padding: 10px 20px 0px;
+    padding: 10px 0 0px;
     article {
       width: 25%;
       float: left;
@@ -233,7 +250,7 @@ section#applications {
         position: relative;
         overflow: hidden;
         height: 260px;
-        background-color: #F9F9F9;
+        background-color: #F1F1F1;
         &:after {
           //content: "\f1e0";
           font-family: FontAwesome;
@@ -270,6 +287,13 @@ section#applications {
           &:after { content: "\f067"; }
         }
       }
+      &:first-child {
+        div { margin-left: 0;}
+      }
+      &:last-child {
+        div { margin-right: 0;}
+      }
+
       span.version {
         position: absolute;
         top: 5px;
@@ -294,7 +318,7 @@ section#applications {
         margin: 0;
         padding: 0 1em 0.7em 1em;
         z-index: 2;
-        font-size: 0.9em;
+        font-size: 1em;
         position: relative;
         &.github {
           padding: 0.7em 1em 0.2em 1em;
