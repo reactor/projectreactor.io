@@ -29,142 +29,159 @@
     <link href="assets/css/reactor.css" media="all" rel="stylesheet" />
 </head>
 <body>
-<div class="website">
 
-    <header id="header">
-        <div class="heading">
-            <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
-            <nav id="nav">
-                <ul>
-                    <li><a href="docs">Documentation</a></li>
-                    <li><a href="https://github.com/reactor/reactor/">Github</a></li>
-                    <li><a href="https://github.com/reactor/reactor/issues">Issue Tracker</a></li>
-                    <li><a href="http://stackoverflow.com/search?q=%23reactor">Community Discussion</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<div class="application-container">
 
-    <div class="content">
-
-        <section id="welcome">
-            <article>
-                <span class="logo-reactor"></span>
-                <h1>
-                    <strong>
-                        Create efficient <a href="http://www.reactive-streams.org/">Reactive</a> systems
-                    </strong>
-                </h1>
-                <p>
-                    <span>
-                        Reactor is a foundational library for building non-blocking applications on
-                    </span>
-                    <br />
-                    <span>
-                        the JVM based on the <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams Specification</a>
-                    </span>
-                </p>
-            </article>
-        </section>
-
-        <section id="brands">
-            <div class="row">
-                <article>
-                    <div class="reactor">
-                        <span class="icon">
-                            <span class="logo-reactor"></span>
-                        </span>
-                        <h1>Core Library</h1>
-                        <span class="version">2.1.0.M1</span>
-                        <p>
-                            A <strong>fully non-blocking</strong> foundation with efficient demand management. Its
-                            <a href="https://github.com/reactive-streams/reactive-streams-jvm">reactive flow-control</a> implementation leaves not
-                            much risk for asynchronous publishing badly overflowing.
-                        </p>
-                    </div>
-                </article>
-                <article>
-                    <div>
-                        <span class="icon">
-                            <span class="logo-io"></span>
-                        </span>
-                        <h1>Non blocking IO</h1>
-                        <span class="version">2.1.0.M1</span>
-                        <p>
-                            Backpressure-Ready IO components for #HTTP (including websockets) #TCP #UDP client/server,
-                            #Decoding, #Encoding, #Unicast and #Multicast Messaging.
-                        </p>
-                    </div>
-                </article>
-                <article>
-                    <div>
-                        <span class="icon">
-                            <span class="logo-stream"></span>
-                        </span>
-                        <h1>Stream & Bus</h1>
-                        <span class="version">2.1.0.M1</span>
-                        <p>
-                            A ready-to-consume composable Stream and Eventing API.
-                            Reactor Stream is derived from <a href="http://reactivex.io">Reactive Extensions</a>
-                            while Reactor Bus offers a flexible routing model.
-                        </p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="key-features">
-            <article class="turbo-message-passing">
-                <div>
-                    <span class="icon"></span>
-                    <h1>Turbo Message Passing</h1>
-                    <p>
-                        Reactor Processors, Operators and Timers can <strong>sustain high throughput rates</strong> on the order of 10's of
-                        millions of messages per second. Plus its <b>low memory footprint</b> should go under most of the radars.
-                    </p>
-                </div>
-            </article>
-            <article class="friendly-adoption">
-                <div>
-                    <h1>Friendly Adoption</h1>
-                    <p>
-                        <strong>As a Reactive Engine/SPI</strong> with reactor-core, reactor-net,
-                        reactor-aeron or reactor-codec. They are exposing reactive streams constructs for focused
-                        use cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
-                        RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/java.html">Akka
-                        Streams</a>, <a href="http://ratpack.io">Ratpack</a>...
-                    </p>
-                </div>
-            </article>
-            <article class="guardian-of-the-latency">
-                <div>
-                    <span class="icon"></span>
-                    <h1>Guardian of the Latency</h1>
-                    <p style="margin-bottom: 0">An insidious enemy sit between your <strong>#CloudReady #distributed #microservices</strong> and
-                        efficient
-                        scalability : <strong>Latency</strong>. Fortunately, Reactor offers non-blocking and
-                        backpressure-ready IO
-                        solutions including: reactor-aeron, reactor-codec and reactor-net
-                    </p>
-                </div>
-            </article>
-        </section>
-
+    <div id="sidebar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="docs">Documentation</a></li>
+            <li><a href="https://github.com/reactor/reactor/issues">Issue Tracker</a></li>
+            <li><a href="http://stackoverflow.com/search?q=%23reactor">Community Discussion</a></li>
+        </ul>
     </div>
-    <footer id="footer">
-        <div class="footer-content">
-            <nav>
-                <ul>
-                    <li><a href="https://github.com/reactor">Github</a></li>
-                    <li><a href="https://twitter.com/projectreactor">Twitter</a></li>
-                    <li><a href="http://stackoverflow.com/search?q=%23reactor">Stackoverflow</a></li>
-                    <li><a href="https://groups.google.com/forum/#!forum/reactor-framework">Google Group</a></li>
-                </ul>
-            </nav>
-            © 2015 <a href="/">Reactor Project</a>, powered by
-            <a href="http://pivotal.io/" class="pivotal">Pivotal</a> & <a href="http://spring.io/" class="spring">Spring</a>
+
+    <div class="application-main-content website">
+        <div class="application-content">
+            <header id="header">
+                <a href="#" data-toggle=".application-container" id="sidebar-toggle">
+                    <span class="fa fa-bars"></span>
+                </a>
+
+                <div class="heading">
+                    <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="docs">Documentation</a></li>
+                            <li><a href="https://github.com/reactor/reactor/issues">Issue Tracker</a></li>
+                            <li><a href="http://stackoverflow.com/search?q=%23reactor">Community Discussion</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <div class="content" id="content">
+
+                <section id="welcome">
+                    <article>
+                        <span class="logo-reactor"></span>
+                        <h1>
+                            <strong>
+                                Create efficient <a href="http://www.reactive-streams.org/">Reactive</a> systems
+                            </strong>
+                        </h1>
+                        <p>
+                            <span>
+                                Reactor is a foundational library for building non-blocking applications on
+                            </span>
+                            <br />
+                            <span>
+                                the JVM based on the <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams Specification</a>
+                            </span>
+                        </p>
+                    </article>
+                </section>
+
+                <section id="brands">
+                    <div class="row">
+                        <article>
+                            <div class="reactor">
+                                <span class="icon">
+                                    <span class="logo-reactor"></span>
+                                </span>
+                                <h1>Core Library</h1>
+                                <span class="version">2.1.0.M1</span>
+                                <p>
+                                    A <strong>fully non-blocking</strong> foundation with efficient demand management. Its
+                                    <a href="https://github.com/reactive-streams/reactive-streams-jvm">reactive flow-control</a> implementation leaves not
+                                    much risk for asynchronous publishing badly overflowing.
+                                </p>
+                            </div>
+                        </article>
+                        <article>
+                            <div>
+                                <span class="icon">
+                                    <span class="logo-io"></span>
+                                </span>
+                                <h1>Non blocking IO</h1>
+                                <span class="version">2.1.0.M1</span>
+                                <p>
+                                    Backpressure-Ready IO components for #HTTP (including websockets) #TCP #UDP client/server,
+                                    #Decoding, #Encoding, #Unicast and #Multicast Messaging.
+                                </p>
+                            </div>
+                        </article>
+                        <article>
+                            <div>
+                                <span class="icon">
+                                    <span class="logo-stream"></span>
+                                </span>
+                                <h1>Stream & Bus</h1>
+                                <span class="version">2.1.0.M1</span>
+                                <p>
+                                    A ready-to-consume composable Stream and Eventing API.
+                                    Reactor Stream is derived from <a href="http://reactivex.io">Reactive Extensions</a>
+                                    while Reactor Bus offers a flexible routing model.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="key-features">
+                    <article class="turbo-message-passing">
+                        <div>
+                            <span class="icon"></span>
+                            <h1>Turbo Message Passing</h1>
+                            <p>
+                                Reactor Processors, Operators and Timers can <strong>sustain high throughput rates</strong> on the order of 10's of
+                                millions of messages per second. Plus its <b>low memory footprint</b> should go under most of the radars.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="friendly-adoption">
+                        <div>
+                            <h1>Friendly Adoption</h1>
+                            <p>
+                                <strong>As a Reactive Engine/SPI</strong> with reactor-core, reactor-net,
+                                reactor-aeron or reactor-codec. They are exposing reactive streams constructs for focused
+                                use cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
+                                RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/java.html">Akka
+                                Streams</a>, <a href="http://ratpack.io">Ratpack</a>...
+                            </p>
+                        </div>
+                    </article>
+                    <article class="guardian-of-the-latency">
+                        <div>
+                            <span class="icon"></span>
+                            <h1>Guardian of the Latency</h1>
+                            <p style="margin-bottom: 0">An insidious enemy sit between your <strong>#CloudReady #distributed #microservices</strong> and
+                                efficient
+                                scalability : <strong>Latency</strong>. Fortunately, Reactor offers non-blocking and
+                                backpressure-ready IO
+                                solutions including: reactor-aeron, reactor-codec and reactor-net
+                            </p>
+                        </div>
+                    </article>
+                </section>
+
+            </div>
+            <footer id="footer">
+                <div class="footer-content">
+                    <nav>
+                        <ul>
+                            <li><a href="https://github.com/reactor">Github</a></li>
+                            <li><a href="https://twitter.com/projectreactor">Twitter</a></li>
+                            <li><a href="http://stackoverflow.com/search?q=%23reactor">Stackoverflow</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/reactor-framework">Google Group</a></li>
+                        </ul>
+                    </nav>
+                    © 2015 <a href="/">Reactor Project</a>, powered by
+                    <a href="http://pivotal.io/" class="pivotal">Pivotal</a> & <a href="http://spring.io/" class="spring">Spring</a>
+                </div>
+            </footer>
         </div>
-    </footer>
+    </div>
 </div>
 <!--
 

@@ -74,6 +74,8 @@ body {
     @extend .container;
     @include clearfix();
     position: relative;
+    max-width: 1000px;
+    padding: 0 20px;
   }
   h1#logo {
     margin: 7px 0 0 0;
@@ -178,6 +180,9 @@ body {
       display: inline;
       list-style: none;
       margin-right: 1em;
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 }
