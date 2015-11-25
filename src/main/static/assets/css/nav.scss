@@ -1,32 +1,16 @@
-body, html {
-  height: 100%;
-  margin: 0;
-  font-weight: 100;
-}
-.application-container {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  -webkit-transition:  left 0.4s ease-in-out;
-  -moz-transition:  left 0.4s ease-in-out;
-  -ms-transition:  left 0.4s ease-in-out;
-  -o-transition:  left 0.4s ease-in-out;
-  transition:  left 0.4s ease-in-out;
-}
 .application-container.open-sidebar {
-  left: 240px;
+  #sidebar {
+    left: 0;
+  }
 }
-
 #sidebar {
   background: $reactorTextColor;
-  position: absolute;
-  width: 240px;
-  height: 100%;
-  left: -240px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-shadow: inset -4px 0 5px rgba(0,0,0,.2);
+  position: fixed;
+  width: 100%;
+  left: -100%;
+  z-index: 9999;
+  bottom: 0;
+  box-shadow: 0 -4px 5px rgba(0,0,0,.2);
 }
 #sidebar ul {
   margin: 0;
@@ -43,7 +27,7 @@ body, html {
   color: white;
   text-decoration: none;
   display: block;
-  border-bottom: 1px solid #494542;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   -webkit-transition:  background 0.3s ease-in-out;
   -moz-transition:  background 0.3s ease-in-out;
   -ms-transition:  background 0.3s ease-in-out;
@@ -52,21 +36,6 @@ body, html {
 }
 #sidebar ul li:hover a {
   background: #494542;
-}
-.application-main-content {
-  width: 100%;
-  height: 100%;
-  //padding: 10px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  position: relative;
-  overflow:scroll;
-}
-.application-main-content .application-content{
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  //padding-left: 60px;
-  width: 100%;
 }
 .application-main-content #sidebar-toggle {
   display: none;
