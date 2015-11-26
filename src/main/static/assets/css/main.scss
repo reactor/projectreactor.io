@@ -164,7 +164,9 @@ body {
   .footer-content {
     @include clearfix();
     @extend .container;
-    max-width: 1000px;
+    max-width: 1100px;
+    padding: 0 1.5em;
+    
   }
   nav, nav ul {
     margin: 0;
@@ -384,7 +386,6 @@ span.logo-reactor {
 section#key-features {
   article {
     border-top: 1px solid #CCC;
-    padding: 3.5em 0 4em;
     font-family: $reactorFontSpecial;
     font-weight: 400;
     font-size: 16px;
@@ -395,8 +396,9 @@ section#key-features {
     div {
       max-width: 650px;
       margin: 0 auto;
-      padding: 0 2em;
+      padding: 3.5em 0 4em;
       padding-right: 350px;
+      padding-left: 20px;
       position: relative;
     }
     h1 {
@@ -407,13 +409,15 @@ section#key-features {
     }
     span.icon {
       position: absolute;
-      top: 10px;
+      top: 70px;
       right: 10px;
 
     }
     &.turbo-message-passing {
-      background: url('../img/turbomessage-bg.jpg') no-repeat right 20px;
-      background-size: 446px 353px;
+      div {
+        background: url('../img/turbomessage-bg.jpg') no-repeat right 20px;
+        background-size: 446px 353px;
+      }
       span.icon {
         display: block;
         width: 166px;
@@ -425,18 +429,21 @@ section#key-features {
 
     }
     &.friendly-adoption {
+      background: white;
       div {
-        padding-right: 0;
+        padding-right: 20px;
         padding-left: 350px;
         text-align: right;
+        background: white url('../img/friendlyadoption-bg.jpg') no-repeat left center;
+        background-size: 360px 385px;
       }
-      background: white url('../img/friendlyadoption-bg.jpg') no-repeat left center;
-      background-size: 458px 385px;
       //background: #ebf1e7;
     }
     &.guardian-of-the-latency {
-      background: url('../img/guardian-bg.jpg') no-repeat right center;
-      background-size: 520px 309px;
+      div {
+        background: url('../img/guardian-bg.jpg') no-repeat right center;
+        background-size: 520px 309px;
+      }
 
       span.icon {
         display: block;
