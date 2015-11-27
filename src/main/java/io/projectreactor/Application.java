@@ -1,23 +1,17 @@
 package io.projectreactor;
 
-import groovy.text.markup.MarkupTemplateEngine;
-import groovy.text.markup.TemplateConfiguration;
 import io.projectreactor.ratpack.EnableRatpack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ratpack.error.ClientErrorHandler;
+import ratpack.func.Action;
+import ratpack.handling.Chain;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import ratpack.error.ClientErrorHandler;
-import ratpack.func.Action;
-import ratpack.groovy.Groovy;
-import ratpack.groovy.template.internal.MarkupTemplateRenderer;
-import ratpack.handling.Chain;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Main Application for the Project Reactor home site.
@@ -33,7 +27,12 @@ public class Application {
 	@Bean
 	public ClientErrorHandler clientErrorHandler() {
 		return (ctx, statusCode) -> {
-			LOG.error("client error: {}", statusCode);
+			if(statusCode == 404) {
+				ctx.redirect("/404.html");
+			}
+			else{
+				LOG.error("client error: {}", statusCode);
+			}
 		};
 	}
 

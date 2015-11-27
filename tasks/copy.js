@@ -24,7 +24,7 @@ module.exports = function (config) {
             if (forTask == "internal") {
                 return gulp.src(
                     [
-                        root+'index.html',
+                        root+'*.html',
                         root+'docs/index.html',
                         root+'favicon.ico',
                         root+'assets/img/*.*',
