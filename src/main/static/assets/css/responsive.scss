@@ -120,6 +120,10 @@
   .application-main-content #sidebar-toggle {
     display: block;
   }
+
+  #footer {
+    text-align: center;
+  }
 }
 
 @media (max-width: 600px) {
@@ -177,9 +181,6 @@
     h1 {
       font-size: 25px;
     }
-  }
-  #footer {
-    text-align: center;
   }
 }
 

@@ -22,7 +22,7 @@ a {
   &:hover { text-decoration: underline; }
 }
 
-h1, h2, h3, h4 { font-family: $reactorFontMain }
+h1, h2, h3, h4 { font-family: $reactorFontSpecial }
 
 ::-moz-selection {
   background: $reactorPrimary;
@@ -74,11 +74,11 @@ body {
     @extend .container;
     @include clearfix();
     position: relative;
-    max-width: 1000px;
-    padding: 0 20px;
+    max-width: 1100px;
+    // padding: 0 20px;
   }
   h1#logo {
-    margin: 7px 0 0 0;
+    margin: 7px 0 0 10px;
     padding: 0;
     float: left;
     a {
@@ -117,6 +117,7 @@ body {
   #nav {
     @include clearfix();
     float: right;
+    margin-right: 10px;
   }
   #nav ul {
     li {
@@ -292,6 +293,13 @@ section#applications {
           background-repeat: no-repeat;
           background-position: right bottom;
           background-size: 146px 139px;
+          .logo-reactor {
+            background: url('../img/logo-dark.png') no-repeat center 0;
+            width: 28px;
+            height: 26px;
+            background-size: 28px 26px;
+
+          }
         }
         &.plus {
           &:after { content: "\f067"; }
@@ -447,8 +455,8 @@ section#key-features {
         padding: 0;
         text-align: center;
         width: auto;
-        //min-width: 1000px;
-        max-width: none;
+        max-width: 1000px;
+        margin: 0 auto;
         h1 {
           margin: 0;
           padding: 0;
@@ -522,6 +530,29 @@ section#brands {
       text-align: center;
       margin-bottom: 30px;
       position: relative;
+    }
+  }
+}
+
+section.page404 {
+  @extend .container;
+  @include clearfix();
+  text-align: center;
+  padding: 5em 0;
+  h1 {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    font-family: $reactorFontSpecial;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0;
+      padding: 0.2em 0;
+      list-style: none;
+      list-style-type: none;
     }
   }
 }
