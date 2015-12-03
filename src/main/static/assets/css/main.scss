@@ -158,36 +158,55 @@ body {
 // Footer
 
 #footer {
-  padding: 2em 0 2.5em;
   text-align: left;
   background-color: $reactorBackgroundLight;
   color: white;
   .footer-content {
+    background: #423e3c;
+    padding: 2em 0 2.5em;
+  }
+  .footer-content-text {
+    @include clearfix();
+    @extend .container;
+    max-width: 1100px;
+    padding: 2em 1.5em;
+    .licence {
+      color: rgba(255,255,255,.3);
+      display: block;
+      font-size: 0.9em;
+      padding-bottom: 0.4em;
+    }
+  }
+  .row {
     @include clearfix();
     @extend .container;
     max-width: 1100px;
     padding: 0 1.5em;
-
+    nav {
+      float: left;
+      width: 25%;
+    }
   }
   nav, nav ul {
     margin: 0;
     padding: 0;
     a {
       color: white;
-      text-transform: uppercase;
-      font-size: 0.8em;
+      //text-transform: uppercase;
+      font-size: 0.9em;
+      cursor: pointer;
     }
   }
   nav {
-    padding-bottom: 15px;
   }
   ul {
     li {
-      display: inline;
+      //display: inline;
       list-style: none;
-      margin-right: 1em;
-      &:last-child {
-        margin-right: 0;
+      &.heading {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $reactorPrimary;
       }
     }
   }
@@ -449,8 +468,7 @@ section#key-features {
     }
     &.use-reactor {
       background-color: white;
-      //border-top: 0 none;
-      padding: 1em 0;
+      padding: 2em 0;
       div {
         padding: 0;
         text-align: center;
