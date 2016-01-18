@@ -270,7 +270,7 @@ section#applications {
     @include clearfix();
     padding: 10px 0 0px;
     article {
-      width: 25%;
+      width: 20%;
       float: left;
       text-align: center;
       div {
@@ -306,6 +306,9 @@ section#applications {
         }
         &.puzzle-piece {
           &:after { content: "\f12e"; }
+        }
+        &.sliders {
+          &:after { content: "\f1de"; }
         }
         &.reactor {
           background-image: url('../img/reactor-bg.png');
@@ -355,10 +358,11 @@ section#applications {
         margin: 0;
         padding: 0 1em 0.7em 1em;
         z-index: 2;
-        font-size: 1em;
+        font-size: 0.8em;
         position: relative;
         &.github {
           padding: 0.7em 1em 0.2em 1em;
+          font-size: 0.8em;
           a {
             cursor: pointer;
             font-family: $reactorFontSpecial;
