@@ -27,8 +27,8 @@ module.exports = function (config) {
                         root+'*.html',
                         root+'docs/index.html',
                         root+'favicon.ico',
-                        root+'assets/img/*.*',
-                        root+'assets/fonts/*.*',
+                        root+'assets/img/**.*',
+                        root+'assets/fonts/**.*'
                     ],
                     {base: root}
                 ).pipe(gulp.dest(dist));
