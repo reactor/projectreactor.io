@@ -91,31 +91,12 @@
                                 <span class="icon">
                                     <span class="logo-reactor"></span>
                                 </span>
-                                <h1>Core Library</h1>
+                                <h1>Core</h1>
                                 <span class="version">2.5.0.M1</span>
                                 <p>
-                                    Reactor Core is a <strong>fully non-blocking</strong> foundation with efficient
-                                    demand
-                                    management. Its
-                                    <a href="https://github.com/reactive-streams/reactive-streams-jvm">reactive
-                                        flow-control</a> implementation leaves little
-                                     risk for asynchronous publishing badly overflowing.
-                                </p>
-                            </div>
-                        </article>
-                        <article>
-                            <div>
-                                <span class="icon">
-                                    <span class="logo-io"></span>
-                                </span>
-                                <h1>Non blocking IO</h1>
-                                <span class="version">2.5.0.M1</span>
-                                <p>
-                                    Suited for "Microservices" Architecture, Reactor IO offers backpressure-ready
-                                    network
-                                    components for HTTP
-                                    (including websockets),
-                                    TCP and UDP. Reactive Encoding/Decoding is fully supported.
+                                    Reactor Core is a <strong>fully non-blocking</strong> foundation with
+                                    efficient demand management. It provides a lite <a href="http://reactivex.io">Reactive
+                                    Extensions</a> API natively built on top of <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams</a>.
                                 </p>
                             </div>
                         </article>
@@ -124,15 +105,28 @@
                                 <span class="icon">
                                     <span class="logo-stream"></span>
                                 </span>
-                                <h1>Stream & Bus</h1>
+                                <h1>Stream</h1>
                                 <span class="version">2.5.0.M1</span>
                                 <p>
-                                    Reactor Framework exposes ready-to-consume composable Stream and Eventing API.
-                                    "Stream" is a contract derived from <a href="http://reactivex.io">Reactive
-                                    Extensions</a>
-                                    while EventBus offers a flexible routing model.
+                                    Reactor also provides an Extended <a href="http://reactivex.io">Reactive
+                                    Extensions</a> API with ready-to-consume composable Stream and Promise types,
+                                    plus an Eventing API.
                                 </p>
                             </div>
+                            <article>
+                            <div>
+                                <span class="icon">
+                                    <span class="logo-io"></span>
+                                </span>
+                                <h1>Non blocking IO</h1>
+                                <span class="version">2.5.0.M1</span>
+                                <p>
+                                    Suited for "Microservices" Architecture, Reactor IO offers backpressure-ready
+                                    network engines for HTTP (including Websockets), TCP and UDP.
+                                    Reactive Encoding/Decoding is fully supported.
+                                </p>
+                            </div>
+                        </article>
                         </article>
                     </div>
                 </section>
@@ -156,7 +150,7 @@
                                 As a Reactive Engine/SPI, both Reactor Core and IO modules expose reactive streams
                                 constructs for focused
                                 use cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
-                                RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0/java.html">Akka
+                                RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/current/java.html">Akka
                                 Streams</a>, <a href="http://ratpack.io">Ratpack</a>... As a Reactive API, reactor
                                 framework modules will offer rich consumable features like
                                 composition and eventing.
