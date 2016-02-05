@@ -15,11 +15,13 @@ html {
                 yield 'Project Reactor'
               }
             }
+            div(class: 'header item') {
+                          a(href: 'http://next.projectreactor.io') {
+                            yield 'Reactor NEXT'
+                          }
+            }
             div(class: 'right menu') {
               a(class: 'item', href: '/docs', title: '2.0 Documentation') {
-                i(class: 'book icon') {}
-              }
-               a(class: 'item', href: 'http://next.projectreactor.io', title: 'Reactor NEXT (2.5+)') {
                 i(class: 'book icon') {}
               }
               a(class: 'item', href: 'https://github.com/reactor/reactor/', title: 'Github') {
