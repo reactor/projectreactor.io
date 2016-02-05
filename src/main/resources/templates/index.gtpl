@@ -38,7 +38,7 @@ html {
 
           div(class: 'ui grid information') {
             div(class: 'seven wide column') {
-              h1(class: 'ui inverted header') { yield('Project Reactor') }
+              h1(class: 'ui inverted header') { yield('Reactor 2.0') }
               h4(class: 'ui inverted header') { yield('Helping running modern and efficient Applications') }
               newLine()
               p 'Reactor is a foundational library for building reactive fast-data applications on the JVM. It is an implementation of the <a href="https://github.com/reactive-streams/reactive-streams" target="__new">Reactive Streams Specification</a>. You can use Reactor to power an application that has a low tolerance for latency and demands extremely high throughput.'
