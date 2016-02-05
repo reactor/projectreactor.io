@@ -1,7 +1,7 @@
 yieldUnescaped '<!doctype html>'
 html {
   head {
-    title "${model.title} | Project Reactor"
+    title "${model.title} | Project Reactor - legacy"
 
     include template: 'templates/_head.gtpl'
   }
@@ -16,10 +16,13 @@ html {
               }
             }
             div(class: 'right menu') {
-              a(class: 'item', href: '/docs', title: 'Documentation') {
+              a(class: 'item', href: '/docs', title: '2.0 Documentation') {
                 i(class: 'book icon') {}
               }
-              a(class: 'item', href: 'https://github.com/reactor/reactor/', title: 'Source Code') {
+               a(class: 'item', href: 'http://next.projectreactor.io', title: 'Reactor NEXT (2.5+)') {
+                i(class: 'book icon') {}
+              }
+              a(class: 'item', href: 'https://github.com/reactor/reactor/', title: 'Github') {
                 i(class: 'github icon') {}
               }
               a(class: 'item', href: 'https://github.com/reactor/reactor/issues', title: 'Issue Tracker') {
@@ -34,7 +37,7 @@ html {
           div(class: 'ui grid information') {
             div(class: 'seven wide column') {
               h1(class: 'ui inverted header') { yield('Project Reactor') }
-              h4(class: 'ui inverted header') { yield('Reactive FastData for a New Age') }
+              h4(class: 'ui inverted header') { yield('Helping running modern and efficient Applications') }
               newLine()
               p 'Reactor is a foundational library for building reactive fast-data applications on the JVM. It is an implementation of the <a href="https://github.com/reactive-streams/reactive-streams" target="__new">Reactive Streams Specification</a>. You can use Reactor to power an application that has a low tolerance for latency and demands extremely high throughput.'
               ul {
