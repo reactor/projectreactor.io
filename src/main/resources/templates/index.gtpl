@@ -1,7 +1,7 @@
 yieldUnescaped '<!doctype html>'
 html {
   head {
-    title "${model.title} | Project Reactor - legacy"
+    title "${model.title} | Reactor 2.0"
 
     include template: 'templates/_head.gtpl'
   }
@@ -12,7 +12,7 @@ html {
           nav(class: 'ui inverted menu') {
             div(class: 'header item') {
               a(href: '/') {
-                yield 'Project Reactor'
+                yield 'Reactor 2.0'
               }
             }
             div(class: 'header item') {
@@ -90,7 +90,7 @@ html {
         div(class: 'row') {
           div(class: 'column') {
             div(class: 'centered aligned ui inverted header') {
-              h1('Getting started with Reactor')
+              h1('Getting started with Reactor 2.0')
             }
           }
         }
