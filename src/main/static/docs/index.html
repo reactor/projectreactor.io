@@ -154,69 +154,6 @@
         </section>
 
         <div id="content">
-            <div id="preamble">
-                <div class="sectionbody">
-                    <!--<nav class="ui fixed inverted menu">
-                        <div class="right menu">
-                            <a class="item" href="/">
-                                Project Reactor
-                            </a>
-                            <a class="item" href="https://github.com/reactor/reactor/" title="Source Code">
-                                <i class="github icon"></i>
-                            </a>
-                            <a class="item" href="https://github.com/reactor/reactor/issues" title="Bug Tracker">
-                                <i class="bug icon"></i>
-                            </a>
-                            <a class="item" href="http://stackoverflow.com/search?q=%23reactor" title="Community Discussion">
-                                <i class="comments icon"></i>
-                            </a>
-                        </div>
-                    </nav>-->
-                    <!--<div class="ui breadcrumb">
-                        <div class="divider"> /</div>
-                        <a class="section" title="Project Reactor Documentation" href="/docs/">docs</a>
-
-                        <div class="divider"> /</div>
-                    </div>-->
-                    <!--<div class="dlist">
-                        <dl>
-                            <dt class="hdlist1"><a href="#getting-started">Getting Started</a></dt>
-                            <dd>
-                                <p>How to get going quickly with Reactor.</p>
-                            </dd>
-                            <dt class="hdlist1"><a href="/core/docs/reference/">Core Reference</a></dt>
-                            <dd>
-                                <p>Reference documentation covering the basic components of Reactor as well as more advanced
-                                    concepts.</p>
-                            </dd>
-                            <dt class="hdlist1"><a href="/core/docs/api/">Core Javadoc</a></dt>
-                            <dd>
-                                <p>Documentation on the Reactor Core API (reactor-core)</p>
-                            </dd>
-                            <dt class="hdlist1"><a href="/io/docs/reference/">IO Reference</a></dt>
-                            <dd>
-                                <p>Reference documentation covering the IO and Networking components of Reactor as well as more
-                                    advanced
-                                    concepts.</p>
-                            </dd>
-                            <dt class="hdlist1"><a href="/io/docs/api/">IO Javadoc</a></dt>
-                            <dd>
-                                <p>Documentation on the Reactor IO API (reactor-codec, reactor-net, reactor-aeron).</p>
-                            </dd>
-                            <dt class="hdlist1"><a href="/ext/docs/reference/">Framework Reference</a></dt>
-                            <dd>
-                                <p>Reference documentation covering the basic components of Reactor as well as more advanced
-                                    concepts.</p>
-                            </dd>
-                            <dt class="hdlist1"><a href="/ext/docs/api/">Framework Javadoc</a></dt>
-                            <dd>
-                                <p>Documentation on the Reactor Framework API (reactor-stream, reactor-bus, reactor-alloc)</p>
-                            </dd>
-
-                        </dl>
-                    </div>-->
-                </div>
-            </div>
            <!-- <div class="sect1">
                 <h2 id="introduction"><a class="anchor" href="#introduction"></a>What is Reactor?</h2>
 
@@ -242,8 +179,8 @@
                         <p>To add Reactor to an existing project, you just need to include the appropriate artifact. The basic
                             components of Reactor like <code>Flux</code> and <code>Mono</code> are in the <code>
                                 reactor-core</code>
-                            artifact. Additional functionality is in the <code>reactor-stream</code>, <code>reactor
-                                -aeron</code>,
+                            artifact. Additional features can be found on the <code>reactor-stream</code>, <code>
+                                reactor-aeron</code>,
                              <code>reactor-net</code>, <code>reactor-pipes</code>, <code>reactor-bus</code> and
                             <code>reactor-pylon</code>
                             modules.</p>
@@ -276,9 +213,15 @@ dependencies {
     <span class="comment">//Everything Routing (Event Bus)</span>
     <span class="comment">//compile &quot;io.projectreactor:reactor-bus:2.5.0.BUILD-SNAPSHOT&quot;</span>
 
-    <span class="comment">//Everything Net</span>
+    <span class="comment">//Routing ++ (Event Pipes)</span>
+    <span class="comment">//compile &quot;io.projectreactor:reactor-pipes:2.5.0.BUILD-SNAPSHOT&quot;</span>
+
+    <span class="comment">//Netty TCP/HTTP/UDP client/servers</span>
     <span class="comment">//compile &quot;io.projectreactor:reactor-net:2.5.0.BUILD-SNAPSHOT&quot;</span>
     <span class="comment">//compile &quot;io.netty:netty-all:4.0.34.final&quot;</span>
+
+            <span class="comment">//Reactive Aeron client/servers</span>
+            <span class="comment">//compile &quot;io.projectreactor:reactor-aeron:2.5.0.BUILD-SNAPSHOT&quot;</span>
 }</code></pre>
                             </div>
                         </div>
@@ -310,18 +253,6 @@ dependencies {
                         <div class="gist-code-wrap">
                             <div class="item">
                                 <script src="https://gist.github.com/smaldini/a537f7a1f6b77d59b5d4.js?file=ProcessorStream.java"></script>
-                            </div>
-                            <div class="item hide">
-                                <script src="https://gist.github.com/smaldini/e5a5e5179055b440eac7.js?file=Aeron.java"></script>
-                            </div>
-                            <div class="item hide">
-                                <script src="https://gist.github.com/smaldini/8763d0ad2233ba52d35a.js?file=Spring.java"></script>
-                            </div>
-                            <div class="item hide">
-                                <script src="https://gist.github.com/smaldini/31cb77baef4c6fe3ccef.js?file=ReactorNet.java"></script>
-                            </div>
-                            <div class="item hide">
-                                <script src="https://gist.github.com/smaldini/c9cfc68055bdce3890e8.js?file=Multicast.java"></script>
                             </div>
                         </div>
                     </div>
