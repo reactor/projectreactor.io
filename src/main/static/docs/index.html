@@ -240,19 +240,19 @@
                 <div class="sectionbody">
                     <div class="paragraph">
                         <p>To add Reactor to an existing project, you just need to include the appropriate artifact. The basic
-                            components of Reactor like <code>EventBus</code> and <code>Stream</code> are in the <code>reactor-core</code>
-                            artifact. Additional functionality is in the <code>reactor-net</code>, <code>reactor-groovy</code>,
-                            and <code>reactor-logback</code> modules.</p>
+                            components of Reactor like <code>Flux</code> and <code>Mono</code> are in the <code>
+                                reactor-core</code>
+                            artifact. Additional functionality is in the <code>reactor-stream</code>, <code>reactor
+                                -aeron</code>,
+                             <code>reactor-net</code>, <code>reactor-pipes</code>, <code>reactor-bus</code> and
+                            <code>reactor-pylon</code>
+                            modules.</p>
                     </div>
                     <div class="ui segment">
                         <div class="listingblock">
                             <div class="title">build.gradle</div>
                             <div class="content">
-        <pre class="CodeRay highlight"><code data-lang="groovy">ext {
-    reactorVersion = <span class="string"><span class="delimiter">'</span><span
-        class="content">2.5.0.BUILD-SNAPSHOT</span><span class="delimiter">'</span></span>
-}
-
+        <pre class="CodeRay highlight"><code data-lang="groovy">
 repositories {
     <span class="comment">// maven { url 'http://repo.spring.io/libs-release' } </span><i class="conum"
                                                                                           data-value="1"></i><b>(1)</b>
@@ -265,20 +265,20 @@ repositories {
 dependencies {
     <span class="comment">//Core stuff (Processors, Functional interfaces...)</span>
     compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-core:</span><span
-        class="inline"><span class="inline-delimiter">$</span>reactorVersion</span><span
+        class="inline"><span class="inline-delimiter">$</span>2.5.0.M1</span><span
         class="delimiter">&quot;</span></span>
 
     <span class="comment">//Everything Stream</span>
     compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-stream:</span><span
-        class="inline"><span class="inline-delimiter">$</span>reactorVersion</span><span
+        class="inline"><span class="inline-delimiter">$</span>2.5.0.M1</span><span
         class="delimiter">&quot;</span></span>
 
     <span class="comment">//Everything Routing (Event Bus)</span>
-    <span class="comment">//compile &quot;io.projectreactor:reactor-bus:$reactorVersion&quot;</span>
+    <span class="comment">//compile &quot;io.projectreactor:reactor-bus:2.5.0.BUILD-SNAPSHOT&quot;</span>
 
     <span class="comment">//Everything Net</span>
-    <span class="comment">//compile &quot;io.projectreactor:reactor-net:$reactorVersion&quot;</span>
-    <span class="comment">//compile &quot;io.netty:netty-all:4.0.31.final&quot;</span>
+    <span class="comment">//compile &quot;io.projectreactor:reactor-net:2.5.0.BUILD-SNAPSHOT&quot;</span>
+    <span class="comment">//compile &quot;io.netty:netty-all:4.0.34.final&quot;</span>
 }</code></pre>
                             </div>
                         </div>
@@ -300,9 +300,11 @@ dependencies {
                         </div>
                     </div>
                     <div class="paragraph">
-                        <p>Now that you&#8217;ve added the Reactor library to your project, you can start using the
-                            <code>Stream</code> class to perform high-volume, low-latency, asynchronous work. It&#8217;s really
-                            almost deceptively simple. </p>
+                        <p>Now that you&#8217;ve added reactor-core to your project, you can start using
+                            <code>Flux</code>, <code>Mono</code> and "<code>Processors</code>" API  to perform
+                            high-volume, low-latency, asynchronous work.
+
+                            It&#8217;s really almost deceptively simple. </p>
                     </div>
                     <div id="code" class="gist-code">
                         <div class="gist-code-wrap">
@@ -329,8 +331,10 @@ dependencies {
         <div id="footnotes">
             <hr>
             <div class="footnote" id="_footnote_1">
-                <a href="#_footnoteref_1">1</a>. Reactor microbenchmarks are maintained in a <a
+                <a href="#_footnoteref_1">Benchmarks</a>. Reactor microbenchmarks are maintained in a <a
                     href="https://github.com/reactor/reactor-benchmark">separate GitHub repository</a>
+                Additional benchmarks are available under  <a
+                    href="https://github.com/reactor/reactive-streams-commons">Reactive Streams Commons GitHub repository</a>
             </div>
         </div>
 
