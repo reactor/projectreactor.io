@@ -39,9 +39,7 @@ public class Application {
 	@Bean
 	public Action<Chain> ratpack() {
 		return chain -> {
-			chain.get("docs/reference/streams.html", ctx -> {
-				ctx.redirect("index.html");
-			});
+			chain.prefix("docs", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/", "/old/"))));
 		};
 	}
 
