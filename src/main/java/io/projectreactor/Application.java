@@ -39,7 +39,13 @@ public class Application {
 	@Bean
 	public Action<Chain> ratpack() {
 		return chain -> {
-			chain.prefix("docs", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/", "/old/"))));
+			chain.prefix("docs/api", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/", "/old/")
+			)))
+			     .prefix("docs/reference", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/",
+					     "/old/")
+			)))
+			     .prefix("docs/raw", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/", "/old/")
+			)));
 		};
 	}
 
