@@ -111,7 +111,7 @@
                         </span>
                         <h1>Reactor Add-ons</h1>
                         <span class="version">2.5.0.BUILD-SNAPSHOT</span>
-                        <p>Official modules including Bus, Pipes or Pylon</p>
+                        <p>Official modules including Bus, Logback or Pylon</p>
                         <a href="../ext/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-addons"><span class="fa fa-github"></span>
@@ -146,7 +146,7 @@
                         <p>To add Reactor to an existing project, you just need to include the appropriate artifact. The basic
                             components of Reactor like <code>Flux</code> and <code>Mono</code> are in the <code>
                                 reactor-core</code>
-                            artifact. Additional features can be found on the <code>reactor-stream</code>, <code>
+                            artifact. Additional features can be found on the <code>
                                 reactor-aeron</code>,
                              <code>reactor-net</code>, <code>reactor-pipes</code>, <code>reactor-bus</code> and
                             <code>reactor-pylon</code>
@@ -167,21 +167,13 @@ repositories {
 }
 
 dependencies {
-    <span class="comment">//Core stuff (Processors, Functional interfaces...)</span>
+    <span class="comment">//Core stuff (Flux, Mono, Schedulers...)</span>
     compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-core:</span><span
-        class="inline"><span class="inline-delimiter"></span>2.5.0.M1</span><span
-        class="delimiter">&quot;</span></span>
-
-    <span class="comment">//Everything Fluxion</span>
-    compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-stream:</span><span
         class="inline"><span class="inline-delimiter"></span>2.5.0.M1</span><span
         class="delimiter">&quot;</span></span>
 
     <span class="comment">//Everything Routing (Event Bus)</span>
     <span class="comment">//compile &quot;io.projectreactor:reactor-bus:2.5.0.BUILD-SNAPSHOT&quot;</span>
-
-    <span class="comment">//Routing ++ (Event Pipes)</span>
-    <span class="comment">//compile &quot;io.projectreactor:reactor-pipes:2.5.0.BUILD-SNAPSHOT&quot;</span>
 
     <span class="comment">//Netty TCP/HTTP/UDP client/servers</span>
     <span class="comment">//compile &quot;io.projectreactor:reactor-net:2.5.0.BUILD-SNAPSHOT&quot;</span>
