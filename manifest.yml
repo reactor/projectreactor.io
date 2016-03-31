@@ -4,3 +4,4 @@ applications:
   memory: 1G
   path: ./build/libs/projectreactor-home-0.4.0.BUILD-SNAPSHOT.jar
   domain: projectreactor.io
+  disk_quota: 1024M
