@@ -80,7 +80,7 @@
                             <span class="logo-reactor"></span>
                         </span>
                         <h1>Reactor Core</h1>
-                        <span class="version">2.5.0.M4</span>
+                        <span class="version">3.0.0.RC1</span>
                         <p>Rx-like API and foundation <br />for Reactive Systems</p>
                         <!--<a href="../core/docs/reference/" class="btn btn-primary">Read more</a>-->
                         <p class="github">
@@ -94,13 +94,13 @@
                         <span class="icon">
                             <span class="fa fa-share-alt"></span>
                         </span>
-                        <h1>Reactor IO</h1>
-                        <span class="version">2.5.0.BUILD-SNAPSHOT</span>
+                        <h1>Reactor IPC</h1>
+                        <span class="version">0.5.0.BUILD-SNAPSHOT</span>
                         <p>HTTP, TCP, UDP, Encoding,<br />Unicast and Multicast</p>
-                        <a href="../io/docs/reference/" class="btn btn-primary">Read more</a>
+                        <a href="../ipc/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-io"><span class="fa fa-github"></span> Github</a><br />
-                            <a href="/io/docs/api"><span class="fa fa-book"></span> Javadoc</a>
+                            <a href="/ipc/docs/api"><span class="fa fa-book"></span> Javadoc</a>
                         </p>
                     </div>
                 </article>
@@ -110,7 +110,7 @@
                             <span class="fa fa-puzzle-piece"></span>
                         </span>
                         <h1>Reactor Add-ons</h1>
-                        <span class="version">2.5.0.BUILD-SNAPSHOT</span>
+                        <span class="version">3.0.0.BUILD-SNAPSHOT</span>
                         <p>Official modules including Bus, Logback, extra Schedulers
                             (Swing, RxJava, Akka...)</p>
                         <a href="../ext/docs/reference/" class="btn btn-primary">Read more</a>
@@ -170,18 +170,19 @@ repositories {
 dependencies {
     <span class="comment">//Core stuff (Flux, Mono, Schedulers...)</span>
     compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-core:</span><span
-        class="inline"><span class="inline-delimiter"></span>2.5.0.M4</span><span
+        class="inline"><span class="inline-delimiter"></span>3.0.0.RC1</span><span
         class="delimiter">&quot;</span></span>
 
     <span class="comment">//Everything Routing (Event Bus)</span>
-    <span class="comment">//compile &quot;io.projectreactor:reactor-bus:2.5.0.BUILD-SNAPSHOT&quot;</span>
+    <span class="comment">//compile &quot;io.projectreactor:reactor-bus:3.0.0.BUILD-SNAPSHOT&quot;</span>
 
     <span class="comment">//Netty TCP/HTTP/UDP client/servers</span>
-    <span class="comment">//compile &quot;io.projectreactor:reactor-netty:2.5.0.BUILD-SNAPSHOT&quot;</span>
-    <span class="comment">//compile &quot;io.netty:netty-all:4.0.34.final&quot;</span>
+    <span class="comment">//compile
+        &quot;io.projectreactor.ipc:reactor-ipc-netty:0.5.0.BUILD-SNAPSHOT&quot;</span>
 
     <span class="comment">//Reactive Aeron client/servers</span>
-    <span class="comment">//compile &quot;io.projectreactor:reactor-aeron:2.5.0.BUILD-SNAPSHOT&quot;</span>
+    <span class="comment">//compile
+        &quot;io.projectreactor.ipc:reactor-ipc-aeron:0.5.0.BUILD-SNAPSHOT&quot;</span>
 }</code></pre>
                             </div>
                         </div>
@@ -240,7 +241,7 @@ dependencies {
                     <ul>
                         <li class="heading">Documentation</li>
                         <li><a href="/core/docs/reference/">Reactor Core</a></li>
-                        <li><a href="/io/docs/reference/">Reactor IO</a></li>
+                        <li><a href="/ipc/docs/reference/">Reactor IO</a></li>
                         <li><a href="/ext/docs/reference/">Reactor Addons</a></li>
                         <li><a href="/old/reference/">Reactor 2.0 (previous major release)</a></li>
                     </ul>
