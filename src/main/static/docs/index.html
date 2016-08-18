@@ -68,7 +68,8 @@
             <h1>Documentation</h1>
 
             <div class="details">
-                <span id="author" class="author">Project Reactor NEXT reference documentation, code samples, and Javadoc.</span><br>
+                <span id="author" class="author">Project Reactor Snapshot reference
+                    documentation, code samples, and Javadoc.</span><br>
             </div>
         </div>
 
@@ -80,9 +81,9 @@
                             <span class="logo-reactor"></span>
                         </span>
                         <h1>Reactor Core</h1>
-                        <span class="version">3.0.0.RC2</span>
-                        <p>Rx-like API and foundation <br />for Reactive Systems</p>
-                        <!--<a href="../core/docs/reference/" class="btn btn-primary">Read more</a>-->
+                        <span class="version">3.0.0.RELEASE</span>
+                        <p>A Reactive Streams foundation for Java 8</p>
+                        <a href="../core/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-core"><span class="fa fa-github"></span> Github</a><br />
                             <a href="/core/docs/api"><span class="fa fa-book"></span> Javadoc</a>
@@ -95,7 +96,7 @@
                             <span class="fa fa-share-alt"></span>
                         </span>
                         <h1>Reactor IPC</h1>
-                        <span class="version">0.5.0.BUILD-SNAPSHOT</span>
+                        <span class="version">0.5.0</span>
                         <p>HTTP, TCP, UDP, Encoding,<br />Unicast and Multicast</p>
                         <a href="../ipc/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
@@ -110,9 +111,7 @@
                             <span class="fa fa-puzzle-piece"></span>
                         </span>
                         <h1>Reactor Add-ons</h1>
-                        <span class="version">3.0.0.BUILD-SNAPSHOT</span>
-                        <p>Official modules including Bus, Logback, extra Schedulers
-                            (Swing, RxJava, Akka...)</p>
+                        <p>Official modules including Bus, Schedulers (Swing, Akka...)</p>
                         <a href="../ext/docs/reference/" class="btn btn-primary">Read more</a>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-addons"><span class="fa fa-github"></span>
@@ -132,6 +131,40 @@
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-incubator"><span class="fa fa-github"></span>
                                 Github</a>
+                        </p>
+                    </div>
+                </article>
+                <article>
+                    <div class="reactor">
+                        <span class="icon">
+                            <span class="logo-reactor"></span>
+                        </span>
+                        <h1>Reactor Core .NET</h1>
+                        <span class="version">0.6.2</span>
+                        <p>A Reactive Streams foundation for .NET</p>
+                        <p class="github">
+                            <a href="https://github.com/reactor/reactor-core-dotnet"><span
+                                    class="fa fa-github"></span> Github</a><br />
+                            <a
+                                    href="https://www.nuget.org/packages/Reactor.Core/"><span class="fa fa-book"></span> nuget
+                            </a>
+                        </p>
+                    </div>
+                </article>
+                <article>
+                    <div class="reactor">
+                        <span class="icon">
+                            <span class="logo-reactor"></span>
+                        </span>
+                        <h1>Reactor Core JS</h1>
+                        <span class="version">0.4.0</span>
+                        <p>A Reactive Streams foundation for Javascript</p>
+                        <p class="github">
+                            <a href="https://github.com/reactor/reactor-core-js"><span
+                                    class="fa fa-github"></span> Github</a><br />
+                            <a
+                                    href="https://www.npmjs.com/package/reactor-core-js"><span class="fa fa-book"></span> NPM
+                            </a>
                         </p>
                     </div>
                 </article>
@@ -170,7 +203,7 @@ repositories {
 dependencies {
     <span class="comment">//Core stuff (Flux, Mono, Schedulers...)</span>
     compile <span class="string"><span class="delimiter">&quot;</span><span class="content">io.projectreactor:reactor-core:</span><span
-        class="inline"><span class="inline-delimiter"></span>3.0.0.RC2</span><span
+        class="inline"><span class="inline-delimiter"></span>3.0.0.RELEASE</span><span
         class="delimiter">&quot;</span></span>
 
     <span class="comment">//Everything Routing (Event Bus)</span>
@@ -178,11 +211,11 @@ dependencies {
 
     <span class="comment">//Netty TCP/HTTP/UDP client/servers</span>
     <span class="comment">//compile
-        &quot;io.projectreactor.ipc:reactor-netty:0.5.0.BUILD-SNAPSHOT&quot;</span>
+        &quot;io.projectreactor.ipc:reactor-netty:0.5.0.RELEASE&quot;</span>
 
     <span class="comment">//Reactive Aeron client/servers</span>
     <span class="comment">//compile
-        &quot;io.projectreactor.ipc:reactor-aeron:0.5.0.BUILD-SNAPSHOT&quot;</span>
+        &quot;io.projectreactor.ipc:reactor-aeron:0.5.0.RELEASE&quot;</span>
 }</code></pre>
                             </div>
                         </div>
