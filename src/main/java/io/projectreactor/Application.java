@@ -22,15 +22,15 @@ import org.springframework.context.annotation.Configuration;
 @EnableRatpack
 public class Application {
 
-	private static final Logger LOG             = LoggerFactory.getLogger(Application.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
 	@Bean
 	public ClientErrorHandler clientErrorHandler() {
 		return (ctx, statusCode) -> {
-			if(statusCode == 404) {
+			if (statusCode == 404) {
 				ctx.redirect("/404.html");
 			}
-			else{
+			else {
 				LOG.error("client error: {}", statusCode);
 			}
 		};
@@ -39,13 +39,20 @@ public class Application {
 	@Bean
 	public Action<Chain> ratpack() {
 		return chain -> {
-			chain.prefix("docs/api", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/", "/old/")
-			)))
-			     .prefix("docs/reference", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/",
-					     "/old/")
-			)))
-			     .prefix("docs/raw", c -> c.handler(h -> h.redirect(h.getRequest().getUri().replace("/docs/", "/old/")
-			)));
+			chain.prefix("docs/api",
+					c -> c.handler(h -> h.redirect(h.getRequest()
+					                                .getUri()
+					                                .replace("/docs/", "/old/"))))
+			     .prefix("docs/reference",
+					     c -> c.handler(h -> h.redirect(h.getRequest()
+					                                     .getUri()
+					                                     .replace("/docs/", "/old/"))))
+			     .prefix("core/docs/reference",
+					     c -> c.handler(h -> h.redirect("https://github.com/reactor/reactor-core/blob/master/README.md")))
+			     .prefix("docs/raw",
+					     c -> c.handler(h -> h.redirect(h.getRequest()
+					                                     .getUri()
+					                                     .replace("/docs/", "/old/"))));
 		};
 	}
 
