@@ -2,14 +2,8 @@
 output
 tmp
 .idea
-*.log
-*.lock
-.sass-cache
 *.idea
 *.iml
 .gradle
-node_modules
 build
-src/main/resources/public/docs/reference/*
-src/main/resources/public/docs/raw/*
-src/main/resources/public/docs/api/*
+classes

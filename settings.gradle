@@ -1,0 +1,2 @@
+rootProject.name = 'projectreactor-home'
+rootProject.buildFileName = 'build.gradle.kts'
