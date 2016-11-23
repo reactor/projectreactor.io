@@ -13,23 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var gulp = require('gulp'),
-  concat = require('gulp-concat');
 
-var root = './src/main/static/';
-var dist = './src/main/resources/public/';
+// Compass
+@import "compass";
 
-module.exports = function(config){
-  return function(){
+// Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,700);
 
-    gulp.src(root+'assets/js/app.js')
-      .pipe(gulp.dest(dist+'assets/js'));
+// Main colors
+$reactorPrimary: #6db33f;
+$reactorTextColor: #34302d;
+$reactorBackgroundLight: #34302d;
 
-    if(config.vendor.js.length === 0) return;
+// Duration effect
+$reactorDurationTransition: 0.2s;
 
-    return gulp.src(config.vendor.js)
-      .pipe(concat('vendor.js'))
-      .pipe(gulp.dest(dist+'assets/js'));
+// Fonts
+$reactorFontMain: 'Source Sans Pro', sans-serif;
+$reactorFontSpecial: 'Montserrat', sans-serif;
+$reactorFontSpecial2: 'Karla', 'Montserrat', sans-serif;
 
-  };
-};
+// Font Awesome
+@import 'font-awesome/font-awesome.scss';
+
+// Imports
+@import 'normalize';
+@import "main";
+@import "nav";
+@import "responsive";
+
