@@ -1,12 +1,13 @@
 package io.projectreactor;
 
 import java.net.URI;
+import java.util.concurrent.CompletableFuture;
 
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.reactive.function.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.RouterFunctions.route;
 import static org.springframework.web.reactive.function.ServerResponse.*;
-import reactor.ipc.netty.http.HttpServer;
+import reactor.ipc.netty.http.server.HttpServer;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -23,9 +24,18 @@ public class Application {
 
 	public static void main(String... args) throws InterruptedException {
 		HttpHandler httpHandler = RouterFunctions.toHttpHandler(routes());
-		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(httpHandler);
-		HttpServer server = HttpServer.create("localhost", 8080);
-		server.startAndAwait(adapter);
+		ReactorHttpHandlerAdapter handlerAdapter = new ReactorHttpHandlerAdapter(httpHandler);
+		HttpServer server = HttpServer.create(8080);
+		server.newHandler(handlerAdapter).block();
+
+		CompletableFuture<Void> stop = new CompletableFuture<>();
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			stop.complete(null);
+		}));
+		synchronized (stop) {
+			stop.wait();
+		}
+
 	}
 
 	private static RouterFunction<?> routes() {

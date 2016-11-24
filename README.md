@@ -4,8 +4,7 @@ This is the source code for the Project Reactor home page. It also serves as an 
 application of how to use Spring Web Reactive Framework, Reactor, and other web
 technologies in a single project.
 
-You can launch the application with by running `Application#main()` method in your IDE,
-orusing the following command:
+You can launch the application with by running:
 
 		$ ./gradlew bootRun
 

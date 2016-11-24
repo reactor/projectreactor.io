@@ -29,7 +29,7 @@ buildscript {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
     classpath("com.github.robfletcher:compass-gradle-plugin:2.0.6")
     classpath("org.springframework:spring-web:5.0.0.BUILD-SNAPSHOT")
-    classpath("io.projectreactor.ipc:reactor-netty:0.5.2.RELEASE")
+    classpath("io.projectreactor.ipc:reactor-netty:0.6.0.BUILD-SNAPSHOT")
   }
 }
 
@@ -67,7 +67,7 @@ dependencies {
   compile("org.springframework:spring-web-reactive:5.0.0.BUILD-SNAPSHOT")
   // TODO Remove the spring-context-support dependency when https://jira.spring.io/browse/SPR-14908 will be fixed
   compile("org.springframework:spring-context-support:5.0.0.BUILD-SNAPSHOT")
-  compile("io.projectreactor.ipc:reactor-netty:0.5.2.RELEASE")
+  compile("io.projectreactor.ipc:reactor-netty:0.6.0.BUILD-SNAPSHOT")
   runtime("commons-logging:commons-logging:1.2")
 }
 
