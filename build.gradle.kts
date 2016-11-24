@@ -20,6 +20,7 @@ val artifacts= listOf(
 buildscript {
 
   repositories {
+    mavenLocal()
     jcenter()
     maven { setUrl("http://dl.bintray.com/robfletcher/gradle-plugins") }
     maven { setUrl("https://repo.spring.io/snapshot") }

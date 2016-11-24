@@ -7,6 +7,8 @@ import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.reactive.function.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.RouterFunctions.route;
 import static org.springframework.web.reactive.function.ServerResponse.*;
+
+import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.server.HttpServer;
 
 import org.springframework.core.io.ClassPathResource;
@@ -26,16 +28,9 @@ public class Application {
 		HttpHandler httpHandler = RouterFunctions.toHttpHandler(routes());
 		ReactorHttpHandlerAdapter handlerAdapter = new ReactorHttpHandlerAdapter(httpHandler);
 		HttpServer server = HttpServer.create(8080);
-		server.newHandler(handlerAdapter).block();
+		NettyContext c = server.newHandler(handlerAdapter).block();
 
-		CompletableFuture<Void> stop = new CompletableFuture<>();
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			stop.complete(null);
-		}));
-		synchronized (stop) {
-			stop.wait();
-		}
-
+		c.onClose().block();
 	}
 
 	private static RouterFunction<?> routes() {
