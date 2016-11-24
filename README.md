@@ -6,7 +6,11 @@ technologies in a single project.
 
 You can just run the application with:
 
-		$ ./gradlew build run
+		$ ./gradlew bootRun
+		
+To package the application, including the Javadoc:
+		
+		$ ./gradlew docsGenerate build
 
 Make sure you have at least IntelliJ IDEA 2016.2.5 and Kotlin plugin 1.1-M02 to have
 `build.gradle.kts` auto-complete and validation working correctly. You may have to
