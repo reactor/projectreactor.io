@@ -26,7 +26,7 @@ public class Application {
 	public static void main(String... args) throws InterruptedException {
 		HttpHandler httpHandler = RouterFunctions.toHttpHandler(routes());
 
-		HttpServer.create("localhost")
+		HttpServer.create("0.0.0.0")
 		          .newHandler(new ReactorHttpHandlerAdapter(httpHandler))
 		          .doOnNext(d -> System.out.println("Server started on "+d.address()))
 		          .block()
