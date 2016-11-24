@@ -1,5 +1,4 @@
 import com.github.robfletcher.compass.CompassExtension
-import org.gradle.jvm.tasks.Jar
 import org.springframework.boot.gradle.SpringBootPluginExtension
 import org.springframework.core.io.buffer.DataBuffer
 import org.springframework.core.io.buffer.DefaultDataBufferFactory

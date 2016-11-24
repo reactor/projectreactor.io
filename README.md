@@ -4,10 +4,16 @@ This is the source code for the Project Reactor home page. It also serves as an 
 application of how to use Spring Web Reactive Framework, Reactor, and other web
 technologies in a single project.
 
-You can just run the application with:
+You can launch the application with by running `Application#main()` method in your IDE,
+orusing the following command:
 
 		$ ./gradlew bootRun
-		
+
+To enable live reload of static resources, including `.scss` files, run this command
+when your application is still running:
+ 
+		$ ./gradlew processResources -t
+
 To package the application, including the Javadoc:
 		
 		$ ./gradlew docsGenerate build
