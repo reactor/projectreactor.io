@@ -1,14 +1,7 @@
 package io.projectreactor;
 
 import java.net.URI;
-import java.util.concurrent.CompletableFuture;
 
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.reactive.function.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.RouterFunctions.route;
-import static org.springframework.web.reactive.function.ServerResponse.*;
-
-import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.server.HttpServer;
 
 import org.springframework.core.io.ClassPathResource;
@@ -19,6 +12,12 @@ import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
 import org.springframework.web.reactive.function.RouterFunction;
 import org.springframework.web.reactive.function.RouterFunctions;
 
+import static org.springframework.http.HttpStatus.FOUND;
+import static org.springframework.web.reactive.function.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.RouterFunctions.route;
+import static org.springframework.web.reactive.function.ServerResponse.ok;
+import static org.springframework.web.reactive.function.ServerResponse.status;
+
 /**
  * Main Application for the Project Reactor home site.
  */
@@ -26,11 +25,13 @@ public class Application {
 
 	public static void main(String... args) throws InterruptedException {
 		HttpHandler httpHandler = RouterFunctions.toHttpHandler(routes());
-		ReactorHttpHandlerAdapter handlerAdapter = new ReactorHttpHandlerAdapter(httpHandler);
-		HttpServer server = HttpServer.create(8080);
-		NettyContext c = server.newHandler(handlerAdapter).block();
 
-		c.onClose().block();
+		HttpServer.create()
+		          .newHandler(new ReactorHttpHandlerAdapter(httpHandler))
+		          .doOnNext(d -> System.out.println("Server started on "+d.address()))
+		          .block()
+		          .onClose()
+		          .block();
 	}
 
 	private static RouterFunction<?> routes() {
