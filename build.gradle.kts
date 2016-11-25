@@ -14,7 +14,7 @@ val artifacts = listOf(
         Triple("io.projectreactor", "reactor-core", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-test", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-adapter", "3.0.3.RELEASE"),
-        Triple("io.projectreactor.ipc", "reactor-netty", "0.6.0.BUILD-SNAPSHOT")
+        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.2.RELEASE")
 )
 
 buildscript {
@@ -84,8 +84,8 @@ val docsGenerate = task("docsGenerate") {
             val groupId = artifact.first.replace('.', '/')
             val artifactId = artifact.second
             val version = artifact.third
-            val url = "http://repo1.maven.org/maven2/$groupId/$artifactId/$version/$artifactId-$version-javadoc.jar"
-            println("Downloading $url")
+            val url = "http://repo.spring.io/release/$groupId/$artifactId/$version/$artifactId-$version-javadoc.jar"
+            println("Downloading Javadoc from: $url")
             val clientRequest = ClientRequest.GET(url).build()
             val inputStream = webClient.exchange(clientRequest)
                     .flatMap { it.bodyToFlux(ByteBuffer::class.java) }
