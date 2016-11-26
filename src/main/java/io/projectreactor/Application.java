@@ -47,15 +47,15 @@ public class Application {
 			).andRoute(GET("/core/docs/reference/**"), request ->
 				status(FOUND).location(URI.create("https://github.com/reactor/reactor-core/blob/master/README.md")).build()
 			).andRoute(GET("/core/docs/api/**"), request ->
-				status(FOUND).location(URI.create(request.path().replace("/core/docs/","/docs/core/"))).build()
+				status(FOUND).location(URI.create(request.path().replace("/core/docs/","/docs/core/release/"))).build()
 			).andRoute(GET("/netty/docs/api/**"), request ->
-				status(FOUND).location(URI.create(request.path().replace("/netty/docs/","/docs/netty/"))).build()
+				status(FOUND).location(URI.create(request.path().replace("/netty/docs/","/docs/netty/release/"))).build()
 			).andRoute(GET("/ipc/docs/api/**"), request ->
-				status(FOUND).location(URI.create(request.path().replace("/ipc/docs/", "/docs/ipc/"))).build()
+				status(FOUND).location(URI.create(request.path().replace("/ipc/docs/", "/docs/ipc/release/"))).build()
 			).andRoute(GET("/ext/docs/api/**/test/**"), request ->
-				status(FOUND).location(URI.create(request.path().replace("/ext/docs/", "/docs/test/"))).build()
+				status(FOUND).location(URI.create(request.path().replace("/ext/docs/", "/docs/test/release/"))).build()
 			).andRoute(GET("/ext/docs/api/**/adapter/**"), request ->
-				status(FOUND).location(URI.create(request.path().replace("/ext/docs/", "/docs/adapter/"))).build()
+				status(FOUND).location(URI.create(request.path().replace("/ext/docs/", "/docs/adapter/release/"))).build()
 			).andRoute(GET("/"), request ->
 				ok().body(BodyInserters.fromResource(new ClassPathResource("static/index.html")))
 			).andRoute(GET("/docs"), request ->
