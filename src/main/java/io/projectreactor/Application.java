@@ -1,7 +1,12 @@
 package io.projectreactor;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.URI;
+import java.time.Duration;
 
+import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.server.HttpServer;
 
 import org.springframework.core.io.ClassPathResource;
@@ -28,7 +33,7 @@ public class Application {
 
 		HttpServer.create("0.0.0.0")
 		          .newHandler(new ReactorHttpHandlerAdapter(httpHandler))
-		          .doOnNext(d -> System.out.println("Server started on "+d.address()))
+		          .doOnNext(Application::startLog)
 		          .block()
 		          .onClose()
 		          .block();
@@ -113,6 +118,51 @@ public class Application {
 					return ok().body(BodyInserters.fromResource(resource));
 				}
 			);
+	}
+
+	static void startLog(NettyContext c) {
+		System.out.printf("Server started in %d ms on: %s",
+				Duration.ofNanos(ManagementFactory.getThreadMXBean()
+				                                  .getThreadCpuTime(Thread.currentThread()
+				                                                          .getId()))
+				        .toMillis(),
+				c.address());
+	}
+
+	static void mainReactor() {
+		File docsAdapter, docsIpc, docsCore, docsTest, docsNetty, assetsDir, docsIndex,
+				index, notFound, favicon;
+
+		try {
+			docsAdapter = new ClassPathResource("/static/docs").getFile();
+			docsIpc = new ClassPathResource("/static/docs").getFile();
+			docsCore = new ClassPathResource("/static/docs").getFile();
+			docsTest = new ClassPathResource("/static/docs").getFile();
+			docsNetty = new ClassPathResource("/static/docs").getFile();
+			assetsDir = new ClassPathResource("/static/assets").getFile();
+			docsIndex = new ClassPathResource("/static/docs/index.html").getFile();
+			index = new ClassPathResource("/static/index.html").getFile();
+			notFound = new ClassPathResource("/static/404.html").getFile();
+			favicon = new ClassPathResource("/static/favicon.ico").getFile();
+		}
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+			return;
+		}
+		HttpServer.create("0.0.0.0")
+		          .newRouter(r -> r.file("/", index)
+		                           .file("/favicon.ico", favicon)
+		                           .file("/docs", docsIndex)
+		                           .directory("/docs/adapter", docsAdapter)
+		                           .directory("/docs/ipc", docsIpc)
+		                           .directory("/docs/core", docsCore)
+		                           .directory("/docs/test", docsTest)
+		                           .directory("/docs/netty", docsNetty)
+		                           .directory("/assets", assetsDir))
+		          .doOnNext(Application::startLog)
+		          .block()
+		          .onClose()
+		          .block();
 	}
 
 }
