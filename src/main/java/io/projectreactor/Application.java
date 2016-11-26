@@ -8,6 +8,7 @@ import java.time.Duration;
 
 import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.server.HttpServer;
+import reactor.ipc.netty.http.server.HttpServerRequest;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -30,6 +31,8 @@ public class Application {
 
 	public static void main(String... args) throws InterruptedException {
 		mainSpringWebFunctional();
+		//or
+//		mainReactorNetty();
 	}
 
 	static void mainSpringWebFunctional(){
@@ -126,19 +129,24 @@ public class Application {
 
 	static void mainReactorNetty() {
 		HttpServer s = HttpServer.create("0.0.0.0");
-		s.newRouter(r -> r.file("/", getFile("/static/index.html"))
-		                  .file("/favicon.ico", getFile("/static/favicon.ico"))
-		                  .file("/docs", getFile("/static/docs/index.html"))
-		                  .directory("/docs/adapter", getFile("/static/docs/adapter/"))
-		                  .directory("/docs/ipc", getFile("/static/docs/ipc/"))
-		                  .directory("/docs/core", getFile("/static/docs/core/"))
-		                  .directory("/docs/test", getFile("/static/docs/test/"))
-		                  .directory("/docs/netty", getFile("/static/docs/netty/"))
-		                  .directory("/assets", getFile("/static/assets")))
-		          .doOnNext(Application::startLog)
-		          .block()
-		          .onClose()
-		          .block();
+		s.newRouter(r -> r.route(Application::isIndex,
+				(req, res) -> res.sendFile(getFile("static" + req.uri() + "/index.html")))
+		                  .file("/favicon.ico", getFile("static/favicon.ico"))
+		                  .directory("/docs", getFile("static/docs/"))
+		                  .directory("/assets", getFile("static/assets")))
+		 .doOnNext(Application::startLog)
+		 .block()
+		 .onClose()
+		 .block();
+	}
+
+	static boolean isIndex(HttpServerRequest req) {
+		return !req.uri()
+		           .contains("?") && (req.uri()
+		                                 .endsWith("/") || req.uri()
+		                                                      .indexOf(".",
+				                                                      req.uri()
+				                                                         .lastIndexOf("/")) == -1);
 	}
 
 	static void startLog(NettyContext c) {
@@ -156,7 +164,7 @@ public class Application {
 		}
 		catch (IOException ioe) {
 			throw new IllegalStateException("Cannot link ["+classpath+"] to files from " +
-					"classpath");
+					"classpath", ioe);
 		}
 	}
 
