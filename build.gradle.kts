@@ -11,9 +11,13 @@ import java.util.zip.ZipInputStream
 
 val artifacts = listOf(
         Triple("io.projectreactor", "reactor-core", "3.0.3.RELEASE"),
+        Triple("io.projectreactor", "reactor-core", "3.0.4.BUILD-SNAPSHOT"),
+        Triple("io.projectreactor.addons", "reactor-test", "3.0.4.BUILD-SNAPSHOT"),
         Triple("io.projectreactor.addons", "reactor-test", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-adapter", "3.0.3.RELEASE"),
-        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.2.RELEASE")
+        Triple("io.projectreactor.addons", "reactor-adapter", "3.0.4.BUILD-SNAPSHOT"),
+        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.2.RELEASE"),
+        Triple("io.projectreactor.ipc", "reactor-netty", "0.6.0.BUILD-SNAPSHOT")
 )
 
 configurations.all {
@@ -84,16 +88,23 @@ val docsGenerate = task("docsGenerate") {
             val groupId = artifact.first.replace('.', '/')
             val artifactId = artifact.second
             val version = artifact.third
-            val url = "http://repo.spring.io/release/$groupId/$artifactId/$version/$artifactId-$version-javadoc.jar"
+            val quality = if(version.contains("SNAPSHOT")){
+                "snapshot"
+            } else {
+                "release"
+            }
+            val url = "http://repo.spring" +
+                    ".io/$quality/$groupId/$artifactId/$version/$artifactId-$version-javadoc" +
+                    ".jar"
             println("Downloading Javadoc from: $url")
             val clientRequest = ClientRequest.GET(url).build()
             val inputStream = webClient.exchange(clientRequest)
-                    .flatMap { response -> response.body(BodyExtractors.toDataBuffers())}
+                    .flatMap { response -> response.body(BodyExtractors.toDataBuffers()) }
                     .reduce { buffer1, buffer2 -> buffer1.write(buffer2) }
                     .map { it.asInputStream() }
                     .doOnError { println("Error for $artifactId-$version-javadoc.jar: $it") }
                     .block()
-            unzip(inputStream, "$outputDir/${artifactId.replace("reactor-", "")}/docs/api/")
+            unzip(inputStream, "$outputDir/docs/${artifactId.replace("reactor-", "")}/$quality/api/")
         }
     }
 }

@@ -42,8 +42,20 @@ public class Application {
 				status(FOUND).location(URI.create(request.path().replace("/docs/", "/old/"))).build()
 			).andRoute(GET("/docs/raw/**"), request ->
 				status(FOUND).location(URI.create(request.path().replace("/docs/", "/old/"))).build()
+			).andRoute(GET("/docs/{dir}/api"), request ->
+				status(FOUND).location(URI.create(request.path().replace("api", "release"))).build()
 			).andRoute(GET("/core/docs/reference/**"), request ->
 				status(FOUND).location(URI.create("https://github.com/reactor/reactor-core/blob/master/README.md")).build()
+			).andRoute(GET("/core/docs/api/**"), request ->
+				status(FOUND).location(URI.create(request.path().replace("/core/docs/","/docs/core/"))).build()
+			).andRoute(GET("/netty/docs/api/**"), request ->
+				status(FOUND).location(URI.create(request.path().replace("/netty/docs/","/docs/netty/"))).build()
+			).andRoute(GET("/ipc/docs/api/**"), request ->
+				status(FOUND).location(URI.create(request.path().replace("/ipc/docs/", "/docs/ipc/"))).build()
+			).andRoute(GET("/ext/docs/api/**/test/**"), request ->
+				status(FOUND).location(URI.create(request.path().replace("/ext/docs/", "/docs/test/"))).build()
+			).andRoute(GET("/ext/docs/api/**/adapter/**"), request ->
+				status(FOUND).location(URI.create(request.path().replace("/ext/docs/", "/docs/adapter/"))).build()
 			).andRoute(GET("/"), request ->
 				ok().body(BodyInserters.fromResource(new ClassPathResource("static/index.html")))
 			).andRoute(GET("/docs"), request ->
@@ -75,12 +87,20 @@ public class Application {
 							+ "/" + request.pathVariable("file"));
 					return ok().body(BodyInserters.fromResource(resource));
 				}
-			).andRoute(GET("/{dir1}/{dir2}/{dir3}/{dir4}/{file}"), request -> {
+			).andRoute(GET("/{dir1}/{dir2}/{dir3}/{dir4}/"), request -> {
 					Resource resource = new ClassPathResource("static/" + request.pathVariable("dir1")
 							+ "/" + request.pathVariable("dir2")
 							+ "/" + request.pathVariable("dir3")
 							+ "/" + request.pathVariable("dir4")
-							+ "/" + request.pathVariable("file"));
+							+ "/index.html");
+					return ok().body(BodyInserters.fromResource(resource));
+				}
+			).andRoute(GET("/{dir1}/{dir2}/{dir3}/{dir4}/{file}"), request -> {
+					Resource resource = new ClassPathResource("static/" + request.pathVariable("dir1")
+									+ "/" + request.pathVariable("dir2")
+									+ "/" + request.pathVariable("dir3")
+									+ "/" + request.pathVariable("dir4")
+									+ "/" + request.pathVariable("file"));
 					return ok().body(BodyInserters.fromResource(resource));
 				}
 			).andRoute(GET("/{dir1}/{dir2}/{dir3}/{dir4}/{dir5}/{file}"), request -> {
