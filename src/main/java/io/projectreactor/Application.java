@@ -29,6 +29,10 @@ import static org.springframework.web.reactive.function.ServerResponse.status;
 public class Application {
 
 	public static void main(String... args) throws InterruptedException {
+		mainSpringWebFunctional();
+	}
+
+	static void mainSpringWebFunctional(){
 		HttpHandler httpHandler = RouterFunctions.toHttpHandler(routes());
 
 		HttpServer.create("0.0.0.0")
@@ -120,8 +124,25 @@ public class Application {
 			);
 	}
 
+	static void mainReactorNetty() {
+		HttpServer s = HttpServer.create("0.0.0.0");
+		s.newRouter(r -> r.file("/", getFile("/static/index.html"))
+		                  .file("/favicon.ico", getFile("/static/favicon.ico"))
+		                  .file("/docs", getFile("/static/docs/index.html"))
+		                  .directory("/docs/adapter", getFile("/static/docs/adapter/"))
+		                  .directory("/docs/ipc", getFile("/static/docs/ipc/"))
+		                  .directory("/docs/core", getFile("/static/docs/core/"))
+		                  .directory("/docs/test", getFile("/static/docs/test/"))
+		                  .directory("/docs/netty", getFile("/static/docs/netty/"))
+		                  .directory("/assets", getFile("/static/assets")))
+		          .doOnNext(Application::startLog)
+		          .block()
+		          .onClose()
+		          .block();
+	}
+
 	static void startLog(NettyContext c) {
-		System.out.printf("Server started in %d ms on: %s",
+		System.out.printf("Server started in %d ms on: %s\n",
 				Duration.ofNanos(ManagementFactory.getThreadMXBean()
 				                                  .getThreadCpuTime(Thread.currentThread()
 				                                                          .getId()))
@@ -129,40 +150,14 @@ public class Application {
 				c.address());
 	}
 
-	static void mainReactor() {
-		File docsAdapter, docsIpc, docsCore, docsTest, docsNetty, assetsDir, docsIndex,
-				index, notFound, favicon;
-
+	static File getFile(String classpath) {
 		try {
-			docsAdapter = new ClassPathResource("/static/docs").getFile();
-			docsIpc = new ClassPathResource("/static/docs").getFile();
-			docsCore = new ClassPathResource("/static/docs").getFile();
-			docsTest = new ClassPathResource("/static/docs").getFile();
-			docsNetty = new ClassPathResource("/static/docs").getFile();
-			assetsDir = new ClassPathResource("/static/assets").getFile();
-			docsIndex = new ClassPathResource("/static/docs/index.html").getFile();
-			index = new ClassPathResource("/static/index.html").getFile();
-			notFound = new ClassPathResource("/static/404.html").getFile();
-			favicon = new ClassPathResource("/static/favicon.ico").getFile();
+			return new ClassPathResource(classpath).getFile();
 		}
 		catch (IOException ioe) {
-			ioe.printStackTrace();
-			return;
+			throw new IllegalStateException("Cannot link ["+classpath+"] to files from " +
+					"classpath");
 		}
-		HttpServer.create("0.0.0.0")
-		          .newRouter(r -> r.file("/", index)
-		                           .file("/favicon.ico", favicon)
-		                           .file("/docs", docsIndex)
-		                           .directory("/docs/adapter", docsAdapter)
-		                           .directory("/docs/ipc", docsIpc)
-		                           .directory("/docs/core", docsCore)
-		                           .directory("/docs/test", docsTest)
-		                           .directory("/docs/netty", docsNetty)
-		                           .directory("/assets", assetsDir))
-		          .doOnNext(Application::startLog)
-		          .block()
-		          .onClose()
-		          .block();
 	}
 
 }

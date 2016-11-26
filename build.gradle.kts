@@ -16,7 +16,9 @@ val artifacts = listOf(
         Triple("io.projectreactor.addons", "reactor-test", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-adapter", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-adapter", "3.0.4.BUILD-SNAPSHOT"),
-        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.2.RELEASE"),
+        Triple("io.projectreactor.ipc", "reactor-ipc", "0.5.2.RELEASE"),
+        Triple("io.projectreactor.ipc", "reactor-ipc", "0.6.0.BUILD-SNAPSHOT"),
+        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.1.RELEASE"),
         Triple("io.projectreactor.ipc", "reactor-netty", "0.6.0.BUILD-SNAPSHOT")
 )
 
