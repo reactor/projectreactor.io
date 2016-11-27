@@ -1,9 +1,6 @@
 import com.github.robfletcher.compass.CompassExtension
 import org.springframework.boot.gradle.SpringBootPluginExtension
-import org.springframework.http.client.reactive.ReactorClientHttpConnector
-import org.springframework.http.codec.BodyExtractors
-import org.springframework.web.client.reactive.ClientRequest
-import org.springframework.web.client.reactive.WebClient
+import reactor.ipc.netty.http.client.HttpClient
 import java.io.*
 import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
@@ -16,9 +13,9 @@ val artifacts = listOf(
         Triple("io.projectreactor.addons", "reactor-test", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-adapter", "3.0.3.RELEASE"),
         Triple("io.projectreactor.addons", "reactor-adapter", "3.0.4.BUILD-SNAPSHOT"),
-        Triple("io.projectreactor.ipc", "reactor-ipc", "0.5.2.RELEASE"),
+        Triple("io.projectreactor.ipc", "reactor-ipc", "0.5.1.RELEASE"),
         Triple("io.projectreactor.ipc", "reactor-ipc", "0.6.0.BUILD-SNAPSHOT"),
-        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.1.RELEASE"),
+        Triple("io.projectreactor.ipc", "reactor-netty", "0.5.2.RELEASE"),
         Triple("io.projectreactor.ipc", "reactor-netty", "0.6.0.BUILD-SNAPSHOT")
 )
 
@@ -37,7 +34,6 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
         classpath("com.github.robfletcher:compass-gradle-plugin:2.0.6")
-        classpath("org.springframework:spring-web:5.0.0.BUILD-SNAPSHOT")
         classpath("io.projectreactor.ipc:reactor-netty:0.6.0.BUILD-SNAPSHOT")
     }
 }
@@ -87,7 +83,7 @@ val docsGenerate = task("docsGenerate") {
     doLast {
         println("Download and generate Javadoc")
         val outputDir = ("$buildDir/resources/main/static")
-        val webClient = WebClient.builder(ReactorClientHttpConnector()).build()
+        val httpClient = HttpClient.create()
         for (artifact in artifacts) {
             val groupId = artifact.first.replace('.', '/')
             val artifactId = artifact.second
@@ -97,11 +93,10 @@ val docsGenerate = task("docsGenerate") {
                     ".io/$quality/$groupId/$artifactId/$version/$artifactId-$version-javadoc" +
                     ".jar"
             println("Downloading Javadoc from: $url")
-            val clientRequest = ClientRequest.GET(url).build()
-            val inputStream = webClient.exchange(clientRequest)
-                    .flatMap { response -> response.body(BodyExtractors.toDataBuffers()) }
-                    .reduce { buffer1, buffer2 -> buffer1.write(buffer2) }
-                    .map { it.asInputStream() }
+            val inputStream = httpClient.get(url)
+                    .then { response -> response.receive()
+                                                .aggregate()
+                                                .asInputStream() }
                     .doOnError { println("Error for $artifactId-$version-javadoc.jar: $it") }
                     .block()
             unzip(inputStream, "$outputDir/docs/${artifactId.replace("reactor-", "")}/$quality/api/")
