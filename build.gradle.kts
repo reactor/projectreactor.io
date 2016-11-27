@@ -28,6 +28,7 @@ configurations.all {
 
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
         maven { setUrl("http://dl.bintray.com/robfletcher/gradle-plugins") }
         maven { setUrl("https://repo.spring.io/snapshot") }
@@ -66,6 +67,7 @@ configure<CompassExtension> {
 
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { setUrl("http://repo.spring.io/libs-milestone") }
     maven { setUrl("https://repo.spring.io/snapshot") }
@@ -90,11 +92,7 @@ val docsGenerate = task("docsGenerate") {
             val groupId = artifact.first.replace('.', '/')
             val artifactId = artifact.second
             val version = artifact.third
-            val quality = if(version.contains("SNAPSHOT")){
-                "snapshot"
-            } else {
-                "release"
-            }
+            val quality = if(version.contains("SNAPSHOT")) "snapshot" else "release"
             val url = "http://repo.spring" +
                     ".io/$quality/$groupId/$artifactId/$version/$artifactId-$version-javadoc" +
                     ".jar"

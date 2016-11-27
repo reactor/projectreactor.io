@@ -7,8 +7,6 @@ import java.net.URI;
 import java.time.Duration;
 import java.util.function.BiFunction;
 
-import io.netty.handler.codec.http.HttpHeaderNames;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import org.reactivestreams.Publisher;
 import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.server.HttpServer;
@@ -135,15 +133,15 @@ public class Application {
 	static void mainReactorNetty() {
 		HttpServer s = HttpServer.create("0.0.0.0");
 		s.newRouter(r -> r.file("/favicon.ico", getFile("static/favicon.ico"))
-		                  .get("/docs/api/**", replace("/docs/", "/old/"))
-		                  .get("/docs/reference/**", replace("/docs/", "/old/"))
-		                  .get("/docs/raw/**", replace("/docs/", "/old/"))
-		                  .get("/docs/{dir}/api", replace("api", "release"))
-		                  .get("/core/docs/reference/**", (req, resp) -> redirect(resp, "https://github.com/reactor/reactor-core/blob/master/README.md"))
-		                  .get("/ext/docs/api/**/adapter/**", replace("/ext/docs/", "/docs/adapter/release/"))
-		                  .get("/ipc/docs/api/**", replace("/ipc/docs/", "/docs/ipc/release/"))
-		                  .get("/ext/docs/api/**/test/**", replace("/ext/docs/", "/docs/test/release/"))
-		                  .get("/netty/docs/api/**", replace("/netty/docs/", "/docs/netty/release/"))
+		                  .get("/docs/api/**", rewrite("/docs/", "/old/"))
+		                  .get("/docs/reference/**", rewrite("/docs/", "/old/"))
+		                  .get("/docs/raw/**", rewrite("/docs/", "/old/"))
+		                  .get("/docs/{dir}/api", rewrite("api", "release"))
+		                  .get("/core/docs/reference/**", (req, resp) -> resp.sendRedirect("https://github.com/reactor/reactor-core/blob/master/README.md"))
+		                  .get("/ext/docs/api/**/adapter/**", rewrite("/ext/docs/", "/docs/adapter/release/"))
+		                  .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
+		                  .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
+		                  .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
 		                  .directory("/docs", getFile("static/docs/"))
 		                  .directory("/assets", getFile("static/assets"))
 		                  .route(Application::isIndex, (req, res) -> res.sendFile(getFile("static" + req.uri() + "/index.html"))))
@@ -163,18 +161,10 @@ public class Application {
 				                                                         .lastIndexOf("/")) == -1);
 	}
 
-	static Publisher<Void> redirect(HttpServerResponse resp, String redirect) {
-		return resp.status(HttpResponseStatus.FOUND)
-		           .header(HttpHeaderNames.LOCATION, redirect)
-		           .sendHeaders();
-	}
-
-	static BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> replace(
+	static BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> rewrite(
 			String originalPath,
 			String newPath) {
-		return (req, resp) -> redirect(resp,
-				req.uri()
-				   .replace(originalPath, newPath));
+		return (req, resp) -> resp.sendRedirect(req.uri().replace(originalPath, newPath));
 	}
 
 	static File getFile(String classpath) {
