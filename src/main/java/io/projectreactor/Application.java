@@ -153,15 +153,6 @@ public class Application {
 		 .block();
 	}
 
-	static boolean isIndex(HttpServerRequest req) {
-		return !req.uri()
-		           .contains("?") && (req.uri()
-		                                 .endsWith("/") || req.uri()
-		                                                      .indexOf(".",
-				                                                      req.uri()
-				                                                         .lastIndexOf("/")) == -1);
-	}
-
 	static BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> rewrite(
 			String originalPath,
 			String newPath) {
