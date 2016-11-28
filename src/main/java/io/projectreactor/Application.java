@@ -142,9 +142,10 @@ public class Application {
 		                  .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
 		                  .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                  .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
+		                  .index((req, res) -> res.sendFile(getFile("static" + req.uri() + "/index.html")))
 		                  .directory("/docs", getFile("static/docs/"))
 		                  .directory("/assets", getFile("static/assets"))
-		                  .route(Application::isIndex, (req, res) -> res.sendFile(getFile("static" + req.uri() + "/index.html"))))
+		)
 
 		 .doOnNext(Application::startLog)
 		 .block()
