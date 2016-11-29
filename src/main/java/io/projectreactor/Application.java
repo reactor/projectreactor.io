@@ -1,10 +1,14 @@
 package io.projectreactor;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.function.BiFunction;
 
 import org.reactivestreams.Publisher;
@@ -32,13 +36,13 @@ import static org.springframework.web.reactive.function.ServerResponse.status;
  */
 public class Application {
 
-	public static void main(String... args) throws InterruptedException {
-		mainSpringWebFunctional();
+	public static void main(String... args) throws Exception {
+//		mainSpringWebFunctional();
 		//or
-//		mainReactorNetty();
+		mainReactorNetty();
 	}
 
-	static void mainSpringWebFunctional(){
+	static void mainSpringWebFunctional() throws Exception {
 		HttpHandler httpHandler = RouterFunctions.toHttpHandler(routes());
 
 		HttpServer.create("0.0.0.0")
@@ -130,9 +134,11 @@ public class Application {
 			);
 	}
 
-	static void mainReactorNetty() {
+	static void mainReactorNetty() throws Exception {
+		Path p = resolveContentPath();
+
 		HttpServer s = HttpServer.create("0.0.0.0");
-		s.newRouter(r -> r.file("/favicon.ico", getFile("static/favicon.ico"))
+		s.newRouter(r -> r.file("/favicon.ico", p.resolve("favicon.ico"))
 		                  .get("/docs/api/**", rewrite("/docs/", "/old/"))
 		                  .get("/docs/reference/**", rewrite("/docs/", "/old/"))
 		                  .get("/docs/raw/**", rewrite("/docs/", "/old/"))
@@ -142,15 +148,17 @@ public class Application {
 		                  .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
 		                  .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                  .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
-		                  .index((req, res) -> res.sendFile(getFile("static" + req.uri() + "/index.html")))
-		                  .directory("/docs", getFile("static/docs/"))
-		                  .directory("/assets", getFile("static/assets"))
+		                  .index((req, res) -> res.sendFile(p.resolve(res.path())
+		                                                     .resolve("index.html")))
+		                  .directory("/docs", p.resolve("docs"))
+		                  .directory("/assets", p.resolve("assets"))
 		)
 
 		 .doOnNext(Application::startLog)
 		 .block()
 		 .onClose()
 		 .block();
+
 	}
 
 	static BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> rewrite(
@@ -159,14 +167,16 @@ public class Application {
 		return (req, resp) -> resp.sendRedirect(req.uri().replace(originalPath, newPath));
 	}
 
-	static File getFile(String classpath) {
-		try {
-			return new ClassPathResource(classpath).getFile();
+	static Path resolveContentPath() throws Exception {
+		ClassPathResource cp = new ClassPathResource("static");
+
+		if (cp.isFile()) {
+			return Paths.get(cp.getURI());
 		}
-		catch (IOException ioe) {
-			throw new IllegalStateException("Cannot link ["+classpath+"] to files from " +
-					"classpath", ioe);
-		}
+
+		FileSystem fs = FileSystems.newFileSystem(cp.getURI(), Collections.emptyMap());
+
+		return fs.getPath("BOOT-INF/classes/static");
 	}
 
 	static void startLog(NettyContext c) {
