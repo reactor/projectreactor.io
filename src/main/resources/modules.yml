@@ -1,0 +1,41 @@
+---
+name: core
+groupId: io.projectreactor
+artifactId: reactor-core
+versions:
+  - 3.0.3.RELEASE
+  - 3.0.4.BUILD-SNAPSHOT
+---
+name: test
+groupId: io.projectreactor.addons
+artifactId: reactor-test
+versions:
+  - 3.0.3.RELEASE
+  - 3.0.4.BUILD-SNAPSHOT
+---
+name: adapter
+groupId: io.projectreactor.addons
+artifactId: reactor-adapter
+versions:
+  - 3.0.3.RELEASE
+  - 3.0.4.BUILD-SNAPSHOT
+---
+name: netty
+groupId: io.projectreactor.ipc
+artifactId: reactor-netty
+versions:
+  - 0.5.1.RELEASE
+  - 0.5.2.RELEASE
+  - 0.6.0.BUILD-SNAPSHOT
+---
+name: kafka
+groupId: io.projectreactor.kafka
+artifactId: reactor-kafka
+versions:
+  - 1.0.0.BUILD-SNAPSHOT
+---
+name: kafka-docs
+groupId: io.projectreactor.kafka
+artifactId: reactor-kafka-docs
+versions:
+  - 1.0.0.BUILD-SNAPSHOT
