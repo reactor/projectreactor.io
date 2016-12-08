@@ -56,4 +56,9 @@ public class Module {
 	public void setVersions(List<String> versions) {
 		this.versions = versions;
 	}
+
+	@Override
+	public String toString() {
+		return "Module{" + "name='" + name + '\'' + ", groupId='" + groupId + '\'' + ", artifactId='" + artifactId + '\'' + ", versions=" + versions + '}';
+	}
 }
