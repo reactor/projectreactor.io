@@ -36,7 +36,7 @@ public class Application {
 	private final Path contentPath = resolveContentPath();
 
 
-	public Application() throws IOException {
+	Application() throws IOException {
 		context = server.newRouter(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                  .get("/docs/api/**", rewrite("/docs/", "/old/"))
 		                  .get("/docs/reference/**", rewrite("/docs/", "/old/"))
@@ -53,6 +53,7 @@ public class Application {
 		                  .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                  .directory("/docs", contentPath.resolve("docs"))
 		                  .directory("/assets", contentPath.resolve("assets"))
+
 		);
 		Yaml yaml = new Yaml(new Constructor(Module.class));
 		yaml.loadAll(new ClassPathResource("modules.yml").getInputStream()).forEach(o -> {

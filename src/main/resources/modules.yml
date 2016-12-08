@@ -24,7 +24,6 @@ name: netty
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
-  - 0.5.1.RELEASE
   - 0.5.2.RELEASE
   - 0.6.0.BUILD-SNAPSHOT
 ---
@@ -33,9 +32,11 @@ groupId: io.projectreactor.kafka
 artifactId: reactor-kafka
 versions:
   - 1.0.0.BUILD-SNAPSHOT
+  - 1.0.0.M1
 ---
 name: kafka-docs
 groupId: io.projectreactor.kafka
 artifactId: reactor-kafka-docs
 versions:
   - 1.0.0.BUILD-SNAPSHOT
+  - 1.0.0.M1
