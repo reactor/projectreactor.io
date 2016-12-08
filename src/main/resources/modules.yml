@@ -33,10 +33,3 @@ artifactId: reactor-kafka
 versions:
   - 1.0.0.M1
   - 1.0.0.BUILD-SNAPSHOT
----
-name: kafka-docs
-groupId: io.projectreactor.kafka
-artifactId: reactor-kafka-docs
-versions:
-  - 1.0.0.M1
-  - 1.0.0.BUILD-SNAPSHOT

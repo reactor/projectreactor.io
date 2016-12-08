@@ -29,11 +29,12 @@ import org.springframework.core.io.ClassPathResource;
  */
 public final class Application {
 
-	private final Map<String, Module> modules = new HashMap<>();
-	private final HttpServer server = HttpServer.create("0.0.0.0");
+	private final Map<String, Module> modules     = new HashMap<>();
+	private final HttpServer          server      = HttpServer.create("0.0.0.0");
+	private final HttpClient          client      = HttpClient.create();
+	private final Path                contentPath = resolveContentPath();
+
 	private final Mono<? extends NettyContext> context;
-	private final HttpClient client = HttpClient.create();
-	private final Path contentPath = resolveContentPath();
 
 
 	Application() throws IOException {
@@ -109,9 +110,15 @@ public final class Application {
 			file = isJavadoc ? "index.html" : "docs/index.html";
 		}
 		String suffix = isJavadoc ? "-javadoc.jar" : ".zip";
-		String url = "https://repo.spring.io/" + versionType + "/" + module.getGroupId()
-		                                                                   .replace(".",
-				                                                                   "/") + "/" + module.getArtifactId() + "/" + version + "/" + module.getArtifactId() + "-" + version + suffix + "!/" + file;
+		String artifactSuffix = isJavadoc ? "" : "-docs";
+		String url = "https://repo.spring.io/" + versionType
+				+ "/" + module.getGroupId().replace(".", "/")
+				+ "/" + module.getArtifactId() + artifactSuffix
+				+ "/" + version
+				+ "/" + module.getArtifactId() + artifactSuffix
+				+ "-" + version + suffix
+				+ "!/" + file;
+
 		return client.get(url)
 		             .then(r -> resp.send(r.receive()
 		                                   .retain()));
