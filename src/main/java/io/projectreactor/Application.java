@@ -93,6 +93,10 @@ public final class Application {
 
 		Module module = modules.get(name);
 
+		if(module == null){
+			return resp.sendNotFound();
+		}
+
 		String versionType = path.contains("/snapshot") ? "snapshot" :
 				(path.contains("/milestone") ? "milestone" : "release");
 
@@ -100,9 +104,12 @@ public final class Application {
 		                       .stream()
 		                       .filter(v -> versionType.equals("milestone") || v.endsWith(
 				                       versionType.toUpperCase()))
-		                       .findFirst()
-		                       .orElseThrow(() -> new IllegalStateException(
-				                       "No known version for module " + module));
+		                       .findFirst().orElseGet((() -> "NA"));
+
+		if(version.equals("NA")){
+			return resp.sendNotFound();
+		}
+
 		int offset = isJavadoc ? 12 : 18;
 		String file = req.uri()
 		                 .substring(offset + versionType.length() + name.length());
