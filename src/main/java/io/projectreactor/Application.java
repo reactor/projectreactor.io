@@ -84,8 +84,7 @@ public final class Application {
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
-		String name = req.param("module")
-		                 .toString();
+		String name = req.param("module");
 
 		String path = req.path();
 
@@ -128,7 +127,7 @@ public final class Application {
 
 		return client.get(url)
 		             .then(r -> resp.send(r.receive()
-		                                   .retain()));
+		                                   .retain()).then());
 	}
 
 	private void startLog(NettyContext c) {
