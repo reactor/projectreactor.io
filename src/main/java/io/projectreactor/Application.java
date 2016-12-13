@@ -40,6 +40,9 @@ public final class Application {
 	Application() throws IOException {
 		context = server.newRouter(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/docs/{dir}/api", rewrite("api", "release"))
+		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
+		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
+		                                 .get("/docs/{module}/{version}/reference/", rewrite("/reference/", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/release/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/milestone/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/milestone/reference/**", this::repoProxy)
@@ -86,7 +89,7 @@ public final class Application {
 
 		String path = req.path();
 
-		boolean isJavadoc = path.contains("/api/");
+		boolean isJavadoc = path.contains("/api/") || path.endsWith("/api");
 
 		Module module = modules.get(name);
 
