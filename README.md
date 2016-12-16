@@ -15,7 +15,7 @@ when your application is still running:
 
 To package the application, including the Javadoc:
 		
-		$ ./gradlew docsGenerate build shadowJar
+		$ ./gradlew clean build shadowJar
 
 Make sure you have at least IntelliJ IDEA 2016.2.5 and Kotlin plugin 1.1-M02 to have
 `build.gradle.kts` auto-complete and validation working correctly. You may have to
