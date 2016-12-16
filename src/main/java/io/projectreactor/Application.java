@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+import io.netty.handler.codec.http.HttpResponseStatus;
 import org.reactivestreams.Publisher;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -127,7 +128,11 @@ public final class Application {
 
 		return client.get(url)
 		             .then(r -> resp.send(r.receive()
-		                                   .retain()).then());
+		                                   .retain())
+		                            .then())
+		             .timeout(Duration.ofSeconds(30),
+				             Mono.defer(() -> resp.status(HttpResponseStatus.REQUEST_TIMEOUT)
+				                                  .send()));
 	}
 
 	private void startLog(NettyContext c) {
