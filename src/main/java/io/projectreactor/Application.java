@@ -19,6 +19,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import reactor.core.publisher.Mono;
 import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.client.HttpClient;
+import reactor.ipc.netty.http.client.HttpClientException;
 import reactor.ipc.netty.http.server.HttpServer;
 import reactor.ipc.netty.http.server.HttpServerRequest;
 import reactor.ipc.netty.http.server.HttpServerResponse;
@@ -126,10 +127,13 @@ public final class Application {
 				+ "-" + version + suffix
 				+ "!/" + file;
 
-		return client.get(url)
-		             .then(r -> resp.send(r.receive()
+		return client.get(url, r -> r.headers(req.requestHeaders()).send())
+		             .then(r -> resp.headers(r.responseHeaders())
+		                            .status(r.status())
+		                            .send(r.receive()
 		                                   .retain())
 		                            .then())
+		             .otherwise(HttpClientException.class, e -> resp.sendNotFound())
 		             .timeout(Duration.ofSeconds(30),
 				             Mono.defer(() -> resp.status(HttpResponseStatus.REQUEST_TIMEOUT)
 				                                  .send()));
