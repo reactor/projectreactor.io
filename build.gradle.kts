@@ -1,5 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.robfletcher.compass.CompassExtension
-import org.springframework.boot.gradle.SpringBootPluginExtension
 import java.util.concurrent.TimeUnit
 
 configurations.all {
@@ -15,7 +15,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
+        classpath("com.github.jengelman.gradle.plugins:shadow:1.2.4")
         classpath("com.github.robfletcher:compass-gradle-plugin:2.0.6")
         classpath("io.projectreactor.ipc:reactor-netty:0.6.0.BUILD-SNAPSHOT")
     }
@@ -24,7 +24,8 @@ buildscript {
 apply {
     plugin("java")
     plugin("com.github.robfletcher.compass")
-    plugin("org.springframework.boot")
+    plugin("application")
+    plugin("com.github.johnrengelman.shadow")
 }
 
 group = "io.projectreactor"
@@ -35,15 +36,18 @@ configure<JavaPluginConvention> {
     setTargetCompatibility(1.8)
 }
 
-configure<SpringBootPluginExtension> {
-    mainClass = "io.projectreactor.Application"
+configure<ApplicationPluginConvention> {
+	mainClassName = "io.projectreactor.Application"
+}
+
+configure<ShadowExtension> {
+	version = null
 }
 
 configure<CompassExtension> {
     sassDir = file("$projectDir/src/main/sass")
     cssDir = file("$buildDir/resources/main/static/assets/css")
 }
-
 
 repositories {
     mavenLocal()
@@ -53,8 +57,7 @@ repositories {
 }
 
 dependencies {
-    // TODO Remove the spring-context-support dependency when https://jira.spring.io/browse/SPR-14908 will be fixed
-    compile("org.springframework:spring-context-support:5.0.0.BUILD-SNAPSHOT")
+    compile("org.springframework:spring-core:5.0.0.BUILD-SNAPSHOT")
     compile("io.projectreactor.ipc:reactor-netty:0.6.0.BUILD-SNAPSHOT")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")

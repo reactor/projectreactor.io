@@ -6,7 +6,7 @@ technologies in a single project.
 
 You can launch the application with by running:
 
-		$ ./gradlew bootRun
+		$ ./gradlew run
 
 To enable live reload of static resources, including `.scss` files, run this command
 when your application is still running:
@@ -15,7 +15,7 @@ when your application is still running:
 
 To package the application, including the Javadoc:
 		
-		$ ./gradlew docsGenerate build
+		$ ./gradlew docsGenerate build shadowJar
 
 Make sure you have at least IntelliJ IDEA 2016.2.5 and Kotlin plugin 1.1-M02 to have
 `build.gradle.kts` auto-complete and validation working correctly. You may have to
