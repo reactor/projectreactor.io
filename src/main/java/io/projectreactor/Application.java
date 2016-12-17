@@ -119,7 +119,7 @@ public final class Application {
 		}
 		String suffix = isJavadoc ? "-javadoc.jar" : ".zip";
 		String artifactSuffix = isJavadoc ? "" : "-docs";
-		String url = "https://repo.spring.io/" + versionType
+		String url = "http://repo.spring.io/" + versionType
 				+ "/" + module.getGroupId().replace(".", "/")
 				+ "/" + module.getArtifactId() + artifactSuffix
 				+ "/" + version
@@ -127,16 +127,15 @@ public final class Application {
 				+ "-" + version + suffix
 				+ "!/" + file;
 
-		return client.get(url, r -> r.headers(req.requestHeaders()).send())
+		return client.get(url,
+				r -> r.failOnClientError(false)
+				      .headers(req.requestHeaders())
+				      .send())
 		             .then(r -> resp.headers(r.responseHeaders())
 		                            .status(r.status())
 		                            .send(r.receive()
 		                                   .retain())
-		                            .then())
-		             .otherwise(HttpClientException.class, e -> resp.sendNotFound())
-		             .timeout(Duration.ofSeconds(30),
-				             Mono.defer(() -> resp.status(HttpResponseStatus.REQUEST_TIMEOUT)
-				                                  .send()));
+		                            .then());
 	}
 
 	private void startLog(NettyContext c) {
