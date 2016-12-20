@@ -12,17 +12,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-import io.netty.handler.codec.http.HttpResponseStatus;
 import org.reactivestreams.Publisher;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import reactor.core.publisher.Mono;
 import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.http.client.HttpClient;
-import reactor.ipc.netty.http.client.HttpClientException;
 import reactor.ipc.netty.http.server.HttpServer;
 import reactor.ipc.netty.http.server.HttpServerRequest;
 import reactor.ipc.netty.http.server.HttpServerResponse;
+import reactor.ipc.netty.resources.PoolResources;
 
 import org.springframework.core.io.ClassPathResource;
 
@@ -33,7 +32,7 @@ public final class Application {
 
 	private final Map<String, Module> modules     = new HashMap<>();
 	private final HttpServer          server      = HttpServer.create("0.0.0.0");
-	private final HttpClient          client      = HttpClient.create();
+	private final HttpClient          client      = HttpClient.create(opts -> opts.poolResources(PoolResources.elastic("proxy")));
 	private final Path                contentPath = resolveContentPath();
 
 	private final Mono<? extends NettyContext> context;
