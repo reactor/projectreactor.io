@@ -142,7 +142,7 @@ public final class Application {
 		Map.Entry<String, String> current;
 		while(it.hasNext()){
 			current = it.next();
-			if(current.getKey().startsWith("X-")){
+			if(current.getKey().startsWith("Cf-")){
 				headers.remove(current.getKey());
 			}
 		}
