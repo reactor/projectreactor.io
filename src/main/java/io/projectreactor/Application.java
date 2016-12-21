@@ -9,9 +9,11 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+import io.netty.handler.codec.http.HttpHeaders;
 import org.reactivestreams.Publisher;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -32,7 +34,7 @@ public final class Application {
 
 	private final Map<String, Module> modules     = new HashMap<>();
 	private final HttpServer          server      = HttpServer.create("0.0.0.0");
-	private final HttpClient          client      = HttpClient.create(opts -> opts.poolResources(PoolResources.elastic("proxy")));
+	private final HttpClient          client      = HttpClient.create();
 	private final Path                contentPath = resolveContentPath();
 
 	private final Mono<? extends NettyContext> context;
@@ -126,12 +128,25 @@ public final class Application {
 				+ "-" + version + suffix
 				+ "!/" + file;
 
-		return client.get(url, r -> r.failOnClientError(false))
+		return client.get(url, r -> r.failOnClientError(false)
+		                             .headers(filterXHeaders(req.requestHeaders())))
 		             .then(r -> resp.headers(r.responseHeaders())
 		                            .status(r.status())
 		                            .send(r.receive()
 		                                   .retain())
 		                            .then());
+	}
+
+	private HttpHeaders filterXHeaders(HttpHeaders headers){
+		Iterator<Map.Entry<String, String>> it = headers.iteratorAsString();
+		Map.Entry<String, String> current;
+		while(it.hasNext()){
+			current = it.next();
+			if(current.getKey().startsWith("X-")){
+				headers.remove(current.getKey());
+			}
+		}
+		return headers;
 	}
 
 	private void startLog(NettyContext c) {
