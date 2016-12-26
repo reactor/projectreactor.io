@@ -19,7 +19,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Project Reactor</title>
-    <meta name="description" content="">
+    <meta name="description" content="Reactor Projects">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name='viewport'
           content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
@@ -61,12 +61,12 @@
 <div class="website">
     <header id="header">
         <div class="heading">
-            <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
+            <h1 id="logo"><a href="/"><strong>Project Reactor - Projects</strong></a></h1>
             <nav id="nav">
                 <ul>
                     <li class="hide"><a href="/">Home</a></li>
-                    <li><a href="projects">Projects</a></li>
-                    <li class="active"><a href="/docs">Documentation</a></li>
+                    <li class="active"><a href="/projects">Projects</a></li>
+                    <li><a href="/docs">Documentation</a></li>
                     <li><a href="https://github.com/reactor">Github Organization</a></li>
                     <li><a href="https://gitter.im/reactor/reactor">Community Chat</a>
                     </li>
@@ -77,32 +77,52 @@
 
     <div id="main" class="book">
         <div id="header-doc">
-            <h1>Documentation</h1>
+            <h1>Reactor 3 Projects</h1>
 
-            <div class="details">
-                <span id="author" class="author">Project Reactor reference
-                    documentation, code samples, and Javadoc.</span><br>
+            <div class="reactor">
+                <span id="author" class="author">There are several Reactor projects. The major
+                ones are gathered under a BOM (Bill of Material), which defines a curated set
+                of artifacts, a single coherent release train.</span><br>
+                <span class="reactor">See the <a href="/docs">documentation</a> page for links to API reference,
+                    guides and other learning material.</span>
             </div>
         </div>
 
         <section id="applications">
             <div class="row">
+                <article style="alignment: center">
+                    <div class="reactor">
+                        <span class="icon">
+                            <span class="logo-reactor"></span>
+                        </span>
+                        <h1>Reactor BOM</h1>
+                        <span class="releasetrain">Aluminium</span>
+                        <p>Release train <b>Aluminium</b></p>
+                        <p>The <code>reactor-bom</code> project curates a list of Reactor
+                            3 dependencies that go together. These are marked
+                            <span class="releasetrain" style="position: relative; top: auto; left: auto;">BOM</span> below...
+                        </p>
+                        <p class="github">
+                            Learn more on <a href="https://github.com/reactor/reactor/tree/bom#reactor-project"><span
+                                    class="fa fa-github"></span> Github</a>
+                        </p>
+                    </div>
+                </article>
+            </div>
+            <div class="row">
+                <h2>Core Libraries:</h2>
                 <article>
                     <div class="reactor">
                         <span class="icon">
                             <span class="logo-reactor"></span>
                         </span>
                         <h1>Reactor Core</h1>
-                        <span class="releasetrain">BOM: Aluminium</span>
                         <span class="version">3.0.4.RELEASE</span>
+                        <span class="releasetrain"><a title="Part of the release train">BOM</a></span>
                         <p>A Reactive Streams foundation for Java 8</p>
-                        <!--<a href="../core/docs/reference/" class="btn btn-primary">Read more</a>-->
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-core"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <span class="fa fa-book"></span> Javadoc: <br/><a
-                                href="/docs/core/release/api/"><b>Release</b></a> | <a
-                                href="/docs/core/snapshot/api/"><b>Snapshot</b></a><br/>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
@@ -112,16 +132,13 @@
                             <span class="logo-reactor"></span>
                         </span>
                         <h1>Reactor Test</h1>
-                        <span class="releasetrain">BOM: Aluminium</span>
                         <span class="version">3.0.4.RELEASE</span>
+                        <span class="releasetrain"><a title="Part of the release train">BOM</a></span>
                         <p>Test utilities<br/><br/></p>
                         <!--<a href="../test/docs/reference/" class="btn btn-primary">Read more</a>-->
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-addons/#reactor-test"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <span class="fa fa-book"></span> Javadoc: <br/><a
-                                href="/docs/test/release/api/"><b>Release</b></a> | <a
-                                href="/docs/test/snapshot/api/"><b>Snapshot</b></a><br/>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
@@ -131,36 +148,33 @@
                             <span class="logo-reactor"></span>
                         </span>
                         <h1>Reactor Adapter</h1>
-                        <span class="releasetrain">BOM: Aluminium</span>
                         <span class="version">3.0.4.RELEASE</span>
+                        <span class="releasetrain"><a title="Part of the release train">BOM</a></span>
                         <!--<a href="../adapter/docs/reference/" class="btn btn-primary">Read more</a>-->
                         <p>Adapt to/from other Reactive libraries</p>
                         <!--<a href="../core/docs/reference/" class="btn btn-primary">Read more</a>-->
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-addons/#reactor-adapter"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <span class="fa fa-book"></span> Javadoc: <br/><a
-                                href="/docs/adapter/release/api/"><b>Release</b></a> | <a
-                                href="/docs/adapter/snapshot/api/"><b>Snapshot</b></a><br/>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
+            </div>
+            <div class="row">
+                <h2>I/O Connectors:</h2>
                 <article>
                     <div class="share-alt">
                         <span class="icon">
                             <span class="fa fa-share-alt"></span>
                         </span>
                         <h1>Reactor Netty</h1>
-                        <span class="releasetrain">BOM: Aluminium</span>
                         <span class="version">0.6.0.RELEASE</span>
+                        <span class="releasetrain"><a title="Part of the release train">BOM</a></span>
                         <p>HTTP, TCP, UDP Client/Servers with Netty</p>
                         <!--<a href="../netty/docs/reference/" class="btn btn-primary">Read more</a>-->
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-netty"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <span class="fa fa-book"></span> Javadoc: <br/><a
-                                href="/docs/netty/release/api/"><b>Release</b></a> | <a
-                                href="/docs/netty/snapshot/api/"><b>Snapshot</b></a><br/>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
@@ -170,21 +184,18 @@
                             <span class="fa fa-share-alt"></span>
                         </span>
                         <h1>Reactor Kafka</h1>
-                        <span class="releasetrain">BOM: Aluminium</span>
                         <span class="version">1.0.0.M1</span>
+                        <span class="releasetrain"><a title="Part of the release train">BOM</a></span>
                         <p>Reactive bridge to Apache Kafka</p>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-kafka"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <span class="fa fa-book"></span> Javadoc: <br/><a
-                                href="/docs/kafka/milestone/api/"><b>Milestone</b></a> | <a
-                                href="/docs/kafka/snapshot/api/"><b>Snapshot</b></a><br/>
-                            <span class="fa fa-book"></span> Reference: <br/><a
-                                href="/docs/kafka/milestone/reference/"><b>Milestone</b></a>
-                            | <a href="/docs/kafka/snapshot/reference/"><b>Snapshot</b></a><br/>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
+            </div>
+            <div class="row">
+                <h2>Misc:</h2>
                 <article>
                     <div class="reactor">
                         <span class="icon">
@@ -194,7 +205,7 @@
                         <p>Reactive Streams Commons research effort</p>
                         <p class="github">
                             <a href="https://github.com/reactor/reactive-streams-commons"><span
-                                    class="fa fa-github"></span> Github</a><br/>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
@@ -208,11 +219,7 @@
                         <p>Incubating Reactive Streams foundation for .NET</p>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-core-dotnet"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <a
-                                    href="https://www.nuget.org/packages/Reactor.Core/"><span
-                                    class="fa fa-book"></span> nuget
-                            </a>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
@@ -226,11 +233,7 @@
                         <p>Incubating Reactive Streams foundation for Javascript</p>
                         <p class="github">
                             <a href="https://github.com/reactor/reactor-core-js"><span
-                                    class="fa fa-github"></span> Github</a><br/>
-                            <a
-                                    href="https://www.npmjs.com/package/reactor-core-js"><span
-                                    class="fa fa-book"></span> NPM
-                            </a>
+                                    class="fa fa-github"></span> Github</a>
                         </p>
                     </div>
                 </article>
@@ -240,10 +243,8 @@
         <div id="footnotes">
             <hr>
             <div class="footnote" id="_footnote_1">
-                <a href="#_footnoteref_1">Benchmarks</a>. Reactor microbenchmarks are
-                maintained in a <a
-                    href="https://github.com/reactor/reactor-benchmark">separate GitHub
-                repository</a>
+                Reactor microbenchmarks are maintained in a
+                <a href="https://github.com/reactor/reactor-benchmark">separate GitHub repository</a>
             </div>
             <div class="footnote" id="_footnote_2">
                 Additional benchmarks are available under <a
