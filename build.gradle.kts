@@ -11,6 +11,7 @@ buildscript {
         mavenLocal()
         jcenter()
         maven { setUrl("http://dl.bintray.com/robfletcher/gradle-plugins") }
+        maven { setUrl("https://repo.spring.io/release") }
         maven { setUrl("https://repo.spring.io/snapshot") }
         mavenCentral()
     }

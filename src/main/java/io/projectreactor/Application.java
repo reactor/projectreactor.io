@@ -56,6 +56,7 @@ public final class Application {
 		                                 .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
 		                                 .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
+		                                 .get("/learn", (req, res) -> res.sendFile(contentPath.resolve("learn.html")))
 		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/docs", contentPath.resolve("docs"))
 		                                 .directory("/assets", contentPath.resolve("assets"))
@@ -129,7 +130,8 @@ public final class Application {
 				+ "!/" + file;
 
 		return client.get(url, r -> r.failOnClientError(false)
-		                             .headers(filterXHeaders(req.requestHeaders())))
+		                             .headers(filterXHeaders(req.requestHeaders()))
+		                             .sendHeaders())
 		             .then(r -> resp.headers(r.responseHeaders())
 		                            .status(r.status())
 		                            .send(r.receive()
