@@ -120,10 +120,14 @@ public final class Application {
 			file = isJavadoc ? "index.html" : "docs/index.html";
 		}
 		String suffix = isJavadoc ? "-javadoc.jar" : ".zip";
+
+		//tempfix for non generic kafka doc in M1
+		boolean isKafkaM1 = module.getArtifactId().contains("kafka") && version.contains("M1");
+
 		String artifactSuffix = isJavadoc ? "" : "-docs";
 		String url = "http://repo.spring.io/" + versionType
 				+ "/" + module.getGroupId().replace(".", "/")
-				+ "/" + module.getArtifactId() + artifactSuffix
+				+ "/" + module.getArtifactId() + (isKafkaM1 ? artifactSuffix : "")
 				+ "/" + version
 				+ "/" + module.getArtifactId() + artifactSuffix
 				+ "-" + version + suffix
