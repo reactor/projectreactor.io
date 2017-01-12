@@ -18,8 +18,7 @@
 @import "compass";
 
 // Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,700);
-
+@import url(https://fonts.googleapis.com/css?family=Varela+Round|Montserrat:400,700|Karla:400,700);
 // Main colors
 $reactorPrimary: #6db33f;
 $reactorTextColor: #34302d;
@@ -29,9 +28,10 @@ $reactorBackgroundLight: #34302d;
 $reactorDurationTransition: 0.2s;
 
 // Fonts
-$reactorFontMain: 'Source Sans Pro', sans-serif;
+$reactorFontMain: 'Varela Round', sans-serif;
 $reactorFontSpecial: 'Montserrat', sans-serif;
 $reactorFontSpecial2: 'Karla', 'Montserrat', sans-serif;
+$reactorFontSpecial3: "Varela Round",sans-serif;
 
 // Font Awesome
 @import 'font-awesome/font-awesome.scss';
@@ -40,6 +40,6 @@ $reactorFontSpecial2: 'Karla', 'Montserrat', sans-serif;
 @import 'normalize';
 @import "main";
 @import "nav";
-@import "responsive";
 @import "learn";
+@import "responsive";
 

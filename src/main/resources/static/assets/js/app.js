@@ -22,6 +22,7 @@ $(function(){
     $("[data-toggle]").click(function() {
         $(toggle_el).toggleClass("open-sidebar");
         navVisible = !navVisible;
+        return false;
     });
 
     $("#content").click(function(){

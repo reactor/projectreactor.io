@@ -50,7 +50,7 @@ span.version {
 // Application
 
 body {
-  font: normal 15px/1.5em $reactorFontMain;
+  font: normal 16px/1.5em $reactorFontMain;
   background-color: #f1f1f1;
   color: $reactorTextColor;
   margin: 0;
@@ -435,7 +435,7 @@ span.logo-reactor {
 section#key-features {
   article {
     border-top: 1px solid #CCC;
-    font-family: $reactorFontSpecial;
+    font-family: $reactorFontSpecial3;
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;
@@ -535,7 +535,7 @@ section#key-features {
 section#brands {
   background: $reactorPrimary;
   color: white;
-  font-family: $reactorFontSpecial;
+  font-family: $reactorFontSpecial3;
   padding: 3.5em 0 5em;
   div.row {
     @extend .container;
@@ -553,7 +553,7 @@ section#brands {
     }
     p {
       margin: 0;
-      padding: 0 1em;
+      padding: 0 2em;
       font-size: 1.1em;
     }
     h1 {

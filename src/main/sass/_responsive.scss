@@ -164,6 +164,18 @@
     }
   }
 
+  .learn article {
+    padding: 1em 1em 1em 2.5em;
+    p.title {
+      .fa {
+        position: absolute;
+        top: 5px;
+        left: -38px;
+        font-size: 30px;
+      }
+    }
+  }
+
   section#brands article {
     float: none;
     width: auto;
