@@ -264,9 +264,81 @@ section#welcome {
 
 section#applications {
   //@extend .container;
-  padding: 1.5em 0 0.2em;
+  padding: 1.5em 1em 1em;
+  font-family: $reactorFontSpecial3;
   //margin: 0 -1.5em;
-  .row {
+
+  article {
+    @include clearfix();
+    border-bottom:1px solid #CCC;
+    padding: 1.4em 0;
+    font-size: 1em;
+
+    &:last-child {
+      border-bottom:0 none;
+    }
+
+    span.version {
+      height: auto;
+      font-weight: bold;
+      font-size: 11px;
+    }
+    div.title, div.github, div.javadoc, div.reference {
+      float: left;
+    }
+    div.title {
+      width: 40%;
+
+      h1 {
+        font-size: 1.5em;
+        color: $reactorTextColor;
+        font-family: $reactorFontSpecial3;
+        font-weight: bold;
+        margin: 0;
+      }
+      p {
+        font-size: 1em;
+        margin: 0;
+      }
+    }
+    div.version {
+      line-height: 20px;
+      padding: 3px 0;
+    }
+    div.github, div.npm, div.nuget {
+      float: left;
+      width: 20%;
+      a {
+        text-align: center;
+        display: block;
+        width: 100px;
+        padding: 5px 0;
+        margin: 0 auto;
+        color: $reactorTextColor;
+        span.fa {
+          display: block;
+          text-align: center;
+          font-size:  26px;
+        }
+        &:hover {
+          text-decoration: none;
+          color: $reactorPrimary;
+        }
+      }
+    }
+    div.javadoc {
+      width: 20%;
+      text-align: center;
+      padding-top:5px;
+    }
+    div.reference {
+      width: 20%;
+      text-align: center;
+      padding-top:5px;
+    }
+  }
+
+  /*.row {
     @include clearfix();
     padding: 10px 0 0px;
     article {
@@ -392,7 +464,7 @@ section#applications {
         position: relative;
       }
     }
-  }
+  }*/
 }
 
 span.logo-reactor {
@@ -596,3 +668,30 @@ section.page404 {
     }
   }
 }
+
+.page-summary {
+  background: #dedede;
+  margin-bottom: 0.5em;
+  .page-summary-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4em 0;
+    .page-summary-wrap {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.5em;
+      color: $reactorTextColor;
+      font-family: $reactorFontSpecial;
+      font-weight:bold;
+    }
+    div.details {
+      max-width: 700px;
+      font-family: $reactorFontSpecial3;
+      padding: 0.4em 0 0 0;
+    }
+  }
+}
+

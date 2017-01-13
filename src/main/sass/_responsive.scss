@@ -212,6 +212,29 @@
       }
     }
   }
+
+  section#applications {
+    article {
+      div.title {
+        float: none;
+        width: 100%;
+        text-align: center;
+        H1 {
+          padding-bottom:5px;
+        }
+        p {
+          padding: 10px 0;
+        }
+      }
+
+      div.github, div.npm, div.nuget, div.javadoc, div.reference {
+        width: 100%;
+        float: none;
+        padding: 10px 0;
+      }
+    }
+  }
+
 }
 
 
