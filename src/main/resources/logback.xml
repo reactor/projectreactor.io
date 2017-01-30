@@ -25,7 +25,10 @@
     </appender>
 
     <logger name="reactor" level="info"/>
-    <logger name="reactor.ipc.netty" level="info"/>
+    <!--<logger name="reactor.ipc.netty" level="debug"/>-->
+    <!--<logger name="reactor.ipc.netty.channel.ChannelOperations" level="trace"/>-->
+    <!--<logger name="reactor.ipc.netty.http.client.HttpClient" level="off"/>-->
+    <!--<logger name="reactor.ipc.netty.http.server.HttpServer" level="off"/>-->
     <logger name="proxy" level="info"/>
 
     <root level="info">
