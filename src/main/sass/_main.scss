@@ -40,11 +40,14 @@ span.version {
   background: $reactorTextColor;
   color: white;
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 1Px 4px 2px;
+  padding: 2Px 4px 2px;
   line-height: 14px;
+  &.releasetrain {
+    background: $reactorPrimary;
+  }
 }
 
 // Application
@@ -681,16 +684,131 @@ section.page404 {
       padding-right: 2em;
     }
     h1 {
+      position: relative;
+      max-width: 700px;
       margin: 0;
       font-size: 1.5em;
       color: $reactorTextColor;
       font-family: $reactorFontSpecial;
       font-weight:bold;
+      a.link-github {
+        color: $reactorTextColor;
+        margin-left: 10px;
+        span.fa {
+          font-size:  26px;
+        }
+        &:hover {
+          text-decoration: none;
+          color: $reactorPrimary;
+        }
+      }
     }
     div.details {
       max-width: 700px;
       font-family: $reactorFontSpecial3;
       padding: 0.4em 0 0 0;
+    }
+  }
+}
+
+.project {
+  .project-content {
+    padding: 0 2em;
+    p, ul {
+      font-family: $reactorFontSpecial3;
+      font-size: 0.9em;
+    }
+  }
+  h1 {
+    font-size: 1.2em;
+    color: $reactorTextColor;
+  }
+  .project-row {
+    padding: 1.5em 0 3em;
+    @include clearfix();
+    .project-col-left {
+      float: left;
+      width: 65%;
+    }
+    .project-col-right {
+      float: right;
+      width: 30%;
+      padding-top: 2em;
+    }
+  }
+}
+
+div.panel {
+  border: 1px solid $reactorTextColor;
+  font-size: 0.9rem;
+  font-family: $reactorFontSpecial3;
+  background-color: #f5f5f5;
+  .panel-title {
+    border-bottom: 1px solid $reactorTextColor;
+    padding: 1em 1em;
+    font-weight:bold;
+  }
+  .panel-content {
+    padding: 1em;
+    .table-2 {
+      background-color: #f5f5f5;
+      tr:nth-of-type(even), tr:nth-of-type(odd) {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
+
+table.table-2 {
+  font-family: $reactorFontSpecial3;
+  width: 100%;
+  margin: 0;
+  border: 0 none;
+  thead {
+    tr {
+      th {
+        font-size: 0.8em;
+      }
+    }
+  }
+  tr:nth-of-type(even), tr:nth-of-type(odd) {
+    background: #f1f1f1;
+  }
+  tr {
+    border-bottom: 1px solid #CCC;
+    &:last-child {
+      border-bottom: 0 none;
+    }
+  }
+}
+
+.code {
+  margin: 0.5em 0 1em;
+  border: 1px solid #CCC;
+  background-color: #f5f5f5;
+  padding: 1em;
+  font-size: 13px;
+}
+
+ul.nav-options {
+  margin: 0;
+  padding: 0.5rem 0 0 0;
+  @include clearfix();
+  li {
+    float: left;
+    list-style: none;
+    .btn {
+      border-radius:0;
+    }
+    &:first-child {
+      .btn {
+        border-radius: 4px 0 0 4px;
+      }
+    }
+    &:last-child {
+      .btn {
+        border-radius: 0 4px 4px 0;
+      }
     }
   }
 }

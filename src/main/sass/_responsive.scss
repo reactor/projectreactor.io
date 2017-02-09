@@ -124,6 +124,20 @@
   #footer {
     text-align: center;
   }
+  .project {
+    .project-row {
+      @include clearfix();
+      .project-col-left {
+        float: none;
+        width: 100%;
+      }
+      .project-col-right {
+        float: none;
+        width: 100%;
+        padding-top: 2em;
+      }
+    }
+  }
 }
 
 @media (max-width: 600px) {

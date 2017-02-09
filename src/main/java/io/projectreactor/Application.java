@@ -57,6 +57,7 @@ public final class Application {
 		                                 .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
 		                                 .get("/learn", (req, res) -> res.sendFile(contentPath.resolve("learn.html")))
+		                                 .get("/project", (req, res) -> res.sendFile(contentPath.resolve("project.html")))
 		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/docs", contentPath.resolve("docs"))
 		                                 .directory("/assets", contentPath.resolve("assets"))
