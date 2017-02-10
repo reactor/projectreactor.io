@@ -47,6 +47,7 @@ public final class Application {
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/reference/", rewrite("/reference/", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/release/api/**", this::repoProxy)
+		                                 .get("/docs/{module}/release/reference/**", this::repoProxy)
 		                                 .get("/docs/{module}/milestone/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/milestone/reference/**", this::repoProxy)
 		                                 .get("/docs/{module}/snapshot/api/**", this::repoProxy)

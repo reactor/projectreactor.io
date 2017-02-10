@@ -47,6 +47,9 @@ span.version {
   line-height: 14px;
   &.releasetrain {
     background: $reactorPrimary;
+    &.hold {
+      background: darkorange;
+    }
   }
 }
 
