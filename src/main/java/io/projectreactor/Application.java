@@ -33,7 +33,7 @@ import org.springframework.core.io.ClassPathResource;
 public final class Application {
 
 	private final Map<String, Module> modules     = new HashMap<>();
-	private final HttpServer          server      = HttpServer.create("0.0.0.0");
+	private final HttpServer          server      = HttpServer.create("0.0.0.0", 8080);
 	private final HttpClient          client      = HttpClient.create(opts -> opts.poolResources(PoolResources.elastic("proxy")));
 	private final Path                contentPath = resolveContentPath();
 
