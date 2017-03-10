@@ -60,7 +60,7 @@ repositories {
 
 dependencies {
     compile("org.springframework:spring-core:5.0.0.BUILD-SNAPSHOT")
-    compile("io.projectreactor.ipc:reactor-netty:0.6.1.RELEASE")
+    compile("io.projectreactor.ipc:reactor-netty:0.6.2.RELEASE")
     compile("io.projectreactor:reactor-core:3.0.5.RELEASE")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")
