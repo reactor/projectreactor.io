@@ -29,9 +29,9 @@ versions:
   - 3.0.6.BUILD-SNAPSHOT
   - 3.0.5.BUILD-SNAPSHOT
 ---
-name: math
+name: extra
 groupId: io.projectreactor.addons
-artifactId: reactor-math
+artifactId: reactor-extra
 versions:
   - 3.0.6.BUILD-SNAPSHOT
 ---
