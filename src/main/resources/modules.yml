@@ -3,6 +3,7 @@ name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
+  - 3.0.7.RELEASE
   - 3.0.6.RELEASE
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE

@@ -18,7 +18,6 @@ buildscript {
     dependencies {
         classpath("com.github.jengelman.gradle.plugins:shadow:1.2.4")
         classpath("com.github.robfletcher:compass-gradle-plugin:2.0.6")
-        classpath("io.projectreactor.ipc:reactor-netty:0.6.1.BUILD-SNAPSHOT")
     }
 }
 
@@ -60,8 +59,8 @@ repositories {
 
 dependencies {
     compile("org.springframework:spring-core:5.0.0.BUILD-SNAPSHOT")
-    compile("io.projectreactor.ipc:reactor-netty:0.6.2.RELEASE")
-    compile("io.projectreactor:reactor-core:3.0.5.RELEASE")
+    compile("io.projectreactor.ipc:reactor-netty:0.6.3.BUILD-SNAPSHOT")
+    compile("io.projectreactor:reactor-core:3.1.0.BUILD-SNAPSHOT")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")
     runtime("org.slf4j:slf4j-api:1.7.21")

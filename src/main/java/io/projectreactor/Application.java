@@ -42,7 +42,6 @@ public final class Application {
 
 	Application() throws IOException {
 		context = server.newRouter(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
-		                                 .get("/docs/{dir}/api", rewrite("api", "release"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/reference/", rewrite("/reference/", "/reference/docs/index.html"))
@@ -58,10 +57,14 @@ public final class Application {
 		                                 .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
 		                                 .get("/learn", (req, res) -> res.sendFile(contentPath.resolve("learn.html")))
+		                                 .get("/2.x/{module}/api", this::legacyProxy)
+		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
 		                                 //.get("/project", (req, res) -> res.sendFile(contentPath.resolve("project.html")))
 		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
+		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
 		                                 .directory("/assets", contentPath.resolve("assets"))
+
 
 		);
 		Yaml yaml = new Yaml(new Constructor(Module.class));
@@ -138,12 +141,28 @@ public final class Application {
 		return client.get(url, r -> r.failOnClientError(false)
 		                             .headers(filterXHeaders(req.requestHeaders()))
 		                             .sendHeaders())
-		             .then(r -> resp.headers(r.responseHeaders())
+		             .flatMap(r -> resp.headers(r.responseHeaders())
 		                            .status(r.status())
 		                            .send(r.receive()
 		                                   .retain())
-		                            .then());
+		                               .then());
 	}
+
+	private Publisher<Void> legacyProxy(HttpServerRequest req,
+			HttpServerResponse resp) {
+		String artefact = req.param("module");
+		String url = "http://repo.spring.io/release"
+				+ "/io/projectreactor"
+				+ "/" + artefact
+				+ "/2.0.8.RELEASE"
+				+ "/" + artefact
+				+ "-2.0.8.RELEASE-javadoc.jar"
+				+ "!/index.html";
+
+		return resp.sendRedirect(url);
+	}
+
+
 
 	private HttpHeaders filterXHeaders(HttpHeaders headers){
 		Iterator<Map.Entry<String, String>> it = headers.iteratorAsString();
