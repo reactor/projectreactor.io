@@ -37,7 +37,7 @@ h1, h2, h3, h4 { font-family: $reactorFontSpecial }
 
 span.version {
   display: inline;
-  background: $reactorTextColor;
+  background: $reactorPrimary;
   color: white;
   border-radius: 3px;
   font-size: 11px;
@@ -46,12 +46,15 @@ span.version {
   padding: 2Px 4px 2px;
   line-height: 14px;
   &.releasetrain {
-    background: $reactorPrimary;
+    background: $reactorTextColor;
     &.hold {
+      background: darkgrey;
+    }
+  }
+  &.pre {
       background: darkorange;
     }
   }
-}
 
 // Application
 
@@ -310,6 +313,10 @@ section#applications {
     div.version {
       line-height: 20px;
       padding: 3px 0;
+      table {
+        text-align: left;
+        width: 100%;
+      }
     }
     div.github, div.npm, div.nuget {
       float: left;
