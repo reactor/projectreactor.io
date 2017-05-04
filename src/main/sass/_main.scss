@@ -47,6 +47,11 @@ span.version {
   line-height: 14px;
   &.releasetrain {
     background: $reactorTextColor;
+    &.pre {
+      background: linear-gradient(135deg,
+              $reactorTextColor 0%,$reactorTextColor 80%,
+              darkorange 81%,darkorange 100%);
+    }
     &.hold {
       background: darkgrey;
     }
