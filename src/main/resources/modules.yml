@@ -49,20 +49,22 @@ name: netty
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.6.3.RELEASE
   - 0.6.2.RELEASE
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
-  - 0.6.3.BUILD-SNAPSHOT
+  - 0.6.4.BUILD-SNAPSHOT
 ---
 name: ipc
 groupId: io.projectreactor.ipc
 artifactId: reactor-ipc
 versions:
+  - 0.6.2.RELEASE
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.1.RELEASE
-  - 0.6.2.BUILD-SNAPSHOT
+  - 0.6.3.BUILD-SNAPSHOT
 ---
 name: kafka
 groupId: io.projectreactor.kafka
