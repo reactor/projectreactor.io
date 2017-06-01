@@ -9,7 +9,14 @@ versions:
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
-  - 3.1.0.M1
+  - 3.1.0.M2
+---
+name: test
+groupId: io.projectreactor
+artifactId: reactor-test
+versions:
+  - 3.1.0.BUILD-SNAPSHOT
+  - 3.1.0.M2
 ---
 name: test
 groupId: io.projectreactor.addons
@@ -20,9 +27,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.1.0.BUILD-SNAPSHOT
   - 3.1.0.M1
-
 ---
 name: adapter
 groupId: io.projectreactor.addons
@@ -34,7 +39,7 @@ versions:
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
-  - 3.1.0.M1
+  - 3.1.0.M2
 ---
 name: extra
 groupId: io.projectreactor.addons
@@ -43,7 +48,7 @@ versions:
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
-  - 3.1.0.M1
+  - 3.1.0.M2
 ---
 name: netty
 groupId: io.projectreactor.ipc
