@@ -3,7 +3,7 @@ import com.github.robfletcher.compass.CompassExtension
 import java.util.concurrent.TimeUnit
 
 configurations.all {
-    it.resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
 }
 
 buildscript {
