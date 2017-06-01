@@ -16,6 +16,7 @@
 
 package io.projectreactor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Module {
@@ -24,6 +25,14 @@ public class Module {
 	private String groupId;
 	private String artifactId;
 	private List<String> versions;
+
+	public Module() { }
+
+	public Module(String name, String groupId, String artifactId) {
+		this.name = name;
+		this.groupId = groupId;
+		this.artifactId = artifactId;
+	}
 
 	public String getName() {
 		return name;
@@ -55,6 +64,14 @@ public class Module {
 
 	public void setVersions(List<String> versions) {
 		this.versions = versions;
+	}
+
+	public Module addVersion(String version) {
+		if (this.versions == null) {
+			this.versions = new ArrayList<>(1);
+		}
+		this.versions.add(version);
+		return this;
 	}
 
 	@Override

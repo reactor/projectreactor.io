@@ -24,6 +24,7 @@ import reactor.ipc.netty.http.server.HttpServer;
 import reactor.ipc.netty.http.server.HttpServerRequest;
 import reactor.ipc.netty.http.server.HttpServerResponse;
 import reactor.ipc.netty.resources.PoolResources;
+import reactor.util.function.Tuple2;
 
 import org.springframework.core.io.ClassPathResource;
 
@@ -43,14 +44,9 @@ public final class Application {
 	Application() throws IOException {
 		context = server.newRouter(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
-		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/reference/", rewrite("/reference/", "/reference/docs/index.html"))
-		                                 .get("/docs/{module}/release/api/**", this::repoProxy)
-		                                 .get("/docs/{module}/release/reference/**", this::repoProxy)
-		                                 .get("/docs/{module}/milestone/api/**", this::repoProxy)
-		                                 .get("/docs/{module}/milestone/reference/**", this::repoProxy)
-		                                 .get("/docs/{module}/snapshot/api/**", this::repoProxy)
-		                                 .get("/docs/{module}/snapshot/reference/**", this::repoProxy)
+		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
+		                                 .get("/docs/{module}/{version}/reference/**", this::repoProxy)
 		                                 .get("/core/docs/reference/**", (req, resp) -> resp.sendRedirect("https://github.com/reactor/reactor-core/blob/master/README.md"))
 		                                 .get("/ext/docs/api/**/adapter/**", rewrite("/ext/docs/", "/docs/adapter/release/"))
 		                                 .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
@@ -93,50 +89,28 @@ public final class Application {
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
-		String name = req.param("module");
+		String requestedModule = req.param("module");
+		String requestedVersion = req.param("version");
 
 		String path = req.path();
+		String versionType = DocUtils.findVersionType(requestedVersion);
+		String reqUri = req.uri();
 
-		boolean isJavadoc = path.contains("/api/") || path.endsWith("/api");
+		Tuple2<Module, String> module = DocUtils.findModuleAndVersion(modules, requestedModule, requestedVersion);
+		if (module == null) {
+			module = DocUtils.findModuleAndVersion(modules,requestedModule + "Archive", requestedVersion);
+		}
 
-		Module module = modules.get(name);
-
-		if(module == null){
+		if (module == null) {
 			return resp.sendNotFound();
 		}
 
-		String versionType = path.contains("/snapshot") ? "snapshot" :
-				(path.contains("/milestone") ? "milestone" : "release");
-
-		String version = module.getVersions()
-		                       .stream()
-		                       .filter(v -> versionType.equals("milestone") || v.endsWith(
-				                       versionType.toUpperCase()))
-		                       .findFirst().orElseGet((() -> "NA"));
-
-		if(version.equals("NA")){
+		String url = DocUtils.moduleToUrl(path, reqUri, versionType,
+				requestedModule, requestedVersion,
+				module.getT1(), module.getT2());
+		if (url == null) {
 			return resp.sendNotFound();
 		}
-
-		int offset = isJavadoc ? 12 : 18;
-		String file = req.uri()
-		                 .substring(offset + versionType.length() + name.length());
-		if (file.isEmpty()) {
-			file = isJavadoc ? "index.html" : "docs/index.html";
-		}
-		String suffix = isJavadoc ? "-javadoc.jar" : ".zip";
-
-		//tempfix for non generic kafka doc in M1
-		boolean isKafkaM1 = module.getArtifactId().contains("kafka") && version.contains("M1");
-
-		String artifactSuffix = isJavadoc ? "" : "-docs";
-		String url = "http://repo.spring.io/" + versionType
-				+ "/" + module.getGroupId().replace(".", "/")
-				+ "/" + module.getArtifactId() + (isKafkaM1 ? artifactSuffix : "")
-				+ "/" + version
-				+ "/" + module.getArtifactId() + artifactSuffix
-				+ "-" + version + suffix
-				+ "!/" + file;
 
 		return client.get(url, r -> r.failOnClientError(false)
 		                             .headers(filterXHeaders(req.requestHeaders()))
