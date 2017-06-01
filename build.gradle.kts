@@ -58,14 +58,16 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework:spring-core:5.0.0.BUILD-SNAPSHOT")
-    compile("io.projectreactor.ipc:reactor-netty:0.6.3.BUILD-SNAPSHOT")
-    compile("io.projectreactor:reactor-core:3.1.0.BUILD-SNAPSHOT")
+    compile("org.springframework:spring-core:5.0.0.RC1")
+    compile("io.projectreactor.ipc:reactor-netty:0.6.3.RELEASE")
+    compile("io.projectreactor:reactor-core:3.1.0.M2")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")
     runtime("org.slf4j:slf4j-api:1.7.21")
     runtime("ch.qos.logback:logback-classic:1.1.7")
 
+    testCompile("junit:junit:4.12")
+    testCompile("org.assertj:assertj-core:3.6.1")
 }
 
 val processResources = tasks.getByName("processResources")
