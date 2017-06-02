@@ -10,7 +10,27 @@ import reactor.util.function.Tuples;
  */
 public class DocUtils {
 
+	/**
+	 * Find the correct module and version corresponding to the requested module and
+	 * version, falling back to a module called `moduleNameArchive` if one isn't found for
+	 * the originally requested module. Special versions are "snapshot", "milestone" and
+	 * "version". All other string are interpreted as a specific version.
+	 *
+	 * @param modules the map of {@link Module} objects to search
+	 * @param moduleName the module name
+	 * @param versionName the version name
+	 * @return a {@link Tuple2} with the resolved actual {@link Module} and version String,
+	 * or null if none could be found, including in moduleNameArchive.
+	 */
 	public static Tuple2<Module,String> findModuleAndVersion(Map<String, Module> modules,
+			String moduleName, String versionName) {
+		Tuple2<Module, String> result = findModuleAndVersionDirect(modules, moduleName, versionName);
+		if (result == null)
+			result = findModuleAndVersionDirect(modules, moduleName + "Archive", versionName);
+		return result;
+	}
+
+	private static Tuple2<Module,String> findModuleAndVersionDirect(Map<String, Module> modules,
 			String moduleName, String versionName) {
 		Module module = modules.get(moduleName);
 
@@ -18,11 +38,14 @@ public class DocUtils {
 			return null;
 		}
 
+		final String vn = versionName.toUpperCase();
+
 		String version = module.getVersions()
 		                       .stream()
+		                       .map(String::toUpperCase)
 		                       .filter(v ->
-				                       (versionName.equals("milestone") && v.matches(".*\\.M[0-9]+"))
-						                       || v.endsWith(versionName.toUpperCase()))
+				                       (vn.equals("MILESTONE") && v.matches(".*\\.M[0-9]+"))
+						                       || v.endsWith(vn))
 		                       .findFirst().orElseGet((() -> "NA"));
 
 		if(version.equals("NA")){
@@ -31,6 +54,14 @@ public class DocUtils {
 		return Tuples.of(module, version);
 	}
 
+	/**
+	 * From a version string, resolve the version type, that is to say the repository to
+	 * use in repo.spring.io.
+	 *
+	 * @param version the version, either specific or one of the codified "release",
+	 * "snapshot" and "milestone". Milestones are expected to end in M[0-9].
+	 * @return the repository type to use
+	 */
 	public static String findVersionType(String version) {
 		String v = version.toUpperCase();
 		if (v.endsWith("RELEASE")) return "release";
@@ -39,20 +70,41 @@ public class DocUtils {
 		return "release"; //default
 	}
 
-	public static String moduleToUrl(String path, String reqUri, String versionType,
+	/**
+	 * Convert information about a request (path, requested module, requested version) and
+	 * the corresponding resolved module information (actual module including archive ones,
+	 * actual version for codified requested versions) into the url to proxy.
+	 * <p>
+	 * Detects the type of documentation (javadoc or reference guide) from the path (api
+	 * vs reference). Shows the index if no further path is given, or the same relative path
+	 * inside the documentation archives otherwise.
+	 *
+	 * @param reqUri the path requested
+	 * @param versionType the repository to target in repo.spring.io
+	 * @param requestedModuleName the module name (as found in the path)
+	 * @param requestedVersion the requested version name (as found in the path)
+	 * @param actualModule the actual module to use (as resolved by {@link #findModuleAndVersion(Map, String, String)})
+	 * @param actualVersion the actual version to use (as resolved by {@link #findModuleAndVersion(Map, String, String)})
+	 * @return the url to proxy for the documentation
+	 */
+	public static String moduleToUrl(String reqUri, String versionType,
 			String requestedModuleName, String requestedVersion, Module actualModule,
 			String actualVersion) {
-		boolean isJavadoc = path.contains("/api/") || path.endsWith("/api");
+		//protect against incomplete root api/reference path (offset is set with final / in mind)
+		if (reqUri.endsWith("/api") || reqUri.endsWith("/reference")) reqUri += "/";
+
+		boolean isJavadoc = reqUri.contains("/api/");
 
 		int offset = isJavadoc ? 12 : 18;
-		String file = reqUri.substring(offset + requestedVersion.length() + requestedModuleName.length());
+		String file = reqUri.substring(offset + requestedModuleName.length() + requestedVersion.length());
 		if (file.isEmpty()) {
 			file = isJavadoc ? "index.html" : "docs/index.html";
 		}
 		String suffix = isJavadoc ? "-javadoc.jar" : ".zip";
 
 		//tempfix for non generic kafka doc in M1
-		boolean isKafkaM1 = actualModule.getArtifactId().contains("kafka") && actualVersion.contains("M1");
+		boolean isKafkaM1 = actualModule.getArtifactId().contains("kafka")
+				&& actualVersion.equals("1.0.0.M1");
 
 		String artifactSuffix = isJavadoc ? "" : "-docs";
 		String url = "http://repo.spring.io/" + versionType

@@ -44,7 +44,7 @@ public final class Application {
 	Application() throws IOException {
 		context = server.newRouter(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
-		                                 .get("/docs/{module}/{version}/reference/", rewrite("/reference/", "/reference/docs/index.html"))
+		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/{version}/reference/**", this::repoProxy)
 		                                 .get("/core/docs/reference/**", (req, resp) -> resp.sendRedirect("https://github.com/reactor/reactor-core/blob/master/README.md"))
@@ -92,20 +92,15 @@ public final class Application {
 		String requestedModule = req.param("module");
 		String requestedVersion = req.param("version");
 
-		String path = req.path();
-		String versionType = DocUtils.findVersionType(requestedVersion);
 		String reqUri = req.uri();
+		String versionType = DocUtils.findVersionType(requestedVersion);
 
 		Tuple2<Module, String> module = DocUtils.findModuleAndVersion(modules, requestedModule, requestedVersion);
-		if (module == null) {
-			module = DocUtils.findModuleAndVersion(modules,requestedModule + "Archive", requestedVersion);
-		}
-
 		if (module == null) {
 			return resp.sendNotFound();
 		}
 
-		String url = DocUtils.moduleToUrl(path, reqUri, versionType,
+		String url = DocUtils.moduleToUrl(reqUri, versionType,
 				requestedModule, requestedVersion,
 				module.getT1(), module.getT2());
 		if (url == null) {
