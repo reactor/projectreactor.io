@@ -54,12 +54,13 @@ name: netty
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.6.4.RELEASE
   - 0.6.3.RELEASE
   - 0.6.2.RELEASE
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
-  - 0.6.4.BUILD-SNAPSHOT
+  - 0.7.0.BUILD-SNAPSHOT
 ---
 name: ipc
 groupId: io.projectreactor.ipc
