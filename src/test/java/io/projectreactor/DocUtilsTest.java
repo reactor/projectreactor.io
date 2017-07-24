@@ -20,7 +20,7 @@ public class DocUtilsTest {
 		Module module = new Module("test", "group", "artifact");
 		module.addVersion("testVersion")
 		      .addVersion("3.1.0.BUILD-SNAPSHOT")
-		      .addVersion("3.1.0.M2");
+		      .addVersion("3.1.0.M3");
 
 		Module moduleArchive = new Module("testArchive", "group.old", "artifact");
 		moduleArchive.addVersion("3.1.0.M1")
@@ -137,7 +137,7 @@ public class DocUtilsTest {
 		String version = result.getT2();
 
 		assertThat(module.getName()).isEqualTo("test");
-		assertThat(version).isEqualTo("3.1.0.M2");
+		assertThat(version).isEqualTo("3.1.0.M3");
 	}
 
 	@Test
@@ -176,7 +176,7 @@ public class DocUtilsTest {
 		assertThat(DocUtils.findVersionType("snAPshOT")).isEqualTo("snapshot");
 		assertThat(DocUtils.findVersionType("foosnAPshOT")).isEqualTo("snapshot");
 
-		assertThat(DocUtils.findVersionType("3.1.0.M2")).isEqualTo("milestone");
+		assertThat(DocUtils.findVersionType("3.1.0.M3")).isEqualTo("milestone");
 		assertThat(DocUtils.findVersionType("milEstOne")).isEqualTo("milestone");
 		assertThat(DocUtils.findVersionType("anything.M234")).isEqualTo("milestone");
 		//default to RELEASE
@@ -311,13 +311,15 @@ public class DocUtilsTest {
 		Tuple2<Module, String> moduleInfo =
 				DocUtils.findModuleAndVersion(modules, reqModule, reqVersion);
 
-		assertThat(moduleInfo.getT2()).isEqualTo("3.1.0.M2");
+		assertThat(moduleInfo.getT2()).isEqualTo("3.1.0.M3");
 
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/artifact/3.1.0.M2/artifact-3.1.0.M2-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("http://repo.spring" +
+				".io/repoType/group/artifact/3.1.0.M3/artifact-3.1.0.M3-javadoc" +
+				".jar!/index.html");
 	}
 
 	@Test
