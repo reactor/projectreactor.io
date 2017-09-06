@@ -30,6 +30,14 @@ public class DocUtils {
 		return result;
 	}
 
+	protected static boolean checkModuleVersion(String toCheck, String upperVersionName) {
+		boolean matches = (upperVersionName.equals("MILESTONE") && toCheck.matches(".*\\.M[0-9]+"))
+				|| (upperVersionName.equals("MILESTONE") && toCheck.matches(".*\\.RC[0-9]+"))
+				|| toCheck.endsWith(upperVersionName);
+
+		return matches;
+	}
+
 	private static Tuple2<Module,String> findModuleAndVersionDirect(Map<String, Module> modules,
 			String moduleName, String versionName) {
 		Module module = modules.get(moduleName);
@@ -43,9 +51,7 @@ public class DocUtils {
 		String version = module.getVersions()
 		                       .stream()
 		                       .map(String::toUpperCase)
-		                       .filter(v ->
-				                       (vn.equals("MILESTONE") && v.matches(".*\\.M[0-9]+"))
-						                       || v.endsWith(vn))
+		                       .filter(v -> checkModuleVersion(v, vn))
 		                       .findFirst().orElseGet((() -> "NA"));
 
 		if(version.equals("NA")){
@@ -59,7 +65,8 @@ public class DocUtils {
 	 * use in repo.spring.io.
 	 *
 	 * @param version the version, either specific or one of the codified "release",
-	 * "snapshot" and "milestone". Milestones are expected to end in M[0-9].
+	 * "snapshot" and "milestone". Milestones are expected to end in M[0-9]. Release
+	 * candidates (ending in RC[0-9]) are also considered milestones.
 	 * @return the repository type to use
 	 */
 	public static String findVersionType(String version) {
@@ -67,6 +74,7 @@ public class DocUtils {
 		if (v.endsWith("RELEASE")) return "release";
 		if (v.endsWith("SNAPSHOT")) return "snapshot";
 		if (v.equals("MILESTONE") || v.matches(".*\\.M[0-9]+")) return "milestone";
+		if (v.matches(".*\\.RC[0-9]+")) return "milestone";
 		return "release"; //default
 	}
 

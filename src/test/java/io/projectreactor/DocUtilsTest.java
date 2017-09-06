@@ -358,4 +358,14 @@ public class DocUtilsTest {
 		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/old/artifact/3.0.5.RELEASE/artifact-3.0.5.RELEASE-javadoc.jar!/index.html");
 	}
 
+	@Test
+	public void moduleReleaseCandidateToRepoMilestone() {
+		assertThat(DocUtils.findVersionType("3.1.0.RC2")).isEqualTo("milestone");
+	}
+
+	@Test
+	public void checkModuleVersionReleaseCandidateIsMilestone() {
+		assertThat(DocUtils.checkModuleVersion("3.1.0.RC2", "MILESTONE")).isTrue();
+	}
+
 }
