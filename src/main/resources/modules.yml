@@ -66,6 +66,7 @@ versions:
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
   - 0.7.0.BUILD-SNAPSHOT
+  - 0.7.0.M2
   - 0.7.0.M1
 ---
 name: ipc
@@ -82,5 +83,6 @@ name: kafka
 groupId: io.projectreactor.kafka
 artifactId: reactor-kafka
 versions:
+  - 1.0.0.M4
   - 1.0.0.M3
   - 1.0.0.BUILD-SNAPSHOT
