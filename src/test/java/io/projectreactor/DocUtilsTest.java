@@ -214,7 +214,7 @@ public class DocUtilsTest {
 
 	@Test
 	public void moduleToUrlKdocAndFile() {
-		String uri = "/docs/test/release/kdoc-api/fooArtifact/some/path/in/Doc.html";
+		String uri = "/docs/test/release/kdoc-api/some/path/in/Doc.html";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
 				urlModule, "testVersion");
@@ -222,6 +222,18 @@ public class DocUtilsTest {
 		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/some/path/in/Doc.html");
 	}
+
+	@Test
+	public void moduleToUrlKdocStyleCss() {
+		String uri = "/docs/test/release/kdoc-api/style.css";
+		String url = DocUtils.moduleToUrl(uri, "repoType",
+				"test", "release",
+				urlModule, "testVersion");
+
+		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+				"testVersion/fooArtifact-testVersion-kdoc.zip!/style.css");
+	}
+
 	@Test
 	public void moduleToUrlJavadocNoFile() {
 		String uri = "/docs/test/release/api";

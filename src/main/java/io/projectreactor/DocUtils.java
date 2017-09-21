@@ -103,25 +103,51 @@ public class DocUtils {
 				|| reqUri.endsWith("/reference")
 				|| reqUri.endsWith("/kdoc-api")) reqUri += "/";
 
-
+		String url;
 		if (reqUri.contains("/api/")) {
-			return moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+			url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
 					requestedVersion, actualModule, actualVersion,
 					12, "index.html", "-javadoc.jar", "");
 		}
 		else if (reqUri.contains("/kdoc-api/")) {
-			return moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
-					requestedVersion, actualModule, actualVersion,
-					17, actualModule.getArtifactId() + "/index.html", "-kdoc.zip", "");
+			url = moduleToKdocUrl(reqUri, versionType, requestedModuleName,
+					requestedVersion, actualModule, actualVersion);
 		}
 		else {
-			return moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+			url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
 					requestedVersion, actualModule, actualVersion,
 					18, "docs/index.html", ".zip", "-docs");
 		}
+		return url;
 	}
 
-	public static String moduleToArtifactUrl(String reqUri, String versionType,
+	static String moduleToKdocUrl(String reqUri, String versionType,
+			String requestedModuleName, String requestedVersion, Module actualModule,
+			String actualVersion) {
+		int offset = 17;
+		String indexFile = actualModule.getArtifactId() + "/index.html";
+		String suffix = "-kdoc.zip";
+
+		String file = reqUri.substring(offset + requestedModuleName.length() + requestedVersion.length());
+		if (file.isEmpty()) {
+			file = indexFile;
+		}
+		else if (!"style.css".equals(file)) {
+			file = actualModule.getArtifactId() + "/" + file;
+		}
+
+		String url = "http://repo.spring.io/" + versionType
+				+ "/" + actualModule.getGroupId().replace(".", "/")
+				+ "/" + actualModule.getArtifactId()
+				+ "/" + actualVersion
+				+ "/" + actualModule.getArtifactId()
+				+ "-" + actualVersion + suffix
+				+ "!/" + file;
+
+		return url;
+	}
+
+	static String moduleToArtifactUrl(String reqUri, String versionType,
 			String requestedModuleName, String requestedVersion, Module actualModule,
 			String actualVersion,
 			int offset, String indexFile, String suffix, String artifactSuffix) {

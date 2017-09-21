@@ -47,6 +47,10 @@ public final class Application {
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/{version}/reference/**", this::repoProxy)
+		                                 //TODO this is a hack due to the dokka css being imported as `../style.css` in the html
+		                                 .get("/docs/{module}/{version}/style.css",  rewrite("/style.css", "/kdoc-api/style.css"))
+		                                 .get("/docs/{module}/{version}/kdoc-api",  rewrite("/kdoc-api", "/kdoc-api/index.html"))
+		                                 .get("/docs/{module}/{version}/kdoc-api/**", this::repoProxy)
 		                                 .get("/core/docs/reference/**", (req, resp) -> resp.sendRedirect("https://github.com/reactor/reactor-core/blob/master/README.md"))
 		                                 .get("/ext/docs/api/**/adapter/**", rewrite("/ext/docs/", "/docs/adapter/release/"))
 		                                 .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
