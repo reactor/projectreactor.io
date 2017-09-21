@@ -99,22 +99,41 @@ public class DocUtils {
 			String requestedModuleName, String requestedVersion, Module actualModule,
 			String actualVersion) {
 		//protect against incomplete root api/reference path (offset is set with final / in mind)
-		if (reqUri.endsWith("/api") || reqUri.endsWith("/reference")) reqUri += "/";
+		if (reqUri.endsWith("/api")
+				|| reqUri.endsWith("/reference")
+				|| reqUri.endsWith("/kdoc-api")) reqUri += "/";
 
-		boolean isJavadoc = reqUri.contains("/api/");
 
-		int offset = isJavadoc ? 12 : 18;
+		if (reqUri.contains("/api/")) {
+			return moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+					requestedVersion, actualModule, actualVersion,
+					12, "index.html", "-javadoc.jar", "");
+		}
+		else if (reqUri.contains("/kdoc-api/")) {
+			return moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+					requestedVersion, actualModule, actualVersion,
+					17, actualModule.getArtifactId() + "/index.html", "-kdoc.zip", "");
+		}
+		else {
+			return moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+					requestedVersion, actualModule, actualVersion,
+					18, "docs/index.html", ".zip", "-docs");
+		}
+	}
+
+	public static String moduleToArtifactUrl(String reqUri, String versionType,
+			String requestedModuleName, String requestedVersion, Module actualModule,
+			String actualVersion,
+			int offset, String indexFile, String suffix, String artifactSuffix) {
 		String file = reqUri.substring(offset + requestedModuleName.length() + requestedVersion.length());
 		if (file.isEmpty()) {
-			file = isJavadoc ? "index.html" : "docs/index.html";
+			file = indexFile;
 		}
-		String suffix = isJavadoc ? "-javadoc.jar" : ".zip";
 
 		//tempfix for non generic kafka doc in M1
 		boolean isKafkaM1 = actualModule.getArtifactId().contains("kafka")
 				&& actualVersion.equals("1.0.0.M1");
 
-		String artifactSuffix = isJavadoc ? "" : "-docs";
 		String url = "http://repo.spring.io/" + versionType
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId() + (isKafkaM1 ? artifactSuffix : "")
@@ -125,4 +144,5 @@ public class DocUtils {
 
 		return url;
 	}
+
 }

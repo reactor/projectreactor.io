@@ -191,6 +191,38 @@ public class DocUtilsTest {
 	}
 
 	@Test
+	public void moduleToUrlKdocNoFile() {
+		String uri = "/docs/test/release/kdoc-api";
+		String url = DocUtils.moduleToUrl(uri, "repoType",
+				"test", "release",
+				urlModule, "testVersion");
+
+		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/index.html");
+	}
+
+	@Test
+	public void moduleToUrlKdocNoFileFinalSlash() {
+		String uri = "/docs/test/release/kdoc-api/";
+		String url = DocUtils.moduleToUrl(uri, "repoType",
+				"test", "release",
+				urlModule, "testVersion");
+
+		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/index.html");
+	}
+
+	@Test
+	public void moduleToUrlKdocAndFile() {
+		String uri = "/docs/test/release/kdoc-api/fooArtifact/some/path/in/Doc.html";
+		String url = DocUtils.moduleToUrl(uri, "repoType",
+				"test", "release",
+				urlModule, "testVersion");
+
+		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/some/path/in/Doc.html");
+	}
+	@Test
 	public void moduleToUrlJavadocNoFile() {
 		String uri = "/docs/test/release/api";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
@@ -224,7 +256,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void moduleToUrlNotJavadocNoFile() {
+	public void moduleToUrlReferenceNoFile() {
 		String uri = "/docs/test/release/reference";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
@@ -235,7 +267,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void moduleToUrlNotJavadocNoFileFinalSlash() {
+	public void moduleToUrlReferenceNoFileFinalSlash() {
 		String uri = "/docs/test/release/reference/";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
@@ -246,7 +278,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void moduleToUrlNotJavadocAndFile() {
+	public void moduleToUrlReferenceAndFile() {
 		String uri = "/docs/test/release/reference/some/absolute/reference/page.html";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
