@@ -3,12 +3,14 @@ name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
+  - 3.1.0.RELEASE
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
+  - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
 ---
@@ -16,7 +18,9 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
+  - 3.1.0.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
+  - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
 ---
@@ -35,12 +39,14 @@ name: adapter
 groupId: io.projectreactor.addons
 artifactId: reactor-adapter
 versions:
+  - 3.1.0.RELEASE
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
+  - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
 ---
@@ -48,9 +54,11 @@ name: extra
 groupId: io.projectreactor.addons
 artifactId: reactor-extra
 versions:
+  - 3.1.0.RELEASE
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
   - 3.1.0.BUILD-SNAPSHOT
+  - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
 ---
@@ -58,6 +66,7 @@ name: netty
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.7.0.RELEASE
   - 0.6.5.RELEASE
   - 0.6.4.RELEASE
   - 0.6.3.RELEASE
@@ -66,8 +75,10 @@ versions:
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
   - 0.7.0.BUILD-SNAPSHOT
+  - 0.7.0.RC1
   - 0.7.0.M2
   - 0.7.0.M1
+
 ---
 name: ipc
 groupId: io.projectreactor.ipc
@@ -83,6 +94,8 @@ name: kafka
 groupId: io.projectreactor.kafka
 artifactId: reactor-kafka
 versions:
+  - 1.0.0.RELEASE
+  - 1.0.0.RC1
   - 1.0.0.M4
   - 1.0.0.M3
   - 1.0.0.BUILD-SNAPSHOT

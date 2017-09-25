@@ -94,9 +94,9 @@
                         <span id="author" class="author">Project Reactor reference
                             documentation, code samples, and Javadoc. See color coding legend at end</span>
                         </div>
-                        Latest stable BOM: <span class="version releasetrain" title="Stable release train"> Aluminium-SR3</span><br/>
-                        Latest pre-release BOM: <span class="version releasetrain pre"
-                                                      title="MILESTONE release train"> Bismuth-M4</span>
+                        Latest stable BOM: <span class="version releasetrain" title="Stable release train"> Bismuth-RELEASE</span><br/>
+                        <!--KEEP the comment below for later occurrences of pre-release BOMs -->
+                        <!--Latest pre-release BOM: <span class="version releasetrain pre" title="MILESTONE release train"> Bismuth-M4</span>-->
                     </div>
                 </div>
             </div>
@@ -117,23 +117,24 @@
                                         </td>
                                         <td>Release Train</td>
                                     </tr>
+                                    <!--KEEP section below for future occurrences of pre release boms / artifacts -->
+                                    <!--<tr>-->
+                                        <!--<td><span class="version pre"-->
+                                                  <!--title="Latest Pre-Release"> 3.1.0.RC1</span></a></td>-->
+                                        <!--<td><a-->
+                                                <!--href="https://github.com/reactor/reactor-core/releases/tag/v3.1.0.RC1"-->
+                                               <!--title="See the reactor-core 3.1.0 RC1 release notes on GitHub"-->
+                                               <!--class="fa fa-file-text">&nbsp;</a></td>-->
+                                        <!--<td><span class="version releasetrain pre"-->
+                                                  <!--title="MILESTONE release train"> Bismuth-M4</span>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
                                     <tr>
-                                        <td><span class="version pre"
-                                                  title="Latest Pre-Release"> 3.1.0.RC1</span></a></td>
-                                        <td><a
-                                                href="https://github.com/reactor/reactor-core/releases/tag/v3.1.0.RC1"
-                                               title="See the reactor-core 3.1.0 RC1 release notes on GitHub"
+                                        <td><span class="version" title="Latest RELEASE in a BOM">3.1.0.RELEASE</span></a></td>
+                                        <td><a href="https://github.com/reactor/reactor-core/releases/tag/v3.1.0.RELEASE"
+                                               title="See the reactor-core 3.1.0 release notes on GitHub"
                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain pre"
-                                                  title="MILESTONE release train"> Bismuth-M4</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="version" title="Latest RELEASE in a BOM">3.0.7.RELEASE</span></a></td>
-                                        <td><a href="https://github.com/reactor/reactor-core/releases/tag/v3.0.7.RELEASE"
-                                               title="See the reactor-core 3.0.7 release notes on GitHub"
-                                               class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain" title="Fully available release train"> Aluminium-SR3</span></td>
+                                        <td><span class="version releasetrain" title="Fully available release train"> Bismuth-RELEASE</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -147,13 +148,14 @@
                         <div class="javadoc">
                             <strong>Javadoc</strong><br />
                             <a href="/docs/core/release/api/">Release</a> |
-                            <a href="/docs/core/milestone/api/">Milestone</a> |
-                            <a href="/docs/core/snapshot/api/">Snapshot</a>
+                            <!--<a href="/docs/core/milestone/api/">Milestone</a> |-->
+                            <a href="/docs/core/snapshot/api/">Snapshot</a> |
+                            <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>
                         </div>
                         <div class="reference">
                             <strong>Reference</strong><br />
                             <a href="/docs/core/release/reference/">Release</a> |
-                            <a href="/docs/core/milestone/reference/">Milestone</a> |
+                            <!--<a href="/docs/core/milestone/reference/">Milestone</a> |-->
                             <a href="/docs/core/snapshot/reference/">Snapshot</a>
                             <br />
                             <a href="/docs/core/release/reference/docs/index.html#which-operator">Choosing an Operator</a>
@@ -175,24 +177,13 @@
                                         <td>Release Train</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="version pre"
-                                                  title="Latest Pre-Release"> 3.1.0.RC1</span></a></td>
-                                        <td><a
-                                                href="https://github.com/reactor/reactor-core/releases/tag/v3.1.0.RC1"
-                                                title="See the reactor-core 3.1.0 RC1 release notes on GitHub"
-                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain pre"
-                                                  title="MILESTONE release train"> Bismuth-M4</span>
+                                        <td><span class="version" title="Latest release in a BOM">3.1.0.RELEASE</span>
+                                            <br/><code style="font-size:xx-small;">io.projectreactor</code>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="version" title="Latest release in a BOM">3.0.7.RELEASE</span>
-                                            <br/><code style="font-size:xx-small;">io.projectreactor.addons</code>
-                                        </td>
-                                        <td><a href="https://github.com/reactor/reactor-addons/releases/tag/v3.0.7.RELEASE"
-                                               title="See the reactor-addons 3.0.7 release notes on GitHub"
+                                        <td><a href="https://github.com/reactor/reactor-addons/releases/tag/v3.1.0.RELEASE"
+                                               title="See the reactor-addons 3.1.0 release notes on GitHub"
                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain" title="Fully available release train"> Aluminium-SR3</span></td>
+                                        <td><span class="version releasetrain" title="Fully available release train"> Bismuth-RELEASE</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -220,13 +211,13 @@
                         <div class="javadoc">
                             <strong>Javadoc</strong><br />
                             <a href="/docs/test/release/api/">Release</a> |
-                            <a href="/docs/test/milestone/api/">Milestone</a> |
-                            <a href="/docs/test/snapshot/api/">Snapshot</a>
+                            <a href="/docs/test/snapshot/api/">Snapshot</a> |
+                            <a href="/docs/test/release/kdoc-api/">Kotlin Doc</a>
+
                         </div>
                         <div class="reference">
                             <strong>Reference</strong><br />
                             <a href="/docs/core/release/reference/docs/index.html#testing">Release</a> |
-                            <a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |
                             <a href="/docs/core/snapshot/reference/docs/index.html#testing">Snapshot</a>
                         </div>
                     </article>
@@ -246,22 +237,11 @@
                                         <td>Release Train</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="version pre"
-                                                  title="Latest Pre-Release">3.1.0.RC1</span></td>
-                                        <td><a
-                                                href="https://github.com/reactor/reactor-addons/releases/tag/v3.1.0.RC1"
-                                                title="See the reactor-addons 3.1.0 RC1 release notes on GitHub"
-                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain pre"
-                                                  title="MILESTONE release train"> Bismuth-M4</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="version" title="Latest release in a BOM">3.0.7.RELEASE</span></td>
-                                        <td><a href="https://github.com/reactor/reactor-addons/releases/tag/v3.0.7.RELEASE"
-                                               title="See the reactor-addons 3.0.7 release notes on GitHub"
+                                        <td><span class="version" title="Latest release in a BOM">3.1.0.RELEASE</span></td>
+                                        <td><a href="https://github.com/reactor/reactor-addons/releases/tag/v3.1.0.RELEASE"
+                                               title="See the reactor-addons 3.1.0 release notes on GitHub"
                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain" title="Fully available release train"> Aluminium-SR3</span></td>
+                                        <td><span class="version releasetrain" title="Fully available release train"> Bismuth-RELEASE</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -274,7 +254,6 @@
                         <div class="reference">
                             <strong>Javadoc</strong><br />
                             <a href="/docs/adapter/release/api/">Release</a> |
-                            <a href="/docs/adapter/milestone/api/">Milestone</a> |
                             <a href="/docs/adapter/snapshot/api/">Snapshot</a>
                         </div>
                     </article>
@@ -294,23 +273,13 @@
                                         <td>Release Train</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="version pre"
-                                                  title="Latest Pre-Release">0.7.0.M2</span></td>
-                                        <td><a
-                                                href="https://github.com/reactor/reactor-netty/releases/tag/v0.7.0.M2"
-                                                title="See the reactor-netty 0.7.0.M2 release notes on GitHub"
-                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain pre"
-                                                  title="MILESTONE release train"> Bismuth-M4</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="version">0.6.4.RELEASE</span></td>
-                                        <td><a href="https://github.com/reactor/reactor-netty/releases/tag/v0.6.4.RELEASE"
+                                        <td><span class="version">0.7.0.RELEASE</span></td>
+                                        <td><a href="https://github.com/reactor/reactor-netty/releases/tag/v0.7.0.RELEASE"
                                                title="See the reactor-netty release notes on GitHub"
                                                class="fa fa-file-text">&nbsp;</a>
                                         </td>
                                         <td>
-                                            <span class="version releasetrain" title="Part of the latest stable release train">Aluminium-SR3</span>
+                                            <span class="version releasetrain" title="Part of the latest stable release train"> Bismuth-RELEASE</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -332,7 +301,6 @@
                         <div class="javadoc">
                             <strong>Javadoc</strong> <br/>
                             <a href="/docs/netty/release/api/">Release</a> |
-                            <a href="/docs/netty/milestone/api/">Milestone</a> |
                             <a href="/docs/netty/snapshot/api/">Snapshot</a>
                         </div>
                     </article>
@@ -352,22 +320,11 @@
                                         <td>Release Train</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="version pre"
-                                                  title="Latest Pre-Release">3.1.0.RC1</span></td>
-                                        <td><a
-                                                href="https://github.com/reactor/reactor-addons/releases/tag/v3.1.0.RC1"
-                                               title="See the reactor-addons 3.1.0 RC1 release notes on GitHub"
-                                               class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain pre"
-                                                  title="MILESTONE release train"> Bismuth-M4</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td><span class="version" title="Latest release in a BOM">3.0.7.RELEASE</span></td>
-                                        <td><a href="https://github.com/reactor/reactor-addons/releases/tag/v3.0.7.RELEASE"
-                                               title="See the reactor-addons 3.0.7 release notes on GitHub"
+                                        <td><a href="https://github.com/reactor/reactor-addons/releases/tag/v3.1.0.RELEASE"
+                                               title="See the reactor-addons 3.1.0 release notes on GitHub"
                                                class="fa fa-file-text">&nbsp;</a></td>
-                                        <td><span class="version releasetrain" title="Fully available release train"> Aluminium-SR3</span></td>
+                                        <td><span class="version releasetrain" title="Fully available release train"> Bismuth-RELEASE</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -380,7 +337,6 @@
                         <div class="reference">
                             <strong>Javadoc</strong><br />
                             <a href="/docs/extra/release/api/">Release</a> |
-                            <a href="/docs/extra/milestone/api/">Milestone</a> |
                             <a href="/docs/extra/snapshot/api/">Snapshot</a>
                         </div>
                     </article>
@@ -400,15 +356,14 @@
                                         <td>Release Train</td>
                                     </tr>
                                     <tr>
-                                        <td><span class="version pre"
-                                                  title="Latest Pre-Release">1.0.0.M4</span></td>
+                                        <td><span class="version"
+                                                  title="Latest Release in a BOM">1.0.0.RELEASE</span></td>
                                         <td><a
-                                                href="https://github.com/reactor/reactor-kafka/releases/tag/v1.0.0.M4"
+                                                href="https://github.com/reactor/reactor-kafka/releases/tag/v1.0.0.RELEASE"
                                                title="See the reactor-kafka release notes on GitHub"
                                                class="fa fa-file-text">&nbsp;</a>
                                         </td>
-                                        <td><span class="version releasetrain pre"
-                                                  title="MILESTONE release train">Bismuth-M4</span></td>
+                                        <td><span class="version releasetrain" title="Fully available release train"> Bismuth-RELEASE</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -420,12 +375,12 @@
                         </div>
                         <div class="javadoc">
                             <strong>Javadoc</strong> <br/>
-                            <a href="/docs/kafka/milestone/api/">Milestone</a> |
+                            <a href="/docs/kafka/release/api/">Release</a> |
                             <a href="/docs/kafka/snapshot/api/">Snapshot</a>
                         </div>
                         <div class="reference">
                             <strong>Reference</strong> <br/>
-                            <a href="/docs/kafka/milestone/reference/">Milestone</a> |
+                            <a href="/docs/kafka/release/reference/">Release</a> |
                             <a href="/docs/kafka/snapshot/reference/">Snapshot</a>
                         </div>
                     </article>
@@ -471,7 +426,7 @@
                     Legend:
                     <ul>
                         <li><span class="version releasetrain">RELEASE-TRAIN</span>: Artifact participating in the latest stable
-                            and fully available release train (<span class="version releasetrain">Aluminium-SR3</span>).
+                            and fully available release train (<span class="version releasetrain"> Bismuth-RELEASE</span>).
                         </li>
                         <li><span class="version releasetrain pre">RELEASE-TRAIN</span>: Artifact participating in the latest
                             pre-release release train (<span class="version releasetrain pre">Bismuth-M4</span>).
