@@ -10,7 +10,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.1.1.BUILD-SNAPSHOT
+  - 3.1.2.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -21,7 +21,7 @@ artifactId: reactor-test
 versions:
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
-  - 3.1.1.BUILD-SNAPSHOT
+  - 3.1.2.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -49,7 +49,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.1.1.BUILD-SNAPSHOT
+  - 3.1.3.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -63,7 +63,7 @@ versions:
   - 3.1.0.RELEASE
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
-  - 3.1.1.BUILD-SNAPSHOT
+  - 3.1.3.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -82,7 +82,7 @@ versions:
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
-  - 0.7.1.BUILD-SNAPSHOT
+  - 0.7.2.BUILD-SNAPSHOT
   - 0.7.0.RC1
   - 0.7.0.M2
   - 0.7.0.M1
