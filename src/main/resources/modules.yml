@@ -115,3 +115,10 @@ versions:
   - 1.0.0.M4
   - 1.0.0.M3
   - 1.0.1.BUILD-SNAPSHOT
+---
+name: rabbitmq
+groupId: io.projectreactor.rabbitmq
+artifactId: reactor-rabbitmq
+versions:
+  - 1.0.0.M1
+  - 1.0.0.BUILD-SNAPSHOT
