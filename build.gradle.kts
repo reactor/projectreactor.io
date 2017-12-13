@@ -103,9 +103,9 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework:spring-core:5.0.0.RELEASE")
-    compile("io.projectreactor.ipc:reactor-netty:0.7.1.BUILD-SNAPSHOT")
-    compile("io.projectreactor:reactor-core:3.1.1.RELEASE")
+    compile("org.springframework:spring-core:5.0.2.RELEASE")
+    compile("io.projectreactor.ipc:reactor-netty:0.7.2.RELEASE")
+    compile("io.projectreactor:reactor-core:3.1.2.RELEASE")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")
     runtime("org.slf4j:slf4j-api:1.7.21")
