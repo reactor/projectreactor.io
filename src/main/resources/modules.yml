@@ -79,6 +79,7 @@ name: netty
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.7.3.RELEASE
   - 0.7.2.RELEASE
   - 0.7.1.RELEASE
   - 0.7.0.RELEASE
