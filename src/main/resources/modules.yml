@@ -13,7 +13,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.1.4.BUILD-SNAPSHOT
+  - 3.1.5.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -27,7 +27,7 @@ versions:
   - 3.1.2.RELEASE
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
-  - 3.1.4.BUILD-SNAPSHOT
+  - 3.1.5.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -58,7 +58,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.1.5.BUILD-SNAPSHOT
+  - 3.1.6.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -74,7 +74,7 @@ versions:
   - 3.1.0.RELEASE
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
-  - 3.1.5.BUILD-SNAPSHOT
+  - 3.1.6.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
