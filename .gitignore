@@ -2,6 +2,7 @@
 output
 tmp
 .idea
+out
 *.idea
 *.iml
 .gradle
