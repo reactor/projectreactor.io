@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2011-2018 Pivotal Software Inc, All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.projectreactor;
 
 import java.io.IOException;
@@ -18,12 +33,11 @@ import org.reactivestreams.Publisher;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import reactor.core.publisher.Mono;
-import reactor.ipc.netty.NettyContext;
+import reactor.ipc.netty.DisposableServer;
 import reactor.ipc.netty.http.client.HttpClient;
 import reactor.ipc.netty.http.server.HttpServer;
 import reactor.ipc.netty.http.server.HttpServerRequest;
 import reactor.ipc.netty.http.server.HttpServerResponse;
-import reactor.ipc.netty.resources.PoolResources;
 import reactor.util.function.Tuple2;
 
 import org.springframework.core.io.ClassPathResource;
@@ -34,15 +48,17 @@ import org.springframework.core.io.ClassPathResource;
 public final class Application {
 
 	private final Map<String, Module> modules     = new HashMap<>();
-	private final HttpServer          server      = HttpServer.create("0.0.0.0", 8080);
-	private final HttpClient          client      = HttpClient.create(opts -> opts.poolResources(PoolResources.elastic("proxy")));
+	private final HttpClient          client      = HttpClient.create();
 	private final Path                contentPath = resolveContentPath();
 
-	private final Mono<? extends NettyContext> context;
+	private final Mono<? extends DisposableServer> context;
 
 
 	Application() throws IOException {
-		context = server.newRouter(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
+		context = HttpServer.create()
+		                    .host("0.0.0.0")
+		                    .port(8080)
+		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
@@ -63,10 +79,10 @@ public final class Application {
 		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
-		                                 .directory("/assets", contentPath.resolve("assets"))
+		                                 .directory("/assets", contentPath.resolve("assets")))
+		                    .bind();
 
 
-		);
 		Yaml yaml = new Yaml(new Constructor(Module.class));
 		yaml.loadAll(new ClassPathResource("modules.yml").getInputStream()).forEach(o -> {
 			Module module = (Module)o;
@@ -83,7 +99,7 @@ public final class Application {
 	public void startAndAwait() {
 		context.doOnNext(this::startLog)
 		 .block()
-		 .onClose()
+		 .onDispose()
 		 .block();
 	}
 
@@ -111,14 +127,13 @@ public final class Application {
 			return resp.sendNotFound();
 		}
 
-		return client.get(url, r -> r.failOnClientError(false)
-		                             .headers(filterXHeaders(req.requestHeaders()))
-		                             .sendHeaders())
-		             .flatMap(r -> resp.headers(r.responseHeaders())
-		                            .status(r.status())
-		                            .send(r.receive()
-		                                   .retain())
-		                               .then());
+		return client.headers(h -> filterXHeaders(req.requestHeaders()))
+		             .get()
+		             .uri(url)
+		             .response((r, body) -> resp.headers(r.responseHeaders())
+		                                        .status(r.status())
+		                                        .send(body.retain())
+		                                        .then());
 	}
 
 	private Publisher<Void> legacyProxy(HttpServerRequest req,
@@ -149,7 +164,7 @@ public final class Application {
 		return headers;
 	}
 
-	private void startLog(NettyContext c) {
+	private void startLog(DisposableServer c) {
 		System.out.printf("Server started in %d ms on: %s\n",
 				Duration.ofNanos(ManagementFactory.getThreadMXBean()
 						.getThreadCpuTime(Thread.currentThread().getId())).toMillis(), c.address());
