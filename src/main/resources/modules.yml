@@ -3,6 +3,7 @@ name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
+  - 3.1.8.RELEASE
   - 3.1.7.RELEASE
   - 3.1.6.RELEASE
   - 3.1.5.RELEASE
@@ -16,7 +17,9 @@ versions:
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.2.0.BUILD-SNAPSHOT
-  - 3.1.7.BUILD-SNAPSHOT
+  - 3.2.0.M2
+  - 3.2.0.M1
+  - 3.1.9.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -25,6 +28,8 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
+  - 3.1.8.RELEASE
+  - 3.1.7.RELEASE
   - 3.1.6.RELEASE
   - 3.1.5.RELEASE
   - 3.1.4.RELEASE
@@ -33,7 +38,9 @@ versions:
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
   - 3.2.0.BUILD-SNAPSHOT
-  - 3.1.7.BUILD-SNAPSHOT
+  - 3.2.0.M2
+  - 3.2.0.M1
+  - 3.1.9.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -66,6 +73,7 @@ versions:
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.2.0.BUILD-SNAPSHOT
+  - 3.2.0.M1
   - 3.1.7.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
@@ -84,6 +92,7 @@ versions:
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
   - 3.2.0.BUILD-SNAPSHOT
+  - 3.2.0.M1
   - 3.1.7.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
@@ -94,6 +103,7 @@ groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
   - 0.8.0.BUILD-SNAPSHOT
+  - 0.8.0.M1
 ---
 name: nettyArchive
 groupId: io.projectreactor.ipc

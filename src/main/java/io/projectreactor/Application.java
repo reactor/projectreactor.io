@@ -33,11 +33,11 @@ import org.reactivestreams.Publisher;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import reactor.core.publisher.Mono;
-import reactor.ipc.netty.DisposableServer;
-import reactor.ipc.netty.http.client.HttpClient;
-import reactor.ipc.netty.http.server.HttpServer;
-import reactor.ipc.netty.http.server.HttpServerRequest;
-import reactor.ipc.netty.http.server.HttpServerResponse;
+import reactor.netty.DisposableServer;
+import reactor.netty.http.client.HttpClient;
+import reactor.netty.http.server.HttpServer;
+import reactor.netty.http.server.HttpServerRequest;
+import reactor.netty.http.server.HttpServerResponse;
 import reactor.util.function.Tuple2;
 
 import org.springframework.core.io.ClassPathResource;
