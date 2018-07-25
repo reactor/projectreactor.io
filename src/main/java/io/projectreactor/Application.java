@@ -57,6 +57,7 @@ public final class Application {
 
 	private final Mono<? extends DisposableServer> context;
 	private final TemplateEngine templateEngine;
+	private final Map<String, Object> docsModel = new HashMap<>();
 
 	Application() throws IOException {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -103,6 +104,13 @@ public final class Application {
 			modules.put(module.getName(), module);
 		});
 
+		Yaml bomYaml = new Yaml(new Constructor(Bom.class));
+		bomYaml.loadAll(new ClassPathResource("boms.yml").getInputStream())
+		       .forEach(o -> {
+			       Bom bom = (Bom) o;
+			       docsModel.put(bom.getType(), bom);
+		       });
+
 	}
 
 	public static void main(String... args) throws Exception {
@@ -126,7 +134,7 @@ public final class Application {
 			String templateName) {
 
 		return (req, resp) -> resp.sendString(Mono.just(templateEngine.process(templateName,
-					new Context(Locale.US))));
+					new Context(Locale.US, docsModel))));
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {

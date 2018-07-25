@@ -16,13 +16,18 @@
                             documentation, code samples, and Javadoc. See color coding legend at end</span>
                 </div>
                 Latest stable BOM: <span class="version releasetrain"
-                                         title="Stable release train">Bismuth-SR10</span><br/>
-                Latest pre-release BOM: <span class="version releasetrain pre" title="MILESTONE release train"> Californium-M1</span>
-                <!--KEEP the comment below for later occurrences of partially-released BOMs -->
-                <!--Upcoming BOM: <span class="version releasetrain hold"-->
-                <!--title="Partially available release train">Californium-M1</span><br/>-->
-                <!--KEEP the comment below for later occurrences of pre-release BOMs -->
-                <!--Latest pre-release BOM: <span class="version releasetrain pre" title="MILESTONE release train"> Bismuth-M4</span>-->
+                                         title="Stable release train"
+                                         th:text="${stable.name}">STABLE</span><br/>
+                <div th:if="${upcoming.name} != null">
+                    Upcoming BOM: <span class="version releasetrain hold"
+                                        title="Partially available release train"
+                                        th:text="${upcoming.name}">UPCOMING</span><br/>
+                </div>
+                <div th:if="${milestone.name} != null">
+                    Latest pre-release BOM: <span class="version releasetrain pre"
+                                                  title="MILESTONE release train"
+                                                  th:text="${milestone.name}">MILESTONE</span>
+                </div>
             </div>
         </div>
     </div>
@@ -43,51 +48,59 @@
                                 </td>
                                 <td>Release Train</td>
                             </tr>
-                            <!--KEEP section below for future occurrences of pre release boms / artifacts -->
-                            <!--<tr>-->
-                            <!--<td><span class="version pre"-->
-                            <!--title="Latest Pre-Release"> 3.1.0.RC1</span></a></td>-->
-                            <!--<td><a-->
-                            <!--href="https://github.com/reactor/reactor-core/releases/tag/v3.1.0.RC1"-->
-                            <!--title="See the reactor-core 3.1.0 RC1 release notes on GitHub"-->
-                            <!--class="fa fa-file-text">&nbsp;</a></td>-->
-                            <!--<td><span class="version releasetrain pre" or hold-->
-                            <!--title="MILESTONE release train"> Bismuth-M4</span>-->
-                            <!--</td>-->
-                            <!--</tr>-->
-
-                            <!--KEEP section below for future occurrences of releases spanning several days (partial BOMs) -->
-                            <!--<tr>-->
-                            <!--<td><span class="version"-->
-                            <!--title="Latest Release In Incomplete BOM"> 3.1.4.RELEASE</span></a></td>-->
-                            <!--<td><a-->
-                            <!--href="https://github.com/reactor/reactor-core/releases/tag/v3.1.4.RELEASE"-->
-                            <!--title="See the reactor-core 3.1.4 release notes on GitHub"-->
-                            <!--class="fa fa-file-text">&nbsp;</a></td>-->
-                            <!--<td><span class="version releasetrain"-->
-                            <!--title="Partially available release train"> Bismuth-SR6</span>-->
-                            <!--</td>-->
-                            <!--</tr>-->
-
-                            <tr>
-                                <td><span class="version"> 3.1.8.RELEASE</span></a></td>
-                                <td><a
-                                        href="https://github.com/reactor/reactor-core/releases/tag/v3.1.8.RELEASE"
-                                        title="See the reactor-core 3.1.8 release notes on GitHub"
-                                        class="fa fa-file-text">&nbsp;</a></td>
-                                <td><span class="version releasetrain"
-                                          title="Stable release train"> Bismuth-SR10</span>
+                            <tr th:if="${stable.coreVersion} != null">
+                                <td>
+                                    <span class="version"
+                                          th:text="${stable.coreVersion}"></span>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/reactor/reactor-core/releases"
+                                       th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${stable.coreVersion})}"
+                                       th:title="|See the reactor-core ${stable.coreVersion} release notes on GitHub|"
+                                       class="fa fa-file-text">&nbsp;</a>
+                                </td>
+                                <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}"></span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><span class="version pre">
-                                            3.2.0.M3</span></a></td>
-                                <td><a
-                                        href="https://github.com/reactor/reactor-core/releases/tag/v3.2.0.M3"
-                                        title="See the reactor-core 3.2.0.M3 release notes on GitHub"
-                                        class="fa fa-file-text">&nbsp;</a></td>
-                                <td><span class="version releasetrain pre"
-                                          title="MILESTONE release train">Californium-M1</span>
+
+                            <tr th:if="${milestone.coreVersion} != null">
+                                <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.coreVersion}"></span>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/reactor/reactor-core/releases"
+                                       th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${milestone.coreVersion})}"
+                                       th:title="|See the reactor-core ${milestone.coreVersion} release notes on GitHub|"
+                                       class="fa fa-file-text">&nbsp;</a>
+                                </td>
+                                <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}"> </span>
+                                </td>
+                            </tr>
+
+                            <tr th:if="${upcoming.coreVersion} != null">
+                                <td>
+                                    <span class="version"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.coreVersion}"></span>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/reactor/reactor-core/releases"
+                                       th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${upcoming.coreVersion})}"
+                                       th:title="|See the reactor-core ${upcoming.coreVersion} release notes on GitHub|"
+                                       class="fa fa-file-text">&nbsp;</a>
+                                </td>
+                                <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> </span>
                                 </td>
                             </tr>
                         </table>
@@ -102,16 +115,14 @@
                 <div class="javadoc">
                     <strong>Javadoc</strong><br />
                     <a href="/docs/core/release/api/">Release</a> |
-                    <!--<a href="/docs/core/milestone/api/">Milestone</a> |-->
-                    <a href="/docs/core/milestone/api/">Milestone</a>
+                    <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
                     <a href="/docs/core/snapshot/api/">Snapshot</a> |
                     <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>
                 </div>
                 <div class="reference">
                     <strong>Reference</strong><br />
                     <a href="/docs/core/release/reference/">Release</a> |
-                    <!--<a href="/docs/core/milestone/reference/">Milestone</a> |-->
-                    <a href="/docs/core/milestone/reference/">Milestone</a> |
+                    <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/reference/">Milestone</a> |</span>
                     <a href="/docs/core/snapshot/reference/">Snapshot</a>
                     <br />
                     <a href="/docs/core/release/reference/docs/index.html#which-operator">Choosing an Operator</a>
