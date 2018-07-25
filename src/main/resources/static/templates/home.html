@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('home', ~{::title}, ~{}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor home</title>
+</head>
+<body>
+
+<div class="content" id="content">
+    <section id="welcome">
+        <article>
+            <span class="logo-reactor"></span>
+            <h1>
+                <strong>
+                    Create efficient <a href="http://www.reactive-streams.org/">Reactive</a> systems
+                </strong>
+            </h1>
+            <p>
+                            <span>Reactor is a fourth-generation Reactive library for building non-blocking
+                                applications on</span><br />
+                <span>the JVM based on the <a href="https://github.com/reactive-streams/reactive-streams-jvm">Reactive Streams Specification</a></span>
+            </p>
+        </article>
+    </section>
+    <section id="brands">
+        <div class="row">
+            <article>
+                <div class="reactor">
+                                <span class="icon">
+                                    <span class="logo-reactor"></span>
+                                </span>
+                    <h1>Reactive Core</h1>
+                    <p>
+                        Reactor is a <strong>fully non-blocking</strong> foundation with
+                        efficient demand management. It directly interacts with Java 8
+                        <i>functional API</i>, <i>Completable Future</i>, <i>Stream</i> and <i>Duration</i>.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <div>
+                                <span class="icon">
+                                    <span class="logo-stream"></span>
+                                </span>
+                    <h1>Typed [0|1|N] Sequences</h1>
+                    <p>
+                        Reactor offers <strong>2 reactive composable API</strong> <a
+                            href="/docs/core/release/api/reactor/core/publisher/Flux.html">Flux [N]
+                    </a> and  <a href="/docs/core/release/api/reactor/core/publisher/Mono.html">Mono [0|1]</a>
+                        extensively
+                        implementing  <a href="http://reactivex.io">Reactive Extensions</a>.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <div>
+                                <span class="icon">
+                                    <span class="logo-io"></span>
+                                </span>
+                    <h1>Non blocking IO</h1>
+                    <p>
+                        Suited for <strong>Microservices</strong>
+                        Architecture, Reactor offers
+                        <strong>backpressure-ready
+                            network engines</strong> for HTTP (including
+                        Websockets), TCP and UDP.
+                        Reactive Encoding/Decoding is fully supported.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+    <section id="key-features">
+        <article class="turbo-message-passing">
+            <div>
+                <span class="icon"></span>
+                <h1>Efficient Message Passing</h1>
+                <p>
+                    Reactor Processors, Operators and Timers can <strong>sustain high throughput rates</strong> on the order of 10's of
+                    millions of messages per second. Plus its <b>low memory footprint</b> should go under
+                    most of the radars. Reactor is part of an <a
+                        href="http://github.com/reactor/reactive-streams-commons">ongoing research
+                    effort</a> to challenge further the possible flow optimizations.
+                </p>
+            </div>
+        </article>
+        <article class="friendly-adoption">
+            <div>
+                <h1>Friendly Adoption</h1>
+                <p>
+                    As a Reactive Engine/SPI, both Reactor Core and IO modules expose reactive streams
+                    constructs for focused
+                    use cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
+                    RxJava</a>, <a href="http://doc.akka.io/docs/akka-stream-and-http-experimental/current/java.html">Akka
+                    Streams</a>, <a href="http://ratpack.io">Ratpack</a>... As a Reactive API, reactor
+                    framework modules will offer rich consumable features like
+                    composition and pub-sub eventing.
+                </p>
+            </div>
+        </article>
+        <article class="guardian-of-the-latency">
+            <div>
+                <span class="icon"></span>
+                <h1>Guardian of the Latency</h1>
+                <p style="margin-bottom: 0">Scaling-Out to overcome latency and slow microservices is an important
+                    tool. Cloud Native apps will have a better chance at effective scale-out with asychronous architectures.
+                    To assist such design, Reactor offers non-blocking and
+                    backpressure-ready embeddable solutions including local and remote Unicast/Multicast
+                    messaging
+                    or
+                    TCP/HTTP/UDP
+                    client & servers.
+                </p>
+            </div>
+        </article>
+    </section>
+</div>
+
+</body>
+</html>

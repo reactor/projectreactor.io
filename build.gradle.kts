@@ -91,6 +91,7 @@ dependencies {
     compile("org.springframework:spring-core:5.0.6.RELEASE")
     compile("io.projectreactor.netty:reactor-netty:0.8.0.BUILD-SNAPSHOT")
     compile("io.projectreactor:reactor-core:3.2.0.BUILD-SNAPSHOT")
+    compile("org.thymeleaf:thymeleaf:3.0.9.RELEASE")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")
     runtime("org.slf4j:slf4j-api:1.7.21")

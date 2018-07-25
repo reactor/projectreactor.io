@@ -25,11 +25,15 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.BiFunction;
 
 import io.netty.handler.codec.http.HttpHeaders;
 import org.reactivestreams.Publisher;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import reactor.core.publisher.Mono;
@@ -52,13 +56,24 @@ public final class Application {
 	private final Path                contentPath = resolveContentPath();
 
 	private final Mono<? extends DisposableServer> context;
-
+	private final TemplateEngine templateEngine;
 
 	Application() throws IOException {
+		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setCacheable(false);
+		templateResolver.setPrefix("/static/templates/");
+		templateResolver.setSuffix(".html");
+		this.templateEngine = new TemplateEngine();
+		this.templateEngine.setTemplateResolver(templateResolver);
+
+
 		context = HttpServer.create()
 		                    .host("0.0.0.0")
 		                    .port(8080)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
+		                                 .get("/", template("home"))
+		                                 .get("/docs", template("docs"))
+		                                 .get("/learn", template("learn"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
@@ -72,11 +87,10 @@ public final class Application {
 		                                 .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
 		                                 .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
-		                                 .get("/learn", (req, res) -> res.sendFile(contentPath.resolve("learn.html")))
 		                                 .get("/2.x/{module}/api", this::legacyProxy)
 		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
 		                                 //.get("/project", (req, res) -> res.sendFile(contentPath.resolve("project.html")))
-		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
+//		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
 		                                 .directory("/assets", contentPath.resolve("assets")))
@@ -106,6 +120,13 @@ public final class Application {
 	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> rewrite(
 			String originalPath, String newPath) {
 		return (req, resp) -> resp.sendRedirect(req.uri().replace(originalPath, newPath));
+	}
+
+	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> template(
+			String templateName) {
+
+		return (req, resp) -> resp.sendString(Mono.just(templateEngine.process(templateName,
+					new Context(Locale.US))));
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
