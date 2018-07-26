@@ -17,7 +17,7 @@
 <html th:fragment="layout(page,description,links,content)" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Project Reactor</title>
-    <meta name="description" th:content="${description}" content="Placeholder description">
+    <meta name="description" th:replace="${description}" content="Placeholder description">
     <!--/* Common stylesheet */-->
     <link href="../assets/css/reactor.css?v=1" media="all" rel="stylesheet"/>
     <!--/* Page-specific stylesheet(s) */-->
@@ -71,7 +71,7 @@
                     <span class="fa fa-bars"></span>
                 </a>
                 <div class="heading">
-                    <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
+                    <h1 id="logo" class="active"><a href="/"><strong>Project Reactor</strong></a></h1>
                     <nav id="nav">
                         <ul>
                             <li class="hide"><a href="/">Home</a></li>

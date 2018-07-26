@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout('learn', ~{::title}, ~{}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{layout :: layout('learn', ~{::meta[@name='description']}, ~{}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Learn Project Reactor</title>
-    <link href="../assets/css/_learn.css" media="all" rel="stylesheet"/>
+    <meta name="description" content="Learn Project Reactor"/>
 </head>
 <body>
 

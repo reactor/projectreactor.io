@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout('home', ~{::title}, ~{}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{layout :: layout('home', ~{::meta[@name='description']}, ~{}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Project Reactor home</title>
+    <meta name="description" content="Project Reactor home"/>
 </head>
 <body>
 
-<div class="content" id="content">
+<div class="content">
     <section id="welcome">
         <article>
             <span class="logo-reactor"></span>
