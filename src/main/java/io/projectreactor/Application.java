@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
 import io.netty.handler.codec.http.HttpHeaders;
@@ -42,6 +43,8 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.http.server.HttpServer;
 import reactor.netty.http.server.HttpServerRequest;
 import reactor.netty.http.server.HttpServerResponse;
+import reactor.util.Logger;
+import reactor.util.Loggers;
 import reactor.util.function.Tuple2;
 
 import org.springframework.core.io.ClassPathResource;
@@ -59,14 +62,23 @@ public final class Application {
 	private final TemplateEngine templateEngine;
 	private final Map<String, Object> docsModel = new HashMap<>();
 
+	private static final Logger LOGGER = Loggers.getLogger(Application.class);
+
 	Application() throws IOException {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-		templateResolver.setCacheable(false);
 		templateResolver.setPrefix("/static/templates/");
 		templateResolver.setSuffix(".html");
 		this.templateEngine = new TemplateEngine();
 		this.templateEngine.setTemplateResolver(templateResolver);
 
+		//evaluate the boms.yml file first and add it to thymeleaf's model
+		Yaml bomYaml = new Yaml(new Constructor(Bom.class));
+		bomYaml.loadAll(new ClassPathResource("boms.yml").getInputStream())
+		       .forEach(o -> {
+			       Bom bom = (Bom) o;
+			       docsModel.put(bom.getType(), bom);
+		       });
+		//templates will be resolved and parsed below during route setup
 
 		context = HttpServer.create()
 		                    .host("0.0.0.0")
@@ -103,14 +115,6 @@ public final class Application {
 			Module module = (Module)o;
 			modules.put(module.getName(), module);
 		});
-
-		Yaml bomYaml = new Yaml(new Constructor(Bom.class));
-		bomYaml.loadAll(new ClassPathResource("boms.yml").getInputStream())
-		       .forEach(o -> {
-			       Bom bom = (Bom) o;
-			       docsModel.put(bom.getType(), bom);
-		       });
-
 	}
 
 	public static void main(String... args) throws Exception {
@@ -133,8 +137,13 @@ public final class Application {
 	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> template(
 			String templateName) {
 
-		return (req, resp) -> resp.sendString(Mono.just(templateEngine.process(templateName,
-					new Context(Locale.US, docsModel))));
+		//the template parsing happens at app's initialization
+		long start = System.nanoTime();
+		final String content = templateEngine.process(templateName, new Context(Locale.US, docsModel));
+		long duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+		LOGGER.info("Parsed template {} in {}ms", templateName, duration);
+
+		return (req, resp) -> resp.sendString(Mono.just(content));
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
