@@ -106,7 +106,7 @@ public final class Application {
 //		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
-		                                 .directory("/assets", contentPath.resolve("assets")))
+		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor))
 		                    .bind();
 
 
@@ -200,6 +200,12 @@ public final class Application {
 			}
 		}
 		return headers;
+	}
+
+	private HttpServerResponse cssInterceptor(HttpServerResponse resp) {
+		if (resp.path().endsWith(".css"))
+			resp.header("Content-Type", "text/css");
+		return resp;
 	}
 
 	private void startLog(DisposableServer c) {
