@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('docs', ~{::meta[@name='description']}, ~{::link}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="description" content="Project Reactor Documentation links"/>
+    <link href="../assets/css/docs.css" media="all" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="page-summary">
+    <div class="page-summary-content">
+        <div class="page-summary-wrap">
+            <h1>Documentation</h1>
+            <div class="details">
+                        <span id="author" class="author">Project Reactor reference
+                            documentation, code samples, and Javadoc. See color coding legend at end</span>
+                <div th:if="${upcoming.name} != null">
+                    Upcoming BOM: <span class="version releasetrain hold"
+                                        title="Partially available release train"
+                                        th:text="${upcoming.name}">UPCOMING</span><br/>
+                </div>
+            </div>
+            Latest stable BOM: <span class="version releasetrain"
+                                     title="Stable release train"
+                                     th:text="${stable.name}">STABLE</span><br/>
+            <div th:if="${milestone.name} != null">
+                Latest pre-release BOM: <span class="version releasetrain pre"
+                                              title="MILESTONE release train"
+                                              th:text="${milestone.name}">MILESTONE</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main" class="book">
+
+    <section id="applications">
+        <article>
+            <div class="title">
+                <h1>Reactor Core</h1>
+                <p>A Reactive Streams foundation for Java 8</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td><a href="http://github.com/reactor/reactor-core/releases"
+                                   title="See all reactor-core releases on GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.coreVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.coreVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${upcoming.coreVersion})}"
+                                   th:title="|See the reactor-core ${upcoming.coreVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.coreVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          th:text="${stable.coreVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${stable.coreVersion})}"
+                                   th:title="|See the reactor-core ${stable.coreVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}">BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.coreVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.coreVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${milestone.coreVersion})}"
+                                   th:title="|See the reactor-core ${milestone.coreVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-core">
+                    <span class="fa fa-github"></span>
+                    Github
+                </a>
+            </div>
+            <div class="javadoc">
+                <strong>Javadoc</strong><br />
+                <a href="/docs/core/release/api/">Release</a> |
+                <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
+                <a href="/docs/core/snapshot/api/">Snapshot</a> |
+                <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>
+            </div>
+            <div class="reference">
+                <strong>Reference</strong><br />
+                <a href="/docs/core/release/reference/">Release</a> |
+                <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/reference/">Milestone</a> |</span>
+                <a href="/docs/core/snapshot/reference/">Snapshot</a>
+                <br />
+                <a href="/docs/core/release/reference/docs/index.html#which-operator">Choosing an Operator</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="title">
+                <h1>Reactor Test</h1>
+                <p>Test utilities</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td>
+                                <a href="http://github.com/reactor/reactor-core/releases"
+                                   title="See all post reactor-test releases on reactor-core GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.testVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.testVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${upcoming.testVersion})}"
+                                   th:title="|See the reactor-test ${upcoming.testVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.testVersion} != null">
+                            <td>
+                                <span class="version" th:text="${stable.testVersion}"> VERSION</span>
+                            </td>
+                            <td>
+                                <a href="http://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${stable.testVersion})}"
+                                   th:title="|See the reactor-test ${stable.testVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.testVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.testVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases/"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${milestone.testVersion})}"
+                                   th:title="|See the reactor-test ${milestone.testVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}">BOM</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a
+                        href="https://github.com/reactor/reactor-core/tree/master/reactor-test">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="javadoc">
+                <strong>Javadoc</strong><br />
+                <a href="/docs/test/release/api/">Release</a> |
+                <span th:if="${milestone.testVersion} != null"><a href="/docs/test/milestone/api/">Milestone</a> |</span>
+                <a href="/docs/test/snapshot/api/">Snapshot</a> |
+                <a href="/docs/test/release/kdoc-api/">Kotlin Doc</a>
+
+            </div>
+            <div class="reference">
+                <strong>Reference</strong><br />
+                <a href="/docs/core/release/reference/docs/index.html#testing">Release</a> |
+                <span th:if="${milestone.testVersion} != null"><a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |</span>
+                <a href="/docs/core/snapshot/reference/docs/index.html#testing">Snapshot</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="title">
+                <h1>Reactor Extra</h1>
+                <p>Extra operators for Flux</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td><a href="http://github.com/reactor/reactor-addons/releases"
+                                   title="See all reactor-addons releases on GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.extraVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.extraVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-addons/releases"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${upcoming.extraVersion})}"
+                                   th:title="|See the reactor-extra ${upcoming.extraVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.extraVersion} != null">
+                            <td>
+                                <span class="version" th:text="${stable.extraVersion}"> VERSION</span>
+                            </td>
+                            <td>
+                                <a href="http://github.com/reactor/reactor-addons/releases"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${stable.extraVersion})}"
+                                   th:title="|See the reactor-extra ${stable.extraVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.extraVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.extraVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-addons/releases/"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${milestone.extraVersion})}"
+                                   th:title="|See the reactor-extra ${milestone.extraVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}">BOM</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-addons/#reactor-extra">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="reference">
+                <strong>Javadoc</strong><br />
+                <a href="/docs/extra/release/api/">Release</a> |
+                <span th:if="${milestone.extraVersion} != null"><a href="/docs/extra/milestone/api/">Milestone</a> |</span>
+                <a href="/docs/extra/snapshot/api/">Snapshot</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="title">
+                <h1>Reactor Netty</h1>
+                <p>HTTP, TCP, UDP Client/Servers with Netty</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td><a href="http://github.com/reactor/reactor-netty/releases"
+                                   title="See all reactor-netty releases on GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.nettyVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.nettyVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-netty/releases"
+                                   th:href="@{https://github.com/reactor/reactor-netty/releases/tag/v{tag}(tag=${upcoming.nettyVersion})}"
+                                   th:title="|See the reactor-netty ${upcoming.nettyVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.nettyVersion} != null">
+                            <td>
+                                <span class="version" th:text="${stable.nettyVersion}"> VERSION</span>
+                            </td>
+                            <td>
+                                <a href="http://github.com/reactor/reactor-netty/releases"
+                                   th:href="@{https://github.com/reactor/reactor-netty/releases/tag/v{tag}(tag=${stable.nettyVersion})}"
+                                   th:title="|See the reactor-netty ${stable.nettyVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.nettyVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.nettyVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-netty/releases/"
+                                   th:href="@{https://github.com/reactor/reactor-netty/releases/tag/v{tag}(tag=${milestone.nettyVersion})}"
+                                   th:title="|See the reactor-netty ${milestone.nettyVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}">BOM</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-netty">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="javadoc">
+                <strong>Javadoc</strong> <br/>
+                <a href="/docs/netty/release/api/">Release</a> |
+                <span th:if="${milestone.nettyVersion} != null"><a href="/docs/netty/milestone/api/">Milestone</a> |</span>
+                <a href="/docs/netty/snapshot/api/">Snapshot</a>
+            </div>
+        </article>
+
+
+        <article>
+            <div class="title">
+                <h1>Reactor Adapter</h1>
+                <p>Adapt to/from other Reactive libraries</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td><a href="http://github.com/reactor/reactor-addons/releases"
+                                   title="See all reactor-addons releases on GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.adapterVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.adapterVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-addons/releases"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${upcoming.adapterVersion})}"
+                                   th:title="|See the reactor-adapter ${upcoming.adapterVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.adapterVersion} != null">
+                            <td>
+                                <span class="version" th:text="${stable.adapterVersion}"> VERSION</span>
+                            </td>
+                            <td>
+                                <a href="http://github.com/reactor/reactor-addons/releases"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${stable.adapterVersion})}"
+                                   th:title="|See the reactor-adapter ${stable.adapterVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.adapterVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.adapterVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-addons/releases/"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${milestone.adapterVersion})}"
+                                   th:title="|See the reactor-adapter ${milestone.adapterVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}">BOM</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-addons/#reactor-adapter">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="reference">
+                <strong>Javadoc</strong><br />
+                <a href="/docs/adapter/release/api/">Release</a> |
+                <span th:if="${milestone.adapterVersion} != null"><a href="/docs/adapter/milestone/api/">Milestone</a> |</span>
+                <a href="/docs/adapter/snapshot/api/">Snapshot</a>
+            </div>
+        </article>
+
+        <!--/* The rest of the links are handled manually still */-->
+
+        <article>
+            <div class="title">
+                <h1>Reactor Kafka</h1>
+                <p>Reactive bridge to Apache Kafka</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td><a href="http://github.com/reactor/reactor-kafka/releases"
+                                   title="See all reactor-kafka releases on GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+                        <tr>
+                            <td><span class="version"
+                                      title="Latest Release"> 1.0.1.RELEASE</span></a></td>
+                            <td><a
+                                    href="https://github.com/reactor/reactor-kafka/releases/tag/v1.0.1.RELEASE"
+                                    title="See the reactor-kafka 1.0.1 release notes on GitHub"
+                                    class="fa fa-file-text">&nbsp;</a></td>
+                            <td><!--<span class="version releasetrain"
+                                                  title="Stable release train">Bismuth-SR10</span>-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-kafka">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="javadoc">
+                <strong>Javadoc</strong> <br/>
+                <a href="/docs/kafka/release/api/">Release</a> |
+                <a href="/docs/kafka/snapshot/api/">Snapshot</a>
+            </div>
+            <div class="reference">
+                <strong>Reference</strong> <br/>
+                <a href="/docs/kafka/release/reference/">Release</a> |
+                <a href="/docs/kafka/snapshot/reference/">Snapshot</a>
+            </div>
+        </article>
+        <article>
+            <div class="title">
+                <h1>Reactor RabbitMQ</h1>
+                <p>Reactive bridge to RabbitMQ</p>
+                <div class="version">
+                    <span class="version">1.0.0.M2</span>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-rabbitmq">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="javadoc">
+                <strong>Javadoc</strong> <br/>
+                <a href="/docs/rabbitmq/milestone/api/">Milestone</a> |
+                <a href="/docs/rabbitmq/snapshot/api/">Snapshot</a>
+            </div>
+            <div class="reference">
+                <strong>Reference</strong> <br/>
+                <a href="/docs/rabbitmq/milestone/reference/">Milestone</a> |
+                <a href="/docs/rabbitmq/snapshot/reference/">Snapshot</a>
+            </div>
+        </article>
+        <article>
+            <div class="title">
+                <h1>Reactor Core .NET</h1>
+                <p>Incubating Reactive Streams foundation for .NET</p>
+                <div class="version">
+                    <span class="version">0.6.1</span>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-core-dotnet"><span
+                        class="fa fa-github"></span> Github</a>
+            </div>
+            <div class="nuget">
+                <a href="https://www.nuget.org/packages/Reactor.Core/">
+                    <span class="fa fa-book"></span> nuget
+                </a>
+            </div>
+        </article>
+        <article>
+            <div class="title">
+                <h1>Reactor Core JS</h1>
+                <p>Incubating Reactive Streams foundation for Javascript</p>
+                <div class="version">
+                    <span class="version">0.5.0</span>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-core-js">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </div>
+            <div class="npm">
+                <a href="https://www.npmjs.com/package/reactor-core-js">
+                    <span class="fa fa-book"></span> NPM
+                </a>
+            </div>
+        </article>
+    </section>
+    <div class="details">
+        Legend:
+        <ul>
+            <li><span class="version releasetrain hold">RELEASE-TRAIN</span>: Artifacts participating in these
+                release trains have not all been released, so the BOMs are not available yet (
+                <span th:if="${upcoming.coreVersion} != null">currently <span class="version releasetrain hold" th:text="${upcoming.name}"> CURRENT</span></span>
+                <span th:if="${upcoming.coreVersion} == null">eg. <span class="version releasetrain hold"> Californium-SR30</span></span>
+                ).
+            </li>
+            <li><span class="version releasetrain">RELEASE-TRAIN</span>: Artifact participating in the latest stable
+                and fully available release train (
+                <span th:if="${stable.coreVersion} != null">currently <span class="version releasetrain" th:text="${stable.name}"> CURRENT</span></span>
+                <span th:if="${stable.coreVersion} == null">eg. <span class="version releasetrain"> Bismuth-SR10</span></span>
+                ).
+            </li>
+            <li><span class="version releasetrain pre">RELEASE-TRAIN</span>: Artifact participating in the latest
+                pre-release release train (
+                <span th:if="${milestone.coreVersion} != null">currently <span class="version releasetrain pre" th:text="${milestone.name}"> CURRENT</span></span>
+                <span th:if="${milestone.coreVersion} == null">eg. <span class="version releasetrain pre"> Californium-M1</span></span>
+                ).
+            </li>
+            <li><span class="version">version</span>: Available RELEASE artifact.</li>
+            <li><span class="version pre">version</span>: Available MILESTONE or other pre-release artifact (on repo.spring.io).</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

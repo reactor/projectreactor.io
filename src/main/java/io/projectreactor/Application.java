@@ -25,11 +25,16 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
 import io.netty.handler.codec.http.HttpHeaders;
 import org.reactivestreams.Publisher;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import reactor.core.publisher.Mono;
@@ -38,6 +43,8 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.http.server.HttpServer;
 import reactor.netty.http.server.HttpServerRequest;
 import reactor.netty.http.server.HttpServerResponse;
+import reactor.util.Logger;
+import reactor.util.Loggers;
 import reactor.util.function.Tuple2;
 
 import org.springframework.core.io.ClassPathResource;
@@ -52,13 +59,35 @@ public final class Application {
 	private final Path                contentPath = resolveContentPath();
 
 	private final Mono<? extends DisposableServer> context;
+	private final TemplateEngine templateEngine;
+	private final Map<String, Object> docsModel = new HashMap<>();
 
+	private static final Logger LOGGER = Loggers.getLogger(Application.class);
 
 	Application() throws IOException {
+		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setPrefix("/static/templates/");
+		templateResolver.setSuffix(".html");
+		this.templateEngine = new TemplateEngine();
+		this.templateEngine.setTemplateResolver(templateResolver);
+
+		//evaluate the boms.yml file first and add it to thymeleaf's model
+		Yaml bomYaml = new Yaml(new Constructor(Bom.class));
+		bomYaml.loadAll(new ClassPathResource("boms.yml").getInputStream())
+		       .forEach(o -> {
+			       Bom bom = (Bom) o;
+			       docsModel.put(bom.getType(), bom);
+		       });
+		//templates will be resolved and parsed below during route setup
+
 		context = HttpServer.create()
 		                    .host("0.0.0.0")
 		                    .port(8080)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
+		                                 .get("/", template("home"))
+		                                 .get("/docs", template("docs"))
+		                                 .get("/learn", template("learn"))
+		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
@@ -72,11 +101,9 @@ public final class Application {
 		                                 .get("/ipc/docs/api/**", rewrite("/ipc/docs/", "/docs/ipc/release/"))
 		                                 .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
-		                                 .get("/learn", (req, res) -> res.sendFile(contentPath.resolve("learn.html")))
 		                                 .get("/2.x/{module}/api", this::legacyProxy)
 		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
-		                                 //.get("/project", (req, res) -> res.sendFile(contentPath.resolve("project.html")))
-		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
+//		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
 		                                 .directory("/assets", contentPath.resolve("assets")))
@@ -88,7 +115,6 @@ public final class Application {
 			Module module = (Module)o;
 			modules.put(module.getName(), module);
 		});
-
 	}
 
 	public static void main(String... args) throws Exception {
@@ -106,6 +132,18 @@ public final class Application {
 	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> rewrite(
 			String originalPath, String newPath) {
 		return (req, resp) -> resp.sendRedirect(req.uri().replace(originalPath, newPath));
+	}
+
+	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> template(
+			String templateName) {
+
+		//the template parsing happens at app's initialization
+		long start = System.nanoTime();
+		final String content = templateEngine.process(templateName, new Context(Locale.US, docsModel));
+		long duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+		LOGGER.info("Parsed template {} in {}ms", templateName, duration);
+
+		return (req, resp) -> resp.sendString(Mono.just(content));
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
