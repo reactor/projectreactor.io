@@ -177,13 +177,20 @@ body {
   color: white;
   .footer-content {
     background: #423e3c;
-    padding: 2em 0 2.5em;
+    padding: 1em 0 1em;
+  }
+  .footer-note {
+    text-align: center;
+    color: rgba(255,255,255,.3);
+    display: block;
+    font-size: 0.9em;
+    padding: 0.4em 0;
   }
   .footer-content-text {
     @include clearfix();
     @extend .container;
     max-width: 1100px;
-    padding: 2em 1.5em;
+    padding: 1em 0.5em;
     .licence {
       color: rgba(255,255,255,.3);
       display: block;
