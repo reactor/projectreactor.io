@@ -106,6 +106,7 @@ public final class Application {
 //		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
+		                                 .get("**.html", pageNotFound())
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor))
 		                    .bind();
 
@@ -144,6 +145,18 @@ public final class Application {
 		LOGGER.info("Parsed template {} in {}ms", templateName, duration);
 
 		return (req, resp) -> resp.sendString(Mono.just(content));
+	}
+
+	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> pageNotFound() {
+
+		//the template parsing is dynamic to inject the requested url
+		return (req, resp) -> resp
+				.status(404)
+			    .sendString(
+			    		Mono.just(templateEngine.process("404",
+							    new Context(Locale.US, Collections.singletonMap("requestedPage", req.path()))
+					    ))
+			    );
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
