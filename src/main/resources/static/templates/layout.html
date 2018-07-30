@@ -14,12 +14,12 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<html th:fragment="layout(page,description,links,content)" xmlns:th="http://www.thymeleaf.org">
+<html th:fragment="layout(page,title,description,links,content)" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Project Reactor</title>
-    <meta name="description" th:replace="${description}" content="Placeholder description">
+    <title th:replace="${title}">Project Reactor</title>
+    <meta name="description" content="Project Reactor" th:replace="${description}">
     <!--/* Common stylesheet */-->
-    <link href="../assets/css/reactor.css?v=1" media="all" rel="stylesheet"/>
+    <link href="/assets/css/reactor.css?v=1" media="all" rel="stylesheet"/>
     <!--/* Page-specific stylesheet(s) */-->
     <th:block th:replace="${links}"/>
 
@@ -76,12 +76,13 @@
                         <ul>
                             <li th:class="${page == 'docs'}? 'active'"><a href="/docs">Documentation</a></li>
                             <li th:class="${page == 'learn'}? 'active'"><a href="/learn">Learn</a></li>
-                            <li><a href="https://github.com/reactor" class="fa fa-github-alt" title="Github">&nbsp;</a></li>
-                            <li><a href="https://gitter.im/reactor/reactor" class="fa fa-group"
+                            <li><a href="https://github.com/reactor" class="fa fa-github-alt" target="_blank"
+                                   title="Github">&nbsp;</a></li>
+                            <li><a href="https://gitter.im/reactor/reactor" class="fa fa-group" target="_blank"
                                    title="Join the community chat on Gitter">&nbsp;</a></li>
-                            <li><a href="https://twitter.com/projectreactor" class="fa fa-twitter"
+                            <li><a href="https://twitter.com/projectreactor" class="fa fa-twitter" target="_blank"
                                    title="Follow us on Twitter">&nbsp;</a></li>
-                            <li><a href="http://stackoverflow.com/questions/tagged/project-reactor" class="fa fa-stack-overflow"
+                            <li><a href="http://stackoverflow.com/questions/tagged/project-reactor" class="fa fa-stack-overflow" target="_blank"
                                    title="Ask questions on Stack Overflow">&nbsp;</a></li>
                         </ul>
                     </nav>
