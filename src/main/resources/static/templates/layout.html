@@ -71,10 +71,9 @@
                     <span class="fa fa-bars"></span>
                 </a>
                 <div class="heading">
-                    <h1 id="logo" class="active"><a href="/"><strong>Project Reactor</strong></a></h1>
+                    <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
                     <nav id="nav">
                         <ul>
-                            <li class="hide"><a href="/">Home</a></li>
                             <li th:class="${page == 'docs'}? 'active'"><a href="/docs">Documentation</a></li>
                             <li th:class="${page == 'learn'}? 'active'"><a href="/learn">Learn</a></li>
                             <li><a href="https://github.com/reactor" class="fa fa-github-alt" title="Github">&nbsp;</a></li>
@@ -165,6 +164,7 @@
 -->
 
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="assets/js/sidebar.js"></script>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
