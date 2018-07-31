@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('404', ~{::title}, ~{::meta[@name='description']}, ~{::link}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor - 404 Page Not Found</title>
+    <meta name="description" content="404 Page Not Found" />
+    <link href="/assets/css/docs.css" media="all" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="content" id="content">
+    <section class="page404">
+        <img height="145px" src="/assets/img/404.jpg" />
+        <h1>The page <span class="version pre" th:text="${requestedPage}">PAGE PLACEHOLDER</span> cannot be found.</h1>
+        <article>
+            <p class="desc">
+                You can find some helpful links in the footer below, or try a page from the navigation bar on top...
+                <br/>If you think this URL should have worked, please open an
+                <a href="https://github.com/reactor/projectreactor.io/issues">issue</a>.
+            </p>
+        </article>
+    </section>
+</div>
+
+</body>
+</html>
