@@ -12,6 +12,8 @@ type: upcoming
 name: Californium-M2
 coreVersion: 3.2.0.M4
 testVersion: 3.2.0.M4
+extraVersion: 3.2.0.M2
+adapterVersion: 3.2.0.M2
 ---
 type: milestone
 #remove name to deactivate, individual version to hide artifacts
