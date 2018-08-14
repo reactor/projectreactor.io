@@ -53,6 +53,7 @@
                         <tr th:if="${upcoming.coreVersion} != null">
                             <td>
                                     <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.coreVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.coreVersion}">VERSION</span>
                             </td>
@@ -154,6 +155,7 @@
                         <tr th:if="${upcoming.testVersion} != null">
                             <td>
                                     <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.testVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.testVersion}">VERSION</span>
                             </td>
@@ -252,6 +254,7 @@
                         <tr th:if="${upcoming.extraVersion} != null">
                             <td>
                                     <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.extraVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.extraVersion}">VERSION</span>
                             </td>
@@ -340,6 +343,7 @@
                         <tr th:if="${upcoming.nettyVersion} != null">
                             <td>
                                     <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.nettyVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.nettyVersion}">VERSION</span>
                             </td>
@@ -427,6 +431,7 @@
                         <tr th:if="${upcoming.adapterVersion} != null">
                             <td>
                                     <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.adapterVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.adapterVersion}">VERSION</span>
                             </td>
