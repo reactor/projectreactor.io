@@ -9,8 +9,9 @@ adapterVersion: 3.1.6.RELEASE
 ---
 type: upcoming
 #remove name to deactivate, individual version to hide artifacts
-#name: Californium-M2
-#coreVersion: foo.M4
+name: Californium-M2
+coreVersion: 3.2.0.M4
+testVersion: 3.2.0.M4
 ---
 type: milestone
 #remove name to deactivate, individual version to hide artifacts
