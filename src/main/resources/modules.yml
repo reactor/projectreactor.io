@@ -109,6 +109,7 @@ groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
   - 0.8.0.BUILD-SNAPSHOT
+  - 0.8.0.M2
   - 0.8.0.M1
 ---
 name: nettyArchive
