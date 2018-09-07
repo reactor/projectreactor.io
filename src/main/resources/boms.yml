@@ -1,11 +1,11 @@
 ---
 type: stable
-name: Bismuth-SR10
-coreVersion: 3.1.8.RELEASE
-testVersion: 3.1.8.RELEASE
-nettyVersion: 0.7.8.RELEASE
-extraVersion: 3.1.6.RELEASE
-adapterVersion: 3.1.6.RELEASE
+name: Bismuth-SR11
+coreVersion: 3.1.9.RELEASE
+testVersion: 3.1.9.RELEASE
+nettyVersion: 0.7.9.RELEASE
+extraVersion: 3.1.7.RELEASE
+adapterVersion: 3.1.7.RELEASE
 ---
 type: upcoming
 #remove name to deactivate, individual version to hide artifacts
@@ -14,9 +14,9 @@ type: upcoming
 ---
 type: milestone
 #remove name to deactivate, individual version to hide artifacts
-name: Californium-M2
-coreVersion: 3.2.0.M4
-testVersion: 3.2.0.M4
-nettyVersion: 0.8.0.M2
-extraVersion: 3.2.0.M2
-adapterVersion: 3.2.0.M2
+name: Californium-RC1
+coreVersion: 3.2.0.RC1
+testVersion: 3.2.0.RC1
+nettyVersion: 0.8.0.M3
+extraVersion: 3.2.0.RC1
+adapterVersion: 3.2.0.RC1
