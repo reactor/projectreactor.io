@@ -14,7 +14,7 @@ coreVersion: 3.2.0.RELEASE
 ---
 type: milestone
 #remove name to deactivate, individual version to hide artifacts
-name: Californium-RC1
+#name: Californium-RC1
 coreVersion: 3.2.0.RC1
 testVersion: 3.2.0.RC1
 nettyVersion: 0.8.0.M3
