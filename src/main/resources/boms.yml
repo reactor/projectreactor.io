@@ -16,12 +16,16 @@ adapterVersion: 3.2.0.RELEASE
 #adapterVersion: 3.1.7.RELEASE
 ---
 type: upcoming
-#remove name to deactivate, individual version to hide artifacts
+#remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-RELEASE
 #coreVersion: 3.2.0.RELEASE
 ---
 type: milestone
-#remove name to deactivate, individual version to hide artifacts
+#remove name to deactivate badge and/or individual versions to hide artifacts links
+#name: Californium-RC1
+---
+type: snapshot
+#remove name to deactivate badge and/or individual versions to hide artifacts links
 name: Californium-BUILD-SNAPSHOT
 coreVersion: 3.2.1.BUILD-SNAPSHOT
 testVersion: 3.2.1.BUILD-SNAPSHOT
