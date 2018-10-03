@@ -297,7 +297,18 @@ public class DocUtilsTest {
 				urlModule, "testVersion");
 
 		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-docs-testVersion.zip!/some/absolute/reference/page.html");
+				"testVersion/fooArtifact-docs-testVersion.zip!/docs/some/absolute/reference/page.html");
+	}
+
+	@Test
+	public void moduleToUrlReferenceHighlight() {
+		String uri = "/docs/core/snapshot/reference/highlight/styles/railscasts.min.css";
+		String url = DocUtils.moduleToUrl(uri, "repoType",
+				"test", "snapshot",
+				urlModule, "testVersion");
+
+		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+				"testVersion/fooArtifact-docs-testVersion.zip!/docs/highlight/styles/railscasts.min.css");
 	}
 
 	@Test

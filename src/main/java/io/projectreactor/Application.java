@@ -89,7 +89,7 @@ public final class Application {
 		                                 .get("/learn", template("learn"))
 		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
-		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/docs/index.html"))
+		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/{version}/reference/**", this::repoProxy)
 		                                 //TODO this is a hack due to the dokka css being imported as `../style.css` in the html
@@ -106,8 +106,8 @@ public final class Application {
 //		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/docs", contentPath.resolve("docs"))
-		                                 .get("**.html", pageNotFound())
-		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor))
+		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
+		                                 .get("**.html", pageNotFound()))
 		                    .bind();
 
 

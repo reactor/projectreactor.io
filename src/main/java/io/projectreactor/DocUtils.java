@@ -107,7 +107,7 @@ public class DocUtils {
 		if (reqUri.contains("/api/")) {
 			url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
 					requestedVersion, actualModule, actualVersion,
-					12, "index.html", "-javadoc.jar", "");
+					12, "index.html", "-javadoc.jar", "", "");
 		}
 		else if (reqUri.contains("/kdoc-api/")) {
 			url = moduleToKdocUrl(reqUri, versionType, requestedModuleName,
@@ -116,7 +116,8 @@ public class DocUtils {
 		else {
 			url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
 					requestedVersion, actualModule, actualVersion,
-					18, "docs/index.html", ".zip", "-docs");
+					18, "index.html", ".zip", "-docs",
+					"docs/");
 		}
 		return url;
 	}
@@ -150,7 +151,8 @@ public class DocUtils {
 	static String moduleToArtifactUrl(String reqUri, String versionType,
 			String requestedModuleName, String requestedVersion, Module actualModule,
 			String actualVersion,
-			int offset, String indexFile, String suffix, String artifactSuffix) {
+			int offset, String indexFile, String suffix, String artifactSuffix,
+			String rootDirInArtifact) {
 		String file = reqUri.substring(offset + requestedModuleName.length() + requestedVersion.length());
 		if (file.isEmpty()) {
 			file = indexFile;
@@ -166,7 +168,7 @@ public class DocUtils {
 				+ "/" + actualVersion
 				+ "/" + actualModule.getArtifactId() + artifactSuffix
 				+ "-" + actualVersion + suffix
-				+ "!/" + file;
+				+ "!/" + rootDirInArtifact + file;
 
 		return url;
 	}
