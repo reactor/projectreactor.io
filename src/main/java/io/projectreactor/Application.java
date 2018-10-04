@@ -168,23 +168,30 @@ public final class Application {
 
 		Tuple2<Module, String> module = DocUtils.findModuleAndVersion(modules, requestedModule, requestedVersion);
 		if (module == null) {
-			return resp.sendNotFound();
+			return pageNotFound().apply(req, resp);
 		}
 
 		String url = DocUtils.moduleToUrl(reqUri, versionType,
 				requestedModule, requestedVersion,
 				module.getT1(), module.getT2());
 		if (url == null) {
-			return resp.sendNotFound();
+			return pageNotFound().apply(req, resp);
 		}
 
 		return client.headers(h -> filterXHeaders(req.requestHeaders()))
 		             .get()
 		             .uri(url)
-		             .response((r, body) -> resp.headers(r.responseHeaders())
-		                                        .status(r.status())
-		                                        .send(body.retain())
-		                                        .then());
+		             .response((r, body) -> {
+		             	if (r.status().code() == 404) {
+			                return pageNotFound().apply(req, resp);
+		                }
+		                else {
+		             		return resp.headers(r.responseHeaders())
+			                    .status(r.status())
+			                    .send(body.retain())
+			                    .then();
+		                }
+		             });
 	}
 
 	private Publisher<Void> legacyProxy(HttpServerRequest req,
