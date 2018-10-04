@@ -89,6 +89,7 @@ public final class Application {
 		                                 .get("/learn", template("learn"))
 		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
+		                                 .get("/docs/{module}/{version}/reference/docs/**", rewrite("/reference/docs/", "/reference/"))
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/index.html"))
 		                                 .get("/docs/{module}/{version}/api/**", this::repoProxy)
 		                                 .get("/docs/{module}/{version}/reference/**", this::repoProxy)
