@@ -17,8 +17,9 @@ adapterVersion: 3.2.0.RELEASE
 ---
 type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-#name: Californium-RELEASE
-#coreVersion: 3.2.0.RELEASE
+name: Californium-SR1
+coreVersion: 3.2.1.RELEASE
+testVersion: 3.2.1.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
