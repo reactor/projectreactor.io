@@ -12,12 +12,14 @@ public class Bom {
 	private String nettyVersion;
 	private String extraVersion;
 	private String adapterVersion;
+	private String kafkaVersion;
 
 	public Bom() {
 	}
 
 	public Bom(String type, String name, String coreVersion, String testVersion,
-			String nettyVersion, String extraVersion, String adapterVersion) {
+			String nettyVersion, String extraVersion, String adapterVersion,
+			String kafkaVersion) {
 		this.type = type;
 		this.name = name;
 		this.coreVersion = coreVersion;
@@ -25,6 +27,7 @@ public class Bom {
 		this.nettyVersion = nettyVersion;
 		this.extraVersion = extraVersion;
 		this.adapterVersion = adapterVersion;
+		this.kafkaVersion = kafkaVersion;
 	}
 
 	public String getType() {
@@ -83,8 +86,23 @@ public class Bom {
 		this.adapterVersion = adapterVersion;
 	}
 
+	public String getKafkaVersion() {
+		return kafkaVersion;
+	}
+
+	public void setKafkaVersion(String kafkaVersion) {
+		this.kafkaVersion = kafkaVersion;
+	}
+
 	@Override
 	public String toString() {
-		return "Bom{" + "type='" + type + '\'' + ", name='" + name + '\'' + ", coreVersion='" + coreVersion + '\'' + ", testVersion='" + testVersion + '\'' + ", nettyVersion='" + nettyVersion + '\'' + ", extraVersion='" + extraVersion + '\'' + ", adapterVersion='" + adapterVersion + '\'' + '}';
+		return "Bom{" + "type='" + type + '\'' + ", name='" + name + '\''
+				+ ", coreVersion='" + coreVersion + '\''
+				+ ", testVersion='" + testVersion + '\''
+				+ ", nettyVersion='" + nettyVersion + '\''
+				+ ", extraVersion='" + extraVersion + '\''
+				+ ", adapterVersion='" + adapterVersion + '\''
+				+ ", kafkaVersion='" + kafkaVersion + '\''
+				+ '}';
 	}
 }

@@ -516,8 +516,6 @@
             </div>
         </article>
 
-        <!--/* The rest of the links are handled manually still */-->
-
         <article>
             <div class="title">
                 <h1>Reactor Kafka</h1>
@@ -531,16 +529,62 @@
                             </td>
                             <td>Release Train</td>
                         </tr>
-                        <tr>
-                            <td><span class="version"
-                                      title="Latest Release"> 1.0.1.RELEASE</span></a></td>
-                            <td><a
-                                    href="https://github.com/reactor/reactor-kafka/releases/tag/v1.0.1.RELEASE"
-                                    title="See the reactor-kafka 1.0.1 release notes on GitHub"
-                                    class="fa fa-file-text">&nbsp;</a></td>
-                            <td><!--<span class="version releasetrain"
-                                                  title="Stable release
-                                                  train">Bismuth-SR11</span>-->
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.kafkaVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.kafkaVersion,'.RELEASE')}? 'pre'"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.kafkaVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kafka/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kafka/releases/tag/v{tag}(tag=${upcoming.kafkaVersion})}"
+                                   th:title="|See the reactor-kafka ${upcoming.kafkaVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.kafkaVersion} != null">
+                            <td>
+                                <span class="version" th:text="${stable.kafkaVersion}"> VERSION</span>
+                            </td>
+                            <td>
+                                <a href="http://github.com/reactor/reactor-kafka/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kafka/releases/tag/v{tag}(tag=${stable.kafkaVersion})}"
+                                   th:title="|See the reactor-kafka ${stable.kafkaVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.kafkaVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.kafkaVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kafka/releases/"
+                                   th:href="@{https://github.com/reactor/reactor-kafka/releases/tag/v{tag}(tag=${milestone.kafkaVersion})}"
+                                   th:title="|See the reactor-kafka ${milestone.kafkaVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}">BOM</span>
                             </td>
                         </tr>
                     </table>
@@ -562,6 +606,8 @@
                 <a href="/docs/kafka/snapshot/reference/">Snapshot</a>
             </div>
         </article>
+
+        <!--/* The rest of the links are handled manually still */-->
         <article>
             <div class="title">
                 <h1>Reactor RabbitMQ</h1>

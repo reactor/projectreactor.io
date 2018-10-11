@@ -128,8 +128,9 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.8.1.RELEASE
   - 0.8.0.RELEASE
-  - 0.8.1.BUILD-SNAPSHOT
+  - 0.8.2.BUILD-SNAPSHOT
   - 0.8.0.M3
   - 0.8.0.M2
   - 0.8.0.M1
@@ -138,6 +139,7 @@ name: nettyArchive
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.7.10.RELEASE
   - 0.7.9.RELEASE
   - 0.7.8.RELEASE
   - 0.7.7.RELEASE
@@ -156,7 +158,7 @@ versions:
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
-  - 0.7.9.BUILD-SNAPSHOT
+  - 0.7.11.BUILD-SNAPSHOT
   - 0.7.0.RC1
   - 0.7.0.M2
   - 0.7.0.M1
@@ -176,12 +178,14 @@ name: kafka
 groupId: io.projectreactor.kafka
 artifactId: reactor-kafka
 versions:
+  - 1.1.0.RELEASE
   - 1.0.1.RELEASE
   - 1.0.0.RELEASE
   - 1.0.0.RC1
   - 1.0.0.M4
   - 1.0.0.M3
-  - 1.0.1.BUILD-SNAPSHOT
+  - 1.1.1.BUILD-SNAPSHOT
+  - 1.0.2.BUILD-SNAPSHOT
 ---
 name: rabbitmq
 groupId: io.projectreactor.rabbitmq
