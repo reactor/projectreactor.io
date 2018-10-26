@@ -18,8 +18,9 @@ kafkaVersion: 1.1.0.RELEASE
 ---
 type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-#name: Californium-SR1
-#coreVersion: 3.2.1.RELEASE
+name: Californium-SR2
+coreVersion: 3.2.2.RELEASE
+testVersion: 3.2.2.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
@@ -28,8 +29,8 @@ type: milestone
 type: snapshot
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 name: Californium-BUILD-SNAPSHOT
-coreVersion: 3.2.2.BUILD-SNAPSHOT
-testVersion: 3.2.2.BUILD-SNAPSHOT
+coreVersion: 3.2.3.BUILD-SNAPSHOT
+testVersion: 3.2.3.BUILD-SNAPSHOT
 nettyVersion: 0.8.2.BUILD-SNAPSHOT
 extraVersion: 3.2.1.BUILD-SNAPSHOT
 adapterVersion: 3.2.1.BUILD-SNAPSHOT
