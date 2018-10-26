@@ -3,7 +3,5 @@ applications:
 - name: projectreactor
   memory: 1G
   path: ./build/libs/projectreactor-home-all.jar
+  domain: projectreactor.io
   disk_quota: 1024M
-  routes:
-    - route: projectreactor.io
-    - route: projectreactor.cfapps.io
