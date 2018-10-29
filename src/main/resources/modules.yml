@@ -37,8 +37,8 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
-  - 3.2.1.RELEASE
   - 3.2.2.RELEASE
+  - 3.2.1.RELEASE
   - 3.2.0.RELEASE
   - 3.1.11.RELEASE
   - 3.1.10.RELEASE
