@@ -78,6 +78,13 @@ public final class Application {
 			       Bom bom = (Bom) o;
 			       docsModel.put(bom.getType(), bom);
 		       });
+		//evaluate modules, add oldboms to thymeleaf's model
+		Yaml yaml = new Yaml(new Constructor(Module.class));
+		yaml.loadAll(new ClassPathResource("modules.yml").getInputStream()).forEach(o -> {
+			Module module = (Module)o;
+			modules.put(module.getName(), module);
+		});
+		docsModel.put("oldBoms", modules.get("olderBoms"));
 		//templates will be resolved and parsed below during route setup
 
 		context = HttpServer.create()
@@ -110,13 +117,6 @@ public final class Application {
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
 		                                 .get("**.html", pageNotFound()))
 		                    .bind();
-
-
-		Yaml yaml = new Yaml(new Constructor(Module.class));
-		yaml.loadAll(new ClassPathResource("modules.yml").getInputStream()).forEach(o -> {
-			Module module = (Module)o;
-			modules.put(module.getName(), module);
-		});
 	}
 
 	public static void main(String... args) throws Exception {

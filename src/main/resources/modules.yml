@@ -1,3 +1,12 @@
+name: olderBoms
+#just used for versions
+#put the latest version of older generations here
+#don't include the current release train
+groupId: io.projectreactor
+artifactId: reactor-bom
+versions:
+  - Bismuth-SR14
+  - Aluminium-SR3
 ---
 name: core
 groupId: io.projectreactor

@@ -43,6 +43,12 @@
                                               title="MILESTONE release train"
                                               th:text="${milestone.name}">MILESTONE</span>
             </div>
+            <div th:if="${oldBoms.versions} != null">
+                For information, the latest BOMs in older release trains are:
+                <span th:each="bom : ${oldBoms.versions}">
+                    <span class="version releasetrain hold" th:text="${bom}">OLD BOM</span>&nbsp;
+                </span>
+            </div>
         </div>
     </div>
 </div>
