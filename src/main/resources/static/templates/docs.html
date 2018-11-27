@@ -27,8 +27,6 @@
         <div class="page-summary-wrap">
             <h1>Documentation</h1>
             <div class="details">
-                        <span id="author" class="author">Project Reactor reference
-                            documentation, code samples, and Javadoc. See color coding legend at end</span>
                 <div th:if="${upcoming.name} != null">
                     Upcoming BOM: <span class="version releasetrain hold"
                                         title="Partially available release train"
@@ -44,7 +42,7 @@
                                               th:text="${milestone.name}">MILESTONE</span>
             </div>
             <div th:if="${oldBoms.versions} != null">
-                For information, the latest BOMs in older release trains are:
+                Latest BOMs in older release trains are:
                 <span th:each="bom : ${oldBoms.versions}">
                     <span class="version releasetrain hold" th:text="${bom}">OLD BOM</span>&nbsp;
                 </span>
