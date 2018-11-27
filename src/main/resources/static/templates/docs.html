@@ -26,6 +26,8 @@
     <div class="page-summary-content">
         <div class="page-summary-wrap">
             <h1>Documentation</h1>
+            <span id="author" class="author">Project Reactor reference
+                            documentation and Javadoc. </span>
             <div class="details">
                 <div th:if="${upcoming.name} != null">
                     Upcoming BOM: <span class="version releasetrain hold"
@@ -678,7 +680,7 @@
         Legend:
         <ul>
             <li><span class="version releasetrain hold">RELEASE-TRAIN</span>: Artifacts participating in these
-                release trains have not all been released, so the BOMs are not available yet (
+                release trains have not all been released (
                 <span th:if="${upcoming.coreVersion} != null">currently <span class="version releasetrain hold" th:text="${upcoming.name}"> CURRENT</span></span>
                 <span th:if="${upcoming.coreVersion} == null">eg. <span class="version releasetrain hold"> Californium-SR30</span></span>
                 ).
