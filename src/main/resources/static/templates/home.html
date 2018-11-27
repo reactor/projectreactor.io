@@ -1,3 +1,18 @@
+<!--
+  ~ Copyright (c) 2011-2018 Pivotal Software Inc, All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout('home', _, ~{::meta[@name='description']}, ~{}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -31,7 +46,7 @@
                     <h1>Reactive Core</h1>
                     <p>
                         Reactor is a <strong>fully non-blocking</strong> foundation with
-                        efficient demand management. It directly interacts with Java 8
+                        efficient demand management. It directly interacts with Java
                         <i>functional API</i>, <i>Completable Future</i>, <i>Stream</i> and <i>Duration</i>.
                     </p>
                 </div>
@@ -63,7 +78,6 @@
                         <strong>backpressure-ready
                             network engines</strong> for HTTP (including
                         Websockets), TCP and UDP.
-                        Reactive Encoding/Decoding is fully supported.
                     </p>
                 </div>
             </article>
@@ -75,11 +89,14 @@
                 <span class="icon"></span>
                 <h1>Efficient Message Passing</h1>
                 <p>
-                    Reactor Processors, Operators and Timers can <strong>sustain high throughput rates</strong> on the order of 10's of
+                    Reactor Operators and Schedulers can <strong>sustain high
+                    throughput rates</strong> on the order of 10's of
                     millions of messages per second. Plus its <b>low memory footprint</b> should go under
-                    most of the radars. Reactor is part of an <a
-                        href="http://github.com/reactor/reactive-streams-commons">ongoing research
-                    effort</a> to challenge further the possible flow optimizations.
+                    most of the radars. Reactor Core internals is the first reactive
+                    library based on a joint <a
+                        href="http://github.com/reactor/reactive-streams-commons">research
+                    effort</a> also implemented by <a href="http://reactivex.io">RxJava 2
+                </a>.
                 </p>
             </div>
         </article>
@@ -87,13 +104,16 @@
             <div>
                 <h1>Friendly Adoption</h1>
                 <p>
-                    As a Reactive Engine/SPI, both Reactor Core and IO modules expose reactive streams
-                    constructs for focused
-                    use cases, eventually combined with <a href="http://spring.io">Spring</a>, <a href="http://reactivex.io">
-                    RxJava</a>, <a href="https://doc.akka.io/docs/akka/current/?language=java">Akka
-                    Streams</a>, <a href="http://ratpack.io">Ratpack</a>... As a Reactive API, reactor
-                    framework modules will offer rich consumable features like
-                    composition and pub-sub eventing.
+                    Do not write Reactive Streams yourself ! As a Reactive Engine/SPI, Reactor modules provide embeddable and interoperable rich functional
+                    <a href="http://reactive-streams.org">Reactive Streams</a>
+                    APIs. Use it at any level of granularity :
+                    <ul>
+                        <li>In Frameworks such as <a href="https://spring.io">Spring
+                        </a> Boot and WebFlux. </li>
+                        <li>In Drivers such as <a href="https://github.com/cloudfoundry/cf-java-client">CloudFoundry Java Client</a></li>
+                        <li>In Contracts or Protocol such as <a href="http://rsocket.io">RSocket</a> and <a href="https://r2dbc.io">R2DBC</a></li>
+                    </ul>
+
                 </p>
             </div>
         </article>
@@ -102,13 +122,12 @@
                 <span class="icon"></span>
                 <h1>Guardian of the Latency</h1>
                 <p style="margin-bottom: 0">Scaling-Out to overcome latency and slow microservices is an important
-                    tool. Cloud Native apps will have a better chance at effective scale-out with asychronous architectures.
+                    tool. Cloud Native apps will have a better chance at effective
+                    scale-out with asynchronous architectures.
                     To assist such design, Reactor offers non-blocking and
-                    backpressure-ready embeddable solutions including local and remote Unicast/Multicast
-                    messaging
-                    or
-                    TCP/HTTP/UDP
-                    client & servers.
+                    backpressure-ready embeddable solutions including local
+                    TCP/HTTP/UDP client & servers based on the robust <a
+                            href="https://netty.io/">Netty</a> framework.
                 </p>
             </div>
         </article>

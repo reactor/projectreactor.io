@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2011-2017 Pivotal Software Inc, All Rights Reserved.
+/*!
+ * Copyright (c) 2011-2018 Pivotal Software Inc, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -242,7 +242,7 @@ section#welcome {
   font-size: 1.2em;
   height: 360px;
   font-family: $reactorFontSpecial;
-  background: #e5e2b6 url('../img/homepage-bg.jpg') no-repeat center 0;
+  background:  url(../img/homepage-bg.png) center 0 no-repeat rgb(147, 173, 160);
   article {
     color: white;
     text-align: center;
@@ -579,8 +579,7 @@ section#key-features {
       div {
         padding-right: 20px;
         padding-left: 350px;
-        text-align: right;
-        background: white url('../img/friendlyadoption-bg.jpg') no-repeat left center;
+        background: white url('../img/friendlyadoption-bg.jpg') no-repeat right 20px;
         background-size: 360px 385px;
       }
       //background: #ebf1e7;
