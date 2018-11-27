@@ -25,8 +25,9 @@
     </appender>
 
     <logger name="reactor" level="info"/>
-    <logger name="reactor.netty.channel" level="TRACE"/>
-    <logger name="proxy" level="info"/>
+    <!--<logger name="reactor.netty.channel.FluxReceive" level="TRACE"/>-->
+    <!--<logger name="reactor.netty.channel.ChannelOperations" level="DEBUG"/>-->
+    <!--<logger name="reactor.netty.http.client.HttpClientFinalizer" level="TRACE"/>-->
 
     <root level="info">
         <appender-ref ref="stdout"/>
