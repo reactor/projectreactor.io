@@ -153,6 +153,27 @@
       }
     }
   }
+
+
+  section#code-sample {
+    article {
+      .code-sample {
+        padding: 2.5em 20px;
+      }
+      .colset {
+        .left {
+          width: 100%;
+          float: none;
+        }
+        .right {
+          width: 100%;
+          float: none;
+          padding: 0;
+        }
+      }
+    }
+  }
+
 }
 
 @media (max-width: 600px) {
