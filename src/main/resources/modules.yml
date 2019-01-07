@@ -12,6 +12,7 @@ name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
+  - 3.2.4.RELEASE
   - 3.2.3.RELEASE
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
@@ -34,7 +35,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.2.4.BUILD-SNAPSHOT
+  - 3.2.5.BUILD-SNAPSHOT
   - 3.2.0.RC1
   - 3.2.0.M4
   - 3.2.0.M3
@@ -49,6 +50,7 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
+  - 3.2.4.RELEASE
   - 3.2.3.RELEASE
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
@@ -67,7 +69,7 @@ versions:
   - 3.1.2.RELEASE
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
-  - 3.2.4.BUILD-SNAPSHOT
+  - 3.2.5.BUILD-SNAPSHOT
   - 3.2.0.RC1
   - 3.2.0.M4
   - 3.2.0.M3
