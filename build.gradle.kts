@@ -34,6 +34,9 @@ import java.util.concurrent.TimeUnit
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+
+    //force JRuby version, bumping Ruby to 2.5
+    resolutionStrategy.force("org.jruby:jruby-complete:9.2.5.0")
 }
 
 buildscript {
@@ -48,6 +51,9 @@ buildscript {
     dependencies {
         classpath("com.github.jengelman.gradle.plugins:shadow:1.2.4")
         classpath("com.github.robfletcher:compass-gradle-plugin:2.0.6")
+        //NOTE: compass-gradle-plugin seems to somehow induce a dependency on JRuby/Ruby version < 2.2
+        //this causes the rb-inotify gem to fail to install in version 0.10.0 (because it now requires Ruby 2.2)
+        //see the `resolutionStrategy.force` above for the workaround, because bumping JRuby here didn't work
     }
 }
 
