@@ -192,7 +192,8 @@ public final class Application {
 			                resp.headers(r.responseHeaders());
 
 			                if (reqUri.endsWith(".svg")) {
-				               resp.header(HttpHeaderNames.CONTENT_TYPE, APPLICATION_SVG);
+				               resp.header(HttpHeaderNames.CONTENT_TYPE,
+						               CONTENT_TYPE_IMAGE_SVG);
 			                }
 
 		             		return resp.status(r.status())
@@ -260,5 +261,5 @@ public final class Application {
 	}
 
 
-	static final AsciiString APPLICATION_SVG = AsciiString.cached("application/svg+xml");
+	static final AsciiString CONTENT_TYPE_IMAGE_SVG = AsciiString.cached("image/svg+xml");
 }
