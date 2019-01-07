@@ -95,7 +95,9 @@ name: adapter
 groupId: io.projectreactor.addons
 artifactId: reactor-adapter
 versions:
+  - 3.2.1.RELEASE
   - 3.2.0.RELEASE
+  - 3.1.8.RELEASE
   - 3.1.7.RELEASE
   - 3.1.6.RELEASE
   - 3.1.5.RELEASE
@@ -109,13 +111,13 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
-  - 3.2.1.BUILD-SNAPSHOT
+  - 3.2.2.BUILD-SNAPSHOT
   - 3.2.0.RC1
   - 3.2.0.M4
   - 3.2.0.M3
   - 3.2.0.M2
   - 3.2.0.M1
-  - 3.1.7.BUILD-SNAPSHOT
+  - 3.1.9.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -124,7 +126,9 @@ name: extra
 groupId: io.projectreactor.addons
 artifactId: reactor-extra
 versions:
+  - 3.2.1.RELEASE
   - 3.2.0.RELEASE
+  - 3.1.8.RELEASE
   - 3.1.7.RELEASE
   - 3.1.6.RELEASE
   - 3.1.5.RELEASE
@@ -134,13 +138,13 @@ versions:
   - 3.1.0.RELEASE
   - 3.0.7.RELEASE
   - 3.0.6.RELEASE
-  - 3.2.1.BUILD-SNAPSHOT
+  - 3.2.2.BUILD-SNAPSHOT
   - 3.2.0.RC1
   - 3.2.0.M4
   - 3.2.0.M3
   - 3.2.0.M2
   - 3.2.0.M1
-  - 3.1.7.BUILD-SNAPSHOT
+  - 3.1.9.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3

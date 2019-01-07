@@ -21,6 +21,8 @@ type: upcoming
 name: Californium-SR4
 coreVersion: 3.2.4.RELEASE
 testVersion: 3.2.4.RELEASE
+extraVersion: 3.2.1.RELEASE
+adapterVersion: 3.2.1.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
