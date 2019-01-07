@@ -30,7 +30,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
+import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.util.AsciiString;
 import org.reactivestreams.Publisher;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -187,10 +189,15 @@ public final class Application {
 			                return pageNotFound().apply(req, resp);
 		                }
 		                else {
-		             		return resp.headers(r.responseHeaders())
-			                    .status(r.status())
-			                    .send(body.retain())
-			                    .then();
+			                resp.headers(r.responseHeaders());
+
+			                if (reqUri.endsWith(".svg")) {
+				               resp.header(HttpHeaderNames.CONTENT_TYPE, APPLICATION_SVG);
+			                }
+
+		             		return resp.status(r.status())
+			                           .send(body.retain())
+			                           .then();
 		                }
 		             });
 	}
@@ -252,4 +259,6 @@ public final class Application {
 		return fs.getPath("BOOT-INF/classes/static");
 	}
 
+
+	static final AsciiString APPLICATION_SVG = AsciiString.cached("application/svg+xml");
 }
