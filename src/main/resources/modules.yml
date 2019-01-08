@@ -12,7 +12,7 @@ name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
-  - 3.2.4.RELEASE
+#  - 3.2.4.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
   - 3.2.3.RELEASE
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
@@ -50,7 +50,7 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
-  - 3.2.4.RELEASE
+  #  - 3.2.4.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
   - 3.2.3.RELEASE
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
