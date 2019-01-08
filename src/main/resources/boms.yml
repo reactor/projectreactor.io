@@ -19,8 +19,8 @@ kafkaVersion: 1.1.0.RELEASE
 type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 name: Californium-SR4
-#coreVersion: 3.2.5.RELEASE
-#testVersion: 3.2.5.RELEASE
+coreVersion: 3.2.5.RELEASE
+testVersion: 3.2.5.RELEASE
 #extraVersion: 3.2.2.RELEASE
 #adapterVersion: 3.2.2.RELEASE
 ---
