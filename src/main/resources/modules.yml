@@ -18,6 +18,7 @@ versions:
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
   - 3.2.0.RELEASE
+  - 3.1.14.RELEASE
 #  - 3.1.13.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
   - 3.1.12.RELEASE
   - 3.1.11.RELEASE
@@ -42,7 +43,7 @@ versions:
   - 3.2.0.M3
   - 3.2.0.M2
   - 3.2.0.M1
-  - 3.1.14.BUILD-SNAPSHOT
+  - 3.1.15.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -57,6 +58,7 @@ versions:
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
   - 3.2.0.RELEASE
+  - 3.1.14.RELEASE
   #  - 3.1.13.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
   - 3.1.12.RELEASE
   - 3.1.11.RELEASE
@@ -77,7 +79,7 @@ versions:
   - 3.2.0.M3
   - 3.2.0.M2
   - 3.2.0.M1
-  - 3.1.14.BUILD-SNAPSHOT
+  - 3.1.15.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
