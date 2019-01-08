@@ -27,13 +27,9 @@ adapterVersion: 3.2.2.RELEASE
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-RC1
----
-type: snapshot
+#---
+# this bom type is currently unused
+#type: snapshot
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: Californium-BUILD-SNAPSHOT
-coreVersion: 3.2.3.BUILD-SNAPSHOT
-testVersion: 3.2.3.BUILD-SNAPSHOT
-nettyVersion: 0.8.2.BUILD-SNAPSHOT
-extraVersion: 3.2.1.BUILD-SNAPSHOT
-adapterVersion: 3.2.1.BUILD-SNAPSHOT
-kafkaVersion: 1.1.1.BUILD-SNAPSHOT
+#name: Californium-BUILD-SNAPSHOT
+
