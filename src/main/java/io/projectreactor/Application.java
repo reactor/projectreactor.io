@@ -192,8 +192,16 @@ public final class Application {
 			                resp.headers(r.responseHeaders());
 
 			                if (reqUri.endsWith(".svg")) {
-				               resp.header(HttpHeaderNames.CONTENT_TYPE,
-						               CONTENT_TYPE_IMAGE_SVG);
+				                resp.header(HttpHeaderNames.CONTENT_TYPE,
+						                CONTENT_TYPE_IMAGE_SVG);
+			                }
+			                else if (reqUri.endsWith(".zip")) {
+				                resp.header(HttpHeaderNames.CONTENT_TYPE,
+						                CONTENT_TYPE_ZIP);
+			                }
+			                else if (reqUri.endsWith(".js")) {
+				                resp.header(HttpHeaderNames.CONTENT_TYPE,
+						                CONTENT_TYPE_JS);
 			                }
 
 		             		return resp.status(r.status())
@@ -262,4 +270,6 @@ public final class Application {
 
 
 	static final AsciiString CONTENT_TYPE_IMAGE_SVG = AsciiString.cached("image/svg+xml");
+	static final AsciiString CONTENT_TYPE_ZIP = AsciiString.cached("application/zip");
+	static final AsciiString CONTENT_TYPE_JS = AsciiString.cached("application/javascript");
 }
