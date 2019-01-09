@@ -5,7 +5,7 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - Bismuth-SR14
+  - Bismuth-SR15
   - Aluminium-SR3
 ---
 name: core
@@ -161,11 +161,12 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.8.4.RELEASE
   - 0.8.3.RELEASE
   - 0.8.2.RELEASE
   - 0.8.1.RELEASE
   - 0.8.0.RELEASE
-  - 0.8.4.BUILD-SNAPSHOT
+  - 0.8.5.BUILD-SNAPSHOT
   - 0.8.0.M3
   - 0.8.0.M2
   - 0.8.0.M1
@@ -174,6 +175,8 @@ name: nettyArchive
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.7.14.RELEASE
+#  - 0.7.13.RELEASE #skipped due to core release done with JDK11
   - 0.7.12.RELEASE
   - 0.7.11.RELEASE
   - 0.7.10.RELEASE
@@ -195,7 +198,7 @@ versions:
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
-  - 0.7.13.BUILD-SNAPSHOT
+  - 0.7.15.BUILD-SNAPSHOT
   - 0.7.0.RC1
   - 0.7.0.M2
   - 0.7.0.M1
