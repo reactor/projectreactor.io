@@ -5,7 +5,7 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - Bismuth-SR15
+  - Bismuth-SR16
   - Aluminium-SR3
 ---
 name: core
