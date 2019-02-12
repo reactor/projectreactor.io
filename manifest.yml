@@ -2,6 +2,8 @@
 applications:
 - name: projectreactor
   memory: 1G
-  path: ./build/libs/projectreactor-home-all.jar
+  path: ./build/libs/projectreactor-home.jar
   domain: projectreactor.io
   disk_quota: 1024M
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
