@@ -165,6 +165,7 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.8.5.RELEASE
   - 0.8.4.RELEASE
   - 0.8.3.RELEASE
   - 0.8.2.RELEASE
