@@ -831,3 +831,39 @@ ul.nav-options {
   }
 }
 
+section#code-sample {
+  background: #fff;
+  border-bottom: 1px solid #CCC;
+  article {
+    @extend .container;
+    h1 {
+      margin: 0;
+      font-family: $reactorFontSpecial;
+      font-size: 30px;
+      line-height: 30px;
+      font-weight: 400;
+      padding-bottom: 15px;
+      strong {
+        font-weight: normal;
+        color: $reactorPrimary
+      }
+    }
+    .code-sample {
+      margin: 0 auto;
+      max-width: 980px;
+      padding: 3.5em 10px;
+    }
+    .colset {
+      @include clearfix();
+      .left {
+        width: 47%;
+        float: left;
+      }
+      .right {
+        float: right;
+        width: 47%;
+        padding: 15px 0;
+      }
+    }
+  }
+}
