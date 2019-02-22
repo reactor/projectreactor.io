@@ -249,3 +249,10 @@ versions:
   - 1.2.0.BUILD-SNAPSHOT
   - 1.1.0.BUILD-SNAPSHOT
   - 1.0.0.BUILD-SNAPSHOT
+---
+name: BlockHound
+groupId: io.projectreactor.tools
+artifactId: blockhound
+versions:
+  - 1.0.0.M1
+  - 1.0.0.BUILD-SNAPSHOT
