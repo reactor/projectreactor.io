@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2011-2018 Pivotal Software Inc, All Rights Reserved.
+  ~ Copyright (c) 2011-Present Pivotal Software Inc, All Rights Reserved.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -16,6 +16,14 @@
 <!DOCTYPE html>
 <html th:fragment="layout(page,title,description,links,content)" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N4T4SNK');</script>
+    <!-- End Google Tag Manager -->
+
     <title th:replace="${title}">Project Reactor</title>
     <meta name="description" content="Project Reactor" th:replace="${description}">
     <!--/* Common stylesheet */-->
@@ -62,6 +70,10 @@
     <link rel="icon" sizes="128x128" href="/assets/img/touch/touch-icon-128x128.png">
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4T4SNK"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="application-container">
     <div id="sidebar"></div>
     <div class="application-main-content website">
@@ -147,7 +159,6 @@
                         href="https://www.pivotal.io/terms-of-use">Terms
                     of Use</a> |
                     <a href="https://www.pivotal.io/privacy-policy">Privacy</a> | <span id="teconsent"></span>
-                    <script async="async" src=//consent.trustarc.com/notice?domain=pivotal.com&c=teconsent&js=nj&text=true&pcookie crossorigin=""></script>
                 </div>
             </footer>
         </div>
@@ -168,21 +179,5 @@
 
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="assets/js/sidebar.js"></script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-73567736-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>
