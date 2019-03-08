@@ -1,3 +1,18 @@
+<!--
+  ~ Copyright (c) 2011-Present Pivotal Software Inc, All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 <!DOCTYPE html>
 <html th:replace="~{layout :: layout('learn', ~{::title}, ~{::meta[@name='description']}, ~{}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -14,7 +29,7 @@
 
                 <div class="details">
                                     <span>This section lists external material like conference talks, articles
-                                        and blogs that cover Reactor 3 and can serve as an alternative source
+                                        and blogs that cover Reactor 3+ and can serve as an alternative source
                                     of knowledge about the library.</span>
                 </div>
             </div>
@@ -50,17 +65,27 @@
                             </article>
                             <article>
                                 <p class="title"><span class="fa fa-file-text-o">&nbsp;</span>
-                                    Reactor by Example</p>
-                                <p class="desc">An extensive InfoQ article, part of a series on Reactive Programming. Compares and contrasts
-                                    with RxJava (and especially RxJava 2), focuses on the backpressure aspect and touches on testing.</p>
-                                <p class="link"><a href="https://www.infoq.com/articles/reactor-by-example/">See more <span class="fa fa-angle-right"></span></a></p>
+                                    Head-First Spring and Reactor Reactive Workshop</p>
+                                <p class="desc">An hands-on introduction to Spring Boot 2 and Reactor.</p>
+                                <p class="link"><a href="https://github.com/reactor/head-first-reactive-with-spring-and-reactor">See more <span class="fa fa-angle-right"></span></a></p>
+                            </article>
+                            <article>
+                                <p class="title"><span class="fa fa-file-text-o">&nbsp;</span>
+                                    Flight of the Flux</p>
+                                <p class="desc">Understanding Reactor internals</p>
+                                <p class="link"><a href="https://speakerdeck.com/simonbasle/flight-of-the-flux">See more <span class="fa fa-angle-right"></span></a></p>
                             </article>
                             <article>
                                 <p class="title"><span class="fa fa-play-circle">&nbsp;</span>
-                                    Devoxx Be 2016 University</p>
-                                <p class="desc">"Developing Reactive applications with Reactive Streams and Java 8"
-                                    by Brian Clozel, Sébastien Deleuze</p>
-                                <p class="link"><a href="https://www.youtube.com/watch?v=Cj4foJzPF80">See more <span class="fa fa-angle-right"></span></a></p>
+                                    Get Started with Reactive Programming in Spring</p>
+                                <p class="desc">A collection of tutorials based on Okta, Spring, Reactor by Matt Raible</p>
+                                <p class="link"><a href="https://developer.okta.com/blog/2018/09/21/reactive-programming-with-spring">See more <span class="fa fa-angle-right"></span></a></p>
+                            </article>
+                            <article>
+                                <p class="title"><span class="fa fa-play-circle">&nbsp;</span>
+                                    Get Reactive with Project Reactor and Spring 5</p>
+                                <p class="desc">A deep-dive slide deck about Reactor and Spring by Oleh Dokuka</p>
+                                <p class="link"><a href="https://speakerdeck.com/olehdokuka/get-reactive-with-project-reactor-and-spring-5">See more <span class="fa fa-angle-right"></span></a></p>
                             </article>
                             <article>
                                 <p class="title"><span class="fa fa-files-o">&nbsp;</span>
@@ -70,7 +95,7 @@
                                     deep into details of reactive flows
                                     implementations, and most of this knowledge
                                     can be transposed to Reactor.</p>
-                                <p class="link"><a href="http://akarnokd.blogspot.fr/">See more <span class="fa fa-angle-right"></span></a></p>
+                                <p class="link"><a href="https://akarnokd.blogspot.com/">See more <span class="fa fa-angle-right"></span></a></p>
                             </article>
                         </section>
 

@@ -432,6 +432,12 @@
                 <span th:if="${milestone.nettyVersion} != null"><a href="/docs/netty/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/netty/snapshot/api/">Snapshot</a>
             </div>
+            <div class="reference">
+                <strong>Reference</strong><br />
+                <!--<a href="/docs/netty/release/reference/docs/index.html#testing">Release</a> |-->
+                <span th:if="${milestone.testVersion} != null"><a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |</span>
+                <a href="/docs/netty/snapshot/reference/docs/index.html">Snapshot</a>
+            </div>
         </article>
 
 
