@@ -1065,7 +1065,7 @@ Reactor is a foundational library for building demanding, realtime <strong>Data-
 </ul>
 </div>
 <div class="paragraph">
-<p>Being non-blocking matters&#8212;&#8203;especially when scaling message-passing becomes critical (10k msg/s, 100k msg/s 1M&#8230;&#8203;). There is some theory behind this (see <a href="https://en.wikipedia.org/wiki/Amdahl%2527s_law">Amdahl&#8217;s Law</a>), but we get bored and distracted easily, so let&#8217;s first appeal to common sense.</p>
+<p>Being non-blocking matters&#8212;&#8203;especially when scaling message-passing becomes critical (10k msg/s, 100k msg/s 1M&#8230;&#8203;). There is some theory behind this (see <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl&#8217;s Law</a>), but we get bored and distracted easily, so let&#8217;s first appeal to common sense.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s say you use a pure <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html">Executor</a> approach:</p>
@@ -2529,7 +2529,7 @@ Assert.isTrue(viewCount == <span class="integer">4</span>);
 </div>
 <div class="paragraph">
 <p>Playing with <code>Buffer</code> can feel a bit low-level for the common marshalling/unmarshalling use cases and Reactor comes with a series of pre-defined converters called <code>Codec</code>.
-Some <code>Codec</code> will be requiring the appropriate extra dependency in the classpath to work, like <a href="https://jackson.codehaus.org/">Jackson</a> for JSON manipulation.</p>
+Some <code>Codec</code> will be requiring the appropriate extra dependency in the classpath to work, like <a href="https://github.com/FasterXML/jackson/">Jackson</a> for JSON manipulation.</p>
 </div>
 <div class="paragraph">
 <p><code>Codec</code> works in two ways, first it implements <code>Function</code> to encode anything directly and return the encoded data, usually under the form of Buffer.
@@ -2676,7 +2676,7 @@ Like the encoding side, the decoding function should not be shared between Threa
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JsonCodec,JacksonJsonCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Convert Buffer into Java objects using Jackson with Buffers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://jackson.codehaus.org">com.fasterxml.jackson.core:jackson-databind</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/FasterXML/jackson">com.fasterxml.jackson.core:jackson-databind</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SnappyCodec</p></td>
