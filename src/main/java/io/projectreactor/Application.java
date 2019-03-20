@@ -214,7 +214,7 @@ public final class Application {
 	private Publisher<Void> legacyProxy(HttpServerRequest req,
 			HttpServerResponse resp) {
 		String artefact = req.param("module");
-		String url = "http://repo.spring.io/release"
+		String url = "https://repo.spring.io/release"
 				+ "/io/projectreactor"
 				+ "/" + artefact
 				+ "/2.0.8.RELEASE"

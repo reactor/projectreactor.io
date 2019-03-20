@@ -197,7 +197,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/index.html");
 	}
 
@@ -208,7 +208,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/index.html");
 	}
 
@@ -219,7 +219,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/some/path/in/Doc.html");
 	}
 
@@ -230,7 +230,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-kdoc.zip!/style.css");
 	}
 
@@ -241,7 +241,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-javadoc.jar!/index.html");
 	}
 
@@ -252,7 +252,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-javadoc.jar!/index.html");
 	}
 
@@ -263,7 +263,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-testVersion-javadoc.jar!/some/path/in/Doc.html");
 	}
 
@@ -274,7 +274,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-docs-testVersion.zip!/docs/index.html");
 	}
 
@@ -285,7 +285,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-docs-testVersion.zip!/docs/index.html");
 	}
 
@@ -296,7 +296,7 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-docs-testVersion.zip!/docs/some/absolute/reference/page.html");
 	}
 
@@ -307,7 +307,7 @@ public class DocUtilsTest {
 				"test", "snapshot",
 				urlModule, "testVersion");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/fooGroup/fooArtifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
 				"testVersion/fooArtifact-docs-testVersion.zip!/docs/highlight/styles/railscasts.min.css");
 	}
 
@@ -321,7 +321,7 @@ public class DocUtilsTest {
 				"test", "foo",
 				kafka, "1.0.0.M1");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/kafka.artifact-docs/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact-docs/" +
 				"1.0.0.M1/kafka.artifact-docs-1.0.0.M1.zip!/docs/index.html");
 	}
 
@@ -335,7 +335,7 @@ public class DocUtilsTest {
 				"test", "foo",
 				kafka, "notM1");
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/kafka.artifact/" +
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact/" +
 				"notM1/kafka.artifact-docs-notM1.zip!/docs/index.html");
 	}
 
@@ -354,7 +354,7 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/old/artifact/3.0.7.RELEASE/artifact-3.0.7.RELEASE-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/old/artifact/3.0.7.RELEASE/artifact-3.0.7.RELEASE-javadoc.jar!/index.html");
 	}
 
 	@Test
@@ -372,7 +372,7 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("http://repo.spring" +
+		assertThat(url).isEqualTo("https://repo.spring" +
 				".io/repoType/group/artifact/3.1.0.M3/artifact-3.1.0.M3-javadoc" +
 				".jar!/index.html");
 	}
@@ -392,7 +392,7 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/artifact/3.1.0.BUILD-SNAPSHOT/artifact-3.1.0.BUILD-SNAPSHOT-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/artifact/3.1.0.BUILD-SNAPSHOT/artifact-3.1.0.BUILD-SNAPSHOT-javadoc.jar!/index.html");
 	}
 
 	@Test
@@ -410,7 +410,7 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("http://repo.spring.io/repoType/group/old/artifact/3.0.5.RELEASE/artifact-3.0.5.RELEASE-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/old/artifact/3.0.5.RELEASE/artifact-3.0.5.RELEASE-javadoc.jar!/index.html");
 	}
 
 	@Test
