@@ -8,11 +8,11 @@
 <meta name="author" content="Stephane Maldini, Jon Brisbin">
 <title>Reactor Guide</title>
 <style>
-@import url(http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400italic,700italic,400,700);
+@import url(https://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400italic,700italic,400,700);
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 /* ========================================================================== HTML5 display definitions ========================================================================== */
 /** Correct `block` display not defined in IE 8/9. */
-@import url(http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.css);
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
 
 /** Correct `inline-block` display not defined in IE 8/9. */
@@ -699,7 +699,7 @@ table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 <style>
-/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | https://foundation.zurb.com */
 /*pre.CodeRay {background-color:#f7f7f8;}*/
 .CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
 .CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
@@ -789,13 +789,13 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .change .change{color:#66f}
 .CodeRay .head .head{color:#f4f}
 </style>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.6.2/semantic.min.css"/>
-<link rel="stylesheet" href="http://projectreactor.io/stylesheets/docs.css"/>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.6.2/semantic.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.6.2/semantic.min.css"/>
+<link rel="stylesheet" href="https://projectreactor.io/stylesheets/docs.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.6.2/semantic.min.js"></script>
 <script>$(function(){
 	var el = document.createElement("script");
-	el.setAttribute("src", "http://projectreactor.io/javascripts/docs.js");
+	el.setAttribute("src", "https://projectreactor.io/javascripts/docs.js");
 	document.body.appendChild(el);
 	$('.ui.dropdown').dropdown();
 })</script>
@@ -988,7 +988,7 @@ table.CodeRay td.code>pre{padding:0}
 		<div class="ui pointing dropdown link item" title="Reference">
 			<i class="book icon"></i>
 			<div class="menu">
-				<a class="active item" title="HTML" href="http://projectreactor.io/docs/reference/">HTML</a>
+				<a class="active item" title="HTML" href="https://projectreactor.io/docs/reference/">HTML</a>
 				<a class="item" title="EPUB" href="https://drone.io/github.com/reactor/reactor/files/build/reference/epub/reactor-reference.epub">EPUB</a>
 				<a class="item" title="PDF" href="https://drone.io/github.com/reactor/reactor/files/build/reference/pdf/reactor-reference.pdf">PDF</a>
 			</div>
@@ -999,7 +999,7 @@ table.CodeRay td.code>pre{padding:0}
 		<a class="item" href="https://github.com/reactor/reactor/issues" title="Bug Tracker">
 			<i class="bug icon"></i>
 		</a>
-		<a class="item" href="http://stackoverflow.com/search?q=%23reactor" title="Community Discussion">
+		<a class="item" href="https://stackoverflow.com/search?q=%23reactor" title="Community Discussion">
 			<i class="comments icon"></i>
 		</a>
 	</div>
@@ -1065,7 +1065,7 @@ Reactor is a foundational library for building demanding, realtime <strong>Data-
 </ul>
 </div>
 <div class="paragraph">
-<p>Being non-blocking matters&#8212;&#8203;especially when scaling message-passing becomes critical (10k msg/s, 100k msg/s 1M&#8230;&#8203;). There is some theory behind this (see <a href="http://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl&#8217;s Law</a>), but we get bored and distracted easily, so let&#8217;s first appeal to common sense.</p>
+<p>Being non-blocking matters&#8212;&#8203;especially when scaling message-passing becomes critical (10k msg/s, 100k msg/s 1M&#8230;&#8203;). There is some theory behind this (see <a href="https://en.wikipedia.org/wiki/Amdahl%2527s_law">Amdahl&#8217;s Law</a>), but we get bored and distracted easily, so let&#8217;s first appeal to common sense.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s say you use a pure <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html">Executor</a> approach:</p>
@@ -1201,7 +1201,7 @@ T result = f.get() <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 <p>Parallel to that work we also decided to re-align some of our Event-Driven and Task Coordination API to the increasingly popular and documented <a href="gettingstarted..html#rx">Reactive Extensions</a>.</p>
 </div>
 <div class="paragraph">
-<p>Reactor is sponsored by <a href="http://pivotal.io">Pivotal</a> where the two core committers are employed. Since Pivotal is also the home of the Spring Framework and many of our colleagues are core committers to the various Spring efforts, we both provide integration support from Reactor to Spring as well as support some important functionality of the Spring Framework like the STOMP broker relay in <em>spring-messaging</em>. That said, we don&#8217;t force anyone to adopt Spring just to use Reactor. We remain an embeddable toolkit "for the Reactive masses". In fact one of the goals of Reactor is to stay un-opinionated in the ways you solve asynchronous and functional problems.</p>
+<p>Reactor is sponsored by <a href="https://pivotal.io">Pivotal</a> where the two core committers are employed. Since Pivotal is also the home of the Spring Framework and many of our colleagues are core committers to the various Spring efforts, we both provide integration support from Reactor to Spring as well as support some important functionality of the Spring Framework like the STOMP broker relay in <em>spring-messaging</em>. That said, we don&#8217;t force anyone to adopt Spring just to use Reactor. We remain an embeddable toolkit "for the Reactive masses". In fact one of the goals of Reactor is to stay un-opinionated in the ways you solve asynchronous and functional problems.</p>
 </div>
 <div class="paragraph">
 <p>Reactor is <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 licensed</a> and available on <a href="https://github.com/reactor/reactor">GitHub</a>.</p>
@@ -1286,7 +1286,7 @@ T result = f.get() <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 <div class="sect2">
 <h3 id="reactivestreams">Reactive Streams</h3>
 <div class="paragraph">
-<p><a href="http://www.reactive-streams.org">Reactive Streams</a> is a new standard, adopted by different vendors and tech industrials including Netflix, Oracle, Pivotal or Typesafe with a target to include the specification into Java 9 and onwards.</p>
+<p><a href="https://www.reactive-streams.org">Reactive Streams</a> is a new standard, adopted by different vendors and tech industrials including Netflix, Oracle, Pivotal or Typesafe with a target to include the specification into Java 9 and onwards.</p>
 </div>
 <div class="paragraph">
 <p>The aim of the standard is to provide (a)synchronous data sequences with a flow-control mechanism. The specification is fairly light and first targets the JVM.
@@ -1757,7 +1757,7 @@ The Reactor Streams module will use all these artifacts for greater good as well
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A good practice when using an IoC container such as Spring is to leverage the <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-java">Java Configuration</a> feature to return stateless Functional Beans.
+A good practice when using an IoC container such as Spring is to leverage the <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-java">Java Configuration</a> feature to return stateless Functional Beans.
 Then injecting the blocks in a Stream pipeline or dispatching their execution becomes quite elegant.
 </td>
 </tr>
@@ -2529,7 +2529,7 @@ Assert.isTrue(viewCount == <span class="integer">4</span>);
 </div>
 <div class="paragraph">
 <p>Playing with <code>Buffer</code> can feel a bit low-level for the common marshalling/unmarshalling use cases and Reactor comes with a series of pre-defined converters called <code>Codec</code>.
-Some <code>Codec</code> will be requiring the appropriate extra dependency in the classpath to work, like <a href="http://jackson.codehaus.org/">Jackson</a> for JSON manipulation.</p>
+Some <code>Codec</code> will be requiring the appropriate extra dependency in the classpath to work, like <a href="https://jackson.codehaus.org/">Jackson</a> for JSON manipulation.</p>
 </div>
 <div class="paragraph">
 <p><code>Codec</code> works in two ways, first it implements <code>Function</code> to encode anything directly and return the encoded data, usually under the form of Buffer.
@@ -2676,12 +2676,12 @@ Like the encoding side, the decoding function should not be shared between Threa
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JsonCodec,JacksonJsonCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Convert Buffer into Java objects using Jackson with Buffers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://jackson.codehaus.org">com.fasterxml.jackson.core:jackson-databind</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://jackson.codehaus.org">com.fasterxml.jackson.core:jackson-databind</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SnappyCodec</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A Compression Codec which applies a delegate Codec after unpacking/before packing Buffer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://xerial.org/snappy-java">org.xerial.snappy:snappy-java</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://xerial.org/snappy-java">org.xerial.snappy:snappy-java</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GZipCodec</p></td>
@@ -3226,7 +3226,7 @@ It might interrupt a current upstream emission when the <code>onNext(Publisher&l
 <td class="tableblock halign-left valign-top"><p class="tableblock">T</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">If a Publisher&lt;T&gt; is already emitting, wait for it to <code>onComplete()</code> before draining the next pending Publisher&lt;T&gt;. As the name suggests its useful to <a href="http://rxmarbles.com/#concat">concat various datasources</a> and keep ordering right.</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">If a Publisher&lt;T&gt; is already emitting, wait for it to <code>onComplete()</code> before draining the next pending Publisher&lt;T&gt;. As the name suggests its useful to <a href="https://rxmarbles.com/#concat">concat various datasources</a> and keep ordering right.</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Streams.merge(<strong>Publisher&lt;T&gt;, Publisher&lt;T&gt;</strong>, Publisher&lt;T&gt;*)
@@ -3234,21 +3234,21 @@ It might interrupt a current upstream emission when the <code>onNext(Publisher&l
 <td class="tableblock halign-left valign-top"><p class="tableblock">T</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><a href="http://rxmarbles.com/#merge">Accept multiple sources</a> and <strong>interleave</strong> their respective sequence. Order won&#8217;t be preserved like with <code>concat</code>. Demand from a Subscriber will be split between various sources with a minimum of 1 to make sure everyone has a chance to send something.</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><a href="https://rxmarbles.com/#merge">Accept multiple sources</a> and <strong>interleave</strong> their respective sequence. Order won&#8217;t be preserved like with <code>concat</code>. Demand from a Subscriber will be split between various sources with a minimum of 1 to make sure everyone has a chance to send something.</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Streams.combineLatest(<strong>Publisher&lt;T1&gt;, Publisher&lt;T2&gt;</strong>, <em>Publisher&lt;T3-N&gt; x6</em>, <strong>Function&lt;Tuple2-N, C&gt;</strong>)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><a href="http://rxmarbles.com/#combineLatest">Combine most recent emitted elements</a> from the passed sources using the given aggregating <code>Function</code>.</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><a href="https://rxmarbles.com/#combineLatest">Combine most recent emitted elements</a> from the passed sources using the given aggregating <code>Function</code>.</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Streams.combineLatest(<strong>Publisher&lt;T1&gt;, Publisher&lt;T2&gt;,</strong> <em>Publisher&lt;T3-N&gt; x6</em>, <strong>Function&lt;Tuple2-N, C&gt;</strong>)</p></th>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><a href="http://rxmarbles.com/#zip">Combine most recent elements once</a>, every time a source has emitted a signal, apply the given <code>Function</code> and clear the temporary aggregate. Effectively it&#8217;s a flexible <em>join</em> mechanism for multiple types of sources.</p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><a href="https://rxmarbles.com/#zip">Combine most recent elements once</a>, every time a source has emitted a signal, apply the given <code>Function</code> and clear the temporary aggregate. Effectively it&#8217;s a flexible <em>join</em> mechanism for multiple types of sources.</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Streams.join(<strong>Publisher&lt;T&gt;, Publisher&lt;T&gt;</strong>, <em>Publisher&lt;T&gt; x6</em>)</p></th>
@@ -3662,7 +3662,7 @@ Subscribers will see new data N flowing through a Broadcaster every T+I<sup>N</s
 <div class="ulist">
 <ul>
 <li>
-<p>A Broadcaster will trigger a <a href="http://projectreactor.io/docs/api/reactor/core/processor/CancelException.html">CancelException</a> if there are no subscribers. A Core <code>RingBuffer*Processor</code> will always deliver buffered data to the first subscriber.</p>
+<p>A Broadcaster will trigger a <a href="https://projectreactor.io/docs/api/reactor/core/processor/CancelException.html">CancelException</a> if there are no subscribers. A Core <code>RingBuffer*Processor</code> will always deliver buffered data to the first subscriber.</p>
 </li>
 <li>
 <p>Some <code>Dispatcher</code> types that can be assigned to a <code>Broadcaster</code> might not support concurrent <code>onNext</code>. Use <code>RingBuffer*Processor.share()</code> for an alternative, thread-safe, concurrent <code>onNext</code>.</p>
@@ -4463,8 +4463,8 @@ Notes
 
 Credit
 ------
-By Jeff Dean:               http://research.google.com/people/jeff/
-Originally by Peter Norvig: http://norvig.com/21-days.html#answers</pre>
+By Jeff Dean:               https://research.google.com/people/jeff/
+Originally by Peter Norvig: https://norvig.com/21-days.html#answers</pre>
 </div>
 </div>
 </div>
@@ -5163,7 +5163,7 @@ All merged <code>Publisher&lt;T&gt;</code> must complete before the <code>Subscr
 <h2 id="streams-microservice">MicroServices</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The notion of <a href="http://martinfowler.com/articles/microservices.html">MicroService</a> has been an increasingly popular term over the last years. Simply put, we code software components with a focused purpose to encourage <em>isolation</em>, <em>adapted scaling</em> and <em>reuse</em>. In fact it has been over 30 years we use them:</p>
+<p>The notion of <a href="https://martinfowler.com/articles/microservices.html">MicroService</a> has been an increasingly popular term over the last years. Simply put, we code software components with a focused purpose to encourage <em>isolation</em>, <em>adapted scaling</em> and <em>reuse</em>. In fact it has been over 30 years we use them:</p>
 </div>
 <div class="listingblock">
 <div class="title">An example of microservices in Unix</div>
@@ -5183,10 +5183,10 @@ User morty = userService.get(<span class="string"><span class="delimiter">&quot;
 </div>
 </div>
 <div class="paragraph">
-<p>Of course the application has been widely popular within distributed systems and <a href="http://12factor.net">cloud-ready architectures</a>. When the function is isolated enough, it will depend on N other ones for : Data access, subroutine calls over network, posting into message bus, querying an HTTP REST endpoint etc. This is where troubles begin: <strong>the execution flow is crossing multiple context boundaries</strong>. Relatively latency and failure will start to scale up as the system grows in volume and access.</p>
+<p>Of course the application has been widely popular within distributed systems and <a href="https://12factor.net">cloud-ready architectures</a>. When the function is isolated enough, it will depend on N other ones for : Data access, subroutine calls over network, posting into message bus, querying an HTTP REST endpoint etc. This is where troubles begin: <strong>the execution flow is crossing multiple context boundaries</strong>. Relatively latency and failure will start to scale up as the system grows in volume and access.</p>
 </div>
 <div class="paragraph">
-<p>At this point we can decide to <em>scale-out</em>, after all platforms such as <a href="http://www.cloudfoundry.org">CloudFoundry</a> allow for elastic scaling of JVM apps and beyond. But looking at our CPU and memory use, it didn&#8217;t seem particularly under pressure. Of course it was not, each remote call was just blocking the whole service and preventing concurrent user requests to kick in: They are just parked in some thread pool queue. In the meantime the active request was happily seating for a few milliseconds or more waiting for a remote HTTP call socket to actually write, a delay we call <strong>latency</strong> here.</p>
+<p>At this point we can decide to <em>scale-out</em>, after all platforms such as <a href="https://www.cloudfoundry.org">CloudFoundry</a> allow for elastic scaling of JVM apps and beyond. But looking at our CPU and memory use, it didn&#8217;t seem particularly under pressure. Of course it was not, each remote call was just blocking the whole service and preventing concurrent user requests to kick in: They are just parked in some thread pool queue. In the meantime the active request was happily seating for a few milliseconds or more waiting for a remote HTTP call socket to actually write, a delay we call <strong>latency</strong> here.</p>
 </div>
 <div class="paragraph">
 <p>The same applies to errors, we can make applications more resilient (fallbacks, timeouts, retries&#8230;&#8203;) individually first and not rely on <em>scaling out</em>. The classic hope is that a replicate microservice will pick up the requests when a load-balancer will detect the failure:</p>
@@ -6978,7 +6978,7 @@ TODO:</p>
 <div class="sect2">
 <h3 id="spring-integration">Reactor with Spring Messaging</h3>
 <div class="paragraph">
-<p>Reactor is abstracted under the Spring Messaging <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html">TCP support</a>.
+<p>Reactor is abstracted under the Spring Messaging <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html">TCP support</a>.
 Just make sure both Reactor Net <strong>io.projectreactor:reactor-net::2.0.8.BUILD-SNAPSHOT</strong> is in the Spring application classpath.</p>
 </div>
 </div>
@@ -7008,7 +7008,7 @@ Just make sure both Reactor Net <strong>io.projectreactor:reactor-net::2.0.8.BUI
 <div class="sect2">
 <h3 id="_grails_support">Grails support</h3>
 <div class="paragraph">
-<p>Reactor is provided in core Grails 3.0 distribution as part of the <a href="http://grails.github.io/grails-doc/3.0.x/guide/single.html#events">Eventing support</a>.</p>
+<p>Reactor is provided in core Grails 3.0 distribution as part of the <a href="https://grails.github.io/grails-doc/3.0.x/guide/single.html#events">Eventing support</a>.</p>
 </div>
 </div>
 </div>
@@ -7259,7 +7259,7 @@ Streams
 <div class="sect2">
 <h3 id="recipes-circuitbreaker">Building a Quick Circuit Breaker</h3>
 <div class="paragraph">
-<p>In this other exercise, we will focus more on the composition power in your hands with <strong>Reactor Stream</strong> module. A classic use-case is to build self-healing data pipelines using the <a href="http://martinfowler.com/bliki/CircuitBreaker.html">Circuit Breaker Pattern</a> (maybe soon available in <code>Stream</code> API, maybe).</p>
+<p>In this other exercise, we will focus more on the composition power in your hands with <strong>Reactor Stream</strong> module. A classic use-case is to build self-healing data pipelines using the <a href="https://martinfowler.com/bliki/CircuitBreaker.html">Circuit Breaker Pattern</a> (maybe soon available in <code>Stream</code> API, maybe).</p>
 </div>
 <div class="paragraph">
 <p>In this scenario, we want to keep alive a <code>Stream</code> even if errors might fly in. When a certain number of errors is reached, we want to stop consuming from the main <em>circuit</em>, the actual <code>Stream</code>. For a short period we will <em>trip</em> the circuit and use a fallback publisher <code>Stream</code>. This fallback can actually be any sort of <code>Publisher</code>, we will just emit an alternative message. The point is to avoid new access to the failing <code>Stream</code> for a while and give it a chance to recover.</p>
@@ -7495,7 +7495,7 @@ keyboardStream.onComplete();
 <a href="#_footnoteref_2">2</a>. Some will challenge that over-simplified vision but let&#8217;s stay pragmatic over here :)
 </div>
 <div class="footnote" id="_footnote_3">
-<a href="#_footnoteref_3">3</a>. including <a href="http://akka.io">Akka Streams</a>, <a href="http://ratpack.io">Ratpack</a>, and <a href="https://github.com/ReactiveX/RxJava">RxJava</a>
+<a href="#_footnoteref_3">3</a>. including <a href="https://akka.io">Akka Streams</a>, <a href="https://ratpack.io">Ratpack</a>, and <a href="https://github.com/ReactiveX/RxJava">RxJava</a>
 </div>
 </div>
 <div id="footer">

@@ -137,7 +137,7 @@ public class DocUtils {
 			file = actualModule.getArtifactId() + "/" + file;
 		}
 
-		String url = "http://repo.spring.io/" + versionType
+		String url = "https://repo.spring.io/" + versionType
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
 				+ "/" + actualVersion
@@ -162,7 +162,7 @@ public class DocUtils {
 		boolean isKafkaM1 = actualModule.getArtifactId().contains("kafka")
 				&& actualVersion.equals("1.0.0.M1");
 
-		String url = "http://repo.spring.io/" + versionType
+		String url = "https://repo.spring.io/" + versionType
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId() + (isKafkaM1 ? artifactSuffix : "")
 				+ "/" + actualVersion
