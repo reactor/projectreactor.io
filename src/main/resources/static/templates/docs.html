@@ -688,7 +688,8 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain pre"
+                                    <span th:if="${milestone.name} != null"
+                                          class="version releasetrain pre"
                                           title="MILESTONE release train"
                                           th:text="${milestone.name}"> BOM</span>
                             </td>
@@ -704,11 +705,13 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/rabbitmq/release/api/">Release</a> |
+                <span th:if="${milestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/rabbitmq/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
                 <strong>Reference</strong> <br/>
                 <a href="/docs/rabbitmq/release/reference/">Release</a> |
+                <span th:if="${milestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/reference/">Milestone</a> |</span>
                 <a href="/docs/rabbitmq/snapshot/reference/">Snapshot</a>
             </div>
         </article>
