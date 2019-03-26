@@ -1,8 +1,8 @@
 ---
 type: stable
 name: Californium-SR6
-coreVersion: 3.2.7.RELEASE
-testVersion: 3.2.7.RELEASE
+coreVersion: 3.2.8.RELEASE
+testVersion: 3.2.8.RELEASE
 nettyVersion: 0.8.6.RELEASE
 extraVersion: 3.2.2.RELEASE
 adapterVersion: 3.2.2.RELEASE
