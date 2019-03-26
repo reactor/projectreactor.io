@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Californium-SR5
-coreVersion: 3.2.6.RELEASE
-testVersion: 3.2.6.RELEASE
-nettyVersion: 0.8.5.RELEASE
+name: Californium-SR6
+coreVersion: 3.2.7.RELEASE
+testVersion: 3.2.7.RELEASE
+nettyVersion: 0.8.6.RELEASE
 extraVersion: 3.2.2.RELEASE
 adapterVersion: 3.2.2.RELEASE
 kafkaVersion: 1.1.0.RELEASE
@@ -19,9 +19,9 @@ rabbitVersion: 1.1.0.RELEASE
 ---
 type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-#name: Californium-SR6
-#coreVersion: 3.2.7.RELEASE
-#testVersion: 3.2.7.RELEASE
+#name: Californium-SR7
+#coreVersion: 3.2.8.RELEASE
+#testVersion: 3.2.8.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links

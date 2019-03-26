@@ -5,13 +5,15 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - Bismuth-SR16
+  #- Californium-SR6
+  - Bismuth-SR17
   - Aluminium-SR3
 ---
 name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
+  - 3.2.7.RELEASE
   - 3.2.6.RELEASE
   - 3.2.5.RELEASE
   #  - 3.2.4.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
@@ -19,6 +21,7 @@ versions:
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
   - 3.2.0.RELEASE
+  - 3.1.16.RELEASE
   - 3.1.15.RELEASE
   - 3.1.14.RELEASE
 #  - 3.1.13.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
@@ -40,13 +43,13 @@ versions:
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
   - 3.3.0.BUILD-SNAPSHOT
-  - 3.2.7.BUILD-SNAPSHOT
+  - 3.2.8.BUILD-SNAPSHOT
   - 3.2.0.RC1
   - 3.2.0.M4
   - 3.2.0.M3
   - 3.2.0.M2
   - 3.2.0.M1
-  - 3.1.16.BUILD-SNAPSHOT
+  - 3.1.17.BUILD-SNAPSHOT
   - 3.1.0.RC2
   - 3.1.0.RC1
   - 3.1.0.M3
@@ -55,6 +58,7 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
+  - 3.2.7.RELEASE
   - 3.2.6.RELEASE
   - 3.2.5.RELEASE
   #  - 3.2.4.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
@@ -62,6 +66,7 @@ versions:
   - 3.2.2.RELEASE
   - 3.2.1.RELEASE
   - 3.2.0.RELEASE
+  - 3.1.16.RELEASE
   - 3.1.15.RELEASE
   - 3.1.14.RELEASE
   #  - 3.1.13.RELEASE #deactivated because javadoc problems with JDK11 style of javadoc
@@ -79,7 +84,7 @@ versions:
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
   - 3.3.0.BUILD-SNAPSHOT
-  - 3.2.7.BUILD-SNAPSHOT
+  - 3.2.8.BUILD-SNAPSHOT
   - 3.2.0.RC1
   - 3.2.0.M4
   - 3.2.0.M3
@@ -168,6 +173,7 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.8.6.RELEASE
   - 0.8.5.RELEASE
   - 0.8.4.RELEASE
   - 0.8.3.RELEASE
@@ -175,7 +181,7 @@ versions:
   - 0.8.1.RELEASE
   - 0.8.0.RELEASE
   - 0.9.0.BUILD-SNAPSHOT
-  - 0.8.6.BUILD-SNAPSHOT
+  - 0.8.7.BUILD-SNAPSHOT
   - 0.8.0.M3
   - 0.8.0.M2
   - 0.8.0.M1
@@ -184,6 +190,7 @@ name: nettyArchive
 groupId: io.projectreactor.ipc
 artifactId: reactor-netty
 versions:
+  - 0.7.15.RELEASE
   - 0.7.14.RELEASE
 #  - 0.7.13.RELEASE #skipped due to core release done with JDK11
   - 0.7.12.RELEASE
@@ -207,7 +214,7 @@ versions:
   - 0.6.1.RELEASE
   - 0.6.0.RELEASE
   - 0.5.2.RELEASE
-  - 0.7.15.BUILD-SNAPSHOT
+  - 0.7.16.BUILD-SNAPSHOT
   - 0.7.0.RC1
   - 0.7.0.M2
   - 0.7.0.M1
