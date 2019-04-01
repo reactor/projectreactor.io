@@ -26,7 +26,7 @@ type: upcoming
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-RC1
-rabbitVersion: 1.2.0.RC1
+rabbitVersion: 1.2.0.RC2
 #---
 # this bom type is currently unused
 #type: snapshot
