@@ -649,7 +649,8 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span th:if="${upcoming.name} != null"
+				          class="version releasetrain hold"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>

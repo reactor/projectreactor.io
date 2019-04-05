@@ -22,11 +22,11 @@ type: upcoming
 #name: Californium-SR7
 #coreVersion: 3.2.8.RELEASE
 #testVersion: 3.2.8.RELEASE
+rabbitVersion: 1.2.0.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-RC1
-rabbitVersion: 1.2.0.RC2
 #---
 # this bom type is currently unused
 #type: snapshot

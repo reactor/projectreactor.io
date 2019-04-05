@@ -248,6 +248,7 @@ name: rabbitmq
 groupId: io.projectreactor.rabbitmq
 artifactId: reactor-rabbitmq
 versions:
+  - 1.2.0.RELEASE
   - 1.1.0.RELEASE
   - 1.0.0.RELEASE
   - 1.2.0.RC2
