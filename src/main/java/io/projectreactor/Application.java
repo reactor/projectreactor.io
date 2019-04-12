@@ -95,7 +95,9 @@ public final class Application {
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/", template("home"))
 		                                 .get("/docs", template("docs"))
+		                                 .get("/docs/", template("docs"))
 		                                 .get("/learn", template("learn"))
+		                                 .get("/learn/", template("learn"))
 		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
 		                                 .get("/docs/{module}/{version}/reference/docs/**", rewrite("/reference/docs/", "/reference/"))
@@ -115,7 +117,6 @@ public final class Application {
 		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
 //		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
-		                                 .directory("/docs", contentPath.resolve("docs"))
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
 		                                 .get("**.html", pageNotFound()))
 		                    .bind();
