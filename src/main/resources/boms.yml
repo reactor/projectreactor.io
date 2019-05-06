@@ -23,6 +23,9 @@ name: Californium-SR7
 coreVersion: 3.2.9.RELEASE
 testVersion: 3.2.9.RELEASE
 rabbitVersion: 1.2.0.RELEASE
+extraVersion: 3.2.3.RELEASE
+adapterVersion: 3.2.3.RELEASE
+kafkaVersion: 1.1.1.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
