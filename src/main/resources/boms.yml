@@ -19,9 +19,9 @@ rabbitVersion: 1.1.0.RELEASE
 ---
 type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-#name: Californium-SR7
-#coreVersion: 3.2.8.RELEASE
-#testVersion: 3.2.8.RELEASE
+name: Californium-SR7
+coreVersion: 3.2.9.RELEASE
+testVersion: 3.2.9.RELEASE
 rabbitVersion: 1.2.0.RELEASE
 ---
 type: milestone
