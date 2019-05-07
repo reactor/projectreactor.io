@@ -619,6 +619,101 @@
             </div>
         </article>
 
+        <article>
+            <div class="title">
+                <h1>Reactor Kotlin Extensions</h1>
+                <p>Kotlin extensions for all java artifacts in Dysprosium+</p>
+                <div class="version">
+                    <table>
+                        <tr><td>Version</td>
+                            <td><a href="https://github.com/reactor/reactor-kotlin-extensions/releases"
+                                   title="See all reactor-kotlin-extensions releases on GitHub"
+                                   class="fa fa-archive">&nbsp;</a>
+                            </td>
+                            <td>Release Train</td>
+                        </tr>
+
+                        <!--RELEASEs from in-progress release train first-->
+                        <tr th:if="${upcoming.kotlinVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          th:classappend="${!#strings.endsWith(upcoming.kotlinVersion,'.RELEASE')}? 'pre'"
+                                          title="Latest Release In Incomplete BOM"
+                                          th:text="${upcoming.kotlinVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kotlin-extensions/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kotlin-extensions/releases/tag/v{tag}(tag=${upcoming.kotlinVersion})}"
+                                   th:title="|See the reactor-core ${upcoming.kotlinVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain hold"
+                                          title="Partially available release train"
+                                          th:text="${upcoming.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--RELEASEs with a complete BOM-->
+                        <tr th:if="${stable.kotlinVersion} != null">
+                            <td>
+                                    <span class="version"
+                                          th:text="${stable.kotlinVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kotlin-extensions/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kotlin-extensions/releases/tag/v{tag}(tag=${stable.kotlinVersion})}"
+                                   th:title="|See the reactor-kotlin-extensions ${stable.kotlinVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain"
+                                          title="Stable release train"
+                                          th:text="${stable.name}">BOM</span>
+                            </td>
+                        </tr>
+
+                        <!--Pre-Releases-->
+                        <tr th:if="${milestone.kotlinVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release"
+                                          th:text="${milestone.kotlinVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kotlin-extensions/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kotlin-extensions/releases/tag/v{tag}(tag=${milestone.kotlinVersion})}"
+                                   th:title="|See the reactor-kotlin-extensions ${milestone.kotlinVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td>
+                                    <span class="version releasetrain pre"
+                                          title="MILESTONE release train"
+                                          th:text="${milestone.name}"> BOM</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="github">
+                <a href="https://github.com/reactor/reactor-kotlin-extensions">
+                    <span class="fa fa-github"></span>
+                    Github
+                </a>
+            </div>
+            <div class="javadoc">
+                <strong>Kotlin Doc</strong><br />
+                <a href="/docs/kotlin/release/kdoc-api/">Release</a> |
+                <span th:if="${milestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/kdoc-api/">Milestone</a> |</span>
+                <a href="/docs/kotlin/snapshot/kdoc-api/">Snapshot</a>
+            </div>
+            <div class="reference">
+                <strong>Reference</strong> <br/>
+                See core reference, Kotlin section
+            </div>
+        </article>
+
         <!--/* The rest of the links are handled manually still */-->
         <article>
             <div class="title">

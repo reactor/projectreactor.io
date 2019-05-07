@@ -29,13 +29,14 @@ public class Bom {
 	private String adapterVersion;
 	private String rabbitVersion;
 	private String kafkaVersion;
+	private String kotlinVersion;
 
 	public Bom() {
 	}
 
 	public Bom(String type, String name, String coreVersion, String testVersion,
 			String nettyVersion, String extraVersion, String adapterVersion,
-			String kafkaVersion) {
+			String kafkaVersion, String kotlinVersion) {
 		this.type = type;
 		this.name = name;
 		this.coreVersion = coreVersion;
@@ -44,6 +45,7 @@ public class Bom {
 		this.extraVersion = extraVersion;
 		this.adapterVersion = adapterVersion;
 		this.kafkaVersion = kafkaVersion;
+		this.kotlinVersion = kotlinVersion;
 	}
 
 	public String getType() {
@@ -110,6 +112,14 @@ public class Bom {
 		this.kafkaVersion = kafkaVersion;
 	}
 
+	public String getKotlinVersion() {
+		return kotlinVersion;
+	}
+
+	public void setKotlinVersion(String kotlinVersion) {
+		this.kotlinVersion = kotlinVersion;
+	}
+
 	public String getRabbitVersion() {
 		return rabbitVersion;
 	}
@@ -128,6 +138,7 @@ public class Bom {
 				+ ", adapterVersion='" + adapterVersion + '\''
 				+ ", rabbitVersion='" + rabbitVersion + '\''
 				+ ", kafkaVersion='" + kafkaVersion + '\''
+				+ ", kotlinVersion='" + kotlinVersion + '\''
 				+ '}';
 	}
 }
