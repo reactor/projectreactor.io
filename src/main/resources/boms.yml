@@ -24,7 +24,15 @@ type: upcoming
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-#name: Californium-RC1
+name: Dysprosium-M1
+coreVersion: 3.3.0.M1
+testVersion: 3.3.0.M1
+nettyVersion: 0.9.0.M1
+extraVersion: 3.3.0.M1
+adapterVersion: 3.3.0.M1
+kafkaVersion: 1.1.1.RELEASE
+rabbitVersion: 1.2.0.RELEASE
+kotlinVersion: 1.0.0.M1
 #---
 # this bom type is currently unused
 #type: snapshot
