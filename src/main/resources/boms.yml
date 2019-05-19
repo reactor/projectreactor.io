@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Californium-SR7
+name: Californium-SR8
 coreVersion: 3.2.9.RELEASE
 testVersion: 3.2.9.RELEASE
-nettyVersion: 0.8.7.RELEASE
+nettyVersion: 0.8.8.RELEASE
 extraVersion: 3.2.3.RELEASE
 adapterVersion: 3.2.3.RELEASE
 kafkaVersion: 1.1.1.RELEASE
