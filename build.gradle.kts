@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
-import com.github.robfletcher.compass.CompassExtension
 import java.util.concurrent.TimeUnit
 
 configurations.all {
@@ -56,8 +54,8 @@ repositories {
 
 dependencies {
     compile("org.springframework:spring-core:5.1.3.RELEASE")
-    compile("io.projectreactor.netty:reactor-netty:0.8.6.BUILD-SNAPSHOT")
-    compile("io.projectreactor:reactor-core:3.2.6.RELEASE")
+    compile("io.projectreactor.netty:reactor-netty:0.8.9.BUILD-SNAPSHOT")
+    compile("io.projectreactor:reactor-core:3.2.9.RELEASE")
     compile("org.thymeleaf:thymeleaf:3.0.9.RELEASE")
     compile("org.yaml:snakeyaml:1.17")
     runtime("commons-logging:commons-logging:1.2")
