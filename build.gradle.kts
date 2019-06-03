@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
+import com.github.robfletcher.compass.CompassExtension
 import java.util.concurrent.TimeUnit
 
 configurations.all {
