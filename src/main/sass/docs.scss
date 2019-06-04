@@ -1,4 +1,12 @@
-@import "compass";
+//TODO remove, copied from reactor.scss
+@mixin clearfix {
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
+
 
 .admonitionblock .content .listingblock, .admonitionblock .content p {
   font-size: 0.9rem !important;

@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
-import com.github.robfletcher.compass.CompassExtension
+import com.github.salomonbrys.gradle.sass.SassTask
 import java.util.concurrent.TimeUnit
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
-
-    //force JRuby version, bumping Ruby to 2.5
-    resolutionStrategy.force("org.jruby:jruby-complete:9.2.5.0")
 }
 
 plugins {
     java
     application
     id("com.github.johnrengelman.shadow") version "4.0.4"
-    id("com.github.anbuck.compass") version "2.0.7"
-}
+    id("com.github.salomonbrys.gradle.sass") version "1.2.0"}
 
 group = "io.projectreactor"
 version = "1.0.0.BUILD-SNAPSHOT"
@@ -42,9 +38,10 @@ configure<ShadowExtension> {
 	version = ""
 }
 
-configure<CompassExtension> {
-    sassDir = file("$projectDir/src/main/sass")
-    cssDir = file("$buildDir/resources/main/static/assets/css")
+configure<SassTask> {
+    style = compressed
+    source = fileTree("$projectDir/src/main/sass")
+    outputDir = file("$buildDir/resources/main/static/assets/css/")
 }
 
 repositories {
@@ -69,5 +66,5 @@ dependencies {
 }
 
 val processResources = tasks.getByName("processResources")
-val compassCompile = tasks.getByName("compassCompile")
-processResources.dependsOn(compassCompile)
+val sassCompile = tasks.getByName("sassCompile")
+processResources.dependsOn(sassCompile)

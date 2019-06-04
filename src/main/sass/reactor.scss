@@ -14,8 +14,13 @@
  * limitations under the License.
  */
 
-// Compass
-@import "compass";
+@mixin clearfix {
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
 
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Varela+Round|Montserrat:400,700|Karla:400,700);

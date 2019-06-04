@@ -104,7 +104,7 @@ body {
       margin: 8px 0;
       &:hover {
         strong{
-          @include opacity(1);
+          opacity: 1;
         }
       }
       strong {
@@ -115,9 +115,9 @@ body {
         width: 253px;
         text-indent: -6000em;
         margin: 8px 0;
-        @include transition-property(opacity);
-        @include transition-duration($reactorDurationTransition);
-        @include opacity(0);
+        transition-property: opacity;
+        transition-duration: $reactorDurationTransition;
+        opacity: 0;
       }
     }
   }
@@ -152,8 +152,8 @@ body {
         line-height: 71px;
         margin: 0;
         padding: 0 12px;
-        @include transition-property(background-color);
-        @include transition-duration($reactorDurationTransition);
+        transition-property: background-color;
+        transition-duration: $reactorDurationTransition;
         &:hover {
           background: $reactorPrimary;
         }
@@ -388,11 +388,11 @@ section#applications {
           bottom: 40px;
           right: -40px;
           z-index: 1;
-          @include transition-property(color);
-          @include transition-duration($reactorDurationTransition);
+          transition-property: color;
+          transition-duration: $reactorDurationTransition;
         }
-        @include transition-property(background-color);
-        @include transition-duration($reactorDurationTransition);
+        transition-property: background-color;
+        transition-duration: $reactorDurationTransition;
         &:hover {
           background: white;
           &:after { color: #F1F1F1; }
