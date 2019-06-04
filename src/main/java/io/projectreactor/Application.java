@@ -266,7 +266,7 @@ public final class Application {
 				//ignore
 			}
 		}));
-		return fs.getPath("BOOT-INF/classes/static");
+		return fs.getPath("static");
 	}
 
 
