@@ -25,7 +25,8 @@ plugins {
     java
     application
     id("com.github.johnrengelman.shadow") version "4.0.4"
-    id("com.github.salomonbrys.gradle.sass") version "1.2.0"}
+    id("com.github.salomonbrys.gradle.sass") version "1.2.0"
+}
 
 group = "io.projectreactor"
 version = "1.0.0.BUILD-SNAPSHOT"
@@ -45,9 +46,9 @@ configure<SassTask> {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven { setUrl("https://repo.spring.io/milestone") }
+    mavenLocal()
     maven { setUrl("https://repo.spring.io/snapshot") }
 }
 
