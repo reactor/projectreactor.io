@@ -56,7 +56,7 @@ repositories {
 
 dependencies {
     compile("org.springframework:spring-core:5.1.3.RELEASE")
-    compile("io.projectreactor.netty:reactor-netty:0.8.9.BUILD-SNAPSHOT")
+    compile("io.projectreactor.netty:reactor-netty:0.8.6.RELEASE") //TODO downgrade until wildcard routing regression fixed
     compile("io.projectreactor:reactor-core:3.2.9.RELEASE")
     compile("org.thymeleaf:thymeleaf:3.0.9.RELEASE")
     compile("org.yaml:snakeyaml:1.17")
