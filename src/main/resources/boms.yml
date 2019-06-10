@@ -21,7 +21,7 @@ type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-SRx
 #coreVersion: 3.2.x.RELEASE
-name: Californium-SR10
+#name: Californium-SR10
 #coreVersion: 3.2.11.RELEASE
 #testVersion: 3.2.11.RELEASE
 ---
