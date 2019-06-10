@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Californium-SR8
-coreVersion: 3.2.9.RELEASE
-testVersion: 3.2.9.RELEASE
-nettyVersion: 0.8.8.RELEASE
+name: Californium-SR9
+coreVersion: 3.2.10.RELEASE
+testVersion: 3.2.10.RELEASE
+nettyVersion: 0.8.9.RELEASE
 extraVersion: 3.2.3.RELEASE
 adapterVersion: 3.2.3.RELEASE
 kafkaVersion: 1.1.1.RELEASE
@@ -17,24 +17,24 @@ rabbitVersion: 1.2.0.RELEASE
 #extraVersion: 3.1.7.RELEASE
 #adapterVersion: 3.1.7.RELEASE
 ---
-type: upcoming
+#type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-SRx
 #coreVersion: 3.2.x.RELEASE
-name: Californium-SR9
-coreVersion: 3.2.10.RELEASE
-testVersion: 3.2.10.RELEASE
+#name: Californium-SR10
+#coreVersion: 3.2.11.RELEASE
+#testVersion: 3.2.11.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: Dysprosium-M1
-coreVersion: 3.3.0.M1
-testVersion: 3.3.0.M1
-nettyVersion: 0.9.0.M1
+name: Dysprosium-M2
+coreVersion: 3.3.0.M2
+testVersion: 3.3.0.M2
+nettyVersion: 0.9.0.M2
 extraVersion: 3.3.0.M1
 adapterVersion: 3.3.0.M1
 kafkaVersion: 1.1.1.RELEASE
-rabbitVersion: 1.2.0.RELEASE
+rabbitVersion: 1.3.0.M1
 kotlinVersion: 1.0.0.M1
 #---
 # this bom type is currently unused
