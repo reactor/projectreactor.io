@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Californium-SR9
-coreVersion: 3.2.10.RELEASE
-testVersion: 3.2.10.RELEASE
-nettyVersion: 0.8.9.RELEASE
+name: Californium-SR10
+coreVersion: 3.2.11.RELEASE
+testVersion: 3.2.11.RELEASE
+nettyVersion: 0.8.10.RELEASE
 extraVersion: 3.2.3.RELEASE
 adapterVersion: 3.2.3.RELEASE
 kafkaVersion: 1.1.1.RELEASE
@@ -27,10 +27,10 @@ type: upcoming
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: Dysprosium-M2
-coreVersion: 3.3.0.M2
-testVersion: 3.3.0.M2
-nettyVersion: 0.9.0.M2
+name: Dysprosium-M3
+coreVersion: 3.3.0.M3
+testVersion: 3.3.0.M3
+nettyVersion: 0.9.0.M3
 extraVersion: 3.3.0.M1
 adapterVersion: 3.3.0.M1
 kafkaVersion: 1.1.1.RELEASE

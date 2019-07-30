@@ -12,6 +12,7 @@ name: core
 groupId: io.projectreactor
 artifactId: reactor-core
 versions:
+  - 3.2.11.RELEASE
   - 3.2.10.RELEASE
   - 3.2.9.RELEASE
   - 3.2.8.RELEASE
@@ -44,6 +45,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
+  - 3.3.0.M3
   - 3.3.0.M2
   - 3.3.0.M1
   - 3.3.0.BUILD-SNAPSHOT
@@ -62,6 +64,7 @@ name: test
 groupId: io.projectreactor
 artifactId: reactor-test
 versions:
+  - 3.2.11.RELEASE
   - 3.2.10.RELEASE
   - 3.2.9.RELEASE
   - 3.2.8.RELEASE
@@ -90,6 +93,7 @@ versions:
   - 3.1.2.RELEASE
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
+  - 3.3.0.M3
   - 3.3.0.M2
   - 3.3.0.M1
   - 3.3.0.BUILD-SNAPSHOT
@@ -187,6 +191,7 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.8.10.RELEASE
   - 0.8.9.RELEASE
   - 0.8.8.RELEASE
   - 0.8.7.RELEASE
@@ -197,6 +202,7 @@ versions:
   - 0.8.2.RELEASE
   - 0.8.1.RELEASE
   - 0.8.0.RELEASE
+  - 0.9.0.M3
   - 0.9.0.M2
   - 0.9.0.M1
   - 0.9.0.BUILD-SNAPSHOT
@@ -290,6 +296,7 @@ name: BlockHound
 groupId: io.projectreactor.tools
 artifactId: blockhound
 versions:
+  - 1.0.0.M5
   - 1.0.0.M4
   - 1.0.0.M3
   - 1.0.0.M2
@@ -307,6 +314,7 @@ name: pool
 groupId: io.projectreactor.addons
 artifactId: reactor-pool
 versions:
-  - 0.0.1.M1
+  - 0.0.1.M3
   - 0.0.1.M2
+  - 0.0.1.M1
   - 0.0.1.BUILD-SNAPSHOT
