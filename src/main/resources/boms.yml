@@ -34,7 +34,7 @@ nettyVersion: 0.9.0.M3
 extraVersion: 3.3.0.M1
 adapterVersion: 3.3.0.M1
 kafkaVersion: 1.1.1.RELEASE
-rabbitVersion: 1.3.0.M1
+rabbitVersion: 1.3.0.M2
 kotlinVersion: 1.0.0.M1
 #---
 # this bom type is currently unused
