@@ -195,6 +195,7 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.8.11.RELEASE
   - 0.8.10.RELEASE
   - 0.8.9.RELEASE
   - 0.8.8.RELEASE
@@ -210,7 +211,7 @@ versions:
   - 0.9.0.M2
   - 0.9.0.M1
   - 0.9.0.BUILD-SNAPSHOT
-  - 0.8.8.BUILD-SNAPSHOT
+  - 0.8.12.BUILD-SNAPSHOT
   - 0.8.0.M3
   - 0.8.0.M2
   - 0.8.0.M1

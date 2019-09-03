@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Californium-SR10
-coreVersion: 3.2.11.RELEASE
-testVersion: 3.2.11.RELEASE
-nettyVersion: 0.8.10.RELEASE
+name: Californium-SR11
+coreVersion: 3.2.12.RELEASE
+testVersion: 3.2.12.RELEASE
+nettyVersion: 0.8.11.RELEASE
 extraVersion: 3.2.3.RELEASE
 adapterVersion: 3.2.3.RELEASE
 kafkaVersion: 1.1.1.RELEASE
