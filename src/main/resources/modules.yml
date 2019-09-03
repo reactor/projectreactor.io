@@ -46,6 +46,7 @@ versions:
   - 3.0.5.RELEASE
   - 3.0.4.RELEASE
   - 3.0.3.RELEASE
+  - 3.3.0.RC1
   - 3.3.0.M3
   - 3.3.0.M2
   - 3.3.0.M1
@@ -95,6 +96,7 @@ versions:
   - 3.1.2.RELEASE
   - 3.1.1.RELEASE
   - 3.1.0.RELEASE
+  - 3.3.0.RC1
   - 3.3.0.M3
   - 3.3.0.M2
   - 3.3.0.M1
