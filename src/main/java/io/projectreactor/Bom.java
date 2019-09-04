@@ -24,6 +24,7 @@ public class Bom {
 	private String name;
 	private String coreVersion;
 	private String testVersion;
+	private String poolVersion;
 	private String nettyVersion;
 	private String extraVersion;
 	private String adapterVersion;
@@ -62,6 +63,14 @@ public class Bom {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPoolVersion() {
+		return poolVersion;
+	}
+
+	public void setPoolVersion(String poolVersion) {
+		this.poolVersion = poolVersion;
 	}
 
 	public String getCoreVersion() {
@@ -138,6 +147,7 @@ public class Bom {
 				+ ", adapterVersion='" + adapterVersion + '\''
 				+ ", rabbitVersion='" + rabbitVersion + '\''
 				+ ", kafkaVersion='" + kafkaVersion + '\''
+				+ ", poolVersion='" + poolVersion + '\''
 				+ ", kotlinVersion='" + kotlinVersion + '\''
 				+ '}';
 	}
