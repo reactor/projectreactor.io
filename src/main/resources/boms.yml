@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Californium-SR11
+name: Californium-SR12
 coreVersion: 3.2.12.RELEASE
 testVersion: 3.2.12.RELEASE
-nettyVersion: 0.8.11.RELEASE
+nettyVersion: 0.8.12.RELEASE
 extraVersion: 3.2.3.RELEASE
 adapterVersion: 3.2.3.RELEASE
 kafkaVersion: 1.1.1.RELEASE
@@ -34,6 +34,7 @@ rabbitVersion: 1.3.0.RELEASE
 adapterVersion: 3.3.0.RELEASE
 extraVersion: 3.3.0.RELEASE
 poolVersion: 0.1.0.RELEASE
+nettyVersion: 0.9.0.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
