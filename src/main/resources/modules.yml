@@ -327,9 +327,10 @@ name: pool
 groupId: io.projectreactor.addons
 artifactId: reactor-pool
 versions:
+  - 0.1.0.RELEASE
   - 0.1.0.RC1
   - 0.0.1.M3
   - 0.0.1.M2
   - 0.0.1.M1
-  - 0.1.0.BUILD-SNAPSHOT
+  - 0.1.1.BUILD-SNAPSHOT
   - 0.0.1.BUILD-SNAPSHOT
