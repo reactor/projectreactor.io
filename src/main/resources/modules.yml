@@ -5,6 +5,7 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
+  - Californium-SR12
   - Bismuth-SR17
   - Aluminium-SR3
 ---
@@ -271,6 +272,7 @@ name: kafka
 groupId: io.projectreactor.kafka
 artifactId: reactor-kafka
 versions:
+  - 1.2.0.RELEASE
   - 1.1.1.RELEASE
   - 1.1.0.RELEASE
   - 1.0.1.RELEASE
@@ -278,6 +280,7 @@ versions:
   - 1.0.0.RC1
   - 1.0.0.M4
   - 1.0.0.M3
+  - 1.2.1.BUILD-SNAPSHOT
   - 1.1.2.BUILD-SNAPSHOT
   - 1.0.2.BUILD-SNAPSHOT
 ---
@@ -322,8 +325,9 @@ name: kotlin
 groupId: io.projectreactor.kotlin
 artifactId: reactor-kotlin-extensions
 versions:
+  - 1.0.0.RELEASE
   - 1.0.0.M1
-  - 1.0.0.BUILD-SNAPSHOT
+  - 1.0.1.BUILD-SNAPSHOT
 ---
 name: pool
 groupId: io.projectreactor.addons
