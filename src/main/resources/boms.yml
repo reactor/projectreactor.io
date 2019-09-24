@@ -16,14 +16,20 @@ rabbitVersion: 1.2.0.RELEASE
 #nettyVersion: 0.7.9.RELEASE
 #extraVersion: 3.1.7.RELEASE
 #adapterVersion: 3.1.7.RELEASE
----
-type: upcoming
+#---
+#type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Californium-SRx
 #coreVersion: 3.2.x.RELEASE
 #name: Californium-SR10
 #coreVersion: 3.2.11.RELEASE
 #testVersion: 3.2.11.RELEASE
+---
+type: upcoming
+#remove name to deactivate badge and/or individual versions to hide artifacts links
+name: Dysprosium-RELEASE
+coreVersion: 3.3.0.RELEASE
+testVersion: 3.3.0.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
