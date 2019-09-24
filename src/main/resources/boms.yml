@@ -30,6 +30,7 @@ type: upcoming
 name: Dysprosium-RELEASE
 coreVersion: 3.3.0.RELEASE
 testVersion: 3.3.0.RELEASE
+rabbitVersion: 1.3.0.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
