@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('404', ~{::title}, ~{::meta[@name='description']}, ~{::link}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor - 404 No Kotlin Doc Available</title>
+    <meta name="description" content="404 No Kotlin Doc Available" />
+    <link href="/assets/css/docs.css" media="all" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="content" id="content">
+    <section class="page404">
+        <img height="145px" src="/assets/img/404.jpg" />
+        <h1>The artifact and version you requested doesn't have Kotlin Doc.</h1>
+        <article>
+            <p class="desc">
+                You tried to access Kotlin Doc through <span class="version pre" th:text="${requestedPage}">PAGE PLACEHOLDER</span>.
+                <br/>Component <span class="version pre" th:text="${actualModule}">COMPONENT PLACEHOLDER</span>
+                and version <span class="version pre" th:text="${actualVersion}">VERSION PLACEHOLDER</span>
+            </p>
+            <p class="desc">
+                This combination doesn't have Kotlin Docs, because it belongs to one of the cases below:
+            <br/>
+            <table>
+            <tr>
+                <td>
+                <code>reactor-core</code> and <code>reactor-extra</code>, 3.3.0+ (Dysprosium and above)
+                </td>
+                <td>
+                The Kotlin extensions have been moved to <code>reactor-kotlin-extensions</code>
+                (see below)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <code>reactor-kotlin-extension</code> from version <code>1.0.0.RELEASE</code>
+                to version <code>to be determined</code>
+                </td>
+                <td>
+                A blocking bug in the dokka tooling prevents us from publishing kdoc and javadoc,
+                and we HAVE to publish javadocs on Maven Central.
+                <br/>
+                You can try to access javadocs instead (replace <code>kdoc-api</code> with <code>api</code>
+                in the <strong>original</strong> URL you tried to access).
+                </td>
+            </tr>
+            </table>
+            </p>
+            <p class="desc">
+                You can also find some helpful links in the footer below, or try a page from the navigation bar on top...
+                <br/>If you think this URL should have worked, please open an
+                <a href="https://github.com/reactor/projectreactor.io/issues">issue</a>.
+            </p>
+        </article>
+    </section>
+</div>
+
+</body>
+</html>

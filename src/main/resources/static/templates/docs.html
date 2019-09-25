@@ -144,7 +144,7 @@
                 <a href="/docs/core/release/api/">Release</a> |
                 <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/api/">Snapshot</a> |
-                <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>
+<!--                <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>-->
             </div>
             <div class="reference">
                 <strong>Reference</strong><br />
@@ -245,7 +245,7 @@
                 <a href="/docs/test/release/api/">Release</a> |
                 <span th:if="${milestone.testVersion} != null"><a href="/docs/test/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/test/snapshot/api/">Snapshot</a> |
-                <a href="/docs/test/release/kdoc-api/">Kotlin Doc</a>
+<!--                <a href="/docs/test/release/kdoc-api/">Kotlin Doc</a>-->
 
             </div>
             <div class="reference">
@@ -702,11 +702,17 @@
                     Github
                 </a>
             </div>
+<!--            <div class="javadoc">-->
+<!--                <strong>Kotlin Doc</strong><br />-->
+<!--                <a href="/docs/kotlin/release/kdoc-api/">Release</a> |-->
+<!--                <span th:if="${milestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/kdoc-api/">Milestone</a> |</span>-->
+<!--                <a href="/docs/kotlin/snapshot/kdoc-api/">Snapshot</a>-->
+<!--            </div>-->
             <div class="javadoc">
-                <strong>Kotlin Doc</strong><br />
-                <a href="/docs/kotlin/release/kdoc-api/">Release</a> |
-                <span th:if="${milestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/kdoc-api/">Milestone</a> |</span>
-                <a href="/docs/kotlin/snapshot/kdoc-api/">Snapshot</a>
+                <strong>Javadoc (temporarily instead of Kotlin Doc)</strong><br />
+                <a href="/docs/kotlin/release/api/">Release</a> |
+                <span th:if="${milestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/api/">Milestone</a> |</span>
+                <a href="/docs/kotlin/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
                 <strong>Reference</strong> <br/>

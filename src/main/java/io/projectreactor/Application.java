@@ -163,6 +163,37 @@ public final class Application {
 			    );
 	}
 
+	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> kdocNotFound(
+			String moduleAndVersionInfo) {
+		String resolvedModule;
+		String resolvedVersion;
+		try {
+			String[] split = moduleAndVersionInfo.split(":");
+			resolvedModule = split[0];
+			resolvedVersion = split[1];
+		}
+		catch (Exception e) {
+			resolvedModule = "COULDNT_PARSE_MODULE: " + moduleAndVersionInfo;
+			resolvedVersion = "COULDNT_PARSE_VERSION: " + moduleAndVersionInfo;
+		}
+
+		final Map<String, Object> variables = new HashMap<>();
+		variables.put("actualModule", resolvedModule);
+		variables.put("actualVersion", resolvedVersion);
+
+		//the template parsing is dynamic to inject the requested url
+		return (req, resp) -> {
+			variables.put("requestedPage", req.path());
+			return resp
+					.status(404)
+					.sendString(
+							Mono.just(templateEngine.process("404NoKDoc",
+									new Context(Locale.US, variables)
+							))
+					);
+		};
+	}
+
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
 		String requestedModule = req.param("module");
 		String requestedVersion = req.param("version");
@@ -180,6 +211,9 @@ public final class Application {
 				module.getT1(), module.getT2());
 		if (url == null) {
 			return pageNotFound().apply(req, resp);
+		}
+		else if (url.startsWith(DocUtils.WARNING_NO_KDOC)) {
+			return kdocNotFound(url.replace(DocUtils.WARNING_NO_KDOC, "")).apply(req, resp);
 		}
 
 		return client.headers(h -> filterXHeaders(req.requestHeaders()))

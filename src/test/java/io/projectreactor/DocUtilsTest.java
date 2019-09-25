@@ -1,11 +1,11 @@
 package io.projectreactor;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import reactor.util.function.Tuple2;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -421,6 +421,94 @@ public class DocUtilsTest {
 	@Test
 	public void checkModuleVersionReleaseCandidateIsMilestone() {
 		assertThat(DocUtils.checkModuleVersion("3.1.0.RC2", "MILESTONE")).isTrue();
+	}
+
+	@Test
+	public void coreCaliforniumAndBelowIsNotKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.0.0"))
+				.as("3.0.0").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.1.0"))
+				.as("3.1.0").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.2.0"))
+				.as("3.2.0").isFalse();
+	}
+
+	@Test
+	public void coreDysprosiumAndAboveIsKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.3.0.M1"))
+				.as("3.0.0.M1").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.3.1.RELEASE"))
+				.as("3.3.1.RELEASE").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.4.0.x"))
+				.as("3.4.0.x").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("core", "3.6.1.BUILD-SNAPSHOT"))
+				.as("3.6.1.BUILD-SNAPSHOT").isTrue();
+	}
+
+	@Test
+	public void extraCaliforniumAndBelowIsNotIsKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.0.0"))
+				.as("3.0.0").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.1.0"))
+				.as("3.1.0").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.2.0"))
+				.as("3.2.0").isFalse();
+	}
+
+	@Test
+	public void extraDysprosiumAndAboveIsKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.3.0.M1"))
+				.as("3.0.0.M1").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.3.1.RELEASE"))
+				.as("3.3.1.RELEASE").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.4.0.x"))
+				.as("3.4.0.x").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("extra", "3.6.1.BUILD-SNAPSHOT"))
+				.as("3.6.1.BUILD-SNAPSHOT").isTrue();
+	}
+
+	@Test
+	public void testCaliforniumAndBelowIsNotKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.0.0"))
+				.as("3.0.0").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.1.0"))
+				.as("3.1.0").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.2.0"))
+				.as("3.2.0").isFalse();
+	}
+
+	@Test
+	public void testDysprosiumAndAboveIsKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.3.0.M1"))
+				.as("3.0.0.M1").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.3.1.RELEASE"))
+				.as("3.3.1.RELEASE").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.4.0.x"))
+				.as("3.4.0.x").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("test", "3.6.1.BUILD-SNAPSHOT"))
+				.as("3.6.1.BUILD-SNAPSHOT").isTrue();
+	}
+
+	@Test
+	public void kotlinExtensionsDysprosiumReleaseAndAboveIsKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.0.RELEASE"))
+				.as("1.0.0.RELEASE").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.BUILD-SNAPSHOT"))
+				.as("1.0.1.BUILD-SNAPSHOT").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.M1"))
+				.as("1.0.1.M1").isTrue();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.RC1"))
+				.as("1.0.1.RC1").isTrue();
+	}
+
+	@Test
+	public void kotlinExtensionsDysprosiumPreReleasesAreNotKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.0.BUILD-SNAPSHOT"))
+				.as("1.0.0.BUILD-SNAPSHOT").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.0.M1"))
+				.as("1.0.0.M1").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.0.RC1"))
+				.as("1.0.0.RC1").isFalse();
 	}
 
 }
