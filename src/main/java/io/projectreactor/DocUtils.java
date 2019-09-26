@@ -144,6 +144,42 @@ public class DocUtils {
 		}
 	}
 
+	static boolean hasKDoc(String module, String version) {
+		if (("core".equals(module)
+				|| "extra".equals(module)
+				|| "test".equals(module)
+		) && (version.startsWith("3.0")
+				|| version.startsWith("3.1")
+				|| version.startsWith("3.2")
+		)){
+			//core/addons/test < Dysprosium have KDoc
+			return true;
+		}
+		//reactor-kotlin-extensions Dysprosium
+		if ("kotlin".equals(module)) {
+			//exception for 1.0.0 pre-releases
+			if (version.startsWith("1.0.0") && !version.equals("1.0.0.RELEASE")) {
+				return true;
+			}
+			//for now all kotlin >= 1.0.0.RELEASE have no kdoc
+			//TODO restrict to a version range when kdoc are eventually generated
+		}
+		return false;
+	}
+
+	static String getRefDocRelativePath(String module, String version) {
+		if ("core".equals(module)
+				|| "kafka".equals(module)
+				|| "rabbitmq".equals(module)) {
+			return version + "/reference/";
+		}
+		if ("test".equals(module)) return version + "/reference/docs/index.html#testing";
+		if ("netty".equals(module) && version.startsWith("0.9")) {
+			return version + "/reference/";
+		}
+		return "";
+	}
+
 	static String moduleToKdocUrl(String reqUri, String versionType,
 			String requestedModuleName, String requestedVersion, Module actualModule,
 			String actualVersion) {
