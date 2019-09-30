@@ -110,6 +110,9 @@ public class DocUtils {
 					12, "index.html", "-javadoc.jar", "", "");
 		}
 		else if (reqUri.contains("/kdoc-api/")) {
+			if (isKDocSpecialCases(actualModule.getName(), actualVersion)) {
+				return WARNING_NO_KDOC + actualModule.getArtifactId() + ":" + actualVersion;
+			}
 			url = moduleToKdocUrl(reqUri, versionType, requestedModuleName,
 					requestedVersion, actualModule, actualVersion);
 		}
@@ -120,6 +123,25 @@ public class DocUtils {
 					"docs/");
 		}
 		return url;
+	}
+
+	static boolean isKDocSpecialCases(String module, String version) {
+		switch (module) {
+			case "core":
+			case "extra":
+			case "test":
+				//core/addons/test >= Dysprosium
+				return !version.startsWith("3.0")
+						&& !version.startsWith("3.1")
+						&& !version.startsWith("3.2");
+			case "kotlin":
+				//exception for 1.0.0 pre-releases
+				//for now all kotlin >= 1.0.0.RELEASE have no kdoc
+				//TODO restrict to a version range when kdoc are eventually generated
+				return version.equals("1.0.0.RELEASE") || !version.startsWith("1.0.0");
+			default:
+				return false;
+		}
 	}
 
 	static String moduleToKdocUrl(String reqUri, String versionType,
@@ -173,4 +195,8 @@ public class DocUtils {
 		return url;
 	}
 
+	/**
+	 * static 404 we send to when a KDoc is requested for a special project+version combination that doesn't have them
+	 */
+	public static final String WARNING_NO_KDOC = "warningNoKDoc:";
 }
