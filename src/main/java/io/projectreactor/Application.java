@@ -22,9 +22,12 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -39,6 +42,9 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+
+import org.springframework.core.io.ClassPathResource;
+
 import reactor.core.publisher.Mono;
 import reactor.netty.DisposableServer;
 import reactor.netty.http.client.HttpClient;
@@ -48,8 +54,8 @@ import reactor.netty.http.server.HttpServerResponse;
 import reactor.util.Logger;
 import reactor.util.Loggers;
 import reactor.util.function.Tuple2;
-
-import org.springframework.core.io.ClassPathResource;
+import reactor.util.function.Tuple4;
+import reactor.util.function.Tuples;
 
 /**
  * Main Application for the Project Reactor home site.
@@ -99,6 +105,7 @@ public final class Application {
 		                                 .get("/learn", template("learn"))
 		                                 .get("/learn/", template("learn"))
 		                                 //.get("/project", template("project"))
+		                                 .get("/docs/{module}/", this::listVersionsAndDocs)
 		                                 .get("/docs/{module}/{version}/api", rewrite("/api", "/api/index.html"))
 		                                 .get("/docs/{module}/{version}/reference/docs/**", rewrite("/reference/docs/", "/reference/"))
 		                                 .get("/docs/{module}/{version}/reference", rewrite("/reference", "/reference/index.html"))
@@ -192,6 +199,57 @@ public final class Application {
 							))
 					);
 		};
+	}
+
+	//TODO cache the versions?
+	private Publisher<Void> listVersionsAndDocs(HttpServerRequest req, HttpServerResponse resp) {
+		String requestedModule = req.param("module");
+		Module module = modules.get(requestedModule);
+
+		if (module == null){
+			return pageNotFound().apply(req, resp);
+		}
+		String moduleName = module.getName();
+		Map<String, Object> model = new HashMap<>();
+		LinkedHashMap<String, List<Tuple4<String, String, String, String>>>
+				versionsByMajor = new LinkedHashMap<>();
+		Map<String, Tuple4<String, String, String, String>> latestReleaseByTrain = new HashMap<>();
+		Map<String, Tuple4<String, String, String, String>> latestSnapshotByTrain = new HashMap<>();
+		model.put("moduleName", moduleName);
+		model.put("artifactId", module.getArtifactId());
+		model.put("trains", versionsByMajor);
+		model.put("latestReleases", latestReleaseByTrain);
+		model.put("latestSnapshots", latestSnapshotByTrain);
+
+		for (String version : module.getVersions()) {
+			String[] versionSplit = version.split("\\.");
+			String key = versionSplit[0] + "." + versionSplit[1] + ".x";
+
+			List<Tuple4<String, String, String, String>> versions = versionsByMajor.computeIfAbsent(key, k -> new ArrayList<>());
+
+			String javadocUrl = version + "/api/";
+			String refdocUrl = DocUtils.getRefDocRelativePath(moduleName, version);
+			String kdocUrl = "";
+			if (DocUtils.hasKDoc(moduleName, version)) {
+				kdocUrl = version + "/kdoc-api/";
+			}
+
+			Tuple4<String, String, String, String> docInfo =
+					Tuples.of(version, javadocUrl, refdocUrl, kdocUrl);
+
+			versions.add(docInfo);
+
+			if (version.contains(".RELEASE") && !latestReleaseByTrain.containsKey(key)) {
+				latestReleaseByTrain.put(key, docInfo);
+			}
+			else if (version.contains(".BUILD-SNAPSHOT") && !latestSnapshotByTrain.containsKey(key)) {
+				latestSnapshotByTrain.put(key, docInfo);
+			}
+		}
+
+		return resp.sendString(
+				Mono.just(templateEngine.process("listVersions", new Context(Locale.US, model)))
+		);
 	}
 
 	private Publisher<Void> repoProxy(HttpServerRequest req, HttpServerResponse resp) {
