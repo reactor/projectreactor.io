@@ -126,27 +126,22 @@ public class DocUtils {
 	}
 
 	static boolean isKDocSpecialCases(String module, String version) {
-		if (("core".equals(module)
-				|| "extra".equals(module)
-				|| "test".equals(module)
-		)
-				&& !version.startsWith("3.0")
-				&& !version.startsWith("3.1")
-				&& !version.startsWith("3.2")) {
-			//core/addons/test >= Dysprosium
-			return true;
-		}
-		//reactor-kotlin-extensions Dysprosium
-		if ("kotlin".equals(module)) {
-			//exception for 1.0.0 pre-releases
-			if (version.startsWith("1.0.0") && !version.equals("1.0.0.RELEASE")) {
+		switch (module) {
+			case "core":
+			case "extra":
+			case "test":
+				//core/addons/test >= Dysprosium
+				return !version.startsWith("3.0")
+						&& !version.startsWith("3.1")
+						&& !version.startsWith("3.2");
+			case "kotlin":
+				//exception for 1.0.0 pre-releases
+				//for now all kotlin >= 1.0.0.RELEASE have no kdoc
+				//TODO restrict to a version range when kdoc are eventually generated
+				return version.equals("1.0.0.RELEASE") || !version.startsWith("1.0.0");
+			default:
 				return false;
-			}
-			//for now all kotlin >= 1.0.0.RELEASE have no kdoc
-			//TODO restrict to a version range when kdoc are eventually generated
-			return true;
 		}
-		return false;
 	}
 
 	static String moduleToKdocUrl(String reqUri, String versionType,
