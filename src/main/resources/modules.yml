@@ -5,7 +5,7 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - Californium-SR12
+  - Californium-SR13
   - Bismuth-SR17
   - Aluminium-SR3
 ---
@@ -200,7 +200,9 @@ name: netty
 groupId: io.projectreactor.netty
 artifactId: reactor-netty
 versions:
+  - 0.9.1.RELEASE
   - 0.9.0.RELEASE
+  - 0.8.13.RELEASE
   - 0.8.12.RELEASE
   - 0.8.11.RELEASE
   - 0.8.10.RELEASE
