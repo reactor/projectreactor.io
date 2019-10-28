@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Dysprosium-RELEASE
+name: Dysprosium-SR1
 coreVersion: 3.3.0.RELEASE
 testVersion: 3.3.0.RELEASE
-nettyVersion: 0.9.0.RELEASE
+nettyVersion: 0.9.1.RELEASE
 extraVersion: 3.3.0.RELEASE
 adapterVersion: 3.3.0.RELEASE
 kafkaVersion: 1.2.0.RELEASE
