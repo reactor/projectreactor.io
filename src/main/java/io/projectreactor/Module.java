@@ -61,6 +61,9 @@ public class Module {
 	}
 
 	public List<String> getVersions() {
+		if (this.versions == null) {
+			this.versions = new ArrayList<>(1);
+		}
 		return versions;
 	}
 
@@ -74,7 +77,7 @@ public class Module {
 			this.versions = new ArrayList<>(1);
 		}
 		this.versions.add(version);
-		return this.sortVersions();
+		return this;
 	}
 
 	public Module sortVersions() {

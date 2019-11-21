@@ -20,14 +20,16 @@ public class DocUtilsTest {
 		Module module = new Module("test", "group", "artifact");
 		module.addVersion("testVersion")
 		      .addVersion("3.1.0.BUILD-SNAPSHOT")
-		      .addVersion("3.1.0.M3");
+		      .addVersion("3.1.0.M3")
+		      .sortVersions();
 
 		Module moduleArchive = new Module("testArchive", "group.old", "artifact");
 		moduleArchive.addVersion("3.1.0.M1")
 		             .addVersion("3.0.7.RELEASE")
 		             .addVersion("3.0.6.BUILD-SNAPSHOT")
 		             .addVersion("3.0.6.RELEASE")
-		             .addVersion("3.0.5.RELEASE");
+		             .addVersion("3.0.5.RELEASE")
+		             .sortVersions();
 
 		modules = new HashMap<>(2);
 		modules.put(module.getName(), module);
