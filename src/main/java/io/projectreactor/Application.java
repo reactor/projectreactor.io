@@ -32,9 +32,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.util.AsciiString;
 import org.reactivestreams.Publisher;
 import org.thymeleaf.TemplateEngine;
@@ -125,8 +127,22 @@ public final class Application {
 //		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
-		                                 .get("**.html", pageNotFound()))
+		                                 .get("**.html", pageNotFound())
+				                         .put("/release/{module}/{version}/", this::tryAddVersion)
+		                    )
 		                    .bind();
+	}
+
+	private Publisher<Void> tryAddVersion(HttpServerRequest req, HttpServerResponse response) {
+		return DocUtils.validateNewVersion(
+				req.param("module"),
+				req.param("version"),
+				modules,
+				uri -> client.head()
+				             .uri(uri)
+				             .response()
+				             .map(r -> r.status().code()))
+				.flatMap(status -> response.status(status).send());
 	}
 
 	public static void main(String... args) throws Exception {

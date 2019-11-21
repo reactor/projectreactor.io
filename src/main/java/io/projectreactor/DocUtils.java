@@ -1,7 +1,13 @@
 package io.projectreactor;
 
 import java.util.Map;
+import java.util.function.Function;
 
+import io.netty.handler.codec.http.HttpResponseStatus;
+
+import reactor.core.publisher.Mono;
+import reactor.util.Logger;
+import reactor.util.Loggers;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
@@ -231,8 +237,42 @@ public class DocUtils {
 		return url;
 	}
 
+	static Mono<HttpResponseStatus> validateNewVersion(String requestedModule, String requestedVersion,
+			Map<String, Module> modules, Function<String, Mono<Integer>> remoteCheck) {
+		if (requestedModule == null || requestedVersion == null
+				|| !modules.containsKey(requestedModule)
+				|| !Module.VERSION_REGEXP.matcher(requestedVersion).matches()) {
+			return Mono.just(HttpResponseStatus.BAD_REQUEST);
+		}
+
+		Module module = modules.get(requestedModule);
+		if (module.getVersions().contains(requestedVersion)) {
+			return Mono.just(HttpResponseStatus.NO_CONTENT);
+		}
+
+		//derive URL to javadoc jar
+		String versionType = DocUtils.findVersionType(requestedVersion);
+		String fakeUrl = "/docs/" + requestedModule + "/" + requestedVersion + "/api/";
+		String artifactoryUrl = DocUtils.moduleToUrl(fakeUrl, versionType, requestedModule, requestedVersion, module, requestedVersion);
+		artifactoryUrl = artifactoryUrl.substring(0, artifactoryUrl.indexOf('!'));
+
+		LOGGER.debug("notified of release {} {}, will check {}", requestedModule, requestedVersion, artifactoryUrl);
+
+		return remoteCheck.apply(artifactoryUrl)
+		                  .map(status -> {
+			                  if (status == 200) {
+				                  module.addVersion(requestedVersion)
+				                        .sortVersions();
+				                  return HttpResponseStatus.CREATED;
+			                  }
+			                  return HttpResponseStatus.FORBIDDEN;
+		                  });
+	}
+
 	/**
 	 * static 404 we send to when a KDoc is requested for a special project+version combination that doesn't have them
 	 */
-	public static final String WARNING_NO_KDOC = "warningNoKDoc:";
+	public static final  String WARNING_NO_KDOC = "warningNoKDoc:";
+
+	private static final Logger LOGGER          = Loggers.getLogger(DocUtils.class);
 }

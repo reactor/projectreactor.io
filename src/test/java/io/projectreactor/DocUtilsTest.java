@@ -1,11 +1,17 @@
 package io.projectreactor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
 
+import io.netty.handler.codec.http.HttpResponseStatus;
 import org.junit.Before;
 import org.junit.Test;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -511,6 +517,95 @@ public class DocUtilsTest {
 				.as("1.0.0.M1").isFalse();
 		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.0.RC1"))
 				.as("1.0.0.RC1").isFalse();
+	}
+
+	@Test
+	public void validateNewVersionEarlyFails() {
+		Map<String, Module> modules = new HashMap<>();
+		Module module = new Module("example", "org.example", "example-module");
+		modules.put(module.getName(), module);
+
+		List<HttpResponseStatus> responses = Flux.concat(
+				DocUtils.validateNewVersion(null, "1.1.0.RELEASE", modules, uri -> Mono.error(new IllegalStateException("should not be reached"))),
+				DocUtils.validateNewVersion(module.getName(), null, modules, uri -> Mono.error(new IllegalStateException("should not be reached"))),
+				DocUtils.validateNewVersion(module.getName() + "BAD", "1.1.0.RELEASE", modules, uri -> Mono.error(new IllegalStateException("should not be reached"))),
+				DocUtils.validateNewVersion(module.getName(), "someBadVersion", modules, uri -> Mono.error(new IllegalStateException("should not be reached"))),
+				DocUtils.validateNewVersion(module.getName(), "1.3.10b.RELEASE", modules, uri -> Mono.error(new IllegalStateException("should not be reached"))))
+		                                         .collectList()
+		                                         .block();
+
+		assertThat(responses).allMatch(s -> s == HttpResponseStatus.BAD_REQUEST);
+	}
+
+	@Test
+	public void validateNewVersionNoContentIfVersionKnown() {
+		Map<String, Module> modules = new HashMap<>();
+		Module module = new Module("example", "org.example", "example-module");
+		module.addVersion("1.1.0.RELEASE")
+		      .sortVersions();
+		modules.put(module.getName(), module);
+
+		assertThat(DocUtils.validateNewVersion(module.getName(), "1.1.0.RELEASE", modules, uri -> Mono.error(new IllegalStateException("should not be reached"))).block())
+				.isEqualTo(HttpResponseStatus.NO_CONTENT);
+	}
+
+	@Test
+	public void validateNewVersionArtifactoryUrl() {
+		Map<String, Module> modules = new HashMap<>();
+		Module module = new Module("example", "org.example", "example-module");
+		modules.put(module.getName(), module);
+
+		AtomicReference<String> artifactoryUrl = new AtomicReference<>();
+		Function<String, Mono<Integer>> remoteCheck = uri -> {
+			artifactoryUrl.set(uri);
+			return Mono.just(200);
+		};
+
+		DocUtils.validateNewVersion(module.getName(), "1.1.0.RELEASE", modules, remoteCheck).block();
+		assertThat(artifactoryUrl.get()).as("release")
+		                                .isEqualTo("https://repo.spring.io/release/org/example/example-module/1.1.0.RELEASE/example-module-1.1.0.RELEASE-javadoc.jar");
+
+		DocUtils.validateNewVersion(module.getName(), "1.1.0.RC1", modules, remoteCheck).block();
+		assertThat(artifactoryUrl.get()).as("rc")
+		                                .isEqualTo("https://repo.spring.io/milestone/org/example/example-module/1.1.0.RC1/example-module-1.1.0.RC1-javadoc.jar");
+
+		DocUtils.validateNewVersion(module.getName(), "1.1.0.M3", modules, remoteCheck).block();
+		assertThat(artifactoryUrl.get()).as("milestone")
+		                                .isEqualTo("https://repo.spring.io/milestone/org/example/example-module/1.1.0.M3/example-module-1.1.0.M3-javadoc.jar");
+
+		DocUtils.validateNewVersion(module.getName(), "1.1.0.BUILD-SNAPSHOT", modules, remoteCheck).block();
+		assertThat(artifactoryUrl.get()).as("snapshot")
+		                                .isEqualTo("https://repo.spring.io/snapshot/org/example/example-module/1.1.0.BUILD-SNAPSHOT/example-module-1.1.0.BUILD-SNAPSHOT-javadoc.jar");
+	}
+
+	@Test
+	public void validateNewVersionRemoteCheckOkReturnsCreatedAndAddsSorted() {
+		Map<String, Module> modules = new HashMap<>();
+		Module module = new Module("example", "org.example", "example-module");
+		module.addVersion("1.1.0.RELEASE");
+		modules.put(module.getName(), module);
+
+		Function<String, Mono<Integer>> remoteCheck = uri -> Mono.just(200);
+
+		assertThat(DocUtils.validateNewVersion(module.getName(), "1.1.1.RELEASE", modules, remoteCheck).block())
+				.isEqualTo(HttpResponseStatus.CREATED);
+
+		assertThat(module.getVersions()).containsExactly("1.1.1.RELEASE", "1.1.0.RELEASE");
+	}
+
+	@Test
+	public void validateNewVersionRemoteCheckFailsReturnsForbiddenAndNothingAdded() {
+		Map<String, Module> modules = new HashMap<>();
+		Module module = new Module("example", "org.example", "example-module");
+		module.addVersion("1.1.0.RELEASE");
+		modules.put(module.getName(), module);
+
+		Function<String, Mono<Integer>> remoteCheck = uri -> Mono.just(201);
+
+		assertThat(DocUtils.validateNewVersion(module.getName(), "1.1.1.RELEASE", modules, remoteCheck).block())
+				.isEqualTo(HttpResponseStatus.FORBIDDEN);
+
+		assertThat(module.getVersions()).containsExactly("1.1.0.RELEASE");
 	}
 
 }
