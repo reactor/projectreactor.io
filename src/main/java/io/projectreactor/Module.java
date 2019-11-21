@@ -91,15 +91,13 @@ public class Module {
 	}
 
 	static final Pattern VERSION_REGEXP = Pattern.compile("[0-9]+\\.[0-9]+\\.[0-9]+\\.[a-zA-Z0-9_-]*");
-	static final Comparator<String> VERSION_COMPARATOR = new Comparator<String>() {
+	static final Comparator<String> VERSION_COMPARATOR = (o1, o2) -> {
+		String[] o1Split = o1.split("\\.");
+		String[] o2Split = o2.split("\\.");
+		boolean o1IsVersion = o1Split.length == 4;
+		boolean o2IsVersion = o2Split.length == 4;
 
-		@Override
-		public int compare(String o1, String o2) {
-			String[] o1Split = o1.split("\\.");
-			String[] o2Split = o2.split("\\.");
-
-			if (o1Split.length != 4 || o2Split.length != 4) return o1.compareTo(o2);
-
+		if (o1IsVersion && o2IsVersion) {
 			int o1X= Integer.parseInt(o1Split[0]);
 			int o1Y = Integer.parseInt(o1Split[1]);
 			int o1Z = Integer.parseInt(o1Split[2]);
@@ -111,15 +109,19 @@ public class Module {
 			String o2Qualifier = o2Split[3];
 
 			if (o1X != o2X) {
-				return o1X - o2X;
+				return o2X - o1X;
 			}
 			if (o1Y != o2Y) {
-				return o1Y - o2Y;
+				return o2Y - o1Y;
 			}
 			if (o1Z != o2Z) {
-				return o1Z - o2Z;
+				return o2Z - o1Z;
 			}
-			return o1Qualifier.compareTo(o2Qualifier);
+			return o2Qualifier.compareTo(o1Qualifier);
 		}
-	}.reversed();
+
+		if (!o1IsVersion && !o2IsVersion) return o1.compareTo(o2);
+		if (!o1IsVersion) return 1; //put non version o1 at end
+		return -1; //put non version o2 at end
+	};
 }
