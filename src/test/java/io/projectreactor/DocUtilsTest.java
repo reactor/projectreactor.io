@@ -524,8 +524,10 @@ public class DocUtilsTest {
 	public void isRefGuideOldFormatKafka() {
 		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.0.0.RELEASE")).isTrue();
 		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.1.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.1.1.RELEASE")).isTrue();
 		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.2.0.RELEASE")).isTrue();
 
+		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.1.2.RELEASE")).isFalse();
 		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.2.1.RELEASE")).isFalse();
 	}
 

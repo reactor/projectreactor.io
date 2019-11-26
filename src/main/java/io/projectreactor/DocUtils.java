@@ -146,7 +146,8 @@ public class DocUtils {
 						version.startsWith("0.9.1");
 			case "kafka":
 				return version.startsWith("1.0") ||
-						version.startsWith("1.1") ||
+						version.startsWith("1.1.0") ||
+						version.startsWith("1.1.1") ||
 						version.startsWith("1.2.0");
 			case "rabbitmq":
 				return version.startsWith("1.0") ||
