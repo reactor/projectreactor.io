@@ -23,6 +23,7 @@ type: upcoming
 #remove name to deactivate badge and/or individual versions to hide artifacts links
 #name: Dysprosium-SRx
 #coreVersion: 3.3.x.RELEASE
+rabbitVersion: 1.4.0.RELEASE
 ---
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links

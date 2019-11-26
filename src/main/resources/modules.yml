@@ -295,6 +295,8 @@ name: rabbitmq
 groupId: io.projectreactor.rabbitmq
 artifactId: reactor-rabbitmq
 versions:
+  - 1.5.0.BUILD-SNAPSHOT
+  - 1.4.0.RELEASE
   - 1.4.0.BUILD-SNAPSHOT
   - 1.4.0.RC1
   - 1.3.0.BUILD-SNAPSHOT
