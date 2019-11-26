@@ -144,6 +144,16 @@ public class DocUtils {
 				return (version.startsWith("0.8") && Module.VERSION_COMPARATOR.reversed().compare(version, "0.8.9.RELEASE") <= 0) ||
 						version.startsWith("0.9.0") ||
 						version.startsWith("0.9.1");
+			case "kafka":
+				return version.startsWith("1.0") ||
+						version.startsWith("1.1") ||
+						version.startsWith("1.2.0");
+			case "rabbitmq":
+				return version.startsWith("1.0") ||
+						version.startsWith("1.1") ||
+						version.startsWith("1.2") ||
+						version.startsWith("1.3") ||
+						(version.startsWith("1.4.0") && !version.equals("1.4.0.RELEASE"));
 			default:
 				return false;
 		}
@@ -240,13 +250,9 @@ public class DocUtils {
 			file = indexFile;
 		}
 
-		//tempfix for non generic kafka doc in M1
-		boolean isKafkaM1 = actualModule.getArtifactId().contains("kafka")
-				&& actualVersion.equals("1.0.0.M1");
-
 		String url = "https://repo.spring.io/" + versionType
 				+ "/" + actualModule.getGroupId().replace(".", "/")
-				+ "/" + actualModule.getArtifactId() + (isKafkaM1 ? artifactSuffix : "")
+				+ "/" + actualModule.getArtifactId()
 				+ "/" + actualVersion
 				+ "/" + actualModule.getArtifactId() + artifactSuffix
 				+ "-" + actualVersion + suffix

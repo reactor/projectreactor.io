@@ -277,7 +277,7 @@ public class DocUtilsTest {
 				urlModule, "testVersion");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-docs-testVersion.zip!/docs/index.html");
+				"testVersion/fooArtifact-testVersion-docs.zip!/docs/index.html");
 	}
 
 	@Test
@@ -288,7 +288,7 @@ public class DocUtilsTest {
 				urlModule, "testVersion");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-docs-testVersion.zip!/docs/index.html");
+				"testVersion/fooArtifact-testVersion-docs.zip!/docs/index.html");
 	}
 
 	@Test
@@ -299,7 +299,7 @@ public class DocUtilsTest {
 				urlModule, "testVersion");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-docs-testVersion.zip!/docs/some/absolute/reference/page.html");
+				"testVersion/fooArtifact-testVersion-docs.zip!/docs/some/absolute/reference/page.html");
 	}
 
 	@Test
@@ -310,21 +310,7 @@ public class DocUtilsTest {
 				urlModule, "testVersion");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-docs-testVersion.zip!/docs/highlight/styles/railscasts.min.css");
-	}
-
-	@Test
-	public void moduleToReferenceUrlKafkaM1() {
-		String uri = "/docs/test/foo/reference";
-		Module kafka = new Module("kafka", "group", "kafka.artifact")
-				.addVersion("1.0.0.M1");
-
-		String url = DocUtils.moduleToUrl(uri, "repoType",
-				"test", "foo",
-				kafka, "1.0.0.M1");
-
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact-docs/" +
-				"1.0.0.M1/kafka.artifact-docs-1.0.0.M1.zip!/docs/index.html");
+				"testVersion/fooArtifact-testVersion-docs.zip!/docs/highlight/styles/railscasts.min.css");
 	}
 
 	@Test
@@ -338,7 +324,7 @@ public class DocUtilsTest {
 				kafka, "notM1");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact/" +
-				"notM1/kafka.artifact-docs-notM1.zip!/docs/index.html");
+				"notM1/kafka.artifact-notM1-docs.zip!/docs/index.html");
 	}
 
 	@Test
@@ -514,7 +500,17 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void isRefGuideOldFormat() {
+	public void isRefGuideOldFormatCore() {
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.11.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.12.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.3.0.RELEASE")).isTrue();
+
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.13.RELEASE")).isFalse();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.3.1.RELEASE")).isFalse();
+	}
+
+	@Test
+	public void isRefGuideOldFormatNetty() {
 		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.8.RELEASE")).isTrue();
 		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.9.RELEASE")).isTrue();
 		assertThat(DocUtils.isRefguideOldFormat("netty", "0.9.0.RELEASE")).isTrue();
@@ -522,13 +518,28 @@ public class DocUtilsTest {
 		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.10.BUILD-SNAPSHOT")).isFalse();
 		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.10.RELEASE")).isFalse();
 		assertThat(DocUtils.isRefguideOldFormat("netty", "0.9.2.RELEASE")).isFalse();
+	}
 
+	@Test
+	public void isRefGuideOldFormatKafka() {
+		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.0.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.1.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.2.0.RELEASE")).isTrue();
 
-		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.11.RELEASE")).isTrue();
-		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.12.RELEASE")).isTrue();
-		assertThat(DocUtils.isRefguideOldFormat("core", "3.3.0.RELEASE")).isTrue();
-		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.13.RELEASE")).isFalse();
-		assertThat(DocUtils.isRefguideOldFormat("core", "3.3.1.RELEASE")).isFalse();
+		assertThat(DocUtils.isRefguideOldFormat("kafka", "1.2.1.RELEASE")).isFalse();
+	}
+
+	@Test
+	public void isRefGuideOldFormatRabbitmq() {
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.0.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.1.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.2.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.3.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.3.1.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.4.0.RC1")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.4.0.BUILD-SNAPSHOT")).isTrue();
+
+		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.4.0.RELEASE")).isFalse();
 	}
 
 }
