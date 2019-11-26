@@ -117,12 +117,36 @@ public class DocUtils {
 					requestedVersion, actualModule, actualVersion);
 		}
 		else {
-			url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
-					requestedVersion, actualModule, actualVersion,
-					18, "index.html", ".zip", "-docs",
-					"docs/");
+			if (isRefguideOldFormat(actualModule.getName(), actualVersion)) {
+				url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+						requestedVersion, actualModule, actualVersion,
+						18, "index.html", ".zip", "-docs",
+						"docs/");
+			}
+			else {
+				url = moduleToArtifactUrl(reqUri, versionType, requestedModuleName,
+						requestedVersion, actualModule, actualVersion,
+						18, "index.html", "-docs.zip", "",
+						"docs/");
+			}
 		}
 		return url;
+	}
+
+	static boolean isRefguideOldFormat(String module, String version) {
+		switch (module) {
+			case "core":
+				return version.startsWith("3.0") ||
+						version.startsWith("3.1") ||
+						(version.startsWith("3.2") && Module.VERSION_COMPARATOR.reversed().compare(version, "3.2.12.RELEASE") <= 0) ||
+						version.startsWith("3.3.0");
+			case "netty":
+				return (version.startsWith("0.8") && Module.VERSION_COMPARATOR.reversed().compare(version, "0.8.9.RELEASE") <= 0) ||
+						version.startsWith("0.9.0") ||
+						version.startsWith("0.9.1");
+			default:
+				return false;
+		}
 	}
 
 	static boolean isKDocSpecialCases(String module, String version) {

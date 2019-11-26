@@ -513,4 +513,22 @@ public class DocUtilsTest {
 				.as("1.0.0.RC1").isFalse();
 	}
 
+	@Test
+	public void isRefGuideOldFormat() {
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.8.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.9.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.9.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.9.1.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.10.BUILD-SNAPSHOT")).isFalse();
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.8.10.RELEASE")).isFalse();
+		assertThat(DocUtils.isRefguideOldFormat("netty", "0.9.2.RELEASE")).isFalse();
+
+
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.11.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.12.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.3.0.RELEASE")).isTrue();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.2.13.RELEASE")).isFalse();
+		assertThat(DocUtils.isRefguideOldFormat("core", "3.3.1.RELEASE")).isFalse();
+	}
+
 }
