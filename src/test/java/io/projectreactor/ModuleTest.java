@@ -98,4 +98,71 @@ public class ModuleTest {
 		assertThat("1.2.3.cus-Tom.RELEASE").as("alphabetic only").doesNotMatch(Module.VERSION_REGEXP);
 	}
 
+	@Test
+	public void addVersionOnInit() {
+		Module module = new Module();
+		module.addVersion("3.2.1.RELEASE");
+
+		assertThat(module.getVersions()).as("after addVersion")
+		                                .isNotNull()
+		                                .containsExactly("3.2.1.RELEASE");
+	}
+
+	@Test
+	public void getVersionOnInit() {
+		Module module = new Module();
+		assertThat(module.getVersions()).as("getVersions")
+		                                .isNotNull()
+		                                .isEmpty();
+	}
+
+	@Test
+	public void sortVersionsOnInit() {
+		Module module = new Module();
+		module.sortVersions();
+
+		assertThat(module.getVersions()).as("after sortVersions")
+		                                .isNotNull()
+		                                .isEmpty();
+	}
+
+	@Test
+	public void sortVersions() {
+		Module module = new Module();
+		module.addVersion("3.2.1.RELEASE");
+		module.addVersion("3.2.1.RELEASE");
+		module.addVersion("3.2.1.BUILD-SNAPSHOT");
+		module.addVersion("3.3.1.RELEASE");
+		module.sortVersions();
+
+		assertThat(module.getVersions()).as("after sortVersions")
+		                                .containsExactly("3.3.1.RELEASE", "3.2.1.RELEASE", "3.2.1.RELEASE", "3.2.1.BUILD-SNAPSHOT");
+	}
+
+	@Test
+	public void sortAndDeduplicateVersionsOnInit() {
+		Module module = new Module();
+		module.sortAndDeduplicateVersions();
+
+		assertThat(module.getVersions()).as("after sortAndDeduplicateVersions")
+		                                .isNotNull()
+		                                .isEmpty();
+	}
+
+	@Test
+	public void sortAndDeduplicateVersions() {
+		Module module = new Module();
+		module.addVersion("3.2.1.RELEASE");
+		module.addVersion("3.2.1.RELEASE");
+		module.addVersion("3.2.1.BUILD-SNAPSHOT");
+		module.addVersion("3.3.1.RELEASE");
+
+		assertThat(module.getVersions()).hasSize(4);
+
+		module.sortAndDeduplicateVersions();
+
+		assertThat(module.getVersions()).as("after sortAndDeduplicateVersions")
+		                                .containsExactly("3.3.1.RELEASE", "3.2.1.RELEASE", "3.2.1.BUILD-SNAPSHOT");
+	}
+
 }

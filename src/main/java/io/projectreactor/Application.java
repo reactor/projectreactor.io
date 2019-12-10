@@ -87,11 +87,8 @@ public final class Application {
 			       docsModel.put(bom.getType(), bom);
 		       });
 		//evaluate modules, add oldboms to thymeleaf's model
-		Yaml yaml = new Yaml(new Constructor(Module.class));
-		yaml.loadAll(new ClassPathResource("modules.yml").getInputStream()).forEach(o -> {
-			Module module = (Module)o;
-			modules.put(module.getName(), module);
-		});
+		ModuleUtils.loadModulesFromYmlInto(new ClassPathResource("modules.yml"), modules);
+		ModuleUtils.fetchMavenMetadata(modules.values().toArray(new Module[0]));
 		docsModel.put("oldBoms", modules.get("olderBoms"));
 		//templates will be resolved and parsed below during route setup
 

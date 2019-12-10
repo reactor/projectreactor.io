@@ -19,6 +19,8 @@ package io.projectreactor;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 public class Module {
@@ -81,7 +83,22 @@ public class Module {
 	}
 
 	public Module sortVersions() {
+		if (this.versions == null) {
+			this.versions = new ArrayList<>(1);
+			return this;
+		}
 		this.versions.sort(VERSION_COMPARATOR);
+		return this;
+	}
+
+	public Module sortAndDeduplicateVersions() {
+		if (this.versions == null) {
+			this.versions = new ArrayList<>(1);
+			return this;
+		}
+		SortedSet<String> sortedDeduplicated = new TreeSet<>(VERSION_COMPARATOR);
+		sortedDeduplicated.addAll(this.versions);
+		this.versions = new ArrayList<>(sortedDeduplicated);
 		return this;
 	}
 
