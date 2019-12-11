@@ -165,4 +165,22 @@ public class ModuleTest {
 		                                .containsExactly("3.3.1.RELEASE", "3.2.1.RELEASE", "3.2.1.BUILD-SNAPSHOT");
 	}
 
+	@Test
+	public void loadBadVersionSetFromList() {
+		Module module = new Module();
+		module.setBadVersions(Arrays.asList("A", "B", "B"));
+
+		assertThat(module.badVersions).containsExactly("A", "B");
+	}
+
+	@Test
+	public void isBadVersion() {
+		Module module = new Module();
+		module.setBadVersions(Arrays.asList("A", "C"));
+
+		assertThat(module.isBadVersion("A")).as("A").isTrue();
+		assertThat(module.isBadVersion("B")).as("B").isFalse();
+		assertThat(module.isBadVersion("C")).as("C").isTrue();
+	}
+
 }

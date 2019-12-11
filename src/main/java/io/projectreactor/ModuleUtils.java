@@ -1,21 +1,22 @@
 package io.projectreactor;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.UncheckedIOException;
+import java.util.List;
 import java.util.Map;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import org.springframework.core.io.ClassPathResource;
 
+import reactor.core.Exceptions;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.util.Logger;
 import reactor.util.Loggers;
@@ -41,76 +42,83 @@ public class ModuleUtils {
 		}
 	}
 
-	public static void fetchMavenMetadata(Module... modules) {
-		final HttpClient client = HttpClient.create().baseUrl("https://repo.spring.io");
+	public static void fetchVersionsFromArtifactory(Map<String, Module> modules, String... moduleNames) {
+		final HttpClient client = HttpClient.create().baseUrl("https://repo.spring.io/api/search");
+		final String repos = "&repos=snapshot,milestone,release";
 
-		for (Module module : modules) {
-			String path = module.getGroupId().replaceAll("\\.", "/") + "/" + module.getArtifactId() + "/maven-metadata.xml";
+		for (String moduleName : moduleNames) {
+			Module module = modules.get(moduleName);
+			if (module == null) continue;
+
+			final String params = "/versions?g=" + module.getGroupId() + "&a=" + module.getArtifactId() + repos;
+			LOGGER.info("Loading version information for {} via GET {}", moduleName, params);
 
 			client.get()
-			      .uri("/snapshot/" + path)
+			      .uri(params)
 			      .response((r, content) -> {
 				      if (r.status().code() < 400) {
 					      return content.aggregate()
 					                    .asString()
-					                    .doOnNext(mavenMetadata -> loadModuleVersionsFromMavenMetadataInto(mavenMetadata, module, r.path()));
+					                    .doOnNext(json -> loadModuleVersionsFromArtifactoryVersionsSearch(json, module));
 				      }
 				      else {
-					      return content.aggregate().asString().ignoreElement();
-				      }
-			      })
-			      .blockLast();
-			client.get()
-			      .uri("/milestone/" + path)
-			      .response((r, content) -> {
-				      if (r.status().code() < 400) {
 					      return content.aggregate()
 					                    .asString()
-					                    .doOnNext(mavenMetadata -> loadModuleVersionsFromMavenMetadataInto(mavenMetadata, module, r.path()));
-				      }
-				      else {
-					      return content.aggregate().asString().ignoreElement();
+					                    .flatMap(body -> Mono.error(new RuntimeException(r.status() + ": " + body))
+					                    );
 				      }
 			      })
-			      .blockLast();
-			client.get()
-			      .uri("/release/" + path)
-			      .response((r, content) -> {
-				      if (r.status().code() < 400) {
-					      return content.aggregate()
-					                    .asString()
-					                    .doOnNext(mavenMetadata -> loadModuleVersionsFromMavenMetadataInto(mavenMetadata, module, r.path()));
-				      }
-				      else {
-					      return content.aggregate().asString().ignoreElement();
-				      }
-			      })
+			      .doOnError(e -> LOGGER.warn("Couldn't scrape versions for {}: {}", moduleName, e.getMessage()))
+			      .onErrorReturn("")
 			      .blockLast();
 
 			module.sortAndDeduplicateVersions();
 		}
 	}
 
-	public static void loadModuleVersionsFromMavenMetadataInto(String mavenMetadata, Module target, String type) {
+	public static void loadModuleVersionsFromArtifactoryVersionsSearch(String json, Module module) {
+		ObjectMapper mapper = new ObjectMapper();
+		final JsonNode node;
 		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			node = mapper.readTree(json);
+		}
+		catch (JsonProcessingException e) {
+			throw Exceptions.propagate(e);
+		}
+		List<String> versions = node.findValuesAsText("version");
+		Set<String> seenGenerations = new CopyOnWriteArraySet<>();
 
-			Document doc = dBuilder.parse(new InputSource(new StringReader(mavenMetadata)));
-			doc.getDocumentElement().normalize();
+		versions.forEach(v -> tryAddVersion(module, seenGenerations, v));
+	}
 
-			NodeList versions = doc.getElementsByTagName("version");
-
-			for (int temp = 0; temp < versions.getLength(); temp++) {
-				Node nNode = versions.item(temp);
-				String version = nNode.getTextContent();
-				String[] split = version.split("\\.");
-				if (split.length == 4) {
-					target.addVersion(version);
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.error("Unable to load {} versions from maven metadata for {}.{}:\n{}", type, target.getGroupId(), target.getArtifactId(), e);
+	/**
+	 * Try to add a version to a module, with some exclusions:
+	 * <ul>
+	 *     <li>only latest snapshot of each generation is added</li>
+	 *     <li>versions with custom version on top of GEN.MAJOR.MINOR are ignored</li>
+	 *     <li>for core, only consider gen 3.x.y</li>
+	 *     <li>ignore version if it is known to be {@link Module#isBadVersion(String) bad}</li>
+	 * </ul>
+	 *
+	 * @implNote this method is extracted for testing purposes
+	 *
+	 * @param module the target module in which to add versions
+	 * @param seenGenerations the set of generations seen
+	 * @param version the version to add
+	 */
+	static void tryAddVersion(Module module, Set<String> seenGenerations, String version) {
+		if (module.isBadVersion(version)) return;
+		if ("core".equals(module.getName()) && !version.startsWith("3.")) return;
+		if (version.split("\\.").length != 4) return;
+		if (version.endsWith("BUILD-SNAPSHOT")) {
+			String gen = version.replaceFirst("\\.", "_");
+			gen = gen.substring(0, gen.indexOf('.'));
+			if (seenGenerations.contains(gen)) return;
+			seenGenerations.add(gen);
+			module.addVersion(version);
+		}
+		else {
+			module.addVersion(version);
 		}
 	}
 
