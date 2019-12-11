@@ -16,6 +16,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import org.springframework.core.io.ClassPathResource;
 
 import reactor.core.Exceptions;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.util.Logger;
@@ -46,32 +47,31 @@ public class ModuleUtils {
 		final HttpClient client = HttpClient.create().baseUrl("https://repo.spring.io/api/search");
 		final String repos = "&repos=snapshot,milestone,release";
 
-		for (String moduleName : moduleNames) {
-			Module module = modules.get(moduleName);
-			if (module == null) continue;
+		Flux.fromArray(moduleNames)
+		    .filter(modules::containsKey)
+		    .map(modules::get)
+		    .flatMap(module -> {
+			    final String params = "/versions?g=" + module.getGroupId() + "&a=" + module.getArtifactId() + repos;
+			    LOGGER.info("Loading version information for {} via GET {}", module.getName(), params);
 
-			final String params = "/versions?g=" + module.getGroupId() + "&a=" + module.getArtifactId() + repos;
-			LOGGER.info("Loading version information for {} via GET {}", moduleName, params);
-
-			client.get()
-			      .uri(params)
-			      .response((r, content) -> {
-				      if (r.status().code() < 400) {
-					      return content.aggregate()
-					                    .asString()
-					                    .doOnNext(json -> loadModuleVersionsFromArtifactoryVersionsSearch(json, module));
-				      }
-				      else {
-					      return content.aggregate()
-					                    .asString()
-					                    .doOnNext(errorBody -> LOGGER.warn("Couldn't scrape versions for {}: {} - {}",
-							                    moduleName, r.status(), errorBody));
-				      }
-			      })
-			      .blockLast();
-
-			module.sortAndDeduplicateVersions();
-		}
+			    return client.get()
+			                 .uri(params)
+			                 .response((r, content) -> {
+				                 if (r.status().code() < 400) {
+					                 return content.aggregate()
+					                               .asString()
+					                               .doOnNext(json -> loadModuleVersionsFromArtifactoryVersionsSearch(json, module));
+				                 }
+				                 else {
+					                 return content.aggregate()
+					                               .asString()
+					                               .doOnNext(errorBody -> LOGGER.warn("Couldn't scrape versions for {}: {} - {}",
+							                               module.getName(), r.status(), errorBody));
+				                 }
+			                 })
+			                 .then(Mono.fromCallable(module::sortAndDeduplicateVersions));
+		    })
+		    .blockLast();
 	}
 
 	public static void loadModuleVersionsFromArtifactoryVersionsSearch(String json, Module module) {
