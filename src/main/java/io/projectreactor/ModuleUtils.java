@@ -64,12 +64,10 @@ public class ModuleUtils {
 				      else {
 					      return content.aggregate()
 					                    .asString()
-					                    .flatMap(body -> Mono.error(new RuntimeException(r.status() + ": " + body))
-					                    );
+					                    .doOnNext(errorBody -> LOGGER.warn("Couldn't scrape versions for {}: {} - {}",
+							                    moduleName, r.status(), errorBody));
 				      }
 			      })
-			      .doOnError(e -> LOGGER.warn("Couldn't scrape versions for {}: {}", moduleName, e.getMessage()))
-			      .onErrorReturn("")
 			      .blockLast();
 
 			module.sortAndDeduplicateVersions();
