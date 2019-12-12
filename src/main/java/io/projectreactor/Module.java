@@ -18,15 +18,20 @@ package io.projectreactor;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 public class Module {
 
-	private String name;
-	private String groupId;
-	private String artifactId;
-	private List<String> versions;
+	final Set<String>  badVersions = new HashSet<>();
+	String       name;
+	String       groupId;
+	String       artifactId;
+	List<String> versions;
 
 	public Module() { }
 
@@ -72,6 +77,16 @@ public class Module {
 		sortVersions();
 	}
 
+	//to avoid set syntax in YAML we expose List getter/setter
+	public List<String> getBadVersions() {
+		return new ArrayList<>(this.badVersions);
+	}
+
+	public void setBadVersions(List<String> badVersions) {
+		this.badVersions.clear();
+		this.badVersions.addAll(badVersions);
+	}
+
 	public Module addVersion(String version) {
 		if (this.versions == null) {
 			this.versions = new ArrayList<>(1);
@@ -80,8 +95,27 @@ public class Module {
 		return this;
 	}
 
+	public boolean isBadVersion(String version) {
+		return this.badVersions.contains(version);
+	}
+
 	public Module sortVersions() {
+		if (this.versions == null) {
+			this.versions = new ArrayList<>(1);
+			return this;
+		}
 		this.versions.sort(VERSION_COMPARATOR);
+		return this;
+	}
+
+	public Module sortAndDeduplicateVersions() {
+		if (this.versions == null) {
+			this.versions = new ArrayList<>(1);
+			return this;
+		}
+		SortedSet<String> sortedDeduplicated = new TreeSet<>(VERSION_COMPARATOR);
+		sortedDeduplicated.addAll(this.versions);
+		this.versions = new ArrayList<>(sortedDeduplicated);
 		return this;
 	}
 

@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "version": "3.3.2.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.3.1.customVersion.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.3.1.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.3.1.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.3.0.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.3.0.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.3.0.RC1",
+      "integration": false
+    },
+    {
+      "version": "3.3.0.M3",
+      "integration": false
+    },
+    {
+      "version": "3.3.0.M2",
+      "integration": false
+    },
+    {
+      "version": "3.3.0.M1",
+      "integration": false
+    },
+    {
+      "version": "3.2.14.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.2.13.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.2.13.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.2.12.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.1.17.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.1.16.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.1.16.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.1.15.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.0.8.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.0.7.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.0.7.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "2.5.0.BUILD-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "2.0.8.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "2.0.8.BUILD-SNAPSHOT",
+      "integration": true
+    }
+  ]
+}

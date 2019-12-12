@@ -58,6 +58,7 @@ dependencies {
     compile("io.projectreactor:reactor-core:3.2.10.RELEASE")
     compile("org.thymeleaf:thymeleaf:3.0.9.RELEASE")
     compile("org.yaml:snakeyaml:1.17")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.10.1")
     runtime("commons-logging:commons-logging:1.2")
     runtime("org.slf4j:slf4j-api:1.7.21")
     runtime("ch.qos.logback:logback-classic:1.1.7")

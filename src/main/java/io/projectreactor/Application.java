@@ -73,6 +73,7 @@ public final class Application {
 	private static final Logger LOGGER = Loggers.getLogger(Application.class);
 
 	Application() throws IOException {
+		long start = System.currentTimeMillis();
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 		templateResolver.setPrefix("/static/templates/");
 		templateResolver.setSuffix(".html");
@@ -87,11 +88,14 @@ public final class Application {
 			       docsModel.put(bom.getType(), bom);
 		       });
 		//evaluate modules, add oldboms to thymeleaf's model
-		Yaml yaml = new Yaml(new Constructor(Module.class));
-		yaml.loadAll(new ClassPathResource("modules.yml").getInputStream()).forEach(o -> {
-			Module module = (Module)o;
-			modules.put(module.getName(), module);
-		});
+		//get at a minimum the list of modules, oldBom, artifacts and groupids from yml
+		ModuleUtils.loadModulesFromYmlInto(new ClassPathResource("modules.yml"), modules);
+		//then get the versions from Artifactory
+		ModuleUtils.fetchVersionsFromArtifactory(modules, "core", "test", "adapter",
+				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
+				"kotlin", "pool");
+		LOGGER.info("Boms and modules loaded in " + (System.currentTimeMillis() - start) + "ms");
+
 		docsModel.put("oldBoms", modules.get("olderBoms"));
 		//templates will be resolved and parsed below during route setup
 
