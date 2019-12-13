@@ -130,6 +130,22 @@
                             </td>
                         </tr>
 
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.coreVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.coreVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${oobmilestone.coreVersion})}"
+                                   th:title="|See the reactor-core ${oobmilestone.coreVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -142,14 +158,14 @@
             <div class="javadoc">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/core/release/api/">Release</a> |
-                <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.coreVersion} != null OR ${oobmilestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/api/">Snapshot</a> |
 <!--                <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>-->
             </div>
             <div class="reference">
                 <strong>Reference</strong><br />
                 <a href="/docs/core/release/reference/">Release</a> |
-                <span th:if="${milestone.coreVersion} != null"><a href="/docs/core/milestone/reference/">Milestone</a> |</span>
+                <span th:if="${milestone.coreVersion} != null OR ${oobmilestone.coreVersion} != null"><a href="/docs/core/milestone/reference/">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/reference/">Snapshot</a>
                 <br />
                 <a href="/docs/core/release/reference/docs/index.html#which-operator">Choosing an Operator</a>
@@ -231,6 +247,22 @@
                             </td>
                         </tr>
 
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.testVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.testVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-core/releases"
+                                   th:href="@{https://github.com/reactor/reactor-core/releases/tag/v{tag}(tag=${oobmilestone.testVersion})}"
+                                   th:title="|See the reactor-test ${oobmilestone.testVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -243,7 +275,7 @@
             <div class="javadoc">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/test/release/api/">Release</a> |
-                <span th:if="${milestone.testVersion} != null"><a href="/docs/test/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.testVersion} != null OR ${oobmilestone.testVersion} != null"><a href="/docs/test/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/test/snapshot/api/">Snapshot</a> |
 <!--                <a href="/docs/test/release/kdoc-api/">Kotlin Doc</a>-->
 
@@ -251,7 +283,7 @@
             <div class="reference">
                 <strong>Reference</strong><br />
                 <a href="/docs/core/release/reference/docs/index.html#testing">Release</a> |
-                <span th:if="${milestone.testVersion} != null"><a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |</span>
+                <span th:if="${milestone.testVersion} != null OR ${oobmilestone.testVersion} != null"><a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/reference/docs/index.html#testing">Snapshot</a>
             </div>
         </article>
@@ -329,6 +361,22 @@
                                           th:text="${milestone.name}">BOM</span>
                             </td>
                         </tr>
+
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.extraVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.extraVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-addons/releases"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${oobmilestone.extraVersion})}"
+                                   th:title="|See the reactor-extra ${oobmilestone.extraVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -340,7 +388,7 @@
             <div class="reference">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/extra/release/api/">Release</a> |
-                <span th:if="${milestone.extraVersion} != null"><a href="/docs/extra/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.extraVersion} != null OR ${oobmilestone.extraVersion} != null"><a href="/docs/extra/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/extra/snapshot/api/">Snapshot</a>
             </div>
         </article>
@@ -418,6 +466,22 @@
                                           th:text="${milestone.name}">BOM</span>
                             </td>
                         </tr>
+
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.nettyVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.nettyVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-netty/releases"
+                                   th:href="@{https://github.com/reactor/reactor-netty/releases/tag/v{tag}(tag=${oobmilestone.nettyVersion})}"
+                                   th:title="|See the reactor-netty ${oobmilestone.nettyVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -429,13 +493,13 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/netty/release/api/">Release</a> |
-                <span th:if="${milestone.nettyVersion} != null"><a href="/docs/netty/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.nettyVersion} != null OR ${oobmilestone.nettyVersion} != null"><a href="/docs/netty/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/netty/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
                 <strong>Reference</strong><br />
                 <a href="/docs/netty/release/reference/docs/index.html">Release</a> |
-                <span th:if="${milestone.testVersion} != null"><a href="/docs/netty/milestone/reference/docs/index.html">Milestone</a> |</span>
+                <span th:if="${milestone.testVersion} != null OR ${oobmilestone.nettyVersion} != null"><a href="/docs/netty/milestone/reference/docs/index.html">Milestone</a> |</span>
                 <a href="/docs/netty/snapshot/reference/docs/index.html">Snapshot</a>
             </div>
         </article>
@@ -512,6 +576,22 @@
                                           th:text="${milestone.name}">BOM</span>
                             </td>
                         </tr>
+
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.adapterVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.adapterVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-addons/releases"
+                                   th:href="@{https://github.com/reactor/reactor-addons/releases/tag/v{tag}(tag=${oobmilestone.adapterVersion})}"
+                                   th:title="|See the reactor-adapter ${oobmilestone.adapterVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -523,7 +603,7 @@
             <div class="reference">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/adapter/release/api/">Release</a> |
-                <span th:if="${milestone.adapterVersion} != null"><a href="/docs/adapter/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.adapterVersion} != null OR ${oobmilestone.adapterVersion} != null"><a href="/docs/adapter/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/adapter/snapshot/api/">Snapshot</a>
             </div>
         </article>
@@ -598,6 +678,22 @@
                                           title="MILESTONE release train"
                                           th:text="${milestone.name}">BOM</span>
                             </td>
+                        </tr>
+
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.kafkaVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.kafkaVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kafka/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kafka/releases/tag/v{tag}(tag=${oobmilestone.kafkaVersion})}"
+                                   th:title="|See the reactor-kafka ${oobmilestone.kafkaVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
                         </tr>
                     </table>
                 </div>
@@ -693,6 +789,22 @@
                             </td>
                         </tr>
 
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.kotlinVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.kotlinVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-kotlin-extensions/releases"
+                                   th:href="@{https://github.com/reactor/reactor-kotlin-extensions/releases/tag/v{tag}(tag=${oobmilestone.kotlinVersion})}"
+                                   th:title="|See the reactor-kotlin-extensions ${oobmilestone.kotlinVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -711,7 +823,7 @@
             <div class="javadoc">
                 <strong>Javadoc (temporarily instead of Kotlin Doc)</strong><br />
                 <a href="/docs/kotlin/release/api/">Release</a> |
-                <span th:if="${milestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.kotlinVersion} != null OR ${oobmilestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/kotlin/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
@@ -795,6 +907,22 @@
                                           th:text="${milestone.name}"> BOM</span>
                             </td>
                         </tr>
+
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.rabbitVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.rabbitVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-rabbitmq/releases"
+                                   th:href="@{https://github.com/reactor/reactor-rabbitmq/releases/tag/v{tag}(tag=${oobmilestone.rabbitVersion})}"
+                                   th:title="|See the reactor-rabbitmq ${oobmilestone.rabbitVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -806,13 +934,13 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/rabbitmq/release/api/">Release</a> |
-                <span th:if="${milestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.rabbitVersion} != null OR ${oobmilestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/rabbitmq/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
                 <strong>Reference</strong> <br/>
                 <a href="/docs/rabbitmq/release/reference/">Release</a> |
-                <span th:if="${milestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/reference/">Milestone</a> |</span>
+                <span th:if="${milestone.rabbitVersion} != null OR ${oobmilestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/reference/">Milestone</a> |</span>
                 <a href="/docs/rabbitmq/snapshot/reference/">Snapshot</a>
             </div>
         </article>
@@ -892,6 +1020,22 @@
                                           th:text="${milestone.name}"> BOM</span>
                             </td>
                         </tr>
+
+                        <!--Out of BOM Milestones-->
+                        <tr th:if="${oobmilestone.poolVersion} != null">
+                            <td>
+                                    <span class="version pre"
+                                          title="Latest Pre-Release outside of a BOM"
+                                          th:text="${oobmilestone.poolVersion}">VERSION</span>
+                            </td>
+                            <td>
+                                <a href="https://github.com/reactor/reactor-pool/releases"
+                                   th:href="@{https://github.com/reactor/reactor-pool/releases/tag/v{tag}(tag=${oobmilestone.poolVersion})}"
+                                   th:title="|See the reactor-pool ${oobmilestone.poolVersion} release notes on GitHub|"
+                                   class="fa fa-file-text">&nbsp;</a>
+                            </td>
+                            <td/>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -903,7 +1047,7 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/pool/release/api/">Release</a> |
-                <span th:if="${milestone.poolVersion} != null"><a href="/docs/pool/milestone/api/">Milestone</a> |</span>
+                <span th:if="${milestone.poolVersion} != null OR ${oobmilestone.poolVersion} != null"><a href="/docs/pool/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/pool/snapshot/api/">Snapshot</a>
             </div>
         </article>
