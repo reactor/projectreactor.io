@@ -138,10 +138,10 @@ public class DocUtils {
 			case "core":
 				return version.startsWith("3.0") ||
 						version.startsWith("3.1") ||
-						(version.startsWith("3.2") && Module.VERSION_COMPARATOR.reversed().compare(version, "3.2.12.RELEASE") <= 0) ||
+						(version.startsWith("3.2") && Module.VERSION_COMPARATOR_NEWEST_FIRST.reversed().compare(version, "3.2.12.RELEASE") <= 0) ||
 						version.startsWith("3.3.0");
 			case "netty":
-				return (version.startsWith("0.8") && Module.VERSION_COMPARATOR.reversed().compare(version, "0.8.9.RELEASE") <= 0) ||
+				return (version.startsWith("0.8") && Module.VERSION_COMPARATOR_NEWEST_FIRST.reversed().compare(version, "0.8.9.RELEASE") <= 0) ||
 						version.startsWith("0.9.0") ||
 						version.startsWith("0.9.1");
 			case "kafka":
@@ -199,16 +199,16 @@ public class DocUtils {
 		}
 	}
 
-	static String getRefDocRelativePath(String module, String version) {
+	static String getRefDocPath(String module, String version) {
 		switch (module) {
 			case "core":
 			case "kafka":
-			case "rabbimq":
-				return version + "/reference/";
+			case "rabbitmq":
+				return "/docs/" + module + "/" + version + "/reference";
 			case "test":
-				return version + "/reference/docs/index.html#testing";
+				return "/docs/core/" + version + "/reference/index.html#testing";
 			case "netty":
-				if (version.startsWith("0.9")) return version + "/reference/";
+				if (Module.VERSION_COMPARATOR_OLDEST_FIRST.compare(version, "0.9.0.BUILD-SNAPSHOT") >= 0) return "/docs/netty/" + version + "/reference";
 				else return "";
 			default:
 				return "";

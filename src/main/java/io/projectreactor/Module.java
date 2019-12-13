@@ -104,7 +104,7 @@ public class Module {
 			this.versions = new ArrayList<>(1);
 			return this;
 		}
-		this.versions.sort(VERSION_COMPARATOR);
+		this.versions.sort(VERSION_COMPARATOR_NEWEST_FIRST);
 		return this;
 	}
 
@@ -113,7 +113,8 @@ public class Module {
 			this.versions = new ArrayList<>(1);
 			return this;
 		}
-		SortedSet<String> sortedDeduplicated = new TreeSet<>(VERSION_COMPARATOR);
+		SortedSet<String> sortedDeduplicated = new TreeSet<>(
+				VERSION_COMPARATOR_NEWEST_FIRST);
 		sortedDeduplicated.addAll(this.versions);
 		this.versions = new ArrayList<>(sortedDeduplicated);
 		return this;
@@ -130,7 +131,7 @@ public class Module {
 	 */
 	static final Pattern VERSION_REGEXP = Pattern.compile("[0-9]+\\.[0-9]+\\.[0-9]+(\\.[a-zA-Z0-9]*)?\\.[a-zA-Z0-9_-]*");
 
-	static final Comparator<String> VERSION_COMPARATOR = (o1, o2) -> {
+	static final Comparator<String> VERSION_COMPARATOR_NEWEST_FIRST = (o1, o2) -> {
 		String[] o1Split = o1.split("\\.");
 		String[] o2Split = o2.split("\\.");
 		boolean o1IsVersion = (o1Split.length == 4 || o1Split.length == 5);
@@ -169,4 +170,6 @@ public class Module {
 		if (!o1IsVersion) return 1; //put non version o1 at end
 		return -1; //put non version o2 at end
 	};
+
+	static final Comparator<String> VERSION_COMPARATOR_OLDEST_FIRST = VERSION_COMPARATOR_NEWEST_FIRST.reversed();
 }

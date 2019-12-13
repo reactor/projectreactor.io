@@ -232,11 +232,11 @@ public final class Application {
 
 			List<Tuple4<String, String, String, String>> versions = versionsByMajor.computeIfAbsent(key, k -> new ArrayList<>());
 
-			String javadocUrl = version + "/api/";
-			String refdocUrl = DocUtils.getRefDocRelativePath(moduleName, version);
+			String javadocUrl = "/docs/" + moduleName + "/" + version + "/api";
+			String refdocUrl = DocUtils.getRefDocPath(moduleName, version);
 			String kdocUrl = "";
 			if (DocUtils.hasKDoc(moduleName, version)) {
-				kdocUrl = version + "/kdoc-api/";
+				kdocUrl = "/docs/" + moduleName + "/" + version + "/kdoc-api/";
 			}
 
 			Tuple4<String, String, String, String> docInfo =

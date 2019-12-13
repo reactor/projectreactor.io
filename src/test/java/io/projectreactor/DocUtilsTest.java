@@ -544,4 +544,44 @@ public class DocUtilsTest {
 		assertThat(DocUtils.isRefguideOldFormat("rabbitmq", "1.4.0.RELEASE")).isFalse();
 	}
 
+	@Test
+	public void getRefDocPathCore() {
+		assertThat(DocUtils.getRefDocPath("core", "VERSION")).isEqualTo("/docs/core/VERSION/reference");
+	}
+
+	@Test
+	public void getRefDocPathTest() {
+		assertThat(DocUtils.getRefDocPath("test", "VERSION")).isEqualTo("/docs/core/VERSION/reference/index.html#testing");
+	}
+
+	@Test
+	public void getRefDocPathKafka() {
+		assertThat(DocUtils.getRefDocPath("kafka", "VERSION")).isEqualTo("/docs/kafka/VERSION/reference");
+	}
+
+	@Test
+	public void getRefDocPathRabbit() {
+		assertThat(DocUtils.getRefDocPath("rabbitmq", "VERSION")).isEqualTo("/docs/rabbitmq/VERSION/reference");
+	}
+
+	@Test
+	public void getRefDocPathNettyDysprosium() {
+		assertThat(DocUtils.getRefDocPath("netty", "0.9.1.RELEASE")).isEqualTo("/docs/netty/0.9.1.RELEASE/reference");
+	}
+
+	@Test
+	public void getRefDocPathNettyPostDysprosium() {
+		assertThat(DocUtils.getRefDocPath("netty", "0.10.5.RELEASE")).isEqualTo("/docs/netty/0.10.5.RELEASE/reference");
+	}
+
+	@Test
+	public void getRefDocPathNettyPreDysprosium() {
+		assertThat(DocUtils.getRefDocPath("netty", "0.8.9.RELEASE")).isEmpty();
+	}
+
+	@Test
+	public void getRefDocPathArbitrary() {
+		assertThat(DocUtils.getRefDocPath("foo", "0.8.9.RELEASE")).isEmpty();
+	}
+
 }
