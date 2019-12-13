@@ -35,6 +35,7 @@ type: milestone
 #please note that these links will reflect the milestone with the HIGHER version, no matter what.
 type: oobmilestone
 name: notInBOM #the name is never displayed in a train badge
+rabbitVersion: 1.4.1.RC1
 #---
 # this bom type is currently unused
 #type: snapshot
