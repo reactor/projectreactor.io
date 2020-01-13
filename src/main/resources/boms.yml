@@ -1,15 +1,15 @@
 ---
 type: stable
-name: Dysprosium-SR2
-coreVersion: 3.3.1.RELEASE
-testVersion: 3.3.1.RELEASE
-nettyVersion: 0.9.2.RELEASE
-extraVersion: 3.3.1.RELEASE
-adapterVersion: 3.3.1.RELEASE
-kafkaVersion: 1.2.1.RELEASE
-rabbitVersion: 1.4.0.RELEASE
-poolVersion: 0.1.1.RELEASE
-kotlinVersion: 1.0.1.RELEASE
+name: Dysprosium-SR3
+coreVersion: 3.3.2.RELEASE
+testVersion: 3.3.2.RELEASE
+nettyVersion: 0.9.3.RELEASE
+extraVersion: 3.3.2.RELEASE
+adapterVersion: 3.3.2.RELEASE
+kafkaVersion: 1.2.2.RELEASE
+rabbitVersion: 1.4.1.RELEASE
+poolVersion: 0.1.2.RELEASE
+kotlinVersion: 1.0.2.RELEASE
 #---
 #type: stable
 #name: Bismuth-SR11
@@ -34,8 +34,8 @@ type: milestone
 #they appear beneath a regular milestone BOM and activate the link to Milestone javadoc/refdoc.
 #please note that these links will reflect the milestone with the HIGHER version, no matter what.
 type: oobmilestone
-name: notInBOM #the name is never displayed in a train badge
-rabbitVersion: 1.4.1.RC1
+#name: notInBOM #the name is never displayed in a train badge
+#rabbitVersion: 1.4.1.RC1
 #---
 # this bom type is currently unused
 #type: snapshot
