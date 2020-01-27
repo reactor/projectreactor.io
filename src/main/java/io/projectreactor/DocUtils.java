@@ -170,10 +170,8 @@ public class DocUtils {
 						&& !version.startsWith("3.1")
 						&& !version.startsWith("3.2");
 			case "kotlin":
-				//exception for 1.0.0 pre-releases
-				//for now all kotlin >= 1.0.0.RELEASE have no kdoc
-				//TODO restrict to a version range when kdoc are eventually generated
-				return version.equals("1.0.0.RELEASE") || !version.startsWith("1.0.0");
+				//only kotlin 1.0.0.RELEASE has no kdoc
+				return version.equals("1.0.0.RELEASE");
 			default:
 				return false;
 		}
@@ -190,10 +188,8 @@ public class DocUtils {
 						|| version.startsWith("3.2");
 			case "kotlin":
 				//reactor-kotlin-extensions Dysprosium
-				//exception for 1.0.0 pre-releases
-				//for now all kotlin >= 1.0.0.RELEASE have no kdoc
-				//TODO restrict to a version range when kdoc are eventually generated
-				return !version.equals("1.0.0.RELEASE") && version.startsWith("1.0.0");
+				//only 1.0.0.RELEASE have no kdoc
+				return !version.equals("1.0.0.RELEASE");
 			default:
 				return false;
 		}
