@@ -478,15 +478,19 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void kotlinExtensionsDysprosiumReleaseAndAboveIsKotlinDocSpecial() {
+	public void kotlinExtensionsDysprosiumFirstReleaseIsKotlinDocSpecial() {
 		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.0.RELEASE"))
 				.as("1.0.0.RELEASE").isTrue();
-		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.BUILD-SNAPSHOT"))
-				.as("1.0.1.BUILD-SNAPSHOT").isTrue();
-		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.M1"))
-				.as("1.0.1.M1").isTrue();
-		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.RC1"))
-				.as("1.0.1.RC1").isTrue();
+	}
+
+	@Test
+	public void kotlinExtensionsDysprosiumAboveFirstReleaseAreNotKotlinDocSpecial() {
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.1.RELEASE"))
+				.as("1.0.1.RELEASE").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.2.RELEASE"))
+				.as("1.0.2.RELEASE").isFalse();
+		assertThat(DocUtils.isKDocSpecialCases("kotlin", "1.0.3.RELEASE"))
+				.as("1.0.3.RELEASE").isFalse();
 	}
 
 	@Test
