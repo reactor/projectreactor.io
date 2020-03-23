@@ -1,14 +1,14 @@
 ---
 type: stable
-name: Dysprosium-SR5
-coreVersion: 3.3.3.RELEASE
-testVersion: 3.3.3.RELEASE
-nettyVersion: 0.9.5.RELEASE
-extraVersion: 3.3.2.RELEASE
-adapterVersion: 3.3.2.RELEASE
+name: Dysprosium-SR6
+coreVersion: 3.3.4.RELEASE
+testVersion: 3.3.4.RELEASE
+nettyVersion: 0.9.6.RELEASE
+extraVersion: 3.3.3.RELEASE
+adapterVersion: 3.3.3.RELEASE
 kafkaVersion: 1.2.2.RELEASE
 rabbitVersion: 1.4.1.RELEASE
-poolVersion: 0.1.2.RELEASE
+poolVersion: 0.1.3.RELEASE
 kotlinVersion: 1.0.2.RELEASE
 #---
 #type: stable
