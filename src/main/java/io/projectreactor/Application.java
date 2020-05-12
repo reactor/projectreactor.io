@@ -127,6 +127,7 @@ public final class Application {
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
 		                                 .get("/2.x/{module}/api", this::legacyProxy)
 		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
+		                                 .directory("/2.x/reference/images", contentPath.resolve("legacy/ref/images"))
 //		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
