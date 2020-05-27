@@ -28,44 +28,29 @@
             <div class="details">
                 This page lists known versions for <span class="version releasetrain" th:text="${artifactId}">PROJECT</span>.
                 For each major release cycle, you'll find quick links to latest
-                <span class="version">RELEASE</span> and
-                <span class="version pre">SNAPSHOT</span> as well as a more comprehensive list of versions.
+                <span class="version pre" style="width: 10pt">SNAPSHOT</span> and
+                <span class="version" style="width: 10pt">RELEASE</span> as well as a more comprehensive list of release and milestone versions.
             </div>
         </div>
     </div>
 </div>
 <div id="main" class="book">
     <section id="versions">
-        <article th:each="group: ${trains}">
-            <h2 th:text="${group.key}">GROUP</h2>
-            <table th:with="latestR=${latestReleases.get(group.key)},latestS=${latestSnapshots.get(group.key)}">
-                <tr th:if="${latestR}">
-                    <td><span class="version">RELEASE</span></td>
-                    <td><a th:if="${!#strings.isEmpty(latestR.t2)}" th:href="${latestR.t2}">
-                        <span class="fa fa-file-text">&nbsp;</span>Javadoc</a>
-                    </td>
-                    <td><a th:if="${!#strings.isEmpty(latestR.t3)}" th:href="${latestR.t3}">
-                        <span class="fa fa-book">&nbsp;</span>Reference Documentation</a>
-                    </td>
-                    <td><a th:if="${!#strings.isEmpty(latestR.t4)}" th:href="${latestR.t4}">
-                        <span class="fa fa-file-text-o">&nbsp;</span>KDoc</a>
+        <table>
+            <div th:each="group: ${trains}">
+                <tr>
+                    <td colspan="5" class="versionListGen">
+                        <span th:text="${group.key}">GENERATION</span>
                     </td>
                 </tr>
-                <tr th:if="${latestS}"
-                    style="border-bottom:1px solid #dedede">
-                    <td><span class="version pre">SNAPSHOT</span></td>
-                    <td><a th:if="${!#strings.isEmpty(latestS.t2)}" th:href="${latestS.t2}">
-                        <span class="fa fa-file-text">&nbsp;</span>Javadoc</a>
+                <tr th:each="version: ${group.value}" th:with="latestR=${latestReleases.get(group.key)},latestS=${latestSnapshots.get(group.key)}">
+                    <td>
+                        <span th:if="${latestS && latestS.t1 == version.t1}" class="version pre">SNAPSHOT</span>
+                        <span th:if="${latestR && latestR.t1 == version.t1}" class="version">RELEASE</span>
                     </td>
-                    <td><a th:if="${!#strings.isEmpty(latestS.t3)}" th:href="${latestS.t3}">
-                        <span class="fa fa-book">&nbsp;</span>Reference Documentation</a>
+                    <td>
+                        <span th:text="${version.t1}">VERSION PLACEHOLDER</span>
                     </td>
-                    <td><a th:if="${!#strings.isEmpty(latestS.t4)}" th:href="${latestS.t4}">
-                        <span class="fa fa-file-text-o">&nbsp;</span>KDoc</a>
-                    </td>
-                </tr>
-                <tr th:each="version: ${group.value}">
-                    <td th:text="${version.t1}">VERSION PLACEHOLDER</td>
                     <td><a th:if="${!#strings.isEmpty(version.t2)}" th:href="${version.t2}">
                         <span class="fa fa-file-text">&nbsp;</span>Javadoc</a>
                     </td>
@@ -76,8 +61,8 @@
                         <span class="fa fa-file-text-o">&nbsp;</span>KDoc</a>
                     </td>
                 </tr>
-            </table>
-        </article>
+            </div>
+        </table>
     </section>
 </div>
 

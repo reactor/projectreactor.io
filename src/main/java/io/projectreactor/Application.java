@@ -243,13 +243,20 @@ public final class Application {
 			Tuple4<Version, String, String, String> docInfo =
 					Tuples.of(version, javadocUrl, refdocUrl, kdocUrl);
 
-			versions.add(docInfo); //side effect of storing all snapshots in the Module: they're now all displayed. we'll need to change that
-
-			if (version.qualifier == Version.Qualifier.RELEASE && !latestReleaseByTrain.containsKey(key)) {
-				latestReleaseByTrain.put(key, docInfo);
+			//omit snapshot links other than the last snapshot in a release cycle
+			if (version.qualifier == Version.Qualifier.SNAPSHOT) {
+				if (!latestSnapshotByTrain.containsKey(key)) {
+					latestSnapshotByTrain.put(key, docInfo);
+					versions.add(docInfo);
+				}
 			}
-			else if (version.qualifier == Version.Qualifier.SNAPSHOT && !latestSnapshotByTrain.containsKey(key)) {
-				latestSnapshotByTrain.put(key, docInfo);
+			else {
+				//for releases, release candidates and milestones, display a link
+				versions.add(docInfo);
+				//also, keep track of the newest release
+				if (version.qualifier == Version.Qualifier.RELEASE && !latestReleaseByTrain.containsKey(key)) {
+					latestReleaseByTrain.put(key, docInfo);
+				}
 			}
 		}
 
