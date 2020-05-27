@@ -5,6 +5,8 @@ import java.util.Map;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
+import static io.projectreactor.Version.Qualifier.*;
+
 /**
  * @author Simon Baslé
  */
@@ -133,28 +135,28 @@ public class DocUtils {
 		return url;
 	}
 
+	//FIXME switch all methods with String version parameter to Version
 	static boolean isRefguideOldFormat(String module, String version) {
+		Version v = Version.parse(version);
 		switch (module) {
 			case "core":
-				return version.startsWith("3.0") ||
-						version.startsWith("3.1") ||
-						(version.startsWith("3.2") && Module.VERSION_COMPARATOR_NEWEST_FIRST.reversed().compare(version, "3.2.12.RELEASE") <= 0) ||
-						version.startsWith("3.3.0");
+				return v.isInMajorMinor(3, 0) ||
+						v.isInMajorMinor(3, 1) ||
+						(v.isInMajorMinor(3, 2) && v.patch <= 12) ||
+						(v.isInMajorMinor(3, 3) && v.patch == 0);
 			case "netty":
-				return (version.startsWith("0.8") && Module.VERSION_COMPARATOR_NEWEST_FIRST.reversed().compare(version, "0.8.9.RELEASE") <= 0) ||
-						version.startsWith("0.9.0") ||
-						version.startsWith("0.9.1");
+				return (v.isInMajorMinor(0, 8) && v.patch <= 9) ||
+						(v.isInMajorMinor(0, 9) && v.patch < 2);
 			case "kafka":
-				return version.startsWith("1.0") ||
-						version.startsWith("1.1.0") ||
-						version.startsWith("1.1.1") ||
-						version.startsWith("1.2.0");
+				return v.isInMajorMinor(1, 0) ||
+						(v.isInMajorMinor(1, 1) && v.patch <= 1) ||
+						(v.isInMajorMinor(1, 2) && v.patch == 0);
 			case "rabbitmq":
-				return version.startsWith("1.0") ||
-						version.startsWith("1.1") ||
-						version.startsWith("1.2") ||
-						version.startsWith("1.3") ||
-						(version.startsWith("1.4.0") && !version.equals("1.4.0.RELEASE"));
+				return v.isInMajorMinor(1, 0) ||
+						v.isInMajorMinor(1, 1) ||
+						v.isInMajorMinor(1, 2) ||
+						v.isInMajorMinor(1, 3) ||
+						(v.isInMajorMinor(1, 4) && v.isBefore(1, 4, 0, RELEASE));
 			default:
 				return false;
 		}
@@ -195,6 +197,7 @@ public class DocUtils {
 		}
 	}
 
+	//FIXME switch to Version instead of String
 	static String getRefDocPath(String module, String version) {
 		switch (module) {
 			case "core":
@@ -204,7 +207,8 @@ public class DocUtils {
 			case "test":
 				return "/docs/core/" + version + "/reference/index.html#testing";
 			case "netty":
-				if (Module.VERSION_COMPARATOR_OLDEST_FIRST.compare(version, "0.9.0.BUILD-SNAPSHOT") >= 0) return "/docs/netty/" + version + "/reference";
+				Version nettyVersion = Version.parse(version);
+				if (nettyVersion.isAfter(0, 9, 0, SNAPSHOT)) return "/docs/netty/" + version + "/reference";
 				else return "";
 			default:
 				return "";

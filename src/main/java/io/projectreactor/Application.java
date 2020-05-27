@@ -21,6 +21,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.rmi.server.ServerNotActiveException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -217,38 +218,37 @@ public final class Application {
 		}
 		String moduleName = module.getName();
 		Map<String, Object> model = new HashMap<>();
-		LinkedHashMap<String, List<Tuple4<String, String, String, String>>>
+		LinkedHashMap<String, List<Tuple4<Version, String, String, String>>>
 				versionsByMajor = new LinkedHashMap<>();
-		Map<String, Tuple4<String, String, String, String>> latestReleaseByTrain = new HashMap<>();
-		Map<String, Tuple4<String, String, String, String>> latestSnapshotByTrain = new HashMap<>();
+		Map<String, Tuple4<Version, String, String, String>> latestReleaseByTrain = new HashMap<>();
+		Map<String, Tuple4<Version, String, String, String>> latestSnapshotByTrain = new HashMap<>();
 		model.put("moduleName", moduleName);
 		model.put("artifactId", module.getArtifactId());
 		model.put("trains", versionsByMajor);
 		model.put("latestReleases", latestReleaseByTrain);
 		model.put("latestSnapshots", latestSnapshotByTrain);
 
-		for (String version : module.getVersions()) {
-			String[] versionSplit = version.split("\\.");
-			String key = versionSplit[0] + "." + versionSplit[1] + ".x";
+		for (Version version : module.versions()) {
+			String key = version.major + "." + version.minor + ".x";
 
-			List<Tuple4<String, String, String, String>> versions = versionsByMajor.computeIfAbsent(key, k -> new ArrayList<>());
+			List<Tuple4<Version, String, String, String>> versions = versionsByMajor.computeIfAbsent(key, k -> new ArrayList<>());
 
 			String javadocUrl = "/docs/" + moduleName + "/" + version + "/api";
-			String refdocUrl = DocUtils.getRefDocPath(moduleName, version);
+			String refdocUrl = DocUtils.getRefDocPath(moduleName, version.toString()); //FIXME use the Version
 			String kdocUrl = "";
-			if (DocUtils.hasKDoc(moduleName, version)) {
+			if (DocUtils.hasKDoc(moduleName, version.toString())) {  //FIXME use the Version
 				kdocUrl = "/docs/" + moduleName + "/" + version + "/kdoc-api/";
 			}
 
-			Tuple4<String, String, String, String> docInfo =
+			Tuple4<Version, String, String, String> docInfo =
 					Tuples.of(version, javadocUrl, refdocUrl, kdocUrl);
 
-			versions.add(docInfo);
+			versions.add(docInfo); //side effect of storing all snapshots in the Module: they're now all displayed. we'll need to change that
 
-			if (version.contains(".RELEASE") && !latestReleaseByTrain.containsKey(key)) {
+			if (version.qualifier == Version.Qualifier.RELEASE && !latestReleaseByTrain.containsKey(key)) {
 				latestReleaseByTrain.put(key, docInfo);
 			}
-			else if (version.contains(".BUILD-SNAPSHOT") && !latestSnapshotByTrain.containsKey(key)) {
+			else if (version.qualifier == Version.Qualifier.SNAPSHOT && !latestSnapshotByTrain.containsKey(key)) {
 				latestSnapshotByTrain.put(key, docInfo);
 			}
 		}

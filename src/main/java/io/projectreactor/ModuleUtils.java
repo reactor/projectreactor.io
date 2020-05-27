@@ -84,15 +84,13 @@ public class ModuleUtils {
 			throw Exceptions.propagate(e);
 		}
 		List<String> versions = node.findValuesAsText("version");
-		Set<String> seenGenerations = new CopyOnWriteArraySet<>();
 
-		versions.forEach(v -> tryAddVersion(module, seenGenerations, v));
+		versions.forEach(v -> tryAddVersion(module, v));
 	}
 
 	/**
 	 * Try to add a version to a module, with some exclusions:
 	 * <ul>
-	 *     <li>only latest snapshot of each generation is added</li>
 	 *     <li>versions with custom version on top of GEN.MAJOR.MINOR are ignored</li>
 	 *     <li>for core, only consider gen 3.x.y</li>
 	 *     <li>ignore version if it is known to be {@link Module#isBadVersion(String) bad}</li>
@@ -101,22 +99,23 @@ public class ModuleUtils {
 	 * @implNote this method is extracted for testing purposes
 	 *
 	 * @param module the target module in which to add versions
-	 * @param seenGenerations the set of generations seen
-	 * @param version the version to add
+	 * @param versionLiteral the version to add
 	 */
-	static void tryAddVersion(Module module, Set<String> seenGenerations, String version) {
-		if (module.isBadVersion(version)) return;
-		if ("core".equals(module.getName()) && !version.startsWith("3.")) return;
-		if (version.split("\\.").length != 4) return;
-		if (version.endsWith("BUILD-SNAPSHOT")) {
-			String gen = version.replaceFirst("\\.", "_");
-			gen = gen.substring(0, gen.indexOf('.'));
-			if (seenGenerations.contains(gen)) return;
-			seenGenerations.add(gen);
+	static void tryAddVersion(Module module, String versionLiteral) {
+		if (module.isBadVersion(versionLiteral)) return;
+
+		try {
+			Version version = Version.parse(versionLiteral);
+
+			//only consider core gen 3+
+			if ("core".equals(module.getName()) && version.major < 3) return;
+			//don't show custom snapshots
+			if (version.customQualifier != null) return;
+
 			module.addVersion(version);
 		}
-		else {
-			module.addVersion(version);
+		catch (IllegalArgumentException e) {
+			LOGGER.warn("Unable to parse and add version {} for module {}: {}", versionLiteral, module.name, e.toString());
 		}
 	}
 

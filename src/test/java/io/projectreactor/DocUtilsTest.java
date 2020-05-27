@@ -18,7 +18,7 @@ public class DocUtilsTest {
 	@Before
 	public void setUp() throws Exception {
 		Module module = new Module("test", "group", "artifact");
-		module.addVersion("testVersion")
+		module.addVersion("1.2.3")
 		      .addVersion("3.1.0.BUILD-SNAPSHOT")
 		      .addVersion("3.1.0.M3")
 		      .sortVersions();
@@ -36,7 +36,7 @@ public class DocUtilsTest {
 		modules.put(moduleArchive.getName(), moduleArchive);
 
 		urlModule = new Module("foo", "fooGroup", "fooArtifact")
-				.addVersion("testVersion");
+				.addVersion("1.2.3");
 	}
 
 	@Test
@@ -197,10 +197,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/kdoc-api";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/index.html");
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/fooArtifact/index.html");
 	}
 
 	@Test
@@ -208,10 +208,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/kdoc-api/";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/index.html");
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/fooArtifact/index.html");
 	}
 
 	@Test
@@ -219,10 +219,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/kdoc-api/some/path/in/Doc.html";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-kdoc.zip!/fooArtifact/some/path/in/Doc.html");
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/fooArtifact/some/path/in/Doc.html");
 	}
 
 	@Test
@@ -230,10 +230,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/kdoc-api/style.css";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-kdoc.zip!/style.css");
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/style.css");
 	}
 
 	@Test
@@ -241,10 +241,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/api";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-javadoc.jar!/index.html");
+				"1.2.3/fooArtifact-1.2.3-javadoc.jar!/index.html");
 	}
 
 	@Test
@@ -252,10 +252,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/api/";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-javadoc.jar!/index.html");
+				"1.2.3/fooArtifact-1.2.3-javadoc.jar!/index.html");
 	}
 
 	@Test
@@ -263,10 +263,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/api/some/path/in/Doc.html";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-javadoc.jar!/some/path/in/Doc.html");
+				"1.2.3/fooArtifact-1.2.3-javadoc.jar!/some/path/in/Doc.html");
 	}
 
 	@Test
@@ -274,10 +274,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/reference";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-docs.zip!/docs/index.html");
+				"1.2.3/fooArtifact-1.2.3-docs.zip!/docs/index.html");
 	}
 
 	@Test
@@ -285,10 +285,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/reference/";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-docs.zip!/docs/index.html");
+				"1.2.3/fooArtifact-1.2.3-docs.zip!/docs/index.html");
 	}
 
 	@Test
@@ -296,10 +296,10 @@ public class DocUtilsTest {
 		String uri = "/docs/test/release/reference/some/absolute/reference/page.html";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "release",
-				urlModule, "testVersion");
+				urlModule, "1.2.3");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-docs.zip!/docs/some/absolute/reference/page.html");
+				"1.2.3/fooArtifact-1.2.3-docs.zip!/docs/some/absolute/reference/page.html");
 	}
 
 	@Test
@@ -307,24 +307,38 @@ public class DocUtilsTest {
 		String uri = "/docs/core/snapshot/reference/highlight/styles/railscasts.min.css";
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				"test", "snapshot",
-				urlModule, "testVersion");
+				urlModule, "1.2.3-SNAPSHOT");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"testVersion/fooArtifact-testVersion-docs.zip!/docs/highlight/styles/railscasts.min.css");
+				"1.2.3-SNAPSHOT/fooArtifact-1.2.3-SNAPSHOT-docs.zip!/docs/highlight/styles/railscasts.min.css");
 	}
 
 	@Test
-	public void moduleToReferenceUrlKafkaNotM1() {
-		String uri = "/docs/test/foo/reference";
+	public void moduleToReferenceUrlKafkaNewDocFilename() {
+		String uri = "/docs/kafka/foo/reference";
 		Module kafka = new Module("kafka", "group", "kafka.artifact")
-				.addVersion("notM1");
+				.addVersion("1.2.1.RELEASE");
 
 		String url = DocUtils.moduleToUrl(uri, "repoType",
-				"test", "foo",
-				kafka, "notM1");
+				"kafka", "foo",
+				kafka, "1.2.1.RELEASE");
 
 		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact/" +
-				"notM1/kafka.artifact-notM1-docs.zip!/docs/index.html");
+				"1.2.1.RELEASE/kafka.artifact-1.2.1.RELEASE-docs.zip!/docs/index.html");
+	}
+
+	@Test
+	public void moduleToReferenceUrlKafkaOldDocFilename() {
+		String uri = "/docs/kafka/foo/reference";
+		Module kafka = new Module("kafka", "group", "kafka.artifact")
+				.addVersion("1.2.0.RELEASE");
+
+		String url = DocUtils.moduleToUrl(uri, "repoType",
+				"kafka", "foo",
+				kafka, "1.2.0.RELEASE");
+
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact/" +
+				"1.2.0.RELEASE/kafka.artifact-docs-1.2.0.RELEASE.zip!/docs/index.html");
 	}
 
 	@Test

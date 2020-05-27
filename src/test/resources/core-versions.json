@@ -1,6 +1,30 @@
 {
   "results": [
     {
+      "version": "3.4.0",
+      "integration": false
+    },
+    {
+      "version": "3.4.0-SNAPSHOT",
+      "integration": true
+    },
+    {
+      "version": "3.4.0-SNAPSHOT-verifFix123",
+      "integration": true
+    },
+    {
+      "version": "3.4.0-RC2",
+      "integration": true
+    },
+    {
+      "version": "3.4.0-RC1",
+      "integration": true
+    },
+    {
+      "version": "3.4.0-M1",
+      "integration": true
+    },
+    {
       "version": "3.3.2.BUILD-SNAPSHOT",
       "integration": true
     },
@@ -54,6 +78,10 @@
     },
     {
       "version": "3.2.12.RELEASE",
+      "integration": false
+    },
+    {
+      "version": "3.2.12.BUILD-SNAPSHOT",
       "integration": false
     },
     {

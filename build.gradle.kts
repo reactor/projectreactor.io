@@ -64,7 +64,7 @@ dependencies {
     runtime("ch.qos.logback:logback-classic:1.1.7")
 
     testCompile("junit:junit:4.12")
-    testCompile("org.assertj:assertj-core:3.6.1")
+    testCompile("org.assertj:assertj-core:3.15.0")
 }
 
 val processResources = tasks.getByName("processResources")
