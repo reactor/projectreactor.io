@@ -22,6 +22,7 @@ public class Bom {
 
 	private String type;
 	private String name;
+	private String codename;
 	private String coreVersion;
 	private String testVersion;
 	private String poolVersion;
@@ -35,11 +36,12 @@ public class Bom {
 	public Bom() {
 	}
 
-	public Bom(String type, String name, String coreVersion, String testVersion,
+	public Bom(String type, String name, String codename, String coreVersion, String testVersion,
 			String nettyVersion, String extraVersion, String adapterVersion,
 			String kafkaVersion, String kotlinVersion) {
 		this.type = type;
 		this.name = name;
+		this.codename = codename;
 		this.coreVersion = coreVersion;
 		this.testVersion = testVersion;
 		this.nettyVersion = nettyVersion;
@@ -63,6 +65,14 @@ public class Bom {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCodename() {
+		return codename;
+	}
+
+	public void setCodename(String codename) {
+		this.codename = codename;
 	}
 
 	public String getPoolVersion() {

@@ -35,13 +35,13 @@
                                         th:text="${upcoming.name}">UPCOMING</span><br/>
                 </div>
             </div>
-            Latest stable BOM: <span class="version releasetrain"
-                                     title="Stable release train"
-                                     th:text="${stable.name}">STABLE</span><br/>
+            Latest stable BOM:
+            <span th:if="${stable.codename} == null" class="version releasetrain" title="Stable release train" th:text="${stable.name}">STABLE</span>
+            <span th:if="${stable.codename} != null" class="version releasetrain" title="Stable release train" th:text="${stable.name + ' (codename ' + stable.codename + ')'}">STABLE_WITH_CODENAME</span>            <br/>
             <div th:if="${milestone.name} != null">
-                Latest pre-release BOM: <span class="version releasetrain pre"
-                                              title="MILESTONE release train"
-                                              th:text="${milestone.name}">MILESTONE</span>
+                Latest pre-release BOM:
+                <span th:if="${milestone.codename} == null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name}">MILESTONE</span>
+                <span th:if="${milestone.codename} != null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name + ' (codename ' + milestone.codename + ')'}">MILESTONE_WITH_CODENAME</span>
             </div>
             <div th:if="${oldBoms.versions} != null">
                 Latest BOMs in previous release trains:
