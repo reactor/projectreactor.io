@@ -75,8 +75,8 @@ public class DocUtils {
 		String v = version.toUpperCase();
 		if (v.endsWith("RELEASE")) return "release";
 		if (v.endsWith("SNAPSHOT")) return "snapshot";
-		if (v.equals("MILESTONE") || v.matches(".*\\.M[0-9]+")) return "milestone";
-		if (v.matches(".*\\.RC[0-9]+")) return "milestone";
+		if (v.equals("MILESTONE") || v.matches(".*[.-]M[0-9]+")) return "milestone";
+		if (v.matches(".*[.-]RC[0-9]+")) return "milestone";
 		return "release"; //default
 	}
 

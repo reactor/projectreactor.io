@@ -175,16 +175,26 @@ public class DocUtilsTest {
 	@Test
 	public void findVersionType() throws Exception {
 		assertThat(DocUtils.findVersionType("3.1.0.BUILD-SNAPSHOT")).isEqualTo("snapshot");
+		assertThat(DocUtils.findVersionType("3.4.0-SNAPSHOT")).isEqualTo("snapshot");
 		assertThat(DocUtils.findVersionType("snAPshOT")).isEqualTo("snapshot");
 		assertThat(DocUtils.findVersionType("foosnAPshOT")).isEqualTo("snapshot");
+		assertThat(DocUtils.findVersionType("-SNAPSHOT")).isEqualTo("snapshot");
+		assertThat(DocUtils.findVersionType(".BUILD-SNAPSHOT")).isEqualTo("snapshot");
 
 		assertThat(DocUtils.findVersionType("3.1.0.M3")).isEqualTo("milestone");
+		assertThat(DocUtils.findVersionType("3.4.0-M3")).isEqualTo("milestone");
 		assertThat(DocUtils.findVersionType("milEstOne")).isEqualTo("milestone");
 		assertThat(DocUtils.findVersionType("anything.M234")).isEqualTo("milestone");
+		assertThat(DocUtils.findVersionType("anything-M234")).isEqualTo("milestone");
+
+		assertThat(DocUtils.findVersionType("3.1.0.RC123")).isEqualTo("milestone");
+		assertThat(DocUtils.findVersionType("3.4.0-RC123")).isEqualTo("milestone");
+
 		//default to RELEASE
 		assertThat(DocUtils.findVersionType("prefix.milEstOne")).isEqualTo("release");
 
 		assertThat(DocUtils.findVersionType("3.1.0.RELEASE")).isEqualTo("release");
+		assertThat(DocUtils.findVersionType("3.4.0")).isEqualTo("release");
 		assertThat(DocUtils.findVersionType("anythingRELEASE")).isEqualTo("release");
 		assertThat(DocUtils.findVersionType("reLEAse")).isEqualTo("release");
 
