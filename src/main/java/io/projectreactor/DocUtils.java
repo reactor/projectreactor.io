@@ -33,9 +33,15 @@ public class DocUtils {
 	}
 
 	protected static boolean checkModuleVersion(String toCheck, String upperVersionName) {
-		boolean matches = (upperVersionName.equals("MILESTONE") && toCheck.matches(".*\\.M[0-9]+"))
-				|| (upperVersionName.equals("MILESTONE") && toCheck.matches(".*\\.RC[0-9]+"))
-				|| toCheck.endsWith(upperVersionName);
+		boolean matches = (upperVersionName.equals("MILESTONE") && toCheck.matches(".*[.-]M[0-9]+"))
+				|| (upperVersionName.equals("MILESTONE") && toCheck.matches(".*[.-]RC[0-9]+"))
+				|| (upperVersionName.equals("SNAPSHOT") && toCheck.endsWith("-SNAPSHOT")) //common in both schemes
+				|| (upperVersionName.equals("RELEASE") && (
+						//old scheme for releases
+						toCheck.endsWith(".RELEASE") ||
+						//new scheme for releases
+						toCheck.matches("[0-9]+\\.[0-9]+\\.[0-9]+")))
+				|| toCheck.equalsIgnoreCase(upperVersionName);
 
 		return matches;
 	}

@@ -18,7 +18,11 @@ public class DocUtilsTest {
 	@Before
 	public void setUp() throws Exception {
 		Module module = new Module("test", "group", "artifact");
-		module.addVersion("1.2.3")
+		module.addVersion("3.4.0")
+		      .addVersion("3.4.0-SNAPSHOT")
+		      .addVersion("3.4.0-RC1")
+		      .addVersion("3.4.0-M2")
+		      .addVersion("3.4.0-M3")
 		      .addVersion("3.1.0.BUILD-SNAPSHOT")
 		      .addVersion("3.1.0.M3")
 		      .sortVersions();
@@ -56,7 +60,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestRelease() throws Exception {
+	public void findModuleAndVersionLatestReleaseOldScheme() throws Exception {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"release");
@@ -71,8 +75,31 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestReleaseFallsBackToArchive() throws Exception {
+	public void findModuleAndVersionLatestReleaseNewScheme() throws Exception {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
+				"test",
+				"release");
+
+		assertThat(result).isNotNull();
+
+		Module module = result.getT1();
+		String version = result.getT2();
+
+		assertThat(module.getName()).isEqualTo("test");
+		assertThat(version).isEqualTo("3.4.0");
+	}
+
+	@Test
+	public void findModuleAndVersionVersionTypeFallsBackToArchive() throws Exception {
+		//for this one we assume a main module that doesn't have any release yet
+		Map<String, Module> customModules = new HashMap<>();
+		Module limitedNewModule = new Module("test", "group", "artifact");
+		limitedNewModule.addVersion("3.4.0-SNAPSHOT").addVersion("3.4.0-RC1");
+		customModules.put("test", limitedNewModule);
+		customModules.put("testArchive", modules.get("testArchive"));
+
+
+		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(customModules,
 				"test",
 				"release");
 
@@ -83,7 +110,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestSnapshot() throws Exception {
+	public void findModuleAndVersionLatestSnapshotOldScheme() throws Exception {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"snapshot");
@@ -98,7 +125,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestSnapshot2() throws Exception {
+	public void findModuleAndVersionLatestSnapshot() throws Exception {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"snapshot");
@@ -109,11 +136,11 @@ public class DocUtilsTest {
 		String version = result.getT2();
 
 		assertThat(module.getName()).isEqualTo("test");
-		assertThat(version).isEqualTo("3.1.0.BUILD-SNAPSHOT");
+		assertThat(version).isEqualTo("3.4.0-SNAPSHOT");
 	}
 
 	@Test
-	public void findModuleAndVersionLatestMilestone() throws Exception {
+	public void findModuleAndVersionLatestMilestoneOldScheme() throws Exception {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"milestone");
@@ -128,7 +155,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestMilestone2() throws Exception {
+	public void findModuleAndVersionLatestMilestoneNewScheme() throws Exception {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"milestone");
@@ -139,7 +166,7 @@ public class DocUtilsTest {
 		String version = result.getT2();
 
 		assertThat(module.getName()).isEqualTo("test");
-		assertThat(version).isEqualTo("3.1.0.M3");
+		assertThat(version).isEqualTo("3.4.0-RC1");
 	}
 
 	@Test
@@ -360,13 +387,13 @@ public class DocUtilsTest {
 		Tuple2<Module, String> moduleInfo =
 				DocUtils.findModuleAndVersion(modules, reqModule, reqVersion);
 
-		assertThat(moduleInfo.getT2()).isEqualTo("3.0.7.RELEASE");
+		assertThat(moduleInfo.getT2()).isEqualTo("3.4.0");
 
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/old/artifact/3.0.7.RELEASE/artifact-3.0.7.RELEASE-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/artifact/3.4.0/artifact-3.4.0-javadoc.jar!/index.html");
 	}
 
 	@Test
@@ -378,14 +405,14 @@ public class DocUtilsTest {
 		Tuple2<Module, String> moduleInfo =
 				DocUtils.findModuleAndVersion(modules, reqModule, reqVersion);
 
-		assertThat(moduleInfo.getT2()).isEqualTo("3.1.0.M3");
+		assertThat(moduleInfo.getT2()).isEqualTo("3.4.0-RC1");
 
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
 		assertThat(url).isEqualTo("https://repo.spring" +
-				".io/repoType/group/artifact/3.1.0.M3/artifact-3.1.0.M3-javadoc" +
+				".io/repoType/group/artifact/3.4.0-RC1/artifact-3.4.0-RC1-javadoc" +
 				".jar!/index.html");
 	}
 
@@ -398,13 +425,13 @@ public class DocUtilsTest {
 		Tuple2<Module, String> moduleInfo =
 				DocUtils.findModuleAndVersion(modules, reqModule, reqVersion);
 
-		assertThat(moduleInfo.getT2()).isEqualTo("3.1.0.BUILD-SNAPSHOT");
+		assertThat(moduleInfo.getT2()).isEqualTo("3.4.0-SNAPSHOT");
 
 		String url = DocUtils.moduleToUrl(uri, "repoType",
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/artifact/3.1.0.BUILD-SNAPSHOT/artifact-3.1.0.BUILD-SNAPSHOT-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/artifact/3.4.0-SNAPSHOT/artifact-3.4.0-SNAPSHOT-javadoc.jar!/index.html");
 	}
 
 	@Test
@@ -428,11 +455,37 @@ public class DocUtilsTest {
 	@Test
 	public void moduleReleaseCandidateToRepoMilestone() {
 		assertThat(DocUtils.findVersionType("3.1.0.RC2")).isEqualTo("milestone");
+		assertThat(DocUtils.findVersionType("3.4.0-RC2")).isEqualTo("milestone");
 	}
 
 	@Test
 	public void checkModuleVersionReleaseCandidateIsMilestone() {
 		assertThat(DocUtils.checkModuleVersion("3.1.0.RC2", "MILESTONE")).isTrue();
+		assertThat(DocUtils.checkModuleVersion("3.4.0-RC2", "MILESTONE")).isTrue();
+	}
+
+	@Test
+	public void moduleMilestoneToRepoMilestone() {
+		assertThat(DocUtils.findVersionType("3.1.0.M1")).isEqualTo("milestone");
+		assertThat(DocUtils.findVersionType("3.4.0-M1")).isEqualTo("milestone");
+	}
+
+	@Test
+	public void checkModuleVersionMilestoneIsMilestone() {
+		assertThat(DocUtils.checkModuleVersion("3.1.0.M1", "MILESTONE")).isTrue();
+		assertThat(DocUtils.checkModuleVersion("3.4.0-M1", "MILESTONE")).isTrue();
+	}
+
+	@Test
+	public void moduleSnapshotToRepoSnapshot() {
+		assertThat(DocUtils.findVersionType("3.1.0.BUILD-SNAPSHOT")).isEqualTo("snapshot");
+		assertThat(DocUtils.findVersionType("3.4.0-SNAPSHOT")).isEqualTo("snapshot");
+	}
+
+	@Test
+	public void checkModuleVersionSnapshotIsSnapshot() {
+		assertThat(DocUtils.checkModuleVersion("3.1.0.BUILD-SNAPSHOT", "SNAPSHOT")).isTrue();
+		assertThat(DocUtils.checkModuleVersion("3.4.0-SNAPSHOT", "SNAPSHOT")).isTrue();
 	}
 
 	@Test
