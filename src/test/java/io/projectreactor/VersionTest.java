@@ -336,4 +336,12 @@ public class VersionTest {
 				.isLessThan(snapshotOldSchemeM2);
 	}
 
+	@Test
+	public void equalsFindsDifferenceInQualifierVersion() {
+		Version v1 = new Version(1, 2, 3, Version.Qualifier.MILESTONE, 1, null, Version.VersionStyle.MAVEN_GRADLE, "1.2.3-M1");
+		Version v2 = new Version(1, 2, 3, Version.Qualifier.MILESTONE, 2, null, Version.VersionStyle.MAVEN_GRADLE, "1.2.3-M2");
+
+		assertThat(v1).isNotEqualTo(v2);
+	}
+
 }

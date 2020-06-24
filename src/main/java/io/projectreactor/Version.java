@@ -348,6 +348,7 @@ public class Version implements Comparable<Version> {
 		}
 		Version version = (Version) o;
 		return major == version.major && minor == version.minor && patch == version.patch && qualifier == version.qualifier
+				&& qualifierVersion == version.qualifierVersion
 				&& style == version.style
 				&& Objects.equals(customQualifier, version.customQualifier);
 	}
