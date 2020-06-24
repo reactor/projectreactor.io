@@ -327,9 +327,9 @@ public class Version implements Comparable<Version> {
 		if (major != o.major) return major - o.major;
 		if (minor != o.minor) return minor - o.minor;
 		if (patch != o.patch) return patch - o.patch;
-		if (style != o.style) return style.ordinal() - o.style.ordinal();
 		if (qualifier != o.qualifier) return qualifier.ordinal() - o.qualifier.ordinal();
 		if (qualifierVersion != o.qualifierVersion) return qualifierVersion - o.qualifierVersion;
+		if (style != o.style) return style.ordinal() - o.style.ordinal();
 		if (customQualifier == null && o.customQualifier != null) return 1;
 		if (customQualifier != null && o.customQualifier == null) return -1;
 		if (customQualifier != null) { //means both are non-null

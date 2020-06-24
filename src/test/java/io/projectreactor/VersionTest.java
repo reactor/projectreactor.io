@@ -101,16 +101,16 @@ public class VersionTest {
 
 	@Test
 	public void comparePreReleases() {
-		List<Version> versions = Stream.of("1.2.3-M1", "1.2.3.RC3", "1.2.3-RC1", "1.2.3.M2")
+		List<Version> versions = Stream.of("1.2.3-M2", "1.2.3.RC3", "1.2.3-M1", "1.2.3-RC1", "1.2.3.M1")
 		                               .map(Version::parse).collect(Collectors.toList());
 
 		assertThat(versions.stream().sorted(Comparator.naturalOrder()).map(Object::toString))
 				.as("natural, oldest first")
-				.containsExactly("1.2.3-M1", "1.2.3.M2", "1.2.3-RC1", "1.2.3.RC3");
+				.containsExactly("1.2.3.M1", "1.2.3-M1", "1.2.3-M2", "1.2.3-RC1", "1.2.3.RC3");
 
 		assertThat(versions.stream().sorted(Comparator.reverseOrder()).map(Object::toString))
 				.as("reverse, newest first")
-				.containsExactly("1.2.3.RC3", "1.2.3-RC1", "1.2.3.M2", "1.2.3-M1");
+				.containsExactly("1.2.3.RC3", "1.2.3-RC1", "1.2.3-M2", "1.2.3-M1", "1.2.3.M1");
 	}
 
 	@Test
@@ -325,6 +325,15 @@ public class VersionTest {
 				.isNotEqualTo(snapshotOldScheme);
 
 		assertThat(snapshotNewScheme.hashCode()).as("hashcode").isNotEqualTo(snapshotOldScheme.hashCode());
+	}
+
+	@Test
+	public void compareToPrioritizesQualifierVersionsOverStyles() {
+		Version snapshotNewSchemeM1 = new Version(1, 2, 3, Version.Qualifier.MILESTONE, 1, null, Version.VersionStyle.MAVEN_GRADLE, "1.2.3-M1");
+		Version snapshotOldSchemeM2 = new Version(1, 2, 3, Version.Qualifier.MILESTONE, 2, null, Version.VersionStyle.OLD_OSGI_COMPATIBLE, "1.2.3.M2");
+
+		assertThat(snapshotNewSchemeM1)
+				.isLessThan(snapshotOldSchemeM2);
 	}
 
 }
