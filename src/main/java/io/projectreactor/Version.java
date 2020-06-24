@@ -327,6 +327,7 @@ public class Version implements Comparable<Version> {
 		if (major != o.major) return major - o.major;
 		if (minor != o.minor) return minor - o.minor;
 		if (patch != o.patch) return patch - o.patch;
+		if (style != o.style) return style.ordinal() - o.style.ordinal();
 		if (qualifier != o.qualifier) return qualifier.ordinal() - o.qualifier.ordinal();
 		if (qualifierVersion != o.qualifierVersion) return qualifierVersion - o.qualifierVersion;
 		if (customQualifier == null && o.customQualifier != null) return 1;
@@ -346,13 +347,13 @@ public class Version implements Comparable<Version> {
 			return false;
 		}
 		Version version = (Version) o;
-		return major == version.major && minor == version.minor && patch == version.patch && qualifier == version.qualifier && Objects.equals(
-				customQualifier,
-				version.customQualifier);
+		return major == version.major && minor == version.minor && patch == version.patch && qualifier == version.qualifier
+				&& style == version.style
+				&& Objects.equals(customQualifier, version.customQualifier);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(major, minor, patch, qualifier, qualifierVersion, customQualifier);
+		return Objects.hash(major, minor, patch, qualifier, qualifierVersion, customQualifier, style);
 	}
 }

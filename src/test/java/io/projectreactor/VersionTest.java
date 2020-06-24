@@ -315,4 +315,16 @@ public class VersionTest {
 		assertThat(v.isAfter(1, 2, 3, Version.Qualifier.MILESTONE, 2)).as("with lesser qualifier version").isTrue();
 	}
 
+	@Test
+	public void compareToEqualsHashcodeDifferentiatesStyles() {
+		Version snapshotNewScheme = new Version(1, 2, 3, Version.Qualifier.SNAPSHOT, 0, null, Version.VersionStyle.MAVEN_GRADLE, "newScheme");
+		Version snapshotOldScheme = new Version(1, 2, 3, Version.Qualifier.SNAPSHOT, 0, null, Version.VersionStyle.OLD_OSGI_COMPATIBLE, "oldScheme");
+
+		assertThat(snapshotNewScheme)
+				.isGreaterThan(snapshotOldScheme)
+				.isNotEqualTo(snapshotOldScheme);
+
+		assertThat(snapshotNewScheme.hashCode()).as("hashcode").isNotEqualTo(snapshotOldScheme.hashCode());
+	}
+
 }
