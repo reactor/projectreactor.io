@@ -1,9 +1,9 @@
 ---
 type: stable
-name: Dysprosium-SR9
-coreVersion: 3.3.7.RELEASE
-testVersion: 3.3.7.RELEASE
-nettyVersion: 0.9.9.RELEASE
+name: Dysprosium-SR10
+coreVersion: 3.3.8.RELEASE
+testVersion: 3.3.8.RELEASE
+nettyVersion: 0.9.10.RELEASE
 extraVersion: 3.3.3.RELEASE
 adapterVersion: 3.3.3.RELEASE
 kafkaVersion: 1.2.2.RELEASE
