@@ -21,12 +21,10 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.rmi.server.ServerNotActiveException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
 import io.netty.handler.codec.http.HttpHeaderNames;
-import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.util.AsciiString;
 import org.reactivestreams.Publisher;
 import org.thymeleaf.TemplateEngine;
@@ -287,7 +284,7 @@ public final class Application {
 			return kdocNotFound(url.replace(DocUtils.WARNING_NO_KDOC, "")).apply(req, resp);
 		}
 
-		return client.headers(h -> filterXHeaders(req.requestHeaders()))
+		return client.headers(h -> ApplicationUtils.filterRepoProxyRequestHeaders(req.requestHeaders()))
 		             .get()
 		             .uri(url)
 		             .response((r, body) -> {
@@ -295,7 +292,7 @@ public final class Application {
 			                return pageNotFound().apply(req, resp);
 		                }
 		                else {
-			                resp.headers(r.responseHeaders());
+			                resp.headers(ApplicationUtils.filterRepoProxyResponseHeaders(r.responseHeaders()));
 
 			                if (reqUri.endsWith(".svg")) {
 				                resp.header(HttpHeaderNames.CONTENT_TYPE,
@@ -329,20 +326,6 @@ public final class Application {
 				+ "!/index.html";
 
 		return resp.sendRedirect(url);
-	}
-
-
-
-	private HttpHeaders filterXHeaders(HttpHeaders headers){
-		Iterator<Map.Entry<String, String>> it = headers.iteratorAsString();
-		Map.Entry<String, String> current;
-		while(it.hasNext()){
-			current = it.next();
-			if(current.getKey().startsWith("Cf-")){
-				headers.remove(current.getKey());
-			}
-		}
-		return headers;
 	}
 
 	private HttpServerResponse cssInterceptor(HttpServerResponse resp) {
