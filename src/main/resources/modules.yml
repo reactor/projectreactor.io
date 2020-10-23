@@ -5,7 +5,7 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - Californium-SR21
+  - Californium-SR22
   - Bismuth-SR17
   - Aluminium-SR3
 ---
