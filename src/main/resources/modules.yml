@@ -67,7 +67,8 @@ name: kafka
 groupId: io.projectreactor.kafka
 artifactId: reactor-kafka
 #versions: #are fetched from Artifactory
-#badVersions:
+badVersions:
+  - 1.2.3.RELEASE #skipped, Dysprosium-SR13 referenced 1.2.4 instead of 1.2.2 so we released 1.2.4 to fix things up
 ---
 name: rabbitmq
 groupId: io.projectreactor.rabbitmq
