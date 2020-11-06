@@ -26,32 +26,33 @@
     <div class="page-summary-content">
         <div class="page-summary-wrap">
             <h1>Documentation</h1>
-            <span id="author" class="author">Project Reactor reference
-                            documentation and Javadoc. </span>
-            <div class="details">
-                <div th:if="${upcoming.name} != null">
+            <span id="author" class="author">Project Reactor reference documentation and Javadoc. </span>
+            <ul>
+                <li th:if="${upcoming.name} != null">
                     Upcoming BOM:
-                    <span th:if="${upcoming.codename} == null" class="version releasetrain partial" title="Partially available release train" th:text="${upcoming.name}">UPCOMING</span><br/>
-                    <span th:if="${upcoming.codename} != null" class="version releasetrain partial" title="Partially available release train" th:text="${upcoming.name + ' (' + upcoming.codename + ')'}">STABLE_WITH_CODENAME</span><br/>
-                </div>
-            </div>
-            Latest stable BOM:
-            <span th:if="${stable.codename} == null" class="version releasetrain" title="Stable release train" th:text="${stable.name}">STABLE</span>
-            <span th:if="${stable.codename} != null" class="version releasetrain" title="Stable release train" th:text="${stable.name + ' (' + stable.codename + ')'}">STABLE_WITH_CODENAME</span>            <br/>
-            <div th:if="${milestone.name} != null">
-                Latest pre-release BOM:
-                <span th:if="${milestone.codename} == null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name}">MILESTONE</span>
-                <span th:if="${milestone.codename} != null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name + ' (' + milestone.codename + ')'}">MILESTONE_WITH_CODENAME</span>
-            </div>
-            <div>
-                Latest BOMs in previous release trains:
-                <span th:if="${oldBoms.versions} != null" th:each="bom : ${oldBoms.versions}">
-                    <span class="version releasetrain maintenance" th:text="${bom}">OLD BOM</span>&nbsp;
-                </span>
-                <span th:if="${oldBoms.badVersions} != null" th:each="bom : ${oldBoms.badVersions}">
-                    <span class="version releasetrain eol" th:text="${bom}">EOL BOM</span>&nbsp;
-                </span>
-            </div>
+                    <span th:if="${upcoming.codename} == null" class="version releasetrain partial" title="Partially available release train" th:text="${upcoming.name}">UPCOMING</span>
+                    <span th:if="${upcoming.codename} != null" class="version releasetrain partial" title="Partially available release train" th:text="${upcoming.name + ' (' + upcoming.codename + ')'}">STABLE_WITH_CODENAME</span>
+                </li>
+                <li>
+                    Latest stable BOM:
+                    <span th:if="${stable.codename} == null" class="version releasetrain" title="Stable release train" th:text="${stable.name}">STABLE</span>
+                    <span th:if="${stable.codename} != null" class="version releasetrain" title="Stable release train" th:text="${stable.name + ' (' + stable.codename + ')'}">STABLE_WITH_CODENAME</span>
+                </li>
+                <li th:if="${milestone.name} != null">
+                    Latest pre-release BOM:
+                    <span th:if="${milestone.codename} == null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name}">MILESTONE</span>
+                    <span th:if="${milestone.codename} != null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name + ' (' + milestone.codename + ')'}">MILESTONE_WITH_CODENAME</span>
+                </li>
+                <li>
+                    Latest BOMs in previous release trains:
+                    <span th:if="${oldBoms.versions} != null" th:each="bom : ${oldBoms.versions}">
+                        <span class="version releasetrain maintenance" th:text="${bom}">OLD BOM</span>&nbsp;
+                    </span>
+                    <span th:if="${oldBoms.badVersions} != null" th:each="bom : ${oldBoms.badVersions}">
+                        <span class="version releasetrain eol" th:text="${bom}">EOL BOM</span>&nbsp;
+                    </span>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
