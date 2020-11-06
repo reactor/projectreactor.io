@@ -49,3 +49,65 @@ $reactorFontSpecial3: "Varela Round",sans-serif;
 @import "responsive";
 @import "button";
 
+// Key classes for documentation badges and displaying versions
+
+td.versionListGen {
+  background: $reactorPrimary;
+  color: white;
+}
+
+span.version {
+  display: inline;
+  font-family: monospace;
+  background: $reactorPrimary;
+  color: white;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: normal;
+  padding: 2px 4px 2px;
+  line-height: 14px;
+  &.releasetrain {
+    background: $reactorTextColor;
+    &.partial {
+      padding-left: 0;
+    }
+    &.partial::before {
+      content: "Part";
+      background: darkorange;
+      color: $reactorTextColor;
+      padding: 2px 4px;
+      margin-right: 6px;
+    }
+    &.maintenance {
+      background: dimgrey;
+    }
+    &.eol {
+      background: darkgrey;
+      color: white;
+      padding-left: 0;
+    }
+    &.eol::before {
+      content: "EoL";
+      background: darkorange;
+      color: $reactorTextColor;
+      padding: 2px 4px;
+      margin-right: 6px;
+    }
+    &.pre {
+      background: $reactorTextColor;
+      color: white;
+      padding-left: 0;
+    }
+    &.pre::before {
+      content: "Pre";
+      background: mediumpurple;
+      color: white;
+      padding: 2px 4px;
+      margin-right: 6px;
+    }
+  }
+  &.pre {
+    background: mediumpurple;
+  }
+}
+

@@ -35,37 +35,6 @@ h1, h2, h3, h4 { font-family: $reactorFontSpecial }
   text-shadow: 0 0 0 white;
 }
 
-td.versionListGen {
-  background: $reactorPrimary;
-  color: white;
-}
-
-span.version {
-  display: inline;
-  font-family: monospace;
-  background: $reactorPrimary;
-  color: white;
-  border-radius: 3px;
-  font-size: 11px;
-  font-weight: normal;
-  padding: 2px 4px 2px;
-  line-height: 14px;
-  &.releasetrain {
-    background: $reactorTextColor;
-    &.pre {
-      background: linear-gradient(135deg,
-              $reactorTextColor 0%,$reactorTextColor 80%,
-              darkorange 81%,darkorange 100%);
-    }
-    &.hold {
-      background: darkgrey;
-    }
-  }
-  &.pre {
-      background: darkorange;
-    }
-  }
-
 // Application
 
 body {
@@ -304,11 +273,6 @@ section#applications {
       border-bottom:0 none;
     }
 
-    span.version {
-      height: auto;
-      font-weight: bold;
-      font-size: 11px;
-    }
     div.title, div.github, div.javadoc, div.reference {
       float: left;
     }

@@ -7,6 +7,8 @@ artifactId: reactor-bom
 versions:
   - Dysprosium-SR13
   - Californium-SR22
+#badVersions is used as placeholder for release trains that hit EoL
+badVersions:
   - Bismuth-SR17
   - Aluminium-SR3
 ---
