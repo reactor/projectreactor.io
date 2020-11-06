@@ -26,29 +26,33 @@
     <div class="page-summary-content">
         <div class="page-summary-wrap">
             <h1>Documentation</h1>
-            <span id="author" class="author">Project Reactor reference
-                            documentation and Javadoc. </span>
-            <div class="details">
-                <div th:if="${upcoming.name} != null">
-                    Upcoming BOM: <span class="version releasetrain hold"
-                                        title="Partially available release train"
-                                        th:text="${upcoming.name}">UPCOMING</span><br/>
-                </div>
-            </div>
-            Latest stable BOM:
-            <span th:if="${stable.codename} == null" class="version releasetrain" title="Stable release train" th:text="${stable.name}">STABLE</span>
-            <span th:if="${stable.codename} != null" class="version releasetrain" title="Stable release train" th:text="${stable.name + ' (codename ' + stable.codename + ')'}">STABLE_WITH_CODENAME</span>            <br/>
-            <div th:if="${milestone.name} != null">
-                Latest pre-release BOM:
-                <span th:if="${milestone.codename} == null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name}">MILESTONE</span>
-                <span th:if="${milestone.codename} != null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name + ' (codename ' + milestone.codename + ')'}">MILESTONE_WITH_CODENAME</span>
-            </div>
-            <div th:if="${oldBoms.versions} != null">
-                Latest BOMs in previous release trains:
-                <span th:each="bom : ${oldBoms.versions}">
-                    <span class="version releasetrain hold" th:text="${bom}">OLD BOM</span>&nbsp;
-                </span>
-            </div>
+            <span id="author" class="author">Project Reactor reference documentation and Javadoc. </span>
+            <ul>
+                <li th:if="${upcoming.name} != null">
+                    Upcoming BOM:
+                    <span th:if="${upcoming.codename} == null" class="version releasetrain partial" title="Partially available release train" th:text="${upcoming.name}">UPCOMING</span>
+                    <span th:if="${upcoming.codename} != null" class="version releasetrain partial" title="Partially available release train" th:text="${upcoming.name + ' (' + upcoming.codename + ')'}">STABLE_WITH_CODENAME</span>
+                </li>
+                <li>
+                    Latest stable BOM:
+                    <span th:if="${stable.codename} == null" class="version releasetrain" title="Stable release train" th:text="${stable.name}">STABLE</span>
+                    <span th:if="${stable.codename} != null" class="version releasetrain" title="Stable release train" th:text="${stable.name + ' (' + stable.codename + ')'}">STABLE_WITH_CODENAME</span>
+                </li>
+                <li th:if="${milestone.name} != null">
+                    Latest pre-release BOM:
+                    <span th:if="${milestone.codename} == null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name}">MILESTONE</span>
+                    <span th:if="${milestone.codename} != null" class="version releasetrain pre" title="MILESTONE release train" th:text="${milestone.name + ' (' + milestone.codename + ')'}">MILESTONE_WITH_CODENAME</span>
+                </li>
+                <li>
+                    Latest BOMs in previous release trains:
+                    <span th:if="${oldBoms.versions} != null" th:each="bom : ${oldBoms.versions}">
+                        <span class="version releasetrain maintenance" th:text="${bom}">OLD BOM</span>&nbsp;
+                    </span>
+                    <span th:if="${oldBoms.badVersions} != null" th:each="bom : ${oldBoms.badVersions}">
+                        <span class="version releasetrain eol" th:text="${bom}">EOL BOM</span>&nbsp;
+                    </span>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
@@ -74,7 +78,6 @@
                         <tr th:if="${upcoming.coreVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.coreVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.coreVersion}">VERSION</span>
                             </td>
@@ -85,7 +88,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -192,7 +195,6 @@
                         <tr th:if="${upcoming.testVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.testVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.testVersion}">VERSION</span>
                             </td>
@@ -203,7 +205,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -307,7 +309,6 @@
                         <tr th:if="${upcoming.extraVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.extraVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.extraVersion}">VERSION</span>
                             </td>
@@ -318,7 +319,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -412,7 +413,6 @@
                         <tr th:if="${upcoming.nettyVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.nettyVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.nettyVersion}">VERSION</span>
                             </td>
@@ -423,7 +423,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -522,7 +522,6 @@
                         <tr th:if="${upcoming.adapterVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.adapterVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.adapterVersion}">VERSION</span>
                             </td>
@@ -533,7 +532,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -625,7 +624,6 @@
                         <tr th:if="${upcoming.kafkaVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.kafkaVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.kafkaVersion}">VERSION</span>
                             </td>
@@ -636,7 +634,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -733,7 +731,6 @@
                         <tr th:if="${upcoming.kotlinVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.kotlinVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.kotlinVersion}">VERSION</span>
                             </td>
@@ -744,7 +741,7 @@
                                    class="fa fa-file-text">&nbsp;</a>
                             </td>
                             <td>
-                                    <span class="version releasetrain hold"
+                                    <span class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -850,7 +847,6 @@
                         <tr th:if="${upcoming.rabbitVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.rabbitVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.rabbitVersion}">VERSION</span>
                             </td>
@@ -862,7 +858,7 @@
                             </td>
                             <td>
                                     <span th:if="${upcoming.name} != null"
-				          class="version releasetrain hold"
+				          class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -963,7 +959,6 @@
                         <tr th:if="${upcoming.poolVersion} != null">
                             <td>
                                     <span class="version"
-                                          th:classappend="${!#strings.endsWith(upcoming.poolVersion,'.RELEASE')}? 'pre'"
                                           title="Latest Release In Incomplete BOM"
                                           th:text="${upcoming.poolVersion}">VERSION</span>
                             </td>
@@ -975,7 +970,7 @@
                             </td>
                             <td>
                                     <span th:if="${upcoming.name} != null"
-                                          class="version releasetrain hold"
+                                          class="version releasetrain partial"
                                           title="Partially available release train"
                                           th:text="${upcoming.name}"> BOM</span>
                             </td>
@@ -1120,7 +1115,7 @@
     <div class="details">
       <p>Legend:</p>
         <ul>
-            <li><span class="version releasetrain hold">RELEASE-TRAIN</span>: Artifacts in these release trains have not all been released (<span th:if="${upcoming.coreVersion} != null">currently <span class="version releasetrain hold" th:text="${upcoming.name}"> CURRENT</span></span><span th:if="${upcoming.coreVersion} == null">e.g. <span class="version releasetrain hold"> Californium-SR30</span></span>).  </li>
+            <li><span class="version releasetrain partial">RELEASE-TRAIN</span>: Artifacts in these release trains have not all been released (<span th:if="${upcoming.coreVersion} != null">currently <span class="version releasetrain partial" th:text="${upcoming.name}"> CURRENT</span></span><span th:if="${upcoming.coreVersion} == null">e.g. <span class="version releasetrain partial"> Californium-SR30</span></span>).  </li>
             <li><span class="version releasetrain">RELEASE-TRAIN</span>: Artifacts in the latest stable and fully available release train (<span th:if="${stable.coreVersion} != null">currently <span class="version releasetrain" th:text="${stable.name}">CURRENT</span></span> <span th:if="${stable.coreVersion} == null">e.g. <span class="version releasetrain">Bismuth-SR10</span></span>).  </li>
             <li><span class="version releasetrain pre">RELEASE-TRAIN</span>: Artifacts in the latest pre-release release train (<span th:if="${milestone.coreVersion} != null">currently <span class="version releasetrain pre" th:text="${milestone.name}">CURRENT</span></span> <span th:if="${milestone.coreVersion} == null">e.g. <span class="version releasetrain pre">Californium-M1</span></span>).  </li>
             <li><span class="version">version</span>: Available RELEASE artifacts.</li>
