@@ -72,7 +72,7 @@ span.version {
       padding-left: 0;
     }
     &.partial::before {
-      content: "Part";
+      content: "WIP";
       background: darkorange;
       color: $reactorTextColor;
       padding: 2px 4px;
@@ -87,7 +87,7 @@ span.version {
       padding-left: 0;
     }
     &.eol::before {
-      content: "EoL";
+      content: "EOL";
       background: darkorange;
       color: $reactorTextColor;
       padding: 2px 4px;
