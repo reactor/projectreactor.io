@@ -5,10 +5,10 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - Dysprosium-SR14
-  - Californium-SR22
+  - Dysprosium-SR15
 #badVersions is used as placeholder for release trains that hit EoL
 badVersions:
+  - Californium-SR23
   - Bismuth-SR17
   - Aluminium-SR3
 ---
