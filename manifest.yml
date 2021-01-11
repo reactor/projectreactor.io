@@ -3,9 +3,11 @@ applications:
 - name: projectreactor
   memory: 1G
   path: ./build/libs/projectreactor-home.jar
-  domain: projectreactor.io
   buildpacks:
     - java_buildpack_offline
+  routes:
+    - route: projectreactor.io
+    - route: projectreactor.sc2-04-pcf1-apps.oc.vmware.com
   disk_quota: 1024M
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
