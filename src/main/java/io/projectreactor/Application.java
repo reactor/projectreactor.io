@@ -101,6 +101,7 @@ public final class Application {
 		                    .host("0.0.0.0")
 		                    .port(8080)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
+		                                 .get("/security-policy", (req, resp) -> resp.sendRedirect("https://tanzu.vmware.com/security"))
 		                                 .get("/", template("home"))
 		                                 .get("/docs", template("docs"))
 		                                 .get("/learn", template("learn"))
