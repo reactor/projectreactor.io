@@ -127,10 +127,10 @@ public final class Application {
 		                                 .get("/2.x/{module}/api", this::legacyProxy)
 		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
 		                                 .directory("/2.x/reference/images", contentPath.resolve("legacy/ref/images"))
-//		                                 .index((req, res) -> res.sendFile(contentPath.resolve(res.path()).resolve("index.html")))
+		                                 .index(pageNotFound()) //any attempt to list an arbitrary directory is 404
 		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
-		                                 .get("**.html", pageNotFound()))
+		                                 .get("**", pageNotFound()))
 		                    .bind();
 	}
 
