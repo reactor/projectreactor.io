@@ -1,13 +1,13 @@
 ---
 type: stable
-name: 2020.0.3
+name: 2020.0.4
 codename: Europium
-coreVersion: 3.4.2
-testVersion: 3.4.2
-nettyVersion: 1.0.3
+coreVersion: 3.4.3
+testVersion: 3.4.3
+nettyVersion: 1.0.4
 extraVersion: 3.4.2
 adapterVersion: 3.4.2
-kafkaVersion: 1.3.1
+kafkaVersion: 1.3.2
 rabbitVersion: 1.5.1
 poolVersion: 0.2.2
 kotlinVersion: 1.1.2
