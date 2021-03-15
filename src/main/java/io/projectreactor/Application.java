@@ -17,10 +17,11 @@ package io.projectreactor;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,8 +41,6 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-
-import org.springframework.core.io.ClassPathResource;
 
 import reactor.core.publisher.Mono;
 import reactor.netty.DisposableServer;
@@ -80,14 +79,14 @@ public final class Application {
 
 		//evaluate the boms.yml file first and add it to thymeleaf's model
 		Yaml bomYaml = new Yaml(new Constructor(Bom.class));
-		bomYaml.loadAll(new ClassPathResource("boms.yml").getInputStream())
+		bomYaml.loadAll(ClassLoader.getSystemResourceAsStream("boms.yml"))
 		       .forEach(o -> {
 			       Bom bom = (Bom) o;
 			       docsModel.put(bom.getType(), bom);
 		       });
 		//evaluate modules, add oldboms to thymeleaf's model
 		//get at a minimum the list of modules, oldBom, artifacts and groupids from yml
-		ModuleUtils.loadModulesFromYmlInto(new ClassPathResource("modules.yml"), modules);
+		ModuleUtils.loadModulesFromYmlInto(ClassLoader.getSystemResourceAsStream("modules.yml"), modules);
 		//then get the versions from Artifactory
 		ModuleUtils.fetchVersionsFromArtifactory(modules, "core", "test", "adapter",
 				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
@@ -349,20 +348,24 @@ public final class Application {
 	}
 
 	private Path resolveContentPath() throws IOException {
-		ClassPathResource cp = new ClassPathResource("static");
-		if (cp.isFile()) {
-			return Paths.get(cp.getURI());
+		try {
+			URI staticContentFolder = ClassLoader.getSystemResource("static")
+			                                     .toURI();
+
+			FileSystem fs = FileSystems.newFileSystem(staticContentFolder, Collections.emptyMap());
+			Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+				try{
+					fs.close();
+				}
+				catch (IOException io){
+					//ignore
+				}
+			}));
+			return fs.getPath("static");
 		}
-		FileSystem fs = FileSystems.newFileSystem(cp.getURI(), Collections.emptyMap());
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			try{
-				fs.close();
-			}
-			catch (IOException io){
-				//ignore
-			}
-		}));
-		return fs.getPath("static");
+		catch (URISyntaxException e) {
+			throw new IOException("Invalid uri [static]", e);
+		}
 	}
 
 
