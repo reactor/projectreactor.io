@@ -22,6 +22,4 @@ Make sure you have at least IntelliJ IDEA 2016.2.5 and Kotlin plugin 1.1-M02 to 
 configure the EAP update site in:
 Tools -> Kotlin -> Configure Kotlin Plugin Updates -> Early Access Preview 1.1
 
-Just testing master->main renaming
-
 This project is Apache 2.0 licensed, just like the rest of Reactor.
