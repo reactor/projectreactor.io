@@ -28,16 +28,14 @@
 </head>
 <body>
 <img src="assets/img/logo.jpg">
-<h1>:-\</h1>
-<h2>Sorry, something went wrong!
-<div th:if="${maintenanceEnd} != null">
-        This is due to an infrastructure maintenance scheduled on <strong th:text="${maintenanceDate}">YYYY/MM/DD</strong>.
-        We'll be back up by <strong th:text="${maintenanceEnd}">MAINTENANCE END</strong>.
+<div th:unless="${#strings.isEmpty(maintenanceEnd)}">
+    <h1>:-\</h1>
+    <h2>Sorry, something went wrong! This is due to an infrastructure maintenance scheduled on <strong th:text="${maintenanceDate}">YYYY/MM/DD</strong>. We'll be back up by <strong th:text="${maintenanceEnd}">MAINTENANCE END</strong>.</h2>
 </div>
-<div th:if="${maintenanceEnd} == null">
-    No maintenance is currently scheduled :(
+<div th:if="${#strings.isEmpty(maintenanceEnd)}">
+    <h1>:-(</h1>
+    <h2>Sorry, something went wrong and no maintenance is currently scheduled!</h2>
 </div>
-</h2>
 <p>Follow <a href="https://twitter.com/springops">@springops</a> for updates.</p>
 <div style="display: none">::CLOUDFLARE_ERROR_500S_BOX::</div>
 </body>
