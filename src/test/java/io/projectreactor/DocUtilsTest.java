@@ -16,7 +16,7 @@ public class DocUtilsTest {
 	private Module              urlModule;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		Module module = new Module("test", "group", "artifact");
 		module.addVersion("3.4.0")
 		      .addVersion("3.4.0-SNAPSHOT")
@@ -44,14 +44,14 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionNoSuchModule() throws Exception {
+	public void findModuleAndVersionNoSuchModule() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules, "foo", "release");
 
 		assertThat(result).isNull();
 	}
 
 	@Test
-	public void findModuleAndVersionNoSuchVersion() throws Exception {
+	public void findModuleAndVersionNoSuchVersion() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"foo");
@@ -60,7 +60,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestReleaseOldScheme() throws Exception {
+	public void findModuleAndVersionLatestReleaseOldScheme() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"release");
@@ -75,7 +75,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestReleaseNewScheme() throws Exception {
+	public void findModuleAndVersionLatestReleaseNewScheme() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"release");
@@ -90,7 +90,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionVersionTypeFallsBackToArchive() throws Exception {
+	public void findModuleAndVersionVersionTypeFallsBackToArchive() {
 		//for this one we assume a main module that doesn't have any release yet
 		Map<String, Module> customModules = new HashMap<>();
 		Module limitedNewModule = new Module("test", "group", "artifact");
@@ -110,7 +110,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestSnapshotOldScheme() throws Exception {
+	public void findModuleAndVersionLatestSnapshotOldScheme() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"snapshot");
@@ -125,7 +125,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestSnapshot() throws Exception {
+	public void findModuleAndVersionLatestSnapshot() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"snapshot");
@@ -140,7 +140,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestMilestoneOldScheme() throws Exception {
+	public void findModuleAndVersionLatestMilestoneOldScheme() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"milestone");
@@ -155,7 +155,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionLatestMilestoneNewScheme() throws Exception {
+	public void findModuleAndVersionLatestMilestoneNewScheme() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"milestone");
@@ -170,7 +170,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionSpecificRelease() throws Exception {
+	public void findModuleAndVersionSpecificRelease() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"testArchive",
 				"3.0.5.RELEASE");
@@ -185,7 +185,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findModuleAndVersionSpecificReleaseInArchive() throws Exception {
+	public void findModuleAndVersionSpecificReleaseInArchive() {
 		Tuple2<Module, String> result = DocUtils.findModuleAndVersion(modules,
 				"test",
 				"3.0.5.RELEASE");
@@ -200,7 +200,7 @@ public class DocUtilsTest {
 	}
 
 	@Test
-	public void findVersionType() throws Exception {
+	public void findVersionType() {
 		assertThat(DocUtils.findVersionType("3.1.0.BUILD-SNAPSHOT")).isEqualTo("snapshot");
 		assertThat(DocUtils.findVersionType("3.4.0-SNAPSHOT")).isEqualTo("snapshot");
 		assertThat(DocUtils.findVersionType("snAPshOT")).isEqualTo("snapshot");

@@ -343,7 +343,7 @@ public final class Application {
 	}
 
 	private void startLog(DisposableServer c) {
-		System.out.printf("Server started in %d ms on: %s\n",
+		LOGGER.info("Server started in {} ms on: {}\n",
 				Duration.ofNanos(ManagementFactory.getThreadMXBean()
 						.getThreadCpuTime(Thread.currentThread().getId())).toMillis(), c.address());
 	}

@@ -214,20 +214,6 @@ public class VersionTest {
 		assertThat(v.style).isEqualTo(Version.VersionStyle.MAVEN_GRADLE);
 	}
 
-//	@Test
-//	public void matchesCustomSnapshotVersions() {
-//		assertThat("1.2.3.01.BUILD-SNAPSHOT").as("numeric only").matches(Module.VERSION_OLD_REGEXP);
-//		assertThat("1.2.3.0cusTom0.BUILD-SNAPSHOT").as("alphanumeric").matches(Module.VERSION_OLD_REGEXP);
-//		assertThat("1.2.3.cusTom.BUILD-SNAPSHOT").as("alphabetic only").matches(Module.VERSION_OLD_REGEXP);
-//	}
-//
-//	@Test
-//	public void matchesCustomReleaseVersions() {
-//		assertThat("1.2.3.01.RELEASE").as("numeric only").matches(Module.VERSION_OLD_REGEXP);
-//		assertThat("1.2.3.0cusTom0.RELEASE").as("alphanumeric").matches(Module.VERSION_OLD_REGEXP);
-//		assertThat("1.2.3.cusTom.RELEASE").as("alphabetic only").matches(Module.VERSION_OLD_REGEXP);
-//	}
-
 	@Test
 	public void doesntParseNull() {
 		assertThatIllegalArgumentException()
