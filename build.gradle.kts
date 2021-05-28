@@ -53,18 +53,19 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework:spring-core:5.3.7")
-    compile("io.projectreactor.netty:reactor-netty:1.0.7")
-    compile("io.projectreactor:reactor-core:3.4.6")
-    compile("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
-    compile("org.yaml:snakeyaml:1.28")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.12.3")
-    runtime("commons-logging:commons-logging:1.2")
-    runtime("org.slf4j:slf4j-api:1.7.30")
-    runtime("ch.qos.logback:logback-classic:1.2.3")
+    implementation(platform("io.projectreactor:reactor-bom:2020.0.7"))
+    implementation("io.projectreactor.netty:reactor-netty")
+    implementation("io.projectreactor:reactor-core")
+    implementation("org.springframework:spring-core:5.3.7")
+    implementation("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
+    implementation("org.yaml:snakeyaml:1.28")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
+    runtimeOnly("commons-logging:commons-logging:1.2")
+    runtimeOnly("org.slf4j:slf4j-api:1.7.30")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
-    testCompile("junit:junit:4.13.2")
-    testCompile("org.assertj:assertj-core:3.19.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.assertj:assertj-core:3.19.0")
 }
 
 val processResources = tasks.getByName("processResources")
