@@ -24,7 +24,7 @@ configurations.all {
 plugins {
     java
     application
-    id("com.github.johnrengelman.shadow") version "4.0.4"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.github.salomonbrys.gradle.sass") version "1.2.0"
 }
 
@@ -56,6 +56,7 @@ dependencies {
     implementation(platform("io.projectreactor:reactor-bom:2020.0.7"))
     implementation("io.projectreactor.netty:reactor-netty")
     implementation("io.projectreactor:reactor-core")
+    implementation("com.google.code.findbugs:jsr305:3.0.2")
     implementation("org.springframework:spring-core:5.3.7")
     implementation("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
     implementation("org.yaml:snakeyaml:1.28")
