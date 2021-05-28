@@ -24,7 +24,7 @@ configurations.all {
 plugins {
     java
     application
-    id("com.github.johnrengelman.shadow") version "4.0.4"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.github.salomonbrys.gradle.sass") version "1.2.0"
 }
 
@@ -53,18 +53,20 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework:spring-core:5.1.7.RELEASE")
-    compile("io.projectreactor.netty:reactor-netty:0.8.9.RELEASE")
-    compile("io.projectreactor:reactor-core:3.2.10.RELEASE")
-    compile("org.thymeleaf:thymeleaf:3.0.9.RELEASE")
-    compile("org.yaml:snakeyaml:1.17")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.10.1")
-    runtime("commons-logging:commons-logging:1.2")
-    runtime("org.slf4j:slf4j-api:1.7.21")
-    runtime("ch.qos.logback:logback-classic:1.1.7")
+    implementation(platform("io.projectreactor:reactor-bom:2020.0.7"))
+    implementation("io.projectreactor.netty:reactor-netty")
+    implementation("io.projectreactor:reactor-core")
+    implementation("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("org.springframework:spring-core:5.3.7")
+    implementation("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
+    implementation("org.yaml:snakeyaml:1.28")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
+    runtimeOnly("commons-logging:commons-logging:1.2")
+    runtimeOnly("org.slf4j:slf4j-api:1.7.30")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
-    testCompile("junit:junit:4.12")
-    testCompile("org.assertj:assertj-core:3.17.2")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.assertj:assertj-core:3.19.0")
 }
 
 val processResources = tasks.getByName("processResources")

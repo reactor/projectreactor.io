@@ -1,8 +1,5 @@
 package io.projectreactor;
 
-import java.io.IOException;
-import java.util.Map;
-
 import io.netty.handler.codec.http.DefaultHttpHeaders;
 import org.assertj.core.util.Streams;
 import org.junit.Test;
