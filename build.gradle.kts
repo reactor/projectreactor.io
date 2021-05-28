@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.github.salomonbrys.gradle.sass.SassTask
 import java.util.concurrent.TimeUnit
 
@@ -37,6 +38,11 @@ configure<ApplicationPluginConvention> {
 
 configure<ShadowExtension> {
 	version = ""
+}
+
+tasks.withType<ShadowJar> {
+    archiveClassifier.set("")
+    archiveVersion.set("")
 }
 
 configure<SassTask> {
