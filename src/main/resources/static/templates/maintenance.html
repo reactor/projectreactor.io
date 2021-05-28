@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor - Something went wrong</title>
+    <meta name="description" content="Something went wrong"/>
+    <style>
+        h1 {
+            font-family: Metropolis,sans-serif;
+            color: rgb(94, 169, 66);
+            text-align: center;
+            font-size: 130px;
+            font-weight: 500;
+            line-height: 110px;
+            margin: 0;
+            padding: 0 0 1.5rem;
+        }
+        h2, h3, h4, h5, html, p strong {
+            font-family: Metropolis,sans-serif;
+            font-weight: 400;
+            text-align: center;
+            color: #191e1e;
+        }
+        html {
+            font-size: 100%;
+            font-family: Open Sans,sans-serif;
+        }
+    </style>
+</head>
+<body>
+<img src="assets/img/logo.jpg">
+<div th:unless="${#strings.isEmpty(maintenanceEnd)}">
+    <h1>:-\</h1>
+    <h2>Sorry, something went wrong! This is due to an infrastructure maintenance scheduled on <strong th:text="${maintenanceDate}">YYYY/MM/DD</strong>. We'll be back up by <strong th:text="${maintenanceEnd}">MAINTENANCE END</strong>.</h2>
+</div>
+<div th:if="${#strings.isEmpty(maintenanceEnd)}">
+    <h1>:-(</h1>
+    <h2>Sorry, something went wrong and no maintenance is currently scheduled!</h2>
+</div>
+<p>Follow <a href="https://twitter.com/springops">@springops</a> for updates.</p>
+<div style="display: none">::CLOUDFLARE_ERROR_500S_BOX::</div>
+</body>
+</html>

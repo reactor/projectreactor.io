@@ -95,6 +95,12 @@ public final class Application {
 		LOGGER.info("Boms and modules loaded in " + (System.currentTimeMillis() - start) + "ms");
 
 		docsModel.put("oldBoms", modules.get("olderBoms"));
+		String maintenanceDate = System.getProperty("maintenanceDate", System.getenv("maintenanceDate"));
+		String maintenanceEnd = System.getProperty("maintenanceEnd", System.getenv("maintenanceEnd"));
+		if (maintenanceDate != null && maintenanceEnd != null) {
+			docsModel.put("maintenanceDate", maintenanceDate);
+			docsModel.put("maintenanceEnd", maintenanceEnd);
+		}
 		//templates will be resolved and parsed below during route setup
 
 		context = HttpServer.create()
@@ -105,6 +111,7 @@ public final class Application {
 		                                 .get("/", template("home"))
 		                                 .get("/docs", template("docs"))
 		                                 .get("/learn", template("learn"))
+		                                 .get("/maintenance", template("maintenance"))
 		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}", this::listVersionsAndDocs)
 		                                 .get("/docs/", rewrite("docs/", "docs"))
