@@ -22,6 +22,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -98,9 +99,27 @@ public final class Application {
 		String maintenanceDate = System.getProperty("maintenanceDate", System.getenv("maintenanceDate"));
 		String maintenanceEnd = System.getProperty("maintenanceEnd", System.getenv("maintenanceEnd"));
 		if (maintenanceDate != null && maintenanceEnd != null) {
-			docsModel.put("maintenanceDate", maintenanceDate);
-			docsModel.put("maintenanceEnd", maintenanceEnd);
+			boolean addMaintenanceInfo;
+			try {
+				if (ApplicationUtils.checkMaintenanceIsNotOutdated(maintenanceDate, maintenanceEnd)) {
+					addMaintenanceInfo = true;
+				}
+				else {
+					LOGGER.info("Maintenance information set but {} is more than one day in the past, ignored", maintenanceDate);
+					addMaintenanceInfo = false;
+				}
+			}
+			catch (DateTimeParseException dateTimeParseException) {
+				//the date doesn't seem to be in YYYY/MM/DD format but let's still add it as text
+				addMaintenanceInfo = true;
+				LOGGER.warn("Maintenance information {} couldn't be parsed as a yyyy/MM/dd date, but still taken into account", maintenanceDate);
+			}
+			if (addMaintenanceInfo) {
+				docsModel.put("maintenanceDate", maintenanceDate);
+				docsModel.put("maintenanceEnd", maintenanceEnd);
+			}
 		}
+
 		//templates will be resolved and parsed below during route setup
 
 		context = HttpServer.create()
