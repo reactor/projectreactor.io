@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import com.diffplug.gradle.spotless.SpotlessExtension
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.github.salomonbrys.gradle.sass.SassTask
@@ -27,10 +29,13 @@ plugins {
     application
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.github.salomonbrys.gradle.sass") version "1.2.0"
+    id("com.diffplug.spotless") version "5.14.0"
 }
 
 group = "io.projectreactor"
 version = "1.0.0.BUILD-SNAPSHOT"
+
+var isCiServer = System.getenv().containsKey("CI")
 
 configure<ApplicationPluginConvention> {
 	mainClassName = "io.projectreactor.Application"
@@ -49,6 +54,33 @@ configure<SassTask> {
     style = compressed
     source = fileTree("$projectDir/src/main/sass")
     outputDir = file("$buildDir/resources/main/static/assets/css/")
+}
+
+configure<SpotlessExtension> {
+    if (project.hasProperty("spotlessFrom")) {
+        val spotlessBranch = project.properties["spotlessFrom"].toString()
+        if (spotlessBranch == "ALL") {
+            println("[Spotless] Ratchet deactivated")
+        }
+        else {
+            println("[Spotless] Ratchet from $spotlessBranch")
+            ratchetFrom(spotlessBranch)
+        }
+    }
+    else if (isCiServer) {
+        println ("[Spotless] CI detected without explicit branch, not enforcing check")
+        isEnforceCheck = false
+    }
+    else {
+        val spotlessBranch = "origin/main"
+        println("[Spotless] Local run detected, ratchet from $spotlessBranch")
+        ratchetFrom(spotlessBranch)
+    }
+
+    java {
+        target("**/*.java")
+        licenseHeaderFile("codequality/spotless/licenseSlashstarStyle.txt")
+    }
 }
 
 repositories {
