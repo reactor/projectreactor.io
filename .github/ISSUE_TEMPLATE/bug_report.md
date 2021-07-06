@@ -11,7 +11,7 @@ assignees: ''
 
 <!--- /!\ Make sure to follow the Contribution Guidelines, notably for security issues and questions:
 https://github.com/reactor/.github/blob/master/CONTRIBUTING.md
-https://pivotal.io/security
+https://tanzu.vmware.com/security
 https://github.com/reactor/.github/blob/master/CONTRIBUTING.md#question-do-you-have-a-question
 -->
 
