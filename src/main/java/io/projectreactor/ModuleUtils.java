@@ -16,7 +16,8 @@
 
 package io.projectreactor;
 
-import java.io.InputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+
+import org.springframework.core.io.ClassPathResource;
 
 import reactor.core.Exceptions;
 import reactor.core.publisher.Flux;
@@ -40,13 +43,18 @@ public class ModuleUtils {
 
 	private static final Logger LOGGER = Loggers.getLogger(ModuleUtils.class);
 
-	public static void loadModulesFromYmlInto(InputStream resourceStream, Map<String, Module> target) {
+	public static void loadModulesFromYmlInto(ClassPathResource resource, Map<String, Module> target) {
 		Yaml yaml = new Yaml(new Constructor(Module.class));
-		yaml.loadAll(resourceStream).forEach(o -> {
-			Module module = (Module)o;
-			module.sortAndDeduplicateVersions();
-			target.put(module.getName(), module);
-		});
+		try {
+			yaml.loadAll(resource.getInputStream()).forEach(o -> {
+				Module module = (Module)o;
+				module.sortAndDeduplicateVersions();
+				target.put(module.getName(), module);
+			});
+		}
+		catch (IOException e) {
+			throw new UncheckedIOException(e);
+		}
 	}
 
 	public static void fetchVersionsFromArtifactory(Map<String, Module> modules, String... moduleNames) {
