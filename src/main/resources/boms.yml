@@ -1,16 +1,16 @@
 ---
 type: stable
-name: 2020.0.11
+name: 2020.0.12
 codename: Europium
-coreVersion: 3.4.10
-testVersion: 3.4.10
-nettyVersion: 1.0.11
+coreVersion: 3.4.11
+testVersion: 3.4.11
+nettyVersion: 1.0.12
 extraVersion: 3.4.5
 adapterVersion: 3.4.5
-kafkaVersion: 1.3.6
+kafkaVersion: 1.3.7
 rabbitVersion: 1.5.3
-poolVersion: 0.2.6
-kotlinVersion: 1.1.4
+poolVersion: 0.2.7
+kotlinVersion: 1.1.5
 # ---
 # type: stable
 # name: Dysprosium-SR12
