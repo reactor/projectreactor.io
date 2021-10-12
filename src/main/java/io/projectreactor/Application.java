@@ -127,7 +127,7 @@ public final class Application {
 		                    .port(8080)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/security-policy", (req, resp) -> resp.sendRedirect("https://www.vmware.com/support/policies/security_response.html"))
-		                                 .file("/.well-known/security.txt", contentPath.resolve(".well-known/security.txt"))
+		                                 .file("/.well-known/security.txt", contentPath.resolve("well-known/security.txt"))
 		                                 //the dot in .well-known is confusing to netty. that said, we're not expected to serve an index for this directory so let's cover the case explicitly
 		                                 .get("/.well-known", pageNotFound())
 		                                 .get("/", template("home"))
