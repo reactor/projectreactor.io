@@ -93,11 +93,11 @@ public class ModuleTest {
 	}
 
 	@Test
-	public void loadBadVersionSetFromList() {
+	public void loadBadVersionSetFromListDeduplicatesAndReverseSorts() {
 		Module module = new Module();
-		module.setBadVersions(Arrays.asList("A", "B", "B"));
+		module.setBadVersions(Arrays.asList("Aluminum-SR3", "Dysprosium-SR25", "Bismuth-SR17", "Dysprosium-SR25", "Californium-SR23"));
 
-		assertThat(module.badVersions).containsExactly("A", "B");
+		assertThat(module.badVersions).containsExactly("Dysprosium-SR25", "Californium-SR23", "Bismuth-SR17", "Aluminum-SR3");
 	}
 
 	@Test
