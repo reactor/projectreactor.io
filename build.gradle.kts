@@ -17,7 +17,8 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.github.salomonbrys.gradle.sass.SassTask
+import io.miret.etienne.gradle.sass.CompileSass
+import io.miret.etienne.gradle.sass.SassGradlePluginExtension
 import java.util.concurrent.TimeUnit
 
 configurations.all {
@@ -28,7 +29,7 @@ plugins {
     java
     application
     id("com.github.johnrengelman.shadow") version "6.1.0"
-    id("com.github.salomonbrys.gradle.sass") version "1.2.0"
+    id("io.miret.etienne.sass") version "1.1.2"
     id("com.diffplug.spotless") version "5.14.0"
 }
 
@@ -45,15 +46,21 @@ configure<ShadowExtension> {
 	version = ""
 }
 
+tasks.withType<CompileSass> {
+    style = compressed
+    //cannot set sourceDir, but default is $projectDir/src/main/sass - phew!
+    outputDir = file("$buildDir/resources/main/static/assets/css/")
+}
+
+tasks.withType<Jar> {
+    val compileSass = tasks.getByName("compileSass")
+    dependsOn(compileSass)
+    from(file("$buildDir/resources/main/static/assets/css/"))
+}
+
 tasks.withType<ShadowJar> {
     archiveClassifier.set("")
     archiveVersion.set("")
-}
-
-configure<SassTask> {
-    style = compressed
-    source = fileTree("$projectDir/src/main/sass")
-    outputDir = file("$buildDir/resources/main/static/assets/css/")
 }
 
 configure<SpotlessExtension> {
@@ -106,7 +113,3 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.19.0")
 }
-
-val processResources = tasks.getByName("processResources")
-val sassCompile = tasks.getByName("sassCompile")
-processResources.dependsOn(sassCompile)
