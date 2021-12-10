@@ -18,7 +18,6 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.miret.etienne.gradle.sass.CompileSass
-import io.miret.etienne.gradle.sass.SassGradlePluginExtension
 import java.util.concurrent.TimeUnit
 
 configurations.all {
@@ -28,9 +27,9 @@ configurations.all {
 plugins {
     java
     application
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.0"
     id("io.miret.etienne.sass") version "1.1.2"
-    id("com.diffplug.spotless") version "5.14.0"
+    id("com.diffplug.spotless") version "6.0.4"
 }
 
 group = "io.projectreactor"
@@ -38,8 +37,8 @@ version = "1.0.0.BUILD-SNAPSHOT"
 
 var isCiServer = System.getenv().containsKey("CI")
 
-configure<ApplicationPluginConvention> {
-	mainClassName = "io.projectreactor.Application"
+configure<JavaApplication> {
+    mainClass.set("io.projectreactor.Application")
 }
 
 configure<ShadowExtension> {
