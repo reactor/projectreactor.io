@@ -17,7 +17,7 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.github.salomonbrys.gradle.sass.SassTask
+import io.miret.etienne.gradle.sass.CompileSass
 import java.util.concurrent.TimeUnit
 
 configurations.all {
@@ -27,9 +27,9 @@ configurations.all {
 plugins {
     java
     application
-    id("com.github.johnrengelman.shadow") version "6.1.0"
-    id("com.github.salomonbrys.gradle.sass") version "1.2.0"
-    id("com.diffplug.spotless") version "5.14.0"
+    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("io.miret.etienne.sass") version "1.1.2"
+    id("com.diffplug.spotless") version "6.0.4"
 }
 
 group = "io.projectreactor"
@@ -37,23 +37,29 @@ version = "1.0.0.BUILD-SNAPSHOT"
 
 var isCiServer = System.getenv().containsKey("CI")
 
-configure<ApplicationPluginConvention> {
-	mainClassName = "io.projectreactor.Application"
+configure<JavaApplication> {
+    mainClass.set("io.projectreactor.Application")
 }
 
 configure<ShadowExtension> {
 	version = ""
 }
 
+tasks.withType<CompileSass> {
+    style = compressed
+    //cannot set sourceDir, but default is $projectDir/src/main/sass - phew!
+    outputDir = file("$buildDir/resources/main/static/assets/css/")
+}
+
+tasks.withType<Jar> {
+    val compileSass = tasks.getByName("compileSass")
+    dependsOn(compileSass)
+    from(file("$buildDir/resources/main/static/assets/css/"))
+}
+
 tasks.withType<ShadowJar> {
     archiveClassifier.set("")
     archiveVersion.set("")
-}
-
-configure<SassTask> {
-    style = compressed
-    source = fileTree("$projectDir/src/main/sass")
-    outputDir = file("$buildDir/resources/main/static/assets/css/")
 }
 
 configure<SpotlessExtension> {
@@ -91,22 +97,18 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.projectreactor:reactor-bom:2020.0.12"))
+    implementation(platform("io.projectreactor:reactor-bom:2020.0.13"))
     implementation("io.projectreactor.netty:reactor-netty")
     implementation("io.projectreactor:reactor-core")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("org.springframework:spring-core:5.3.7")
-    implementation("org.thymeleaf:thymeleaf:3.0.12.RELEASE")
-    implementation("org.yaml:snakeyaml:1.28")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
+    implementation("org.springframework:spring-core:5.3.13")
+    implementation("org.thymeleaf:thymeleaf:3.0.14.RELEASE")
+    implementation("org.yaml:snakeyaml:1.29")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
     runtimeOnly("commons-logging:commons-logging:1.2")
-    runtimeOnly("org.slf4j:slf4j-api:1.7.30")
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
+    runtimeOnly("org.slf4j:slf4j-api:1.7.32")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.7")
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.assertj:assertj-core:3.19.0")
+    testImplementation("org.assertj:assertj-core:3.21.0")
 }
-
-val processResources = tasks.getByName("processResources")
-val sassCompile = tasks.getByName("sassCompile")
-processResources.dependsOn(sassCompile)
