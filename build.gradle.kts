@@ -97,7 +97,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.projectreactor:reactor-bom:2020.0.13"))
+    implementation(platform("io.projectreactor:reactor-bom:2020.0.14"))
     implementation("io.projectreactor.netty:reactor-netty")
     implementation("io.projectreactor:reactor-core")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
@@ -107,7 +107,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
     runtimeOnly("commons-logging:commons-logging:1.2")
     runtimeOnly("org.slf4j:slf4j-api:1.7.32")
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.7")
+    runtimeOnly("ch.qos.logback:logback-classic:1.2.8")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.21.0")
