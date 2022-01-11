@@ -97,7 +97,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.projectreactor:reactor-bom:2020.0.14"))
+    implementation(platform("io.projectreactor:reactor-bom:2020.0.15"))
     implementation("io.projectreactor.netty:reactor-netty")
     implementation("io.projectreactor:reactor-core")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
