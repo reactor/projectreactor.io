@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2021 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2015-2022 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -155,10 +155,8 @@ public final class Application {
 		                                 .get("/ext/docs/api/**/test/**", rewrite("/ext/docs/", "/docs/test/release/"))
 		                                 .get("/netty/docs/api/**", rewrite("/netty/docs/", "/docs/netty/release/"))
 		                                 .get("/2.x/{module}/api", this::legacyProxy)
-		                                 .get("/2.x/reference/", (req, res) -> res.sendFile(contentPath.resolve("legacy/ref/index.html")))
-		                                 .directory("/2.x/reference/images", contentPath.resolve("legacy/ref/images"))
+		                                 .get("/2.x/reference/", legacyGone())
 		                                 .index(pageNotFound()) //any attempt to list an arbitrary directory is 404
-		                                 .directory("/old", contentPath.resolve("legacy"))
 		                                 .directory("/assets", contentPath.resolve("assets"), this::cssInterceptor)
 		                                 .get("**", pageNotFound()))
 		                    .bind();
@@ -191,6 +189,18 @@ public final class Application {
 		LOGGER.info("Parsed template {} in {}ms", templateName, duration);
 
 		return (req, resp) -> resp.sendString(Mono.just(content));
+	}
+
+	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> legacyGone() {
+		//the template parsing happens at app's initialization
+		long start = System.nanoTime();
+		final String content = templateEngine.process("410LegacyGone", new Context(Locale.US, docsModel));
+		long duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+		LOGGER.info("Parsed template 410LegacyGone in {}ms", duration);
+
+		return (req, resp) -> resp
+				.status(410)
+				.sendString(Mono.just(content));
 	}
 
 	private BiFunction<HttpServerRequest, HttpServerResponse, Publisher<Void>> pageNotFound() {
