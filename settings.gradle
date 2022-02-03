@@ -1,2 +1,6 @@
 rootProject.name = 'projectreactor-home'
 rootProject.buildFileName = 'build.gradle.kts'
+
+//libs catalog is declared in ./gradle/libs.versions.toml
+//TODO remove once Version Catalogs are stabilized.
+enableFeaturePreview("VERSION_CATALOGS")

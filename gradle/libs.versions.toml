@@ -1,0 +1,18 @@
+[libraries]
+assertJ = "org.assertj:assertj-core:3.21.0"
+commonsLogging = "commons-logging:commons-logging:1.2"
+jackson = "com.fasterxml.jackson.core:jackson-databind:2.13.1"
+#using version range to avoid suggested upgrades, 3.0.1 is last with annotations
+jsr305 = { module = "com.google.code.findbugs:jsr305", version = "[3.0.1, 3.0.1]" }
+junit4 = "junit:junit:4.13.2"
+logback = "ch.qos.logback:logback-classic:1.2.10"
+reactorBom = "io.projectreactor:reactor-bom:2020.0.15"
+slf4jApi = "org.slf4j:slf4j-api:1.7.32"
+snakeYaml = "org.yaml:snakeyaml:1.30"
+spring = "org.springframework:spring-core:5.3.14"
+thymeleaf = "org.thymeleaf:thymeleaf:3.0.14.RELEASE"
+
+[plugins]
+sass = { id = "io.miret.etienne.sass", version = "1.1.2" }
+shadow = { id = "com.github.johnrengelman.shadow", version = "7.1.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.0.4" }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2021 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2011-2022 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ configurations.all {
 plugins {
     java
     application
-    id("com.github.johnrengelman.shadow") version "7.1.0"
-    id("io.miret.etienne.sass") version "1.1.2"
-    id("com.diffplug.spotless") version "6.0.4"
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.sass)
+    alias(libs.plugins.spotless)
 }
 
 group = "io.projectreactor"
@@ -97,18 +97,18 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.projectreactor:reactor-bom:2020.0.15"))
+    implementation(platform(libs.reactorBom))
     implementation("io.projectreactor.netty:reactor-netty")
     implementation("io.projectreactor:reactor-core")
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("org.springframework:spring-core:5.3.14")
-    implementation("org.thymeleaf:thymeleaf:3.0.14.RELEASE")
-    implementation("org.yaml:snakeyaml:1.30")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.1")
-    runtimeOnly("commons-logging:commons-logging:1.2")
-    runtimeOnly("org.slf4j:slf4j-api:1.7.32")
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.10")
+    implementation(libs.jsr305)
+    implementation(libs.spring)
+    implementation(libs.thymeleaf)
+    implementation(libs.snakeYaml)
+    implementation(libs.jackson)
+    runtimeOnly(libs.commonsLogging)
+    runtimeOnly(libs.slf4jApi)
+    runtimeOnly(libs.logback)
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.assertj:assertj-core:3.21.0")
+    testImplementation(libs.junit4)
+    testImplementation(libs.assertJ)
 }
