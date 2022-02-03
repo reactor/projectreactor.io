@@ -4,33 +4,24 @@ on:
     branches:
       - main
   pull_request: {}
+permissions: read-all
 jobs:
   checks:
     name: checks
     runs-on: ubuntu-latest
     steps:
-      # the skip-duplicate-actions step actually applies to the whole workflow
-      - uses: fkirc/skip-duplicate-actions@master
-        name: cancel previous runs
-        with:
-          github_token: ${{ github.token }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 #for spotless ratchet
       - uses: actions/setup-java@v1
         with:
           java-version: 8
-      - uses: eskatos/gradle-command-action@v1
+      - uses: gradle/gradle-build-action@v2
         name: license header
         if: ${{ github.event_name == 'pull_request' }}
         with:
           arguments: spotlessCheck -PspotlessFrom=origin/${{ github.base_ref }}
-          wrapper-cache-enabled: true
-          dependencies-cache-enabled: true
-          configuration-cache-enabled: true
-      - uses: eskatos/gradle-command-action@v1
+      - uses: gradle/gradle-build-action@v2
         name: tests
         with:
-          wrapper-cache-enabled: true
-          dependencies-cache-enabled: true
-          configuration-cache-enabled: true
+          arguments: check -x spotlessCheck
