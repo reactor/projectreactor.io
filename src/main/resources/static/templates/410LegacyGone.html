@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('404', ~{::title}, ~{::meta[@name='description']}, ~{::link}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor - 410 Gone</title>
+    <meta name="description" content="410 Gone" />
+    <link href="/assets/css/docs.css" media="all" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="content" id="content">
+    <section class="page404">
+        <h2 style="font-size: xxx-large">410 - Gone</h2>
+        <h1>The Legacy (2.x) reference guide has been permanently removed from the site.</h1>
+        <article>
+            <p class="desc">
+                If you require a copy of this legacy guide from 2016, you can obtain one from
+                <a href="https://github.com/reactor/projectreactor.io/tree/d2d45d911fe5a0c06bf49352573384e19f453382/src/main/resources/static/legacy/ref">git history</a>.
+            </p>
+        </article>
+    </section>
+</div>
+
+</body>
+</html>
