@@ -13,6 +13,10 @@
     "Renovate has been configured to skip the CLA:",
     "@pivotal-cla This is an Obvious Fix"
   ],
+  "html": {
+    "enabled": true,
+    "fileMatch": ["^src/main/resources/static/.*\\.html$"]
+  },
   "packageRules": [
     {
       "matchPackageNames": ["com.google.code.findbugs:jsr305"],
