@@ -19,20 +19,20 @@ $(function(){
     var navVisible = false;
     var toggle_el = $("[data-toggle]").data('toggle');
 
-    $("[data-toggle]").click(function() {
+    $("[data-toggle]").on("click", function() {
         $(toggle_el).toggleClass("open-sidebar");
         navVisible = !navVisible;
         return false;
     });
 
-    $("#content").click(function(){
+    $("#content").on("click", function(){
         if (navVisible) {
             navVisible = false;
             $(toggle_el).removeClass("open-sidebar");
         }
     });
-    $(window).resize(function(){
-        if ($(this).width() > 800 && navVisible) {
+    $(window).on("resize", function(){
+        if ($(this).width() > 2000 && navVisible) {
             navVisible = false;
             $(toggle_el).removeClass("open-sidebar");
         }
