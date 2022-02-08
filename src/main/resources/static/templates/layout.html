@@ -16,10 +16,11 @@
 <!DOCTYPE html>
 <html th:fragment="layout(page,title,description,links,content)" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Getting jquery through CloudFlare's cdnjs so that Renovate picks up upgrades -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- OneTrust Cookie Consent -->
     <meta content='60a709d9-50a1-442d-8f59-072e08a3ddb4' name='onetrust-data-domain'>
     <meta content='https://tags.tiqcdn.com/utag/vmware/microsites-privacy/prod/utag.js' name='microsites-utag'>
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="https://www.vmware.com/files/templates/inc/utag_data.js"></script>
     <script src="https://tags.tiqcdn.com/utag/vmware/microsites-privacy/prod/utag.sync.js"></script>
     <script>function OptanonWrapper() { { window.dataLayer.push({ event: 'OneTrustGroupsUpdated' }); } }</script>
