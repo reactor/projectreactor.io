@@ -32,7 +32,7 @@ $(function(){
         }
     });
     $(window).on("resize", function(){
-        if ($(this).width() > 2000 && navVisible) {
+        if ($(this).width() > 800 && navVisible) {
             navVisible = false;
             $(toggle_el).removeClass("open-sidebar");
         }
