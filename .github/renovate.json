@@ -7,7 +7,7 @@
     ":label(type/dependency-upgrade)",
     ":reviewer(reactor/team)",
     ":timezone(Europe/Paris)",
-    "schedule:nonOfficeHours"
+    "group:allNonMajor"
   ],
   "prBodyNotes": [
     "Renovate has been configured to skip the CLA:",
@@ -18,6 +18,10 @@
     "fileMatch": ["^src/main/resources/static/.*\\.html$"]
   },
   "packageRules": [
+    {
+      "matchManagers": ["gradle-wrapper"],
+      "groupName": "Gradle"
+    },
     {
       "matchPackageNames": ["com.google.code.findbugs:jsr305"],
       "groupName": "JSR305 with annotations jar",
