@@ -23,6 +23,11 @@
       "groupName": "Gradle"
     },
     {
+      "matchDepTypes": ["action"],
+      "groupName": "Github Workflows",
+      "pinDigests": true
+    },
+    {
       "matchPackageNames": ["com.google.code.findbugs:jsr305"],
       "groupName": "JSR305 with annotations jar",
       "groupSlug": "jsr305",
