@@ -15,6 +15,7 @@ jobs:
           fetch-depth: 0 #for spotless ratchet
       - uses: actions/setup-java@f0bb91606209742fe3ea40199be2f3ef195ecabf # tag=v2
         with:
+          distribution: 'temurin'
           java-version: 8
       - uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7 # tag=v2
         name: license header
