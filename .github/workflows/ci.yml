@@ -17,12 +17,12 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 8
-      - uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7 # tag=v2
+      - uses: gradle/gradle-build-action@fec4a42eb0c83154e5c9590748ba8337949c5701 # tag=v2
         name: license header
         if: ${{ github.event_name == 'pull_request' }}
         with:
           arguments: spotlessCheck -PspotlessFrom=origin/${{ github.base_ref }}
-      - uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7 # tag=v2
+      - uses: gradle/gradle-build-action@fec4a42eb0c83154e5c9590748ba8337949c5701 # tag=v2
         name: tests
         with:
           arguments: check -x spotlessCheck
