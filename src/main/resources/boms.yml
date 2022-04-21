@@ -40,13 +40,13 @@ type: upcoming
 # for milestones released outside of a BOM and full release train, see oobmilestone below
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: 2022.0.0-M1
+name: 2022.0.0-M2
 codename: F
-coreVersion: 3.5.0-M1
-testVersion: 3.5.0-M1
-nettyVersion: 1.1.0-M1
-extraVersion: 3.5.0-M1
-adapterVersion: 3.5.0-M1
+coreVersion: 3.5.0-M2
+testVersion: 3.5.0-M2
+nettyVersion: 1.1.0-M2
+extraVersion: 3.5.0-M2
+adapterVersion: 3.5.0-M2
 # kafkaVersion: 1.3.0-RC2
 # rabbitVersion: 1.5.0-RC2
 poolVersion: 1.0.0-M1
