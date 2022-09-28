@@ -7,7 +7,7 @@ jsr305 = { module = "com.google.code.findbugs:jsr305", version = "[3.0.1, 3.0.1]
 junit4 = "junit:junit:4.13.2"
 logback = "ch.qos.logback:logback-classic:1.2.11"
 reactorBom = "io.projectreactor:reactor-bom:2020.0.23"
-slf4jApi = "org.slf4j:slf4j-api:1.7.36"
+slf4jApi = "org.slf4j:slf4j-api:2.0.3"
 snakeYaml = "org.yaml:snakeyaml:1.30"
 spring = "org.springframework:spring-core:5.3.22"
 thymeleaf = "org.thymeleaf:thymeleaf:3.0.15.RELEASE"
