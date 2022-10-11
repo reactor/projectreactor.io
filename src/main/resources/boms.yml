@@ -1,15 +1,15 @@
 ---
 type: stable
-name: 2020.0.23
+name: 2020.0.24
 codename: Europium
-coreVersion: 3.4.23
-testVersion: 3.4.23
-nettyVersion: 1.0.23
+coreVersion: 3.4.24
+testVersion: 3.4.24
+nettyVersion: 1.0.24
 extraVersion: 3.4.8
 adapterVersion: 3.4.8
-kafkaVersion: 1.3.12
+kafkaVersion: 1.3.13
 rabbitVersion: 1.5.5
-poolVersion: 0.2.9
+poolVersion: 0.2.10
 kotlinVersion: 1.1.7
 # ---
 # type: stable
@@ -40,17 +40,18 @@ type: upcoming
 # for milestones released outside of a BOM and full release train, see oobmilestone below
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: 2022.0.0-M6
+name: 2022.0.0-RC1
 codename: F
-coreVersion: 3.5.0-M6
-testVersion: 3.5.0-M6
-nettyVersion: 1.1.0-M6
-extraVersion: 3.5.0-M6
-adapterVersion: 3.5.0-M6
-kafkaVersion: 1.3.12
+coreVersion: 3.5.0-RC1
+testVersion: 3.5.0-RC1
+nettyVersion: 1.1.0-RC1
+extraVersion: 3.5.0-RC1
+adapterVersion: 3.5.0-RC1
+kafkaVersion: 1.3.13
 # rabbitVersion: 1.5.0-RC2
-poolVersion: 1.0.0-M6
-kotlinVersion: 1.2.0-M6
+poolVersion: 1.0.0-RC1
+poolMicrometerVersion: 0.1.0-RC1
+kotlinVersion: 1.2.0-RC1
 ---
 #this special pseudo-BOM is used to display milestones that are released outside of a release train.
 #they appear beneath a regular milestone BOM and activate the link to Milestone javadoc/refdoc.
