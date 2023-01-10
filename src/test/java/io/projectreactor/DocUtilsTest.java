@@ -252,8 +252,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/fooArtifact/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip/!/fooArtifact/index.html");
 	}
 
 	@Test
@@ -263,8 +263,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/fooArtifact/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip/!/fooArtifact/index.html");
 	}
 
 	@Test
@@ -274,8 +274,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/fooArtifact/some/path/in/Doc.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip/!/fooArtifact/some/path/in/Doc.html");
 	}
 
 	@Test
@@ -285,8 +285,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-kdoc.zip!/style.css");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-kdoc.zip/!/style.css");
 	}
 
 	@Test
@@ -296,8 +296,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-javadoc.jar/!/index.html");
 	}
 
 	@Test
@@ -307,8 +307,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-javadoc.jar/!/index.html");
 	}
 
 	@Test
@@ -318,8 +318,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-javadoc.jar!/some/path/in/Doc.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-javadoc.jar/!/some/path/in/Doc.html");
 	}
 
 	@Test
@@ -329,8 +329,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-docs.zip!/docs/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-docs.zip/!/docs/index.html");
 	}
 
 	@Test
@@ -340,8 +340,8 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-docs.zip!/docs/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-docs.zip/!/docs/index.html");
 	}
 
 	@Test
@@ -351,8 +351,9 @@ public class DocUtilsTest {
 				"test", "release",
 				urlModule, "1.2.3");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3/fooArtifact-1.2.3-docs.zip!/docs/some/absolute/reference/page.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3/fooArtifact-1.2.3-docs.zip/!/docs/some/absolute/reference/page" +
+				".html");
 	}
 
 	@Test
@@ -362,8 +363,8 @@ public class DocUtilsTest {
 				"test", "snapshot",
 				urlModule, "1.2.3-SNAPSHOT");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/fooGroup/fooArtifact/" +
-				"1.2.3-SNAPSHOT/fooArtifact-1.2.3-SNAPSHOT-docs.zip!/docs/highlight/styles/railscasts.min.css");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/fooGroup/fooArtifact/" +
+				"1.2.3-SNAPSHOT/fooArtifact-1.2.3-SNAPSHOT-docs.zip/!/docs/highlight/styles/railscasts.min.css");
 	}
 
 	@Test
@@ -376,8 +377,8 @@ public class DocUtilsTest {
 				"kafka", "foo",
 				kafka, "1.2.1.RELEASE");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact/" +
-				"1.2.1.RELEASE/kafka.artifact-1.2.1.RELEASE-docs.zip!/docs/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/group/kafka.artifact/" +
+				"1.2.1.RELEASE/kafka.artifact-1.2.1.RELEASE-docs.zip/!/docs/index.html");
 	}
 
 	@Test
@@ -390,8 +391,8 @@ public class DocUtilsTest {
 				"kafka", "foo",
 				kafka, "1.2.0.RELEASE");
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/kafka.artifact/" +
-				"1.2.0.RELEASE/kafka.artifact-docs-1.2.0.RELEASE.zip!/docs/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/group/kafka.artifact/" +
+				"1.2.0.RELEASE/kafka.artifact-docs-1.2.0.RELEASE.zip/!/docs/index.html");
 	}
 
 	@Test
@@ -409,7 +410,8 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/artifact/3.4.0/artifact-3.4.0-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype" +
+				".org/service/local/repositories/releases/archive/group/artifact/3.4.0/artifact-3.4.0-javadoc.jar/!/index.html");
 	}
 
 	@Test
@@ -427,9 +429,8 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("https://repo.spring" +
-				".io/repoType/group/artifact/3.4.0-RC1/artifact-3.4.0-RC1-javadoc" +
-				".jar!/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/group/artifact/3.4.0-RC1/artifact-3.4.0-RC1-javadoc" +
+				".jar/!/index.html");
 	}
 
 	@Test
@@ -447,7 +448,7 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/artifact/3.4.0-SNAPSHOT/artifact-3.4.0-SNAPSHOT-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype.org/service/local/repositories/releases/archive/group/artifact/3.4.0-SNAPSHOT/artifact-3.4.0-SNAPSHOT-javadoc.jar/!/index.html");
 	}
 
 	@Test
@@ -465,7 +466,8 @@ public class DocUtilsTest {
 				reqModule, reqVersion,
 				moduleInfo.getT1(), moduleInfo.getT2());
 
-		assertThat(url).isEqualTo("https://repo.spring.io/repoType/group/old/artifact/3.0.5.RELEASE/artifact-3.0.5.RELEASE-javadoc.jar!/index.html");
+		assertThat(url).isEqualTo("https://s01.oss.sonatype" +
+				".org/service/local/repositories/releases/archive/group/old/artifact/3.0.5.RELEASE/artifact-3.0.5.RELEASE-javadoc.jar/!/index.html");
 	}
 
 	@Test
