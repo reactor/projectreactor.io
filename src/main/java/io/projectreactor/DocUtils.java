@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2021 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2017-2023 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -252,13 +252,14 @@ public class DocUtils {
 			file = actualModule.getArtifactId() + "/" + file;
 		}
 
-		String url = "https://repo.spring.io/" + versionType
+		final boolean isSnapshot = versionType.equalsIgnoreCase("snapshot");
+		String url = (isSnapshot ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
 				+ "/" + actualVersion
 				+ "/" + actualModule.getArtifactId()
 				+ "-" + actualVersion + suffix
-				+ "!/" + file;
+				+ (isSnapshot ? "!/" : "/!/") + file;
 
 		return url;
 	}
@@ -273,13 +274,14 @@ public class DocUtils {
 			file = indexFile;
 		}
 
-		String url = "https://repo.spring.io/" + versionType
+		final boolean isSnapshot = versionType.equalsIgnoreCase("snapshot");
+		String url = (isSnapshot ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
 				+ "/" + actualVersion
 				+ "/" + actualModule.getArtifactId() + artifactSuffix
 				+ "-" + actualVersion + suffix
-				+ "!/" + rootDirInArtifact + file;
+				+ (isSnapshot ? "!/" : "/!/") + rootDirInArtifact + file;
 
 		return url;
 	}
