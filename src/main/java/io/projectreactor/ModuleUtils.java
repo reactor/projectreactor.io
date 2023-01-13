@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2021 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2019-2023 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.netty.handler.codec.http.HttpHeaders;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -98,6 +99,54 @@ public class ModuleUtils {
 			throw Exceptions.propagate(e);
 		}
 		List<String> versions = node.findValuesAsText("version");
+
+		versions.forEach(v -> tryAddVersion(module, v));
+	}
+
+	public static void fetchVersionsFromSonatype(Map<String, Module> modules, String... moduleNames) {
+		final HttpClient client = HttpClient.create()
+		                                    .baseUrl("https://s01.oss.sonatype.org/service/local/lucene")
+		                                    .headers(h -> h.set("accept", "application/json"));
+
+		Flux.fromArray(moduleNames)
+		    .filter(modules::containsKey)
+		    .map(modules::get)
+		    .flatMap(module -> {
+			    final String params = "/search?g=" + module.getGroupId() + "&a=" + module.getArtifactId();
+			    LOGGER.info("Loading version information for {} via GET {}", module.getName(), params);
+
+			    return client.get()
+			                 .uri(params)
+			                 .response((r, content) -> {
+				                 if (r.status().code() < 400) {
+					                 return content.aggregate()
+					                               .asString()
+					                               .doOnNext(json -> loadModuleVersionsFromSonatypeVersionsSearch(json, module));
+				                 }
+				                 else {
+					                 return content.aggregate()
+					                               .asString()
+					                               .doOnNext(errorBody -> LOGGER.warn("Couldn't scrape versions for {}: {} - {}",
+							                               module.getName(), r.status(), errorBody));
+				                 }
+			                 })
+			                 .then(Mono.fromCallable(module::sortAndDeduplicateVersions));
+		    })
+		    .blockLast();
+	}
+
+	public static void loadModuleVersionsFromSonatypeVersionsSearch(String json, Module module) {
+		ObjectMapper mapper = new ObjectMapper();
+		final JsonNode node;
+		try {
+			node = mapper.readTree(json);
+		}
+		catch (JsonProcessingException e) {
+			throw Exceptions.propagate(e);
+		}
+
+		JsonNode data = node.findValue("data");
+		List<String> versions = data.findValuesAsText("version");
 
 		versions.forEach(v -> tryAddVersion(module, v));
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2022 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2015-2023 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,6 +92,10 @@ public final class Application {
 		ModuleUtils.loadModulesFromYmlInto(new ClassPathResource("modules.yml"), modules);
 		//then get the versions from Artifactory
 		ModuleUtils.fetchVersionsFromArtifactory(modules, "core", "test", "adapter",
+				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
+				"kotlin", "pool");
+		//then get the versions from Sonatype
+		ModuleUtils.fetchVersionsFromSonatype(modules, "core", "test", "adapter",
 				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
 				"kotlin", "pool");
 		LOGGER.info("Boms and modules loaded in " + (System.currentTimeMillis() - start) + "ms");
