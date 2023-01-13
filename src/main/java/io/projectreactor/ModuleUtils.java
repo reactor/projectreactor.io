@@ -103,7 +103,7 @@ public class ModuleUtils {
 		versions.forEach(v -> tryAddVersion(module, v));
 	}
 
-	public static void fetchVersionsFromSonotype(Map<String, Module> modules, String... moduleNames) {
+	public static void fetchVersionsFromSonatype(Map<String, Module> modules, String... module names) {
 		final HttpClient client = HttpClient.create()
 		                                    .baseUrl("https://s01.oss.sonatype.org/service/local/lucene")
 		                                    .headers(h -> h.set("accept", "application/json"));
@@ -135,7 +135,7 @@ public class ModuleUtils {
 		    .blockLast();
 	}
 
-	public static void loadModuleVersionsFromSonotypeVersionsSearch(String json, Module module) {
+	public static void loadModuleVersionsFromSonatypeVersionsSearch(String json, Module module) {
 		ObjectMapper mapper = new ObjectMapper();
 		final JsonNode node;
 		try {

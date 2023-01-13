@@ -94,7 +94,7 @@ public final class Application {
 		ModuleUtils.fetchVersionsFromArtifactory(modules, "core", "test", "adapter",
 				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
 				"kotlin", "pool");
-		//then get the versions from Sonotype
+		//then get the versions from Sonatype
 		ModuleUtils.fetchVersionsFromSonotype(modules, "core", "test", "adapter",
 				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
 				"kotlin", "pool");
