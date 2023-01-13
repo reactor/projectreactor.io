@@ -121,7 +121,7 @@ public class ModuleUtils {
 				                 if (r.status().code() < 400) {
 					                 return content.aggregate()
 					                               .asString()
-					                               .doOnNext(json -> loadModuleVersionsFromSonotypeVersionsSearch(json, module));
+					                               .doOnNext(json -> loadModuleVersionsFromSonatypeVersionsSearch(json, module));
 				                 }
 				                 else {
 					                 return content.aggregate()
