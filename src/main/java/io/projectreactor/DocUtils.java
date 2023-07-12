@@ -252,14 +252,14 @@ public class DocUtils {
 			file = actualModule.getArtifactId() + "/" + file;
 		}
 
-		final boolean isSnapshot = versionType.equalsIgnoreCase("snapshot");
-		String url = (isSnapshot ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
+		final boolean isForSpringRepo = versionType.equalsIgnoreCase("snapshot") ||  versionType.equalsIgnoreCase("milestone");
+		String url = (isForSpringRepo ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
 				+ "/" + actualVersion
 				+ "/" + actualModule.getArtifactId()
 				+ "-" + actualVersion + suffix
-				+ (isSnapshot ? "!/" : "/!/") + file;
+				+ (isForSpringRepo ? "!/" : "/!/") + file;
 
 		return url;
 	}
@@ -274,14 +274,14 @@ public class DocUtils {
 			file = indexFile;
 		}
 
-		final boolean isSnapshot = versionType.equalsIgnoreCase("snapshot");
-		String url = (isSnapshot ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
+		final boolean isForSpringRepo = versionType.equalsIgnoreCase("snapshot") || versionType.equalsIgnoreCase("milestone");
+		String url = (isForSpringRepo ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
 				+ "/" + actualVersion
 				+ "/" + actualModule.getArtifactId() + artifactSuffix
 				+ "-" + actualVersion + suffix
-				+ (isSnapshot ? "!/" : "/!/") + rootDirInArtifact + file;
+				+ (isForSpringRepo ? "!/" : "/!/") + rootDirInArtifact + file;
 
 		return url;
 	}
