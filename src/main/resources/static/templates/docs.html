@@ -161,14 +161,14 @@
             <div class="javadoc">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/core/release/api/">Release</a> |
-                <span th:if="${milestone.coreVersion} != null OR ${oobmilestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.coreVersion} != null AND ${milestone.coreVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.coreVersion} != null"><a href="/docs/core/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/api/">Snapshot</a> |
 <!--                <a href="/docs/core/release/kdoc-api/">Kotlin Doc</a>-->
             </div>
             <div class="reference">
                 <strong>Reference</strong><br />
                 <a href="/docs/core/release/reference/">Release</a> |
-                <span th:if="${milestone.coreVersion} != null OR ${oobmilestone.coreVersion} != null"><a href="/docs/core/milestone/reference/">Milestone</a> |</span>
+                <span th:if="(${milestone.coreVersion} != null AND ${milestone.coreVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.coreVersion} != null"><a href="/docs/core/milestone/reference/">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/reference/">Snapshot</a>
                 <br />
                 <a href="/docs/core/release/reference/docs/index.html#which-operator">Choosing an Operator</a>
@@ -277,7 +277,7 @@
             <div class="javadoc">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/test/release/api/">Release</a> |
-                <span th:if="${milestone.testVersion} != null OR ${oobmilestone.testVersion} != null"><a href="/docs/test/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.testVersion} != null AND ${milestone.testVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.testVersion} != null"><a href="/docs/test/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/test/snapshot/api/">Snapshot</a> |
 <!--                <a href="/docs/test/release/kdoc-api/">Kotlin Doc</a>-->
 
@@ -285,7 +285,7 @@
             <div class="reference">
                 <strong>Reference</strong><br />
                 <a href="/docs/core/release/reference/docs/index.html#testing">Release</a> |
-                <span th:if="${milestone.testVersion} != null OR ${oobmilestone.testVersion} != null"><a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |</span>
+                <span th:if="(${milestone.testVersion} != null AND ${milestone.testVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.testVersion} != null"><a href="/docs/core/milestone/reference/docs/index.html#testing">Milestone</a> |</span>
                 <a href="/docs/core/snapshot/reference/docs/index.html#testing">Snapshot</a>
             </div>
         </article>
@@ -389,7 +389,7 @@
             <div class="reference">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/extra/release/api/">Release</a> |
-                <span th:if="${milestone.extraVersion} != null OR ${oobmilestone.extraVersion} != null"><a href="/docs/extra/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.extraVersion} != null AND ${milestone.extraVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.extraVersion} != null"><a href="/docs/extra/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/extra/snapshot/api/">Snapshot</a>
             </div>
         </article>
@@ -493,13 +493,13 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/netty/release/api/">Release</a> |
-                <span th:if="${milestone.nettyVersion} != null OR ${oobmilestone.nettyVersion} != null"><a href="/docs/netty/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.nettyVersion} != null AND ${milestone.nettyVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.nettyVersion} != null"><a href="/docs/netty/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/netty/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
                 <strong>Reference</strong><br />
                 <a href="/docs/netty/release/reference/docs/index.html">Release</a> |
-                <span th:if="${milestone.nettyVersion} != null OR ${oobmilestone.nettyVersion} != null"><a href="/docs/netty/milestone/reference/docs/index.html">Milestone</a> |</span>
+                <span th:if="(${milestone.nettyVersion} != null AND ${milestone.nettyVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.nettyVersion} != null"><a href="/docs/netty/milestone/reference/docs/index.html">Milestone</a> |</span>
                 <a href="/docs/netty/snapshot/reference/docs/index.html">Snapshot</a>
             </div>
         </article>
@@ -602,7 +602,7 @@
             <div class="reference">
                 <strong>Javadoc</strong><br />
                 <a href="/docs/adapter/release/api/">Release</a> |
-                <span th:if="${milestone.adapterVersion} != null OR ${oobmilestone.adapterVersion} != null"><a href="/docs/adapter/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.adapterVersion} != null AND ${milestone.adapterVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.adapterVersion} != null"><a href="/docs/adapter/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/adapter/snapshot/api/">Snapshot</a>
             </div>
         </article>
@@ -820,7 +820,7 @@
             <div class="javadoc">
                 <strong>Javadoc (temporarily instead of Kotlin Doc)</strong><br />
                 <a href="/docs/kotlin/release/api/">Release</a> |
-                <span th:if="${milestone.kotlinVersion} != null OR ${oobmilestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.kotlinVersion} != null AND ${milestone.kotlinVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.kotlinVersion} != null"><a href="/docs/kotlin/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/kotlin/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
@@ -930,13 +930,13 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/rabbitmq/release/api/">Release</a> |
-                <span th:if="${milestone.rabbitVersion} != null OR ${oobmilestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.rabbitVersion} != null AND ${milestone.rabbitVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/rabbitmq/snapshot/api/">Snapshot</a>
             </div>
             <div class="reference">
                 <strong>Reference</strong> <br/>
                 <a href="/docs/rabbitmq/release/reference/">Release</a> |
-                <span th:if="${milestone.rabbitVersion} != null OR ${oobmilestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/reference/">Milestone</a> |</span>
+                <span th:if="(${milestone.rabbitVersion} != null AND ${milestone.rabbitVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.rabbitVersion} != null"><a href="/docs/rabbitmq/milestone/reference/">Milestone</a> |</span>
                 <a href="/docs/rabbitmq/snapshot/reference/">Snapshot</a>
             </div>
         </article>
@@ -1042,7 +1042,7 @@
             <div class="javadoc">
                 <strong>Javadoc</strong> <br/>
                 <a href="/docs/pool/release/api/">Release</a> |
-                <span th:if="${milestone.poolVersion} != null OR ${oobmilestone.poolVersion} != null"><a href="/docs/pool/milestone/api/">Milestone</a> |</span>
+                <span th:if="(${milestone.poolVersion} != null AND ${milestone.poolVersion.matches('.*-M\\d+$')}) OR ${oobmilestone.poolVersion} != null"><a href="/docs/pool/milestone/api/">Milestone</a> |</span>
                 <a href="/docs/pool/snapshot/api/">Snapshot</a>
             </div>
         </article>
