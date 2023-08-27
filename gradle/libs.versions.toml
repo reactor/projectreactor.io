@@ -8,7 +8,7 @@ junit4 = "junit:junit:4.13.2"
 logback = "ch.qos.logback:logback-classic:1.4.4"
 reactorBom = "io.projectreactor:reactor-bom:2020.0.24"
 slf4jApi = "org.slf4j:slf4j-api:2.0.3"
-snakeYaml = "org.yaml:snakeyaml:1.33"
+snakeYaml = "org.yaml:snakeyaml:2.2"
 spring = "org.springframework:spring-core:5.3.23"
 thymeleaf = "org.thymeleaf:thymeleaf:3.0.15.RELEASE"
 
