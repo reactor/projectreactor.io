@@ -1,0 +1,140 @@
+<!--
+  ~ Copyright (c) 2018-2021 VMware Inc. or its affiliates, All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('support', ~{::title}, ~{::meta[@name='description']}, ~{::link}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor - Maintenance</title>
+    <meta name="description" content="Project Reactor Support"/>
+    <link href="/assets/css/docs.css" media="all" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="page-summary">
+    <div class="page-summary-content">
+        <div class="page-summary-wrap">
+            <h1>Support</h1>
+            <span id="author" class="author">Project Reactor Support Timelines</span>
+        </div>
+    </div>
+</div>
+
+<div id="main" class="book">
+
+    <section id="applications">
+        <article>
+            <div>
+                <div class="version">
+                    <table>
+                        <tr>
+                            <td>BOM Version</td>
+                            <td>Initial Release</td>
+                            <td>End of Support</td>
+                            <td>End of Commercial Support *</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                    <span class="version"
+                                          th:text="2023.0.x">VERSION</span>
+                            </td>
+                            <td>
+                                2023.11.14
+                            </td>
+                            <td>
+                                2025.08.31
+                            </td>
+                            <td>
+                                2026.12.31
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                    <span class="version"
+                                          th:text="2022.0.x">VERSION</span>
+                            </td>
+                            <td>
+                                2022.11.08
+                            </td>
+                            <td>
+                                2024.08.31
+                            </td>
+                            <td>
+                                2025.12.31
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>
+                                    <span class="version"
+                                          th:text="2020.0.x">VERSION</span>
+                            </td>
+                            <td>
+                                2020.10.26
+                            </td>
+                            <td>
+                                2024.12.31
+                            </td>
+                            <td>
+                                2026.12.31
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                    <span class="version"
+                                          th:text="Dysprosium">VERSION</span>
+                            </td>
+                            <td>
+                                2019.09.25
+                            </td>
+                            <td>
+                                2021.12.31
+                            </td>
+                            <td>
+                                2023.12.31
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </article>
+    </section>
+    <div class="details">
+        <p>Legend:</p>
+        <ul>
+            <li><span class="version releasetrain">OSS Support</span>: Free security updates and bugfixes with support from the Spring community. See <a href="https://tanzu.vmware.com/support/oss">VMware Tanzu OSS support policy</a>. </li>
+            <li><span class="version releasetrain">Commercial support</span>: Business support from Reactor experts during the OSS timeline, plus extended support after OSS End-Of-Life.
+                <br>
+                Publicly available releases for critical bugfixes and security issues when requested by customers.).  </li>
+            <li><span class="version pre">Future release</span>: Generation not yet released, timeline is subject to changes.</li>
+        </ul>
+    </div>
+
+    <div class="details">
+        <h2>About commercial support (*)</h2>
+        <div>This page shows the current state of project releases and does not define the commercial support policy. Please refer to the official support policy for more information.</div>
+        <div><a class="button" href="https://tanzu.vmware.com/spring-runtime">Learn more about commercial support.</a></div>
+    </div>
+</div>
+
+</body>
+</html>
