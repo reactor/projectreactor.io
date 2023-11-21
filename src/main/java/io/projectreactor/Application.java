@@ -138,7 +138,7 @@ public final class Application {
 		                                 .get("/", template("home"))
 		                                 .get("/docs", template("docs"))
 		                                 .get("/learn", template("learn"))
-		                                 .get("/maintenance", template("maintenance"))
+		                                 .get("/support", template("support"))
 		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}", this::listVersionsAndDocs)
 		                                 .get("/docs/", rewrite("docs/", "docs"))
