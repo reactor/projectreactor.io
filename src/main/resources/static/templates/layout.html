@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2017-2022 VMware Inc. or its affiliates, All Rights Reserved.
+  ~ Copyright (c) 2017-2023 VMware Inc. or its affiliates, All Rights Reserved.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,165 +14,332 @@
   ~ limitations under the License.
   -->
 <!DOCTYPE html>
-<html th:fragment="layout(page,title,description,links,content)" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- OneTrust Cookie Consent -->
-    <meta content='60a709d9-50a1-442d-8f59-072e08a3ddb4' name='onetrust-data-domain'>
-    <meta content='https://tags.tiqcdn.com/utag/vmware/microsites-privacy/prod/utag.js' name='microsites-utag'>
-    <script src="https://www.vmware.com/files/templates/inc/utag_data.js"></script>
-    <script src="https://tags.tiqcdn.com/utag/vmware/microsites-privacy/prod/utag.sync.js"></script>
-    <script>function OptanonWrapper() { { window.dataLayer.push({ event: 'OneTrustGroupsUpdated' }); } }</script>
-    <script>
-        function setGTM(w,d,s,l,i){ w[l]=w[l]||[]; w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'}); var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:''; j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); }
-        if (document.cookie.indexOf('OptanonConsent') > -1 && document.cookie.indexOf('groups=') > -1) { setGTM(window,document,'script','dataLayer','GTM-KMF5CLQ'); } else{ waitForOnetrustActiveGroups(); } var timer; function waitForOnetrustActiveGroups() { if (document.cookie.indexOf('OptanonConsent') > -1 && document.cookie.indexOf('groups=') > -1) { clearTimeout(timer); setGTM(window,document,'script','dataLayer','GTM-KMF5CLQ'); } else{ timer=setTimeout(waitForOnetrustActiveGroups, 250); } }
-    </script>
-    <!-- End OneTrust Cookie Consent -->
+<html
+ th:fragment="layout(page,title,description,links,content)"
+ xmlns:th="http://www.thymeleaf.org"
+>
+ <head>
+  <script
+   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+   integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+  ></script>
+  <!-- OneTrust Cookie Consent -->
+  <meta
+   content="60a709d9-50a1-442d-8f59-072e08a3ddb4"
+   name="onetrust-data-domain"
+  />
+  <meta
+   content="https://tags.tiqcdn.com/utag/vmware/microsites-privacy/prod/utag.js"
+   name="microsites-utag"
+  />
+  <script src="https://www.vmware.com/files/templates/inc/utag_data.js"></script>
+  <script src="https://tags.tiqcdn.com/utag/vmware/microsites-privacy/prod/utag.sync.js"></script>
+  <script>
+   function OptanonWrapper() {
+    {
+     window.dataLayer.push({ event: 'OneTrustGroupsUpdated' });
+    }
+   }
+  </script>
+  <script>
+   function setGTM(w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var f = d.getElementsByTagName(s)[0],
+     j = d.createElement(s),
+     dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+   }
+   if (
+    document.cookie.indexOf('OptanonConsent') > -1 &&
+    document.cookie.indexOf('groups=') > -1
+   ) {
+    setGTM(window, document, 'script', 'dataLayer', 'GTM-KMF5CLQ');
+   } else {
+    waitForOnetrustActiveGroups();
+   }
+   var timer;
+   function waitForOnetrustActiveGroups() {
+    if (
+     document.cookie.indexOf('OptanonConsent') > -1 &&
+     document.cookie.indexOf('groups=') > -1
+    ) {
+     clearTimeout(timer);
+     setGTM(window, document, 'script', 'dataLayer', 'GTM-KMF5CLQ');
+    } else {
+     timer = setTimeout(waitForOnetrustActiveGroups, 250);
+    }
+   }
+  </script>
+  <!-- End OneTrust Cookie Consent -->
 
-    <title th:replace="${title}">Project Reactor</title>
-    <meta name="description" content="Project Reactor" th:replace="${description}">
-    <!--/* Common stylesheet */-->
-    <link href="/assets/css/reactor.css?v=1" media="all" rel="stylesheet"/>
-    <!--/* Page-specific stylesheet(s) */-->
-    <th:block th:replace="${links}"/>
+  <title th:replace="${title}">Project Reactor</title>
+  <meta
+   name="description"
+   content="Project Reactor"
+   th:replace="${description}"
+  />
+  <!--/* Common stylesheet */-->
+  <link href="/assets/css/reactor.css?v=1" media="all" rel="stylesheet" />
+  <!--/* Page-specific stylesheet(s) */-->
+  <th:block th:replace="${links}" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name='viewport'
-          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="MobileOptimized" content="320">
-    <meta http-equiv="cleartype" content="on">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+   name="viewport"
+   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+  />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="MobileOptimized" content="320" />
+  <meta http-equiv="cleartype" content="on" />
 
-    <link rel="icon" type="image/png" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" href="/favicon.ico" />
 
-    <link rel="apple-touch-icon-precomposed" sizes="180x180"
-          href="/assets/img/apple-touch-icon-180x180-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152"
-          href="/assets/img/apple-touch-icon-152x152-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-          href="/assets/img/apple-touch-icon-144x144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120"
-          href="/assets/img/apple-touch-icon-120x120-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-          href="/assets/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76"
-          href="/assets/img/apple-touch-icon-76x76-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-          href="/assets/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed"
-          href="/assets/img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="shortcut icon" href="/assets/img/apple-touch-icon.png">
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="180x180"
+   href="/assets/img/apple-touch-icon-180x180-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="152x152"
+   href="/assets/img/apple-touch-icon-152x152-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="144x144"
+   href="/assets/img/apple-touch-icon-144x144-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="120x120"
+   href="/assets/img/apple-touch-icon-120x120-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="114x114"
+   href="/assets/img/apple-touch-icon-114x114-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="76x76"
+   href="/assets/img/apple-touch-icon-76x76-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   sizes="72x72"
+   href="/assets/img/apple-touch-icon-72x72-precomposed.png"
+  />
+  <link
+   rel="apple-touch-icon-precomposed"
+   href="/assets/img/apple-touch-icon-57x57-precomposed.png"
+  />
+  <link rel="shortcut icon" href="/assets/img/apple-touch-icon.png" />
 
-    <meta name="msapplication-TileImage"
-          content="assets/img/apple-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#222222">
+  <meta
+   name="msapplication-TileImage"
+   content="assets/img/apple-touch-icon-144x144-precomposed.png"
+  />
+  <meta name="msapplication-TileColor" content="#222222" />
 
-    <link rel="icon" sizes="192x192" href="/assets/img/touch/touch-icon-192x192.png">
-    <link rel="icon" sizes="128x128" href="/assets/img/touch/touch-icon-128x128.png">
-</head>
-<body>
+  <link
+   rel="icon"
+   sizes="192x192"
+   href="/assets/img/touch/touch-icon-192x192.png"
+  />
+  <link
+   rel="icon"
+   sizes="128x128"
+   href="/assets/img/touch/touch-icon-128x128.png"
+  />
+ </head>
+ <body>
+  <div class="application-container">
+   <div id="sidebar"></div>
+   <div class="application-main-content website">
+    <div class="application-content">
+     <header id="header">
+      <a href="#" data-toggle=".application-container" id="sidebar-toggle">
+       <span class="fa fa-bars"></span>
+      </a>
+      <div class="heading">
+       <h1 id="logo">
+        <a href="/"><strong>Project Reactor</strong></a>
+       </h1>
+       <nav id="nav">
+        <ul>
+         <li th:class="${page == 'docs'}? 'active'">
+          <a href="/docs">Documentation</a>
+         </li>
+         <li th:class="${page == 'learn'}? 'active'">
+          <a href="/learn">Learn</a>
+         </li>
+         <li>
+          <a
+           href="https://github.com/reactor"
+           class="fa fa-github-alt"
+           target="_blank"
+           title="Github"
+           >&nbsp;</a
+          >
+         </li>
+         <li>
+          <a
+           href="https://gitter.im/reactor/reactor"
+           class="fa fa-group"
+           target="_blank"
+           title="Join the community chat on Gitter"
+           >&nbsp;</a
+          >
+         </li>
+         <li>
+          <a
+           href="https://twitter.com/projectreactor"
+           class="fa fa-twitter"
+           target="_blank"
+           title="Follow us on Twitter"
+           >&nbsp;</a
+          >
+         </li>
+         <li>
+          <a
+           href="https://stackoverflow.com/questions/tagged/project-reactor"
+           class="fa fa-stack-overflow"
+           target="_blank"
+           title="Ask questions on Stack Overflow"
+           >&nbsp;</a
+          >
+         </li>
+        </ul>
+       </nav>
+      </div>
+     </header>
 
-<div class="application-container">
-    <div id="sidebar"></div>
-    <div class="application-main-content website">
-        <div class="application-content">
-            <header id="header">
-                <a href="#" data-toggle=".application-container" id="sidebar-toggle">
-                    <span class="fa fa-bars"></span>
-                </a>
-                <div class="heading">
-                    <h1 id="logo"><a href="/"><strong>Project Reactor</strong></a></h1>
-                    <nav id="nav">
-                        <ul>
-                            <li th:class="${page == 'docs'}? 'active'"><a href="/docs">Documentation</a></li>
-                            <li th:class="${page == 'learn'}? 'active'"><a href="/learn">Learn</a></li>
-                            <li><a href="https://github.com/reactor" class="fa fa-github-alt" target="_blank"
-                                   title="Github">&nbsp;</a></li>
-                            <li><a href="https://gitter.im/reactor/reactor" class="fa fa-group" target="_blank"
-                                   title="Join the community chat on Gitter">&nbsp;</a></li>
-                            <li><a href="https://twitter.com/projectreactor" class="fa fa-twitter" target="_blank"
-                                   title="Follow us on Twitter">&nbsp;</a></li>
-                            <li><a href="https://stackoverflow.com/questions/tagged/project-reactor" class="fa fa-stack-overflow" target="_blank"
-                                   title="Ask questions on Stack Overflow">&nbsp;</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
+     <div th:replace="${content}">Placeholder for page content.</div>
 
-            <div th:replace="${content}">
-                Placeholder for page content.
-            </div>
-
-            <footer id="footer">
-                <div class="footer-note">
-                    Noticed an issue with this website? Open an <a href="https://github.com/reactor/projectreactor.io/issues">issue</a> or a <a href="https://github.com/reactor/projectreactor.io/pulls">PR</a> on GitHub!
-                </div>
-                <div class="footer-content">
-                    <div class="row">
-                        <nav>
-                            <ul>
-                                <li class="heading">Documentation</li>
-                                <li><a href="/security-policy">Security Policy</a></li>
-                                <li><a href="/docs">All projects (latest release trains,<br>ref. & javadoc links...)</a></li>
-                                <li><a href="/docs/core/">List of all <span class="version releasetrain">Core</span> versions</a></li>
-                                <li><a href="/docs/netty/">List of all <span class="version releasetrain">Netty</span> versions</a></li>
-                            </ul>
-                        </nav>
-                        <nav>
-                            <ul>
-                                <li class="heading">Community</li>
-                                <li><a href="https://github.com/reactor/reactor">GitHub</a></li>
-                                <li><a href="https://twitter.com/projectreactor">Twitter</a></li>
-                                <li><a href="https://gitter.im/reactor/reactor">Gitter</a></li>
-                                <li><a href="https://stackoverflow.com/questions/tagged/project-reactor">Stack Overflow</a></li>
-                            </ul>
-                        </nav>
-                        <nav>
-                            <ul>
-                                <li class="heading">In Reactive<br>World</li>
-                                <li><a href="https://www.reactive-streams.org/">
-                                    <span class="version releasetrain">Reactive Streams</span></a></li>
-                                <li><a href="https://github.com/reactor/reactive-streams-commons">
-                                    <span class="version releasetrain">RS-Commons</span></a></li>
-                                <li><a href="http://reactivex.io/">
-                                    <span class="version releasetrain">ReactiveX</span></a></li>
-                            </ul>
-                        </nav>
-                        <nav>
-                            <ul>
-                                <li class="heading">In VMware<br>World</li>
-                                <li><a href="https://spring.io/support">
-                                    <span class="version releasetrain">VMware Spring Runtime</span> support</a></li>
-                                <li><a href="https://spring.io/">
-                                    <span class="version releasetrain">Spring</span></a></li>
-                                <li><a href="https://tanzu.vmware.com">
-                                    <span class="version releasetrain">VMware Tanzu</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="footer-content-text">
-
-                    <span class="licence">Project Reactor regroups multiple open source
-                        projects licensed under the Apache Software License 2.</span>
-                    © 2021 <a href="https://www.vmware.com/" class="pivotal">VMware, Inc.</a> or its affiliates. All rights reserved | <a
-                        href="https://www.vmware.com/help/legal.html">Terms
-                    of Use</a> |
-                    <a href="https://www.vmware.com/help/privacy.html">Privacy</a> | 
-                    <a href="/security-policy">Security Policy</a> | 
-                    <a href="https://www.vmware.com/help/privacy/california-privacy-rights.html">Your California Privacy Rights</a> |
-                    <a class="ot-sdk-show-settings">Cookie Settings</a>
-                </div>
-            </footer>
-        </div>
+     <footer id="footer">
+      <div class="footer-note">
+       Noticed an issue with this website? Open an
+       <a href="https://github.com/reactor/projectreactor.io/issues">issue</a>
+       or a
+       <a href="https://github.com/reactor/projectreactor.io/pulls">PR</a> on
+       GitHub!
+      </div>
+      <div class="footer-content">
+       <div class="row">
+        <nav>
+         <ul>
+          <li class="heading">Documentation</li>
+          <li><a href="/security-policy">Security Policy</a></li>
+          <li>
+           <a href="/docs"
+            >All projects (latest release trains,<br />ref. & javadoc
+            links...)</a
+           >
+          </li>
+          <li>
+           <a href="/docs/core/"
+            >List of all
+            <span class="version releasetrain">Core</span> versions</a
+           >
+          </li>
+          <li>
+           <a href="/docs/netty/"
+            >List of all
+            <span class="version releasetrain">Netty</span> versions</a
+           >
+          </li>
+         </ul>
+        </nav>
+        <nav>
+         <ul>
+          <li class="heading">Community</li>
+          <li><a href="https://github.com/reactor/reactor">GitHub</a></li>
+          <li><a href="https://twitter.com/projectreactor">Twitter</a></li>
+          <li><a href="https://gitter.im/reactor/reactor">Gitter</a></li>
+          <li>
+           <a href="https://stackoverflow.com/questions/tagged/project-reactor"
+            >Stack Overflow</a
+           >
+          </li>
+         </ul>
+        </nav>
+        <nav>
+         <ul>
+          <li class="heading">In Reactive<br />World</li>
+          <li>
+           <a href="https://www.reactive-streams.org/">
+            <span class="version releasetrain">Reactive Streams</span></a
+           >
+          </li>
+          <li>
+           <a href="https://github.com/reactor/reactive-streams-commons">
+            <span class="version releasetrain">RS-Commons</span></a
+           >
+          </li>
+          <li>
+           <a href="http://reactivex.io/">
+            <span class="version releasetrain">ReactiveX</span></a
+           >
+          </li>
+         </ul>
+        </nav>
+        <nav>
+         <ul>
+          <li class="heading">In VMware<br />World</li>
+          <li>
+           <a href="https://spring.io/support">
+            <span class="version releasetrain">VMware Spring Runtime</span>
+            support</a
+           >
+          </li>
+          <li>
+           <a href="https://spring.io/">
+            <span class="version releasetrain">Spring</span></a
+           >
+          </li>
+          <li>
+           <a href="https://tanzu.vmware.com">
+            <span class="version releasetrain">VMware Tanzu</span></a
+           >
+          </li>
+         </ul>
+        </nav>
+       </div>
+      </div>
+      <div class="footer-content-text">
+       <span class="licence"
+        >Project Reactor regroups multiple open source projects licensed under
+        the Apache Software License 2.</span
+       >
+       Copyright © 2005 - 2023
+       <a href="https://www.vmware.com/" class="pivotal">Broadcom</a>. All
+       Rights Reserved. The term "Broadcom" refers to Broadcom Inc. and/or its
+       subsidiaries.{" "}<br />
+       <a href="https://www.vmware.com/help/legal.html">Terms of Use</a> |
+       <a href="https://www.vmware.com/help/privacy.html">Privacy</a> |
+       <a href="/security-policy">Security Policy</a> |
+       <a
+        href="https://www.vmware.com/help/privacy/california-privacy-rights.html"
+        >Your California Privacy Rights</a
+       >
+       |
+       <a class="ot-sdk-show-settings">Cookie Settings</a>
+      </div>
+     </footer>
     </div>
-</div>
+   </div>
+  </div>
 
-<!--
+  <!--
 
 
 ██████╗ ███████╗ █████╗  ██████╗████████╗ ██████╗ ██████╗     ██████╗ ██████╗  ██████╗      ██╗███████╗ ██████╗████████╗
@@ -184,6 +351,6 @@
 
 -->
 
-<script src="assets/js/sidebar.js"></script>
-</body>
+  <script src="assets/js/sidebar.js"></script>
+ </body>
 </html>
