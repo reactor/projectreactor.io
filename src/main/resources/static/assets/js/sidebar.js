@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2021 VMware LLC or its affiliates, All Rights Reserved.
+ * Copyright (c) 2015-2021 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,30 +14,31 @@
  * limitations under the License.
  */
 
-$(function () {
- // Main JS
- var navVisible = false;
- var toggle_el = $('[data-toggle]').data('toggle');
+$(function(){
+    // Main JS
+    var navVisible = false;
+    var toggle_el = $("[data-toggle]").data('toggle');
 
- $('[data-toggle]').on('click', function () {
-  $(toggle_el).toggleClass('open-sidebar');
-  navVisible = !navVisible;
-  return false;
- });
+    $("[data-toggle]").on("click", function() {
+        $(toggle_el).toggleClass("open-sidebar");
+        navVisible = !navVisible;
+        return false;
+    });
 
- $('#content').on('click', function () {
-  if (navVisible) {
-   navVisible = false;
-   $(toggle_el).removeClass('open-sidebar');
-  }
- });
- $(window).on('resize', function () {
-  if ($(this).width() > 800 && navVisible) {
-   navVisible = false;
-   $(toggle_el).removeClass('open-sidebar');
-  }
- });
+    $("#content").on("click", function(){
+        if (navVisible) {
+            navVisible = false;
+            $(toggle_el).removeClass("open-sidebar");
+        }
+    });
+    $(window).on("resize", function(){
+        if ($(this).width() > 800 && navVisible) {
+            navVisible = false;
+            $(toggle_el).removeClass("open-sidebar");
+        }
+    });
 
- var uls = $('#nav').html();
- $('#sidebar').html(uls);
+    var uls = $("#nav").html();
+    $("#sidebar").html(uls);
+
 });
