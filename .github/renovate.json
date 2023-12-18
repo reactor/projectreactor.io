@@ -32,7 +32,7 @@
       "groupName": "JSR305 with annotations jar",
       "groupSlug": "jsr305",
       "allowedVersions": "=3.0.1"
-    }
+    },
     {
       "matchPackageNames": ["spring"],
       "allowedVersions": "<6"
