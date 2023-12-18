@@ -36,6 +36,10 @@
     {
       "matchPackageNames": ["org.springframework:spring-core"],
       "allowedVersions": "<6"
+    },
+    {
+      "matchPackageNames": ["com.diffplug.spotless"],
+      "allowedVersions": "<6.14"
     }
   ]
 }
