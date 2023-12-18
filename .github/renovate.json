@@ -34,7 +34,7 @@
       "allowedVersions": "=3.0.1"
     },
     {
-      "matchPackageNames": ["spring"],
+      "matchPackageNames": ["org.springframework:spring-core"],
       "allowedVersions": "<6"
     }
   ]
