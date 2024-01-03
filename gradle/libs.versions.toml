@@ -1,5 +1,5 @@
 [libraries]
-assertJ = "org.assertj:assertj-core:3.25.0"
+assertJ = "org.assertj:assertj-core:3.25.1"
 commonsLogging = "commons-logging:commons-logging:1.2"
 jackson = "com.fasterxml.jackson.core:jackson-databind:2.16.1"
 #using version range to avoid suggested upgrades, 3.0.1 is last with annotations
