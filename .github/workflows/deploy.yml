@@ -34,6 +34,8 @@ jobs:
         name: build
         with:
           arguments: build
+      - name: Docker Hub Login
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Deploy to CF primary
         if: inputs.application == 'projectreactor'
         uses: citizen-of-planet-earth/cf-cli-action@v2
