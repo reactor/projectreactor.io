@@ -1,0 +1,55 @@
+name: DEPLOY
+on:
+  workflow_dispatch:
+    permissions:
+      teams:
+        - 'reactor/team'
+    inputs:
+      application:
+        description: 'Application name to deploy:'
+        required: true
+        type: choice
+        default: 'projectreactor-test'
+        options:
+          - 'projectreactor-test'
+          - 'projectreactor'
+
+permissions: read-all
+
+jobs:
+  deploy-cf:
+    runs-on: reactor-self-hosted
+    env:
+      APPNAME: ${{ github.event.inputs.application }}
+      ROUTE: ${{ github.event.inputs.application == 'projectreactor' && 'https://projectreactor.io' || 'https://projectreactor-test.wdc-08-pcf1-pws-apps.oc.vmware.com' }}
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          fetch-depth: 0 #for spotless ratchet
+      - uses: actions/setup-java@387ac29b308b003ca37ba93a6cab5eb57c8f5f93 # v4
+        with:
+          distribution: 'temurin'
+          java-version: 8
+      - uses: gradle/gradle-build-action@982da8e78c05368c70dac0351bb82647a9e9a5d2 # v2
+        name: build
+        with:
+          arguments: build
+      - name: Deploy to CF primary
+        if: inputs.application == 'projectreactor'
+        uses: citizen-of-planet-earth/cf-cli-action@v2
+        with:
+          cf_api: $${{ secrets.CF_PRIMARY_API }}
+          cf_username: ${{ secrets.CF_USER }}
+          cf_password: ${{ secrets.CF_PASSWORD }}
+          cf_org: ${{ secrets.CF_ORG }}
+          cf_space: ${{ secrets.CF_SPACE }}
+          command: push -f manifest.yml --var appname=${{ env.APPNAME }} --var route=${{ env.ROUTE }}
+      - name: Deploy to CF secondary
+        uses: citizen-of-planet-earth/cf-cli-action@v2
+        with:
+          cf_api: $${{ secrets.CF_SECONDARY_API }}
+          cf_username: ${{ secrets.CF_USER }}
+          cf_password: ${{ secrets.CF_PASSWORD }}
+          cf_org: ${{ secrets.CF_ORG }}
+          cf_space: ${{ secrets.CF_SPACE }}
+          command: push -f manifest.yml --var appname=${{ env.APPNAME }} --var route=${{ env.ROUTE }}
