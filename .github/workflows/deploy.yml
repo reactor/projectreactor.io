@@ -40,7 +40,7 @@ jobs:
         if: inputs.application == 'projectreactor'
         uses: citizen-of-planet-earth/cf-cli-action@v2
         with:
-          cf_api: $${{ secrets.CF_PRIMARY_API }}
+          cf_api: ${{ secrets.CF_PRIMARY_API }}
           cf_username: ${{ secrets.CF_USER }}
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
@@ -49,7 +49,7 @@ jobs:
       - name: Deploy to CF secondary
         uses: citizen-of-planet-earth/cf-cli-action@v2
         with:
-          cf_api: $${{ secrets.CF_SECONDARY_API }}
+          cf_api: ${{ secrets.CF_SECONDARY_API }}
           cf_username: ${{ secrets.CF_USER }}
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
