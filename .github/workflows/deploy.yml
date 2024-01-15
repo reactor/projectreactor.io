@@ -18,7 +18,7 @@ permissions: read-all
 
 jobs:
   deploy-cf:
-    runs-on: reactor-self-hosted
+    runs-on: reactor-gha-01
     env:
       APPNAME: ${{ github.event.inputs.application }}
       ROUTE: ${{ github.event.inputs.application == 'projectreactor' && 'https://projectreactor.io' || 'https://projectreactor-test.wdc-08-pcf1-pws-apps.oc.vmware.com' }}
