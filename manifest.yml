@@ -4,7 +4,7 @@ applications:
   memory: 1G
   path: ./build/libs/projectreactor-home.jar
   buildpacks:
-    - java_buildpack_offline
+    - https://github.com/cloudfoundry/java-buildpack.git
   routes:
     - route: ((route))
   disk_quota: 1024M
