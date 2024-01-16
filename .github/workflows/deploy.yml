@@ -21,8 +21,16 @@ jobs:
     runs-on: self-hosted
     env:
       APPNAME: ${{ github.event.inputs.application }}
-      ROUTE: ${{ github.event.inputs.application == 'projectreactor' && 'https://projectreactor.io' || 'https://projectreactor-test.wdc-08-pcf1-pws-apps.oc.vmware.com' }}
+      ROUTE: ${{ github.event.inputs.application == 'projectreactor' && 'https://projectreactor.io' || secrets.CF_ROUTE_TEST }}
     steps:
+      - name: Mask CF API urls
+        run: |-
+          # The CF cli may log the API urls in case of errors, but without the "https://" prefix, so mask API urls 
+          # without the protocol prefix. 
+          primary_api=$(echo ${{ secrets.CF_PRIMARY_API }} | sed 's/^https:\/\///')
+          echo "::add-mask::$primary_api"
+          secondary_api=$(echo ${{ secrets.CF_SECONDARY_API }} | sed 's/^https:\/\///')
+          echo "::add-mask::$secondary_api"
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           fetch-depth: 0 #for spotless ratchet
