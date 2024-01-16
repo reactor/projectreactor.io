@@ -1,0 +1,88 @@
+<!--
+  ~ Copyright (c) 2024 VMware Inc. or its affiliates, All Rights Reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout('security-policy', ~{::title}, ~{::meta[@name='description']}, ~{::link}, ~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Reactor - Security Policy</title>
+    <meta name="description" content="Project Reactor Security Policy"/>
+    <link href="/assets/css/docs.css" media="all" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="page-summary">
+    <div class="page-summary-content">
+        <div class="page-summary-wrap">
+            <h1>Security Policy</h1>
+        </div>
+    </div>
+</div>
+
+<div id="main" class="project">
+    <div class="project-content">
+        <div class="project-row">
+            <section id="how-to-report">
+                <h1>How to Report Potential Security Vulnerabilities</h1>
+                <p>Any potential security vulnerabilities in the entire Project Reactor should be reported through the
+                    <a href="https://github.com/reactor/security-advisories/security/advisories/new">Security Advisories</a> page.</p>
+                <p>The Project Reactor team needs to receive reports of potential security vulnerabilities through GitHub’s ability to
+                    <a href="https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability">privately report a security vulnerability</a>.
+                    To simplify the process, the <a href="https://github.com/reactor/security-advisories">reactor/security-advisories</a> repository is used to report potential vulnerabilities for any project within the Project Reactor.</p>
+                <br>
+            </section>
+
+            <section>
+                <h1>Viewing Security Vulnerabilities</h1>
+                <p>All security vulnerabilities are posted to <a href="https://spring.io/security/">https://spring.io/security/</a>.</p>
+                <br>
+            </section>
+
+            <section>
+                <h1>Guidelines for Reporting a Vulnerability</h1>
+                <p>If you believe you have found a security vulnerability, please report it as described in
+                    <a href="https://projectreactor.io/security-policy#how-to-report">How to Report Potential Security Vulnerabilities</a>.
+                    Below, you can see examples of <a href="https://projectreactor.io/security-policy#examples-of-vulnerabilities">vulnerabilities</a> and
+                    examples of <a href="https://projectreactor.io/security-policy#examples-of-non-vulnerabilities">non-vulnerabilities</a>.</p>
+                <br>
+            </section>
+
+            <section id="examples-of-vulnerabilities">
+                <h1>Examples of Vulnerabilities</h1>
+                <p>For examples of vulnerabilities, refer to <a href="https://spring.io/security/">https://spring.io/security/</a>.</p>
+                <br>
+            </section>
+
+            <section id="examples-of-non-vulnerabilities">
+                <h1>Examples of Non-vulnerabilities</h1>
+                <br>
+                <h1>Vulnerabilities in Dependencies</h1>
+                <p>Vulnerabilities in Project Reactor’s dependencies should be reported to the respective project and not to the Project Reactor team.</p>
+                <br>
+
+                <h1>Vulnerable Dependency Versions</h1>
+                <p>The Project Reactor does its best to keep its dependencies up to date regardless of whether a dependency contains a vulnerability.
+                    However, we do not consider it a vulnerability in Project Reactor when Project Reactor defines a vulnerable dependency version,
+                    because developers can override these versions and because releasing for any transitive dependency would become unmanageable for the Project Reactor.</p>
+                <p>It is up to the developer of the dependency to release a compatible version with the security fix.
+                    If this is made available, the Project Reactor will be updated to that dependency version prior to releasing the next version of the Project Reactor.</p>
+                <p>Typically, there is not a special release for updating dependency versions.
+                    Instead, the Project Reactor team encourages developers to override the version until the next Project Reactor release.</p>
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
