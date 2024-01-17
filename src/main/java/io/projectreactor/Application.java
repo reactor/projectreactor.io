@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2023 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2015-2024 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -131,7 +131,7 @@ public final class Application {
 		                    .host("0.0.0.0")
 		                    .port(8080)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
-		                                 .get("/security-policy", (req, resp) -> resp.sendRedirect("https://www.vmware.com/support/policies/security_response.html"))
+		                                 .get("/security-policy", template("security-policy"))
 		                                 .file("/.well-known/security.txt", contentPath.resolve("well-known/security.txt"))
 		                                 //the dot in .well-known is confusing to netty. that said, we're not expected to serve an index for this directory so let's cover the case explicitly
 		                                 .get("/.well-known", pageNotFound())
