@@ -1,13 +1,13 @@
 ---
 type: stable
-name: 2023.0.2
+name: 2023.0.3
 codename: G
-coreVersion: 3.6.2
-testVersion: 3.6.2
-nettyVersion: 1.1.15
+coreVersion: 3.6.3
+testVersion: 3.6.3
+nettyVersion: 1.1.16
 extraVersion: 3.5.1
 adapterVersion: 3.5.1
-kafkaVersion: 1.3.22
+kafkaVersion: 1.3.23
 poolVersion: 1.0.5
 kotlinVersion: 1.2.2
 #---
