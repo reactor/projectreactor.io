@@ -1,0 +1,59 @@
+name: DEPLOY-TO-AZURE
+
+on:
+  workflow_dispatch:
+    permissions:
+      teams:
+        - 'reactor/team'
+
+permissions: read-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SERVICE_NAME: ${{ secrets.AZURE_SERVICE_NAME }}
+      APP_NAME: ${{ secrets.AZURE_APP_NAME }}
+      JAR_PATH: ${{ github.workspace }}/build/libs/projectreactor-home.jar
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-java@9704b39bf258b59bc04b50fa2dd55e9ed76b47a8 # v4
+        with:
+          distribution: 'temurin'
+          java-version: 8
+      - uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v3
+        name: build
+        with:
+          arguments: build -x spotlessCheck
+      - name: Login via Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
+      - name: Create Staging Deploy
+        uses: Azure/spring-apps-deploy@v1
+        with:
+          azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+          action: deploy
+          service-name: ${{ env.SERVICE_NAME }}
+          app-name:  ${{ env.APP_NAME }}
+          create-new-deployment: true
+          use-staging-deployment: true
+          package: ${{ env.JAR_PATH }}
+          jvm-options: -Xms1g -Xmx1g
+      - name: Set to production
+        uses: Azure/spring-apps-deploy@v1
+        with:
+          azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+          action: set-production
+          service-name: ${{ env.SERVICE_NAME }}
+          app-name:  ${{ env.APP_NAME }}
+          use-staging-deployment: true
+      - name: Delete staging deployment
+        uses: Azure/spring-apps-deploy@v1
+        with:
+          azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
+          action: delete-staging-deployment
+          service-name: ${{ env.SERVICE_NAME }}
+          app-name:  ${{ env.APP_NAME }}
+          use-staging-deployment: true
+
