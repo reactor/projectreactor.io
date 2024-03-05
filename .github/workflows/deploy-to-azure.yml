@@ -75,5 +75,5 @@ jobs:
         with:
           inlineScript: |
             az extension add --name spring
-            az spring-cloud app set-deployment -d ${{ needs.deploy.outputs.NEWDEPLOYMENT }} -n ${{env.APP_NAME}} -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
-            az spring-cloud app deployment delete --app ${{env.APP_NAME}} -n ${{ needs.deploy.outputs.ACTIVEDEPLOYMENT }} -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
+            az spring app set-deployment -d ${{ needs.deploy.outputs.NEWDEPLOYMENT }} -n ${{env.APP_NAME}} -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
+            az spring app deployment delete --app ${{env.APP_NAME}} -n ${{ needs.deploy.outputs.ACTIVEDEPLOYMENT }} -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
