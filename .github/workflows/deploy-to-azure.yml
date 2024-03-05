@@ -8,13 +8,21 @@ on:
 
 permissions: read-all
 
+env:
+  GROUP_NAME: ${{ secrets.AZURE_GROUP_NAME }}
+  SERVICE_NAME: ${{ secrets.AZURE_SERVICE_NAME }}
+  APP_NAME: ${{ secrets.AZURE_APP_NAME }}
+  JAR_PATH: ${{ github.workspace }}/build/libs/projectreactor-home.jar
+  DEFAULT_DEPLOYMENT: blue
+  NEW_DEPLOYMENT: green
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      SERVICE_NAME: ${{ secrets.AZURE_SERVICE_NAME }}
-      APP_NAME: ${{ secrets.AZURE_APP_NAME }}
-      JAR_PATH: ${{ github.workspace }}/build/libs/projectreactor-home.jar
+    outputs:
+      NEWDEPLOYMENT: ${{ steps.deploy.outputs.NEWDEPLOYMENT }}
+      ACTIVEDEPLOYMENT: ${{ steps.deploy.outputs.ACTIVEDEPLOYMENT }}
+
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - uses: actions/setup-java@9704b39bf258b59bc04b50fa2dd55e9ed76b47a8 # v4
@@ -25,35 +33,47 @@ jobs:
         uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v3
         with:
           arguments: build -x spotlessCheck
-      - name: Login via Azure CLI
-        uses: azure/login@8c334a195cbb38e46038007b304988d888bf676a # v2
+      - name: Login Via Azure CLI
+        uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
-      - name: Create Staging Deploy
-        uses: Azure/spring-apps-deploy@b70af4b78730e5bdba98ebe95c9f50376735c623 # v1
+      - name: Deploy To Staging
+        uses: azure/CLI@v1
+        id: deploy
         with:
-          azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
-          action: deploy
-          service-name: ${{ env.SERVICE_NAME }}
-          app-name:  ${{ env.APP_NAME }}
-          create-new-deployment: true
-          use-staging-deployment: true
-          package: ${{ env.JAR_PATH }}
-          jvm-options: -Xms1g -Xmx1g
-      - name: Set To Production
-        uses: Azure/spring-apps-deploy@b70af4b78730e5bdba98ebe95c9f50376735c623 # v1
-        with:
-          azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
-          action: set-production
-          service-name: ${{ env.SERVICE_NAME }}
-          app-name:  ${{ env.APP_NAME }}
-          use-staging-deployment: true
-      - name: Delete Staging Deployment
-        uses: Azure/spring-apps-deploy@b70af4b78730e5bdba98ebe95c9f50376735c623 # v1
-        with:
-          azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
-          action: delete-staging-deployment
-          service-name: ${{ env.SERVICE_NAME }}
-          app-name:  ${{ env.APP_NAME }}
-          use-staging-deployment: true
+          inlineScript: |
+            az extension add --name spring
+            ACTIVEDEPLOYMENT=$(az spring app show -n ${{env.APP_NAME}} --query properties.activeDeployment.name -o tsv -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}})
+            if [ "$ACTIVEDEPLOYMENT" = "${{env.DEFAULT_DEPLOYMENT}}" ]; then
+              NEWDEPLOYMENT="${{env.NEW_DEPLOYMENT}}"
+            else
+              NEWDEPLOYMENT="${{env.DEFAULT_DEPLOYMENT}}"
+            fi
+            echo 'new deployment: ' $NEWDEPLOYMENT
+            echo 'active deployment': $ACTIVEDEPLOYMENT
+            echo "::set-output name=NEWDEPLOYMENT::$NEWDEPLOYMENT"
+            echo "::set-output name=ACTIVEDEPLOYMENT::$ACTIVEDEPLOYMENT"
+            NEWDEPLOYMENTEXISTS=$(az spring app deployment list --app ${{env.APP_NAME}} --query "[?name=='$NEWDEPLOYMENT'].name" -o tsv -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}})
+            if [ "$NEWDEPLOYMENTEXISTS" = "$NEWDEPLOYMENT" ]; then
+              echo $NEWDEPLOYMENT ' already exists'
+            else
+              echo 'creating deployment ' $NEWDEPLOYMENT
+              az spring app deployment create --app ${{env.APP_NAME}} -n $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
+            fi
+            echo 'workspace:' ${{ github.workspace }}
+            az spring app deploy -n ${{env.APP_NAME}} --artifact-path ${{env.JAR_PATH}} -d $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
 
+  switch-to-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
+      - name: Set Staging To Production
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az extension add --name spring
+            az spring-cloud app set-deployment -d ${{ needs.deploy.outputs.NEWDEPLOYMENT }} -n ${{env.APP_NAME}} -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
+            az spring-cloud app deployment delete --app ${{env.APP_NAME}} -n ${{ needs.deploy.outputs.ACTIVEDEPLOYMENT }} -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
