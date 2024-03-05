@@ -21,8 +21,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 8
-      - uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v3
-        name: build
+      - name: Build
+        uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v3
         with:
           arguments: build -x spotlessCheck
       - name: Login via Azure CLI
@@ -40,7 +40,7 @@ jobs:
           use-staging-deployment: true
           package: ${{ env.JAR_PATH }}
           jvm-options: -Xms1g -Xmx1g
-      - name: Set to production
+      - name: Set To Production
         uses: Azure/spring-apps-deploy@v1
         with:
           azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
@@ -48,7 +48,7 @@ jobs:
           service-name: ${{ env.SERVICE_NAME }}
           app-name:  ${{ env.APP_NAME }}
           use-staging-deployment: true
-      - name: Delete staging deployment
+      - name: Delete Staging Deployment
         uses: Azure/spring-apps-deploy@v1
         with:
           azure-subscription: ${{ secrets.AZURE_SUBSCRIPTION }}
