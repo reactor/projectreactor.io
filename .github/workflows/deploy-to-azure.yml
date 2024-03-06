@@ -43,6 +43,18 @@ jobs:
         with:
           inlineScript: |
             az extension add --name spring
+            # Create the Azure app if it does not already exist
+            APP_EXISTS=$(az spring app show --resource-group ${{ env.GROUP_NAME }} --service ${{ env.SERVICE_NAME }} --name ${{ env.APP_NAME }} 2>/dev/null)
+            if [[ -z "$APP_EXISTS" ]]; then
+              echo "creating app ..."
+              az spring app create \
+                --resource-group ${{ env.GROUP_NAME }} \
+                --service ${{ env.SERVICE_NAME }} \
+                --name ${{ env.APP_NAME }} \
+                --deployment-name ${{ env.DEFAULT_DEPLOYMENT }} \
+                --assign-endpoint \
+                --memory 2Gi
+            fi
             ACTIVEDEPLOYMENT=$(az spring app show -n ${{env.APP_NAME}} --query properties.activeDeployment.name -o tsv -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}})
             if [ "$ACTIVEDEPLOYMENT" = "${{env.DEFAULT_DEPLOYMENT}}" ]; then
               NEWDEPLOYMENT="${{env.NEW_DEPLOYMENT}}"
@@ -61,7 +73,8 @@ jobs:
               az spring app deployment create --app ${{env.APP_NAME}} -n $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
             fi
             echo 'workspace:' ${{ github.workspace }}
-            az spring app deploy -n ${{env.APP_NAME}} --artifact-path ${{env.JAR_PATH}} -d $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}}
+            az spring app deploy -n ${{env.APP_NAME}} --artifact-path ${{env.JAR_PATH}} -d $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}} \
+              --build-env BP_JVM_VERSION=11 --jvm-options='-Xmx1g -Xms1g'
 
   switch-to-production:
     runs-on: ubuntu-latest
