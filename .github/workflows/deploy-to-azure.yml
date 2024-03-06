@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
-      - uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1
+      - uses: azure/login@8c334a195cbb38e46038007b304988d888bf676a # v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
       - name: Set Staging To Production
