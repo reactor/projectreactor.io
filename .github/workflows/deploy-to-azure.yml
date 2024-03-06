@@ -38,7 +38,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
       - name: Deploy To Staging
-        uses: azure/CLI@v1
+        uses: azure/CLI@4db43908b9df2e7ac93c8275a8f9a448c59338dd # v1
         id: deploy
         with:
           inlineScript: |
@@ -67,11 +67,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
-      - uses: azure/login@v1
+      - uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
       - name: Set Staging To Production
-        uses: azure/CLI@v1
+        uses: azure/CLI@4db43908b9df2e7ac93c8275a8f9a448c59338dd # v1
         with:
           inlineScript: |
             az extension add --name spring
