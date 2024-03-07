@@ -38,7 +38,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
       - name: Deploy To Staging
-        uses: azure/CLI@4db43908b9df2e7ac93c8275a8f9a448c59338dd # v1
+        uses: azure/CLI@965c8d7571d2231a54e321ddd07f7b10317f34d9 # v2
         id: deploy
         with:
           inlineScript: |
@@ -84,7 +84,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
       - name: Set Staging To Production
-        uses: azure/CLI@4db43908b9df2e7ac93c8275a8f9a448c59338dd # v1
+        uses: azure/CLI@965c8d7571d2231a54e321ddd07f7b10317f34d9 # v2
         with:
           inlineScript: |
             az extension add --name spring
