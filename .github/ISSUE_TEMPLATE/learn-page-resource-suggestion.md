@@ -2,7 +2,7 @@
 name: Learn page resource suggestion
 about: Suggest a resource to be added to the curated learn page
 title: 'Learn page suggestion: '
-labels: area/learn
+labels: status/need-triage, area/learn
 assignees: ''
 
 ---
