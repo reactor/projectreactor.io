@@ -63,8 +63,8 @@ jobs:
             fi
             echo 'new deployment: ' $NEWDEPLOYMENT
             echo 'active deployment': $ACTIVEDEPLOYMENT
-            echo "::set-output name=NEWDEPLOYMENT::$NEWDEPLOYMENT"
-            echo "::set-output name=ACTIVEDEPLOYMENT::$ACTIVEDEPLOYMENT"
+            echo "NEWDEPLOYMENT=$NEWDEPLOYMENT" >> $GITHUB_OUTPUT
+            echo "ACTIVEDEPLOYMENT=$ACTIVEDEPLOYMENT" >> $GITHUB_OUTPUT
             NEWDEPLOYMENTEXISTS=$(az spring app deployment list --app ${{env.APP_NAME}} --query "[?name=='$NEWDEPLOYMENT'].name" -o tsv -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}})
             if [ "$NEWDEPLOYMENTEXISTS" = "$NEWDEPLOYMENT" ]; then
               echo $NEWDEPLOYMENT ' already exists'
