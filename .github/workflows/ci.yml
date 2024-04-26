@@ -10,19 +10,19 @@ jobs:
     name: checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
         with:
           fetch-depth: 0 #for spotless ratchet
       - uses: actions/setup-java@99b8673ff64fbf99d8d325f52d9a5bdedb8483e9 # v4
         with:
           distribution: 'temurin'
           java-version: 8
-      - uses: gradle/gradle-build-action@fe59895742b4f984530980e4f693943577526b61 # v3
+      - uses: gradle/gradle-build-action@4c39dd82cd5e1ec7c6fa0173bb41b4b6bb3b86ff # v3
         name: license header
         if: ${{ github.event_name == 'pull_request' }}
         with:
           arguments: spotlessCheck -PspotlessFrom=origin/${{ github.base_ref }}
-      - uses: gradle/gradle-build-action@fe59895742b4f984530980e4f693943577526b61 # v3
+      - uses: gradle/gradle-build-action@4c39dd82cd5e1ec7c6fa0173bb41b4b6bb3b86ff # v3
         name: tests
         with:
           arguments: check -x spotlessCheck
