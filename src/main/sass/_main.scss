@@ -53,15 +53,6 @@ body {
   margin: 0 auto;
 }
 
-// Banner
-
-#skinny-banner {
-  text-align: center;
-  @media(max-width: 800px) {
-    display: none;
-  }
-}
-
 // Header
 
 #header {
