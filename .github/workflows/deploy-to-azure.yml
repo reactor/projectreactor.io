@@ -30,7 +30,7 @@ jobs:
           distribution: 'temurin'
           java-version: 8
       - name: Build
-        uses: gradle/gradle-build-action@4c39dd82cd5e1ec7c6fa0173bb41b4b6bb3b86ff # v3
+        uses: gradle/actions/setup-gradle@dbbdc275be76ac10734476cc723d82dfe7ec6eda
         with:
           arguments: build -x spotlessCheck
       - name: Login Via Azure CLI
