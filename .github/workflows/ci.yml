@@ -13,12 +13,12 @@ jobs:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           fetch-depth: 0 #for spotless ratchet
-      - uses: actions/setup-java@99b8673ff64fbf99d8d325f52d9a5bdedb8483e9 # v4
+      - uses: actions/setup-java@6a0805fcefea3d4657a47ac4c165951e33482018 # v4
         with:
           distribution: 'temurin'
           java-version: 8
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@fd87365911aa12c016c307ea21313f351dc53551
+        uses: gradle/actions/setup-gradle@add58192d1c6f4603dc6821e8616f251e2782884
       - name: license header
         if: ${{ github.event_name == 'pull_request' }}
         run: ./gradlew spotlessCheck -PspotlessFrom=origin/${{ github.base_ref }}
