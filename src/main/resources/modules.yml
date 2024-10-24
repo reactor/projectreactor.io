@@ -6,10 +6,10 @@ name: olderBoms
 groupId: io.projectreactor
 artifactId: reactor-bom
 versions:
-  - 2022.0.21
-  - 2020.0.46
 #badVersions is used as placeholder for release trains that hit EoL
 badVersions:
+  - 2022.0.22
+  - 2020.0.47
   - Dysprosium-SR25
   - Californium-SR23
   - Bismuth-SR17
