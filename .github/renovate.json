@@ -39,7 +39,7 @@
     },
     {
       "matchPackageNames": ["com.diffplug.spotless"],
-      "allowedVersions": "<6.14"
+      "allowedVersions": "=6.13.0"
     }
   ]
 }
