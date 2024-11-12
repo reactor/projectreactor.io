@@ -1,14 +1,14 @@
 ---
 type: stable
-name: 2023.0.11
-codename: G
-coreVersion: 3.6.11
-testVersion: 3.6.11
-nettyVersion: 1.1.23
+name: 2024.0.0
+codename: H
+coreVersion: 3.7.0
+testVersion: 3.7.0
+nettyVersion: 1.2.0
 extraVersion: 3.5.2
 adapterVersion: 3.5.2
 kafkaVersion: 1.3.23
-poolVersion: 1.0.8
+poolVersion: 1.1.0
 kotlinVersion: 1.2.3
 #---
 #type: stable
@@ -52,16 +52,16 @@ type: upcoming
 # for milestones released outside of a BOM and full release train, see oobmilestone below
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: 2024.0.0-RC1
-codename: H
-coreVersion: 3.7.0-RC1
-testVersion: 3.7.0-RC1
-nettyVersion: 1.2.0-RC1
-extraVersion: 3.6.0-RC1
-adapterVersion: 3.6.0-RC1
-kafkaVersion: 1.4.0-RC1
-poolVersion: 1.1.0-RC1
-kotlinVersion: 1.3.0-RC1
+#name: 2024.0.0-RC1
+#codename: H
+#coreVersion: 3.7.0-RC1
+#testVersion: 3.7.0-RC1
+#nettyVersion: 1.2.0-RC1
+#extraVersion: 3.6.0-RC1
+#adapterVersion: 3.6.0-RC1
+#kafkaVersion: 1.4.0-RC1
+#poolVersion: 1.1.0-RC1
+#kotlinVersion: 1.3.0-RC1
 ---
 #this special pseudo-BOM is used to display milestones that are released outside of a release train.
 #they appear beneath a regular milestone BOM and activate the link to Milestone javadoc/refdoc.
