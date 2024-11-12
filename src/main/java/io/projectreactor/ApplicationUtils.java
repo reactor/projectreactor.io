@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2021 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2020-2024 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,8 +59,13 @@ public class ApplicationUtils {
 		while (it.hasNext()) {
 			current = it.next();
 			String key = current.getKey();
-			if (key.startsWith("X-Artifactory") || key.equalsIgnoreCase("X-Node") || key.equalsIgnoreCase(
-					"Content-Disposition")) {
+			if (key.toLowerCase().startsWith("x-artifactory")
+					|| key.equalsIgnoreCase("Content-Security-Policy")
+					|| key.equalsIgnoreCase("X-Content-Security-Policy")
+					|| key.equalsIgnoreCase("X-Content-TypeOptions")
+					|| key.equalsIgnoreCase("X-Node")
+					|| key.equalsIgnoreCase("Content-Disposition")
+					|| key.equalsIgnoreCase("x-frame-options")) {
 				headers.remove(key);
 			}
 		}
