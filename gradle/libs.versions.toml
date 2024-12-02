@@ -14,5 +14,5 @@ thymeleaf = "org.thymeleaf:thymeleaf:3.0.15.RELEASE"
 
 [plugins]
 sass = { id = "io.miret.etienne.sass", version = "1.4.1" }
-shadow = { id = "com.github.johnrengelman.shadow", version = "7.1.2" }
+shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
 spotless = { id = "com.diffplug.spotless", version = "6.13.0" }
