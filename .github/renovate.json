@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     ":semanticPrefixChore",
     ":prHourlyLimit4",
     ":automergeDisabled",
@@ -15,30 +15,42 @@
   ],
   "html": {
     "enabled": true,
-    "fileMatch": ["^src/main/resources/static/.*\\.html$"]
+    "fileMatch": [
+      "^src/main/resources/static/.*\\.html$"
+    ]
   },
   "packageRules": [
     {
-      "matchManagers": ["gradle-wrapper"],
+      "matchManagers": [
+        "gradle-wrapper"
+      ],
       "groupName": "Gradle"
     },
     {
-      "matchDepTypes": ["action"],
+      "matchDepTypes": [
+        "action"
+      ],
       "groupName": "Github Workflows",
       "pinDigests": true
     },
     {
-      "matchPackageNames": ["com.google.code.findbugs:jsr305"],
+      "matchPackageNames": [
+        "com.google.code.findbugs:jsr305"
+      ],
       "groupName": "JSR305 with annotations jar",
       "groupSlug": "jsr305",
       "allowedVersions": "=3.0.1"
     },
     {
-      "matchPackageNames": ["org.springframework:spring-core"],
+      "matchPackageNames": [
+        "org.springframework:spring-core"
+      ],
       "allowedVersions": "<6"
     },
     {
-      "matchPackageNames": ["com.diffplug.spotless"],
+      "matchPackageNames": [
+        "com.diffplug.spotless"
+      ],
       "allowedVersions": "<6.14.0"
     }
   ]
