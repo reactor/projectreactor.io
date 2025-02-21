@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
           java-version: 21
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@8c3e41f260befbc98f487996e8806e3d51f655c4
+        uses: gradle/actions/setup-gradle@d9e39adac83414bf94447ae3ccab3d4639128362
       - name: license header
         if: ${{ github.event_name == 'pull_request' }}
         run: ./gradlew spotlessCheck -PspotlessFrom=origin/${{ github.base_ref }}
