@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4
         with:
           distribution: 'temurin'
-          java-version: 8
+          java-version: 21
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@8c3e41f260befbc98f487996e8806e3d51f655c4
       - name: Build
