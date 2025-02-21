@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "type/dependency-upgrade"
+    reviewers:
+      - "reactor/core-team"
+    ignore:
+  - package-ecosystem: "github-actions"
+    directory: ".github/workflows"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    labels:
+      - "type/dependency-upgrade"
+    reviewers:
+      - "reactor/core-team"
