@@ -8,7 +8,6 @@ updates:
       - "type/dependency-upgrade"
     reviewers:
       - "reactor/core-team"
-    ignore:
   - package-ecosystem: "github-actions"
     directory: ".github/workflows"
     schedule:
