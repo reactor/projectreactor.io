@@ -74,7 +74,7 @@ jobs:
             fi
             echo 'workspace:' ${{ github.workspace }}
             az spring app deploy -n ${{env.APP_NAME}} --artifact-path ${{env.JAR_PATH}} -d $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}} \
-              --build-env BP_JVM_VERSION=11 --jvm-options='-Xmx1g -Xms1g'
+              --build-env BP_JVM_VERSION=21 --jvm-options='-Xmx1g -Xms1g'
 
   switch-to-production:
     runs-on: ubuntu-latest
