@@ -15,7 +15,6 @@
  */
 
 import com.diffplug.gradle.spotless.SpotlessExtension
-import com.github.jengelman.gradle.plugins.shadow.ShadowExtension
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.miret.etienne.gradle.sass.CompileSass
 import java.util.concurrent.TimeUnit
@@ -41,25 +40,29 @@ configure<JavaApplication> {
     mainClass.set("io.projectreactor.Application")
 }
 
-configure<ShadowExtension> {
+shadow {
 	version = ""
 }
 
 tasks.withType<CompileSass> {
     style = compressed
     //cannot set sourceDir, but default is $projectDir/src/main/sass - phew!
-    outputDir = file("$buildDir/resources/main/static/assets/css/")
+    outputDir = layout.buildDirectory.file("resources/main/static/assets/css/").get().asFile
 }
 
 tasks.withType<Jar> {
-    val compileSass = tasks.getByName("compileSass")
-    dependsOn(compileSass)
-    from(file("$buildDir/resources/main/static/assets/css/"))
+    dependsOn(tasks.compileSass)
+    from(layout.buildDirectory.file("resources/main/static/assets/css/"))
 }
 
 tasks.withType<ShadowJar> {
     archiveClassifier.set("")
     archiveVersion.set("")
+    dependsOn(tasks.distTar, tasks.distZip)
+}
+
+tasks.withType<JavaCompile> {
+    dependsOn(tasks.compileSass)
 }
 
 configure<SpotlessExtension> {
