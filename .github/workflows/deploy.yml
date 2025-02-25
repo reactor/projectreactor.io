@@ -39,12 +39,12 @@ jobs:
         run: az extension add --name spring
       - name: Create app
         run: |
-            az spring app create \
-            --name {{ env.APP_NAME }} \
-            --resource-group ${{ env.GROUP_NAME }} \
-            --instance-count 2 \
-            --assign-endpoint true \
-            --service ${{ env.SERVICE_NAME }}
+          az spring app create \
+          --name {{ env.APP_NAME }} \
+          --resource-group ${{ env.GROUP_NAME }} \
+          --instance-count 2 \
+          --assign-endpoint true \
+          --service ${{ env.SERVICE_NAME }}
           continue-on-error: true
       - name: Deploy
         run: |
