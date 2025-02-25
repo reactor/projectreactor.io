@@ -9,9 +9,9 @@ on:
 permissions: read-all
 
 env:
-  GROUP_NAME: ${{ secrets.AZURE_GROUP_NAME }}
-  SERVICE_NAME: ${{ secrets.AZURE_SERVICE_NAME }}
-  APP_NAME: ${{ secrets.AZURE_APP_NAME }}
+  GROUP_NAME: ${{ secrets.AZURE_GROUP_NAME_ASA }}
+  SERVICE_NAME: ${{ secrets.AZURE_SERVICE_NAME_ASA }}
+  APP_NAME: ${{ secrets.AZURE_APP_NAME_ASA }}
   JAR_PATH: ${{ github.workspace }}/build/libs/projectreactor-home.jar
   DEFAULT_DEPLOYMENT: blue
   NEW_DEPLOYMENT: green
@@ -36,7 +36,7 @@ jobs:
       - name: Login Via Azure CLI
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
+          creds: ${{ secrets.AZURE_CREDENTIALS_ASA }}
       - name: Deploy To Staging
         uses: azure/CLI@089eac9d8cc39f5d003e94f8b65efc51076c9cbd # v2
         id: deploy
@@ -74,7 +74,7 @@ jobs:
             fi
             echo 'workspace:' ${{ github.workspace }}
             az spring app deploy -n ${{env.APP_NAME}} --artifact-path ${{env.JAR_PATH}} -d $NEWDEPLOYMENT -s ${{env.SERVICE_NAME}} -g ${{env.GROUP_NAME}} \
-              --build-env BP_JVM_VERSION=21 --jvm-options='-Xmx1g -Xms1g'
+              --runtime-version Java_21 --jvm-options='-Xmx1g -Xms1g'
 
   switch-to-production:
     runs-on: ubuntu-latest
@@ -82,7 +82,7 @@ jobs:
     steps:
       - uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_IO }}
+          creds: ${{ secrets.AZURE_CREDENTIALS_ASA }}
       - name: Set Staging To Production
         uses: azure/CLI@089eac9d8cc39f5d003e94f8b65efc51076c9cbd # v2
         with:
