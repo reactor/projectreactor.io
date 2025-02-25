@@ -40,7 +40,7 @@ jobs:
       - name: Create app
         run: |
           az spring app create \
-          --name {{ env.APP_NAME }} \
+          --name ${{ env.APP_NAME }} \
           --resource-group ${{ env.GROUP_NAME }} \
           --instance-count 2 \
           --assign-endpoint true \
