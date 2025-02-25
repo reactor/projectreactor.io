@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2024 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2015-2025 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -129,7 +129,7 @@ public final class Application {
 
 		context = HttpServer.create()
 		                    .host("0.0.0.0")
-		                    .port(8080)
+		                    .port(1025)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/security-policy", template("security-policy"))
 		                                 .file("/.well-known/security.txt", contentPath.resolve("well-known/security.txt"))

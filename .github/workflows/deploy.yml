@@ -54,5 +54,4 @@ jobs:
             --resource-group ${{ env.GROUP_NAME }} \
             --artifact-path ${{env.JAR_PATH}} \
             --runtime-version Java_21 \
-            --jvm-options='-Xmx1g -Xms1g' \
-            --disable-probe=true
+            --jvm-options='-Xmx1g -Xms1g'
