@@ -45,7 +45,7 @@ jobs:
           --instance-count 2 \
           --assign-endpoint true \
           --service ${{ env.SERVICE_NAME }}
-          continue-on-error: true
+        continue-on-error: true
       - name: Deploy
         run: |
           az spring app deploy \
