@@ -127,9 +127,14 @@ public final class Application {
 
 		//templates will be resolved and parsed below during route setup
 
+		int port = 1025;
+		if (System.getenv("PORT") != null){
+			port = Integer.parseInt(System.getenv("PORT"));
+		}
+
 		context = HttpServer.create()
 		                    .host("0.0.0.0")
-		                    .port(1025)
+		                    .port(port)
 		                    .route(r -> r.file("/favicon.ico", contentPath.resolve("favicon.ico"))
 		                                 .get("/security-policy", template("security-policy"))
 		                                 .file("/.well-known/security.txt", contentPath.resolve("well-known/security.txt"))
