@@ -143,6 +143,7 @@ public final class Application {
 		                                 .get("/", template("home"))
 		                                 .get("/docs", template("docs"))
 		                                 .get("/learn", template("learn"))
+		                                 .get("/support", template("support"))
 		                                 .get("/maintenance", template("maintenance"))
 		                                 //.get("/project", template("project"))
 		                                 .get("/docs/{module}", this::listVersionsAndDocs)

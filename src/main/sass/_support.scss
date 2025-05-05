@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 2011-2021 VMware Inc. or its affiliates, All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Support styles
+
+.support {
+  max-width: 1150px;
+  //margin: 0 auto;
+  // background: white;
+  //padding: 0 3.5em;
+  @include clearfix();
+  padding: 1.5em 0;
+  color: #34302d;
+  margin: 0 auto;
+
+  a {
+    color: $reactorPrimary;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  h1, h2, h3, h4, p { font-family: $reactorFontSpecial }
+
+  .suptable {
+    padding: 2em;
+    table {
+        border-collapse: collapse;
+      }
+      table th {
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px
+      }
+    table td {
+        padding-left: 30px;
+        padding-right: 30px
+    }
+
+    table tr {
+        border-top: 1px solid #ccc
+      }
+  }
+
+  .enterprise-support {
+    padding: 1em;
+    table {
+        border-collapse: collapse;
+      }
+      table th {
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px
+      }
+    table td {
+        padding-left: 30px;
+        padding-right: 30px
+    }
+
+    table tr {
+        border-top: 1px solid #ccc
+      }
+  }
+
+  p {
+    font-family: $reactorFontSpecial3;
+  }
+
+  .project-row {
+    padding: 0.5em 0 3em;
+    @include clearfix();
+    .project-col-left {
+      float: left;
+      width: 98%;
+    }
+  }
+}
+
