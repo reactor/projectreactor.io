@@ -1,14 +1,14 @@
 ---
 type: stable
-name: 2024.0.6
+name: 2024.0.7
 codename: H
-coreVersion: 3.7.6
-testVersion: 3.7.6
-nettyVersion: 1.2.6
+coreVersion: 3.7.7
+testVersion: 3.7.7
+nettyVersion: 1.2.7
 extraVersion: 3.5.2
 adapterVersion: 3.5.2
 kafkaVersion: 1.3.23
-poolVersion: 1.1.2
+poolVersion: 1.1.3
 kotlinVersion: 1.2.3
 #---
 #type: stable
@@ -52,15 +52,14 @@ type: upcoming
 # for milestones released outside of a BOM and full release train, see oobmilestone below
 type: milestone
 #remove name to deactivate badge and/or individual versions to hide artifacts links
-name: 2025.0.0-M3
+name: 2025.0.0-M4
 codename: I
-coreVersion: 3.8.0-M3
-testVersion: 3.8.0-M3
-nettyVersion: 1.3.0-M3
+coreVersion: 3.8.0-M4
+testVersion: 3.8.0-M4
+nettyVersion: 1.3.0-M4
 extraVersion: 3.5.2
 adapterVersion: 3.5.2
-kafkaVersion: 1.3.23
-poolVersion: 1.2.0-M2
+poolVersion: 1.2.0-M4
 kotlinVersion: 1.2.3
 ---
 #this special pseudo-BOM is used to display milestones that are released outside of a release train.
