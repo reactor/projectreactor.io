@@ -6,7 +6,7 @@ on:
       teams:
         - 'reactor/team'
 
-permissions: read-all
+permissions: {}
 
 env:
   GROUP_NAME: ${{ secrets.AZURE_GROUP_NAME_ASA }}
