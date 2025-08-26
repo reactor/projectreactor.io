@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "title": "Project Reactor Support Timeline",
+    "description": "This the listing of support dates for Project Reactor libraries.",
+    "lastUpdated": "2025-08-26",
+    "version": "1.0.0"
+  },
+  "libraries": [
+    {
+      "name": "reactor-core",
+      "displayName": "reactor-core",
+      "versions": [
+        {
+          "version": "3.7",
+          "initialRelease": "2024-11-12",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "2024"
+        },
+        {
+          "version": "3.6",
+          "initialRelease": "2023-11-14",
+          "endOfOssSupport": "2025-06-30",
+          "endOfEnterpriseSupport": "2026-06-30",
+          "datePublishedInBom": "2023"
+        },
+        {
+          "version": "3.5",
+          "initialRelease": "2022-11-08",
+          "endOfOssSupport": "2024-06-30",
+          "endOfEnterpriseSupport": "2025-06-30",
+          "datePublishedInBom": "2022"
+        },
+        {
+          "version": "3.4",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "2020"
+        }
+      ]
+    },
+    {
+      "name": "reactor-netty",
+      "displayName": "reactor-netty",
+      "versions": [
+        {
+          "version": "1.2",
+          "initialRelease": "2024-11-12",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "2024"
+        },
+        {
+          "version": "1.1",
+          "initialRelease": "2022-11-08",
+          "endOfOssSupport": "2025-06-30",
+          "endOfEnterpriseSupport": "2026-06-30",
+          "datePublishedInBom": "2022, 2023"
+        },
+        {
+          "version": "1.0",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "2020"
+        }
+      ]
+    },
+    {
+      "name": "reactor-kafka",
+      "displayName": "reactor-kafka",
+      "versions": [
+        {
+          "version": "1.3",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "2020, 2022, 2023, 2024"
+        }
+      ]
+    },
+    {
+      "name": "reactor-pool",
+      "displayName": "reactor-pool",
+      "versions": [
+        {
+          "version": "1.1",
+          "initialRelease": "2024-11-12",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "2024"
+        },
+        {
+          "version": "1.0",
+          "initialRelease": "2022-11-08",
+          "endOfOssSupport": "2025-06-30",
+          "endOfEnterpriseSupport": "2026-06-30",
+          "datePublishedInBom": "2022, 2023"
+        },
+        {
+          "version": "0.2",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "2020"
+        }
+      ]
+    },
+    {
+      "name": "reactor-addons",
+      "displayName": "reactor-addons",
+      "versions": [
+        {
+          "version": "3.5",
+          "initialRelease": "2022-11-08",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "2022, 2023, 2024"
+        },
+        {
+          "version": "3.4",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "2020"
+        }
+      ]
+    },
+    {
+      "name": "reactor-kotlin-extensions",
+      "displayName": "reactor-kotlin-extensions",
+      "versions": [
+        {
+          "version": "1.2",
+          "initialRelease": "2022-11-08",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "2022, 2023, 2024"
+        },
+        {
+          "version": "1.1",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "2020"
+        }
+      ]
+    },
+    {
+      "name": "reactor-rabbitmq",
+      "displayName": "reactor-rabbitmq",
+      "versions": [
+        {
+          "version": "1.5",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "2020"
+        }
+      ]
+    },
+    {
+      "name": "reactor-bom",
+      "displayName": "reactor-bom",
+      "versions": [
+        {
+          "version": "2024",
+          "initialRelease": "2024-11-12",
+          "endOfOssSupport": "2026-06-30",
+          "endOfEnterpriseSupport": "2032-06-30",
+          "datePublishedInBom": "-"
+        },
+        {
+          "version": "2023",
+          "initialRelease": "2023-11-14",
+          "endOfOssSupport": "2025-06-30",
+          "endOfEnterpriseSupport": "2026-06-30",
+          "datePublishedInBom": "-"
+        },
+        {
+          "version": "2022",
+          "initialRelease": "2022-11-08",
+          "endOfOssSupport": "2024-06-30",
+          "endOfEnterpriseSupport": "2025-06-30",
+          "datePublishedInBom": "-"
+        },
+        {
+          "version": "2020",
+          "initialRelease": "2020-10-26",
+          "endOfOssSupport": "2023-06-30",
+          "endOfEnterpriseSupport": "2029-06-30",
+          "datePublishedInBom": "-"
+        }
+      ]
+    }
+  ]
+}
