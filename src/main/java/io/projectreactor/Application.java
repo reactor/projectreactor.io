@@ -63,6 +63,24 @@ import reactor.util.function.Tuples;
  */
 public final class Application {
 
+	private static final Logger LOGGER = Loggers.getLogger(Application.class);
+
+	public static final String REPO_TOKEN = System.getenv("REACTOR_SITE_REPO_TOKEN");
+
+	public static final boolean SKIP_SONATYPE =
+			Boolean.parseBoolean(System.getenv("REACTOR_SITE_SKIP_SONATYPE"));
+
+	static {
+		LOGGER.info("Env variable REACTOR_SITE_SKIP_SONATYPE={}",
+				System.getenv("REACTOR_SITE_SKIP_SONATYPE"));
+		LOGGER.info(SKIP_SONATYPE ? "Using only Spring Repo for all documentation" :
+				"Using Sonatype for release documentation and Spring Repo for milestone/snapshot documentation");
+
+		if (REPO_TOKEN != null && !REPO_TOKEN.isBlank()) {
+			LOGGER.info("Will use token auth to access Spring Artifactory");
+		}
+	}
+
 	private final Map<String, Module> modules     = new HashMap<>();
 	private final HttpClient          client      = HttpClient.create();
 	private final Path                contentPath = resolveContentPath();
@@ -70,8 +88,6 @@ public final class Application {
 	private final Mono<? extends DisposableServer> context;
 	private final TemplateEngine templateEngine;
 	private final Map<String, Object> docsModel = new HashMap<>();
-
-	private static final Logger LOGGER = Loggers.getLogger(Application.class);
 
 	Application() throws IOException {
 		long start = System.currentTimeMillis();
@@ -91,14 +107,8 @@ public final class Application {
 		//evaluate modules, add oldboms to thymeleaf's model
 		//get at a minimum the list of modules, oldBom, artifacts and groupids from yml
 		ModuleUtils.loadModulesFromYmlInto(new ClassPathResource("modules.yml"), modules);
-		//then get the versions from Artifactory
-		ModuleUtils.fetchVersionsFromArtifactory(modules, "core", "test", "adapter",
-				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
-				"kotlin", "pool");
-		//then get the versions from Sonatype
-		ModuleUtils.fetchVersionsFromSonatype(modules, "core", "test", "adapter",
-				"extra", "netty", "nettyArchive", "kafka", "rabbitmq", "BlockHound",
-				"kotlin", "pool");
+
+		ModuleUtils.fetchVersionsFromArtifactRepository(this.modules);
 		LOGGER.info("Boms and modules loaded in " + (System.currentTimeMillis() - start) + "ms");
 
 		docsModel.put("oldBoms", modules.get("olderBoms"));
@@ -337,7 +347,15 @@ public final class Application {
 			return kdocNotFound(url.replace(DocUtils.WARNING_NO_KDOC, "")).apply(req, resp);
 		}
 
-		return client.headers(h -> ApplicationUtils.filterRepoProxyRequestHeaders(req.requestHeaders()))
+		return client.headers(h -> {
+			             // FIXME: This actually does not proxy any headers, it just removes headers
+			             //  from the client of this endpoint
+			             ApplicationUtils.filterRepoProxyRequestHeaders(req.requestHeaders());
+			             if (REPO_TOKEN != null && !REPO_TOKEN.isBlank()) {
+				             LOGGER.info("Using REPO_TOKEN to access {}", url);
+				             h.set("Authorization", "Bearer " + REPO_TOKEN);
+			             }
+		             })
 		             .get()
 		             .uri(url)
 		             .response((r, body) -> {
