@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2023 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2019-2025 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.handler.codec.http.HttpHeaders;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -45,7 +46,7 @@ public class ModuleUtils {
 	private static final Logger LOGGER = Loggers.getLogger(ModuleUtils.class);
 
 	public static void loadModulesFromYmlInto(ClassPathResource resource, Map<String, Module> target) {
-		Yaml yaml = new Yaml(new Constructor(Module.class));
+		Yaml yaml = new Yaml(new Constructor(Module.class, new LoaderOptions()));
 		try {
 			yaml.loadAll(resource.getInputStream()).forEach(o -> {
 				Module module = (Module)o;
