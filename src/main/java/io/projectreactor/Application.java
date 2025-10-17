@@ -40,6 +40,7 @@ import org.reactivestreams.Publisher;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -81,7 +82,7 @@ public final class Application {
 		this.templateEngine.setTemplateResolver(templateResolver);
 
 		//evaluate the boms.yml file first and add it to thymeleaf's model
-		Yaml bomYaml = new Yaml(new Constructor(Bom.class));
+		Yaml bomYaml = new Yaml(new Constructor(Bom.class, new LoaderOptions()));
 		bomYaml.loadAll(new ClassPathResource("boms.yml").getInputStream())
 		       .forEach(o -> {
 			       Bom bom = (Bom) o;
