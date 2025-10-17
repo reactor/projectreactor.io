@@ -24,7 +24,6 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.netty.handler.codec.http.HttpHeaders;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -37,6 +36,9 @@ import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 import reactor.util.Logger;
 import reactor.util.Loggers;
+
+import static io.projectreactor.Application.REPO_TOKEN;
+import static io.projectreactor.Application.SKIP_SONATYPE;
 
 /**
  * @author Simon Baslé
@@ -59,6 +61,18 @@ public class ModuleUtils {
 		}
 	}
 
+	public static void fetchVersionsFromArtifactRepository(Map<String, Module> modules) {
+		String[] moduleNames =
+				{"core", "test", "adapter", "extra", "netty", "nettyArchive", "kafka",
+						"rabbitmq", "BlockHound", "kotlin", "pool"};
+		//then get the versions from Artifactory
+		ModuleUtils.fetchVersionsFromArtifactory(modules, moduleNames);
+		//then get the versions from Sonatype
+		if (!SKIP_SONATYPE) {
+			ModuleUtils.fetchVersionsFromSonatype(modules, moduleNames);
+		}
+	}
+
 	public static void fetchVersionsFromArtifactory(Map<String, Module> modules, String... moduleNames) {
 		final HttpClient client = HttpClient.create().baseUrl("https://repo.spring.io/api/search");
 		final String repos = "&repos=snapshot,milestone,release";
@@ -70,7 +84,12 @@ public class ModuleUtils {
 			    final String params = "/versions?g=" + module.getGroupId() + "&a=" + module.getArtifactId() + repos;
 			    LOGGER.info("Loading version information for {} via GET {}", module.getName(), params);
 
-			    return client.get()
+			    return client.headers(headers -> {
+				                 if (REPO_TOKEN != null && !REPO_TOKEN.isBlank()) {
+					                 headers.set("Authorization", "Bearer " + REPO_TOKEN);
+				                 }
+			                 })
+			                 .get()
 			                 .uri(params)
 			                 .response((r, content) -> {
 				                 if (r.status().code() < 400) {
@@ -136,7 +155,7 @@ public class ModuleUtils {
 		    .blockLast();
 	}
 
-	public static void loadModuleVersionsFromSonatypeVersionsSearch(String json, Module module) {
+	private static void loadModuleVersionsFromSonatypeVersionsSearch(String json, Module module) {
 		ObjectMapper mapper = new ObjectMapper();
 		final JsonNode node;
 		try {

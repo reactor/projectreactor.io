@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2023 VMware Inc. or its affiliates, All Rights Reserved.
+ * Copyright (c) 2017-2025 VMware Inc. or its affiliates, All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import java.util.Map;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
+import static io.projectreactor.Application.SKIP_SONATYPE;
 import static io.projectreactor.Version.Qualifier.*;
 
 /**
@@ -252,7 +253,7 @@ public class DocUtils {
 			file = actualModule.getArtifactId() + "/" + file;
 		}
 
-		final boolean isForSpringRepo = versionType.equalsIgnoreCase("snapshot") ||  versionType.equalsIgnoreCase("milestone");
+		final boolean isForSpringRepo = shouldUseSpringRepo(versionType);
 		String url = (isForSpringRepo ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
@@ -274,7 +275,7 @@ public class DocUtils {
 			file = indexFile;
 		}
 
-		final boolean isForSpringRepo = versionType.equalsIgnoreCase("snapshot") || versionType.equalsIgnoreCase("milestone");
+		final boolean isForSpringRepo = shouldUseSpringRepo(versionType);
 		String url = (isForSpringRepo ? ("https://repo.spring.io/" + versionType) : "https://s01.oss.sonatype.org/service/local/repositories/releases/archive")
 				+ "/" + actualModule.getGroupId().replace(".", "/")
 				+ "/" + actualModule.getArtifactId()
@@ -290,4 +291,9 @@ public class DocUtils {
 	 * static 404 we send to when a KDoc is requested for a special project+version combination that doesn't have them
 	 */
 	public static final String WARNING_NO_KDOC = "warningNoKDoc:";
+
+	static boolean shouldUseSpringRepo(String versionType) {
+		return SKIP_SONATYPE || versionType.equalsIgnoreCase("snapshot") || versionType.equalsIgnoreCase(
+				"milestone");
+	}
 }
