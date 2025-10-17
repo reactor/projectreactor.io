@@ -352,7 +352,6 @@ public final class Application {
 			             //  from the client of this endpoint
 			             ApplicationUtils.filterRepoProxyRequestHeaders(req.requestHeaders());
 			             if (REPO_TOKEN != null && !REPO_TOKEN.isBlank()) {
-				             LOGGER.info("Using REPO_TOKEN to access {}", url);
 				             h.set("Authorization", "Bearer " + REPO_TOKEN);
 			             }
 		             })
