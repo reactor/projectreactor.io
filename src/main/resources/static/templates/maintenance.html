@@ -32,13 +32,11 @@
     <h1>:-\</h1>
     <h2>Sorry, something went wrong!</h2>
     <h3>Scheduled infrastructure maintenance: <strong th:text="${maintenanceDate}">YYYY/MM/DD</strong> (expected to end by <strong th:text="${maintenanceEnd}">MAINTENANCE END</strong>).</h3>
-    <p>Follow <a href="https://twitter.com/springops">@springops</a> for updates. Dates are in YYYY/MM/DD format.</p>
 </div>
 <div th:if="${#strings.isEmpty(maintenanceEnd)}">
     <h1>:-(</h1>
     <h2>Sorry, something went wrong</h2>
     <p>no maintenance is currently scheduled!</p>
-    <p>Follow <a href="https://twitter.com/springops">@springops</a> for updates.</p>
 </div>
 <div style="display: none">::CLOUDFLARE_ERROR_500S_BOX::</div>
 </body>
