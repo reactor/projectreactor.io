@@ -141,6 +141,7 @@ public final class Application {
 		int port = 1025;
 		if (System.getenv("PORT") != null){
 			port = Integer.parseInt(System.getenv("PORT"));
+			LOGGER.info("PORT environment variable detected, using port: " + port);
 		}
 
 		context = HttpServer.create()
