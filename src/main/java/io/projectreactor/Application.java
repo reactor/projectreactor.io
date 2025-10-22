@@ -56,6 +56,7 @@ import reactor.util.Logger;
 import reactor.util.Loggers;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuple4;
+import reactor.util.function.Tuple5;
 import reactor.util.function.Tuples;
 
 /**
@@ -278,13 +279,13 @@ public final class Application {
 			return pageNotFound().apply(req, resp);
 		}
 		String moduleName = module.getName();
+		String artifactId = module.getArtifactId();
 		Map<String, Object> model = new HashMap<>();
-		LinkedHashMap<String, List<Tuple4<Version, String, String, String>>>
-				versionsByMajor = new LinkedHashMap<>();
-		Map<String, Tuple4<Version, String, String, String>> latestReleaseByTrain = new HashMap<>();
-		Map<String, Tuple4<Version, String, String, String>> latestSnapshotByTrain = new HashMap<>();
+		LinkedHashMap<String, List<Tuple5<Version, String, String, String, String>>> versionsByMajor = new LinkedHashMap<>();
+		Map<String, Tuple5<Version, String, String, String, String>> latestReleaseByTrain = new HashMap<>();
+		Map<String, Tuple5<Version, String, String, String, String>> latestSnapshotByTrain = new HashMap<>();
 		model.put("moduleName", moduleName);
-		model.put("artifactId", module.getArtifactId());
+		model.put("artifactId", artifactId);
 		model.put("trains", versionsByMajor);
 		model.put("latestReleases", latestReleaseByTrain);
 		model.put("latestSnapshots", latestSnapshotByTrain);
@@ -292,7 +293,7 @@ public final class Application {
 		for (Version version : module.versions()) {
 			String key = version.major + "." + version.minor + ".x";
 
-			List<Tuple4<Version, String, String, String>> versions = versionsByMajor.computeIfAbsent(key, k -> new ArrayList<>());
+			List<Tuple5<Version, String, String, String, String>> versions = versionsByMajor.computeIfAbsent(key, k -> new ArrayList<>());
 
 			String javadocUrl = "/docs/" + moduleName + "/" + version + "/api";
 			String refdocUrl = DocUtils.getRefDocPath(moduleName, version.toString()); //FIXME use the Version
@@ -301,8 +302,13 @@ public final class Application {
 				kdocUrl = "/docs/" + moduleName + "/" + version + "/kdoc-api/";
 			}
 
-			Tuple4<Version, String, String, String> docInfo =
-					Tuples.of(version, javadocUrl, refdocUrl, kdocUrl);
+			String pdfUrl = "";
+			if (version.qualifier != Version.Qualifier.SNAPSHOT) {
+				pdfUrl = DocUtils.getPdfPath(moduleName, artifactId, version.toString());
+			}
+
+			Tuple5<Version, String, String, String, String> docInfo =
+					Tuples.of(version, javadocUrl, refdocUrl, kdocUrl, pdfUrl);
 
 			//omit snapshot links other than the last snapshot in a release cycle
 			if (version.qualifier == Version.Qualifier.SNAPSHOT) {

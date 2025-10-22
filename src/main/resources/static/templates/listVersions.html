@@ -39,7 +39,7 @@
         <table>
             <div th:each="group: ${trains}">
                 <tr>
-                    <td colspan="5" class="versionListGen">
+                    <td colspan="6" class="versionListGen">
                         <span th:text="${group.key}">GENERATION</span>
                     </td>
                 </tr>
@@ -59,6 +59,9 @@
                     </td>
                     <td><a th:if="${!#strings.isEmpty(version.t4)}" th:href="${version.t4}">
                         <span class="fa fa-file-text-o">&nbsp;</span>KDoc</a>
+                    </td>
+                    <td><a th:if="${!#strings.isEmpty(version.t5)}" th:href="${version.t5}">
+                        <span class="fa fa-file-pdf-o">&nbsp;</span>PDF</a>
                     </td>
                 </tr>
             </div>

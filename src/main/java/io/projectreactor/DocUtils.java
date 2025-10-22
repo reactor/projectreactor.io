@@ -221,6 +221,20 @@ public class DocUtils {
 	}
 
 	//FIXME switch to Version instead of String
+	static String getPdfPath(String module, String artifactId, String version) {
+		switch (module) {
+			case "core":
+				return "/docs/core/" + version + "/reference/" + artifactId + "-reference-guide-" + version + ".pdf";
+			// TODO: investigate why is the pdf missing
+//			case "netty":
+//				Version nettyVersion = Version.parse(version);
+//				if (nettyVersion.isAfter(0, 9, 0, SNAPSHOT)) return "/docs/netty/" + version + "/reference/" + artifactId + "-reference-guide-" + version + ".pdf";
+//				else return "";
+			default:
+				return "";
+		}
+	}
+
 	static String getRefDocPath(String module, String version) {
 		switch (module) {
 			case "core":
