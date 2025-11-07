@@ -5,7 +5,8 @@ name: olderBoms
 #don't include the current release train
 groupId: io.projectreactor
 artifactId: reactor-bom
-#versions:
+versions:
+  - 2024.0.12
 #badVersions is used as placeholder for release trains that hit EoL
 badVersions:
   - 2023.0.19
