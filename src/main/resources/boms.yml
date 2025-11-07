@@ -1,15 +1,15 @@
 ---
 type: stable
-name: 2024.0.11
+name: 2024.0.12
 codename: H
-coreVersion: 3.7.12
-testVersion: 3.7.12
-nettyVersion: 1.2.11
+coreVersion: 3.7.13
+testVersion: 3.7.13
+nettyVersion: 1.2.12
 extraVersion: 3.5.4
 adapterVersion: 3.5.4
-kafkaVersion: 1.3.24
-poolVersion: 1.1.5
-kotlinVersion: 1.2.4
+kafkaVersion: 1.3.25
+poolVersion: 1.1.6
+kotlinVersion: 1.2.5
 #---
 #type: stable
 #name: 2020.0.24
