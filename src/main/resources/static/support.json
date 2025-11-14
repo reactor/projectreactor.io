@@ -11,6 +11,13 @@
       "displayName": "reactor-core",
       "versions": [
         {
+          "version": "3.8",
+          "initialRelease": "2025-11-07",
+          "endOfOssSupport": "2027-06-30",
+          "endOfEnterpriseSupport": "2028-06-30",
+          "datePublishedInBom": "2025"
+        },
+        {
           "version": "3.7",
           "initialRelease": "2024-11-12",
           "endOfOssSupport": "2026-06-30",
@@ -44,6 +51,13 @@
       "name": "reactor-netty",
       "displayName": "reactor-netty",
       "versions": [
+        {
+          "version": "1.3",
+          "initialRelease": "2025-11-07",
+          "endOfOssSupport": "2027-06-30",
+          "endOfEnterpriseSupport": "2028-06-30",
+          "datePublishedInBom": "2025"
+        },
         {
           "version": "1.2",
           "initialRelease": "2024-11-12",
@@ -85,6 +99,13 @@
       "displayName": "reactor-pool",
       "versions": [
         {
+          "version": "1.2",
+          "initialRelease": "2025-11-07",
+          "endOfOssSupport": "2027-06-30",
+          "endOfEnterpriseSupport": "2028-06-30",
+          "datePublishedInBom": "2025"
+        },
+        {
           "version": "1.1",
           "initialRelease": "2024-11-12",
           "endOfOssSupport": "2026-06-30",
@@ -112,6 +133,13 @@
       "displayName": "reactor-addons",
       "versions": [
         {
+          "version": "3.6",
+          "initialRelease": "2025-11-07",
+          "endOfOssSupport": "2027-06-30",
+          "endOfEnterpriseSupport": "2028-06-30",
+          "datePublishedInBom": "2025"
+        },
+        {
           "version": "3.5",
           "initialRelease": "2022-11-08",
           "endOfOssSupport": "2026-06-30",
@@ -131,6 +159,13 @@
       "name": "reactor-kotlin-extensions",
       "displayName": "reactor-kotlin-extensions",
       "versions": [
+        {
+          "version": "1.3",
+          "initialRelease": "2025-11-07",
+          "endOfOssSupport": "2027-06-30",
+          "endOfEnterpriseSupport": "2028-06-30",
+          "datePublishedInBom": "2025"
+        },
         {
           "version": "1.2",
           "initialRelease": "2022-11-08",
@@ -164,6 +199,13 @@
       "name": "reactor-bom",
       "displayName": "reactor-bom",
       "versions": [
+        {
+          "version": "2025",
+          "initialRelease": "2025-11-07",
+          "endOfOssSupport": "2027-06-30",
+          "endOfEnterpriseSupport": "2028-06-30",
+          "datePublishedInBom": "-"
+        },
         {
           "version": "2024",
           "initialRelease": "2024-11-12",
