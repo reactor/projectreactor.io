@@ -13,6 +13,6 @@ spring = "org.springframework:spring-core:7.0.0"
 thymeleaf = "org.thymeleaf:thymeleaf:3.1.3.RELEASE"
 
 [plugins]
-sass = { id = "io.miret.etienne.sass", version = "1.5.2" }
+sass = { id = "io.miret.etienne.sass", version = "1.6.0" }
 shadow = { id = "com.gradleup.shadow", version = "8.3.6" }
 spotless = { id = "com.diffplug.spotless", version = "8.0.0" }
