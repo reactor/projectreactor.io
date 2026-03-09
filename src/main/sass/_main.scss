@@ -51,6 +51,8 @@ body {
 .container {
   max-width: 1100px;
   margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 // Logo
@@ -90,6 +92,8 @@ body {
   top: 0;
   z-index: 999;
 
+  border-bottom: 1px solid var(--border);
+
   .heading {
     @extend .container;
     @include clearfix();
@@ -98,7 +102,6 @@ body {
     justify-content: space-between;
     padding: 0 1.5em;
     height: 80px;
-    border-bottom: 1px solid var(--border);
   }
 
   h1#logo {
@@ -626,8 +629,7 @@ section#key-features {
       display: flex;
       gap: 3em;
       align-items: flex-start;
-      padding-top: 3em;
-      padding-bottom: 3em;
+      padding: 3em 1.5em;
       border-top: 2px solid var(--color);
     }
     .feature-title {
