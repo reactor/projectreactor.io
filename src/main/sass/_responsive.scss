@@ -65,20 +65,7 @@
     }
     h1#logo {
       margin: 0 auto;
-      width: 253px;
       float: none;
-      a {
-        background: url(../img/logo-2x.png) no-repeat 0 0;
-        height: 32px;
-        width: 202px;
-        background-size: 202px 64px;
-        &:hover {
-          strong {display: none;}
-        }
-      }
-      strong {
-        display: none;
-      }
     }
   }
 
@@ -98,9 +85,6 @@
     display: block;
   }
 
-  #footer {
-    text-align: center;
-  }
   .project {
     .project-row {
       @include clearfix();
@@ -150,20 +134,12 @@
   }
 
   #footer {
-    .row {
-      nav {
-        float: none;
-        width: auto;
-        padding: 0 1em;
-        margin-bottom: 1em;
-        padding-bottom: 1em;
-        border-bottom: 1px solid var(--border);
-        &:last-child {
-          margin-bottom: 0;
-          border-bottom: 0;
-          padding-bottom: 0;
-        }
-      }
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-social {
+      flex-direction: row;
     }
   }
 

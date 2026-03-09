@@ -25,8 +25,6 @@ html.dark {
   --color: #fff;
   --border: #2b2f33;
   --border-highlight: #6d7579;
-  --footer-nav-color: rgba(255, 255, 255, 0.65);
-
   body {
     background-color: #1b1f23;
     color: #fff;
@@ -95,12 +93,12 @@ html.dark {
 
   // Footer
   #footer {
-    .footer-note { color: rgba(255,255,255,0.35); }
-    .footer-content-text {
+    .footer-copyright {
       color: rgba(255,255,255,0.4);
       a { color: #1f98ff; }
-      .licence { color: rgba(255,255,255,0.25); }
+      .ot-sdk-show-settings { color: #1f98ff; }
     }
+    .footer-licence { color: rgba(255,255,255,0.25); }
   }
 
   // Code blocks

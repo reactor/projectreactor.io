@@ -192,27 +192,39 @@ body {
 // Footer
 
 #footer {
-  text-align: left;
   background-color: var(--bg);
   color: var(--color);
   border-top: 1px solid var(--border);
 
   .footer-content {
-    background: var(--bg);
-    padding: 2em 0 1.5em;
-  }
-  .footer-note {
-    text-align: center;
-    color: #888;
-    display: block;
-    font-size: 0.85em;
-    padding: 0.5em 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .footer-social {
     @extend .container;
-    padding: 0.75em 1.5em 0.5em;
-    text-align: right;
+    padding: 2em 1.5em;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      text-decoration: none;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .footer-social {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
 
     .footer-social-btn {
       display: inline-flex;
@@ -224,7 +236,6 @@ body {
       background: var(--color);
       color: var(--bg);
       font-size: 22px;
-      margin-left: 8px;
       text-decoration: none;
       transition: background-color $reactorDurationTransition, color $reactorDurationTransition;
       &:hover {
@@ -235,53 +246,25 @@ body {
     }
   }
 
-  .footer-content-text {
-    @include clearfix();
-    @extend .container;
-    padding: 1em 1.5em;
+  .footer-copyright {
     font-size: 0.85em;
     color: #666;
+    margin: 0 0 0.4em;
     a {
       color: $reactorLinkColor;
       &:hover { color: $reactorPrimary; text-decoration: underline; }
     }
-    .licence {
-      display: block;
-      font-size: 0.9em;
-      padding-bottom: 0.4em;
-      color: #999;
-    }
-  }
-  .row {
-    @include clearfix();
-    @extend .container;
-    padding: 0 1.5em;
-    nav {
-      float: left;
-      width: 25%;
-    }
-  }
-  nav, nav ul {
-    margin: 0;
-    padding: 0;
-    a {
-      color: var(--footer-nav-color);
-      font-size: 0.9em;
+    .ot-sdk-show-settings {
+      color: $reactorLinkColor;
       cursor: pointer;
-      &:hover { color: $reactorPrimary; text-decoration: none; }
+      &:hover { color: $reactorPrimary; text-decoration: underline; }
     }
   }
-  ul {
-    li {
-      list-style: none;
-      padding: 3px 0;
-      &.heading {
-        font-weight: bold;
-        text-transform: uppercase;
-        color: $reactorPrimary;
-        margin-bottom: 6px;
-      }
-    }
+
+  .footer-licence {
+    font-size: 0.85em;
+    color: #999;
+    margin: 0;
   }
 }
 
