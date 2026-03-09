@@ -271,5 +271,8 @@ html.dark {
   }
 
   // 404
-  section.page404 h1 { color: $reactorBgWhite; }
+  section.page404 {
+    h1 { color: $reactorHighlight; }
+    p  { color: rgba(255,255,255,0.7); }
+  }
 }

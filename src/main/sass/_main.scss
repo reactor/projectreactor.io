@@ -215,6 +215,16 @@ body {
 
 // Footer
 
+.application-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  #footer {
+    margin-top: auto;
+  }
+}
+
 #footer {
   background-color: var(--bg);
   color: var(--color);
@@ -699,24 +709,25 @@ section#key-features {
 
 section.page404 {
   @extend .container;
-  @include clearfix();
   text-align: center;
-  padding: 5em 0;
+  padding: 3em 1em 4em;
   h1 {
-    font-size: 20px;
-    font-weight: normal;
-    text-align: center;
-    font-family: $reactorFontSpecial;
+    color: $reactorPrimary;
+    font-size: 130px;
+    font-weight: 100;
+    line-height: 110px;
+    margin-bottom: 0.3em;
   }
-  ul {
-    margin: 0;
-    padding: 0;
-    li {
-      margin: 0;
-      padding: 0.2em 0;
-      list-style: none;
-      list-style-type: none;
-    }
+  h2 {
+    color: var(--color);
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 1em;
+  }
+  p {
+    font-size: 16px;
+    color: $reactorTextMuted;
+    a { font-weight: 600; }
   }
 }
 
