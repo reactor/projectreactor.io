@@ -49,36 +49,6 @@
 
 @media (max-width: 800px) {
 
-  section#welcome {
-    height: 180px;
-    background: url(../img/homepage-bg.png) center -100px no-repeat rgb(147, 173, 160);
-    article {
-      span.logo-reactor {
-        display: none;
-      }
-      h1 {
-        margin-top: 50px;
-        font-size: 26px;
-      }
-      p {
-        display: block;
-        background: rgba(52,48,45,.7);
-        padding: 8px 10px;
-        font-size: 18px;
-        margin: 0 20px;
-        line-height: 26px;
-        span {
-          background: transparent;
-          padding: 0;
-          display: inline;
-        }
-        br {
-          display: none;
-        }
-      }
-    }
-  }
-
   section#brands article {
     h1 {
       font-size: 22px;
@@ -113,23 +83,15 @@
   }
 
   section#key-features article {
-    div {
-      background: transparent !important;
-      padding: 1.5em 0 2em;
+    > div {
+      flex-direction: column;
+      padding: 1.5em 1em 2em;
     }
-    div {
-      padding-right: 20px;
-      padding-left: 20px;
-      text-align: left;
-      span.icon {
-        display: none !important;
-      }
+    .feature-title {
+      flex: none;
+      padding-right: 0;
+      margin-bottom: 0.5em;
     }
-  }
-  section#key-features article.friendly-adoption div {
-    text-align: left;
-    padding-right: 20px;
-    padding-left: 20px;
   }
 
   .application-main-content #sidebar-toggle {
@@ -156,43 +118,6 @@
 }
 
 @media (max-width: 600px) {
-  section#welcome {
-    height: 180px;
-    background: url(../img/homepage-bg.png) center -100px no-repeat rgb(147, 173, 160);
-    article {
-      span.logo-reactor {
-        display: none;
-      }
-      h1 {
-        font-size: 16px;
-        line-height: 25px;
-        text-align: left;
-        margin: 0 20px 10px 20px;
-        strong {
-          padding: 10px;
-          display: block;
-        }
-      }
-      p {
-        display: block;
-        text-align: left;
-        background: rgba(52,48,45,.7);
-        padding: 8px 10px;
-        font-size: 14px;
-        margin: 0 20px;
-        line-height: 26px;
-        span {
-          background: transparent;
-          padding: 0;
-          display: inline;
-        }
-        br {
-          display: none;
-        }
-      }
-    }
-  }
-
   .learn article {
     padding: 1em 1em 1em 2.5em;
     p.title {
@@ -213,12 +138,12 @@
       margin-bottom: 0;
     }
     span.icon {
-      margin-bottom: 15Px;
+      margin-bottom: 15px;
     }
   }
 
   section#key-features article {
-    font-size: 14Px;
+    font-size: 14px;
     h1 {
       font-size: 25px;
     }
@@ -232,7 +157,7 @@
         padding: 0 1em;
         margin-bottom: 1em;
         padding-bottom: 1em;
-        border-bottom: 1px solid rgba(255,255,255,.1);
+        border-bottom: 1px solid var(--border);
         &:last-child {
           margin-bottom: 0;
           border-bottom: 0;
@@ -248,7 +173,7 @@
         float: none;
         width: 100%;
         text-align: center;
-        H1 {
+        h1 {
           padding-bottom:5px;
         }
         p {

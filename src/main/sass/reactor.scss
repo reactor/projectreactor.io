@@ -22,21 +22,89 @@
   }
 }
 
-// Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Varela+Round|Montserrat:400,700|Karla:400,700);
+// Local fonts
+$fontPath: "/assets/fonts/";
+
+@font-face {
+  font-family: "Metropolis";
+  src: url($fontPath + "metropolis/metropolis-regular-webfont.woff2") format("woff2"),
+       url($fontPath + "metropolis/metropolis-regular-webfont.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url($fontPath + "metropolis/metropolis-bold-webfont.woff2") format("woff2"),
+       url($fontPath + "metropolis/metropolis-bold-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url($fontPath + "metropolis/metropolis-extrabold-webfont.woff2") format("woff2"),
+       url($fontPath + "metropolis/metropolis-extrabold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-regular.woff2") format("woff2"),
+       url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-regular.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-italic.woff2") format("woff2"),
+       url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-italic.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-600.woff2") format("woff2"),
+       url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-600.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-700.woff2") format("woff2"),
+       url($fontPath + "open-sans-v17-latin/open-sans-v17-latin-700.woff") format("woff");
+  font-display: swap;
+}
+
 // Main colors
 $reactorPrimary: #6db33f;
-$reactorTextColor: #34302d;
-$reactorBackgroundLight: #34302d;
+$reactorTextColor: #111;
+$reactorBackgroundLight: #191e1e;
+$reactorLinkColor: #086dc3;
+$reactorBorderLight: #ebf2f2;
+$reactorBgLight: #ebf2f2;
+
+// CSS custom properties for dark mode theming
+:root {
+  --bg: #fff;
+  --color: #111;
+  --border: #ebf2f2;
+  --border-highlight: #6d7579;
+  --footer-nav-color: #444;
+}
 
 // Duration effect
 $reactorDurationTransition: 0.2s;
 
 // Fonts
-$reactorFontMain: 'Varela Round', sans-serif;
-$reactorFontSpecial: 'Montserrat', sans-serif;
-$reactorFontSpecial2: 'Karla', 'Montserrat', sans-serif;
-$reactorFontSpecial3: "Varela Round",sans-serif;
+$reactorFontMain: "Open Sans", sans-serif;
+$reactorFontSpecial: "Metropolis", sans-serif;
 
 // Font Awesome
 @import 'font-awesome/font-awesome.scss';
@@ -49,6 +117,7 @@ $reactorFontSpecial3: "Varela Round",sans-serif;
 @import "support";
 @import "responsive";
 @import "button";
+@import "dark";
 
 // Key classes for documentation badges and displaying versions
 

@@ -1,0 +1,259 @@
+/*
+ * Copyright (c) 2011-2025 VMware Inc. or its affiliates, All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Dark mode overrides — applied via html.dark class set before first paint
+// to avoid flash of unstyled content.
+
+html.dark {
+  .img-light { display: none !important; }
+  .img-dark  { display: inline-block !important; }
+
+  --bg: #1b1f23;
+  --color: #fff;
+  --border: #2b2f33;
+  --border-highlight: #6d7579;
+  --footer-nav-color: rgba(255, 255, 255, 0.65);
+
+  body {
+    background-color: #1b1f23;
+    color: #fff;
+  }
+
+  a { color: #1f98ff; }
+
+  // Header
+  #header {
+    background: #1b1f23;
+    .heading { border-bottom-color: #2b2f33; }
+  }
+
+  #header #nav ul li a {
+    color: #fff;
+    &:hover {
+      background: #262a2d;
+      color: $reactorPrimary;
+    }
+  }
+  #header #nav ul li.active a { color: $reactorPrimary; }
+
+  .theme-toggler {
+    background: #41464b;
+    .moon { display: block; }
+    .sun  { display: none; }
+    .toggle-icon {
+      left: 13px;
+      background: #fff;
+      color: #1b1f23;
+    }
+  }
+
+  // Logo
+  .logo span.logo-text { color: #fff; }
+
+  // Welcome hero
+  section#welcome article {
+    color: #fff;
+    p { color: rgba(255,255,255,0.7); }
+  }
+
+  // Brands strip
+  section#brands {
+    background: #262a2d;
+    border-color: #2b2f33;
+    p { color: rgba(255,255,255,0.7); }
+    a { color: #1f98ff; }
+  }
+
+  // Key features
+  section#key-features article {
+    > div { border-top-color: #2b2f33; }
+    &.friendly-adoption { background: #1b1f23; }
+  }
+
+  // Page summary banner
+  .page-summary {
+    background: #262a2d;
+    border-bottom-color: #2b2f33;
+    .page-summary-content {
+      h1 { color: #fff; }
+      div.details { color: rgba(255,255,255,0.6); }
+    }
+  }
+
+  // Footer
+  #footer {
+    .footer-note { color: rgba(255,255,255,0.35); }
+    .footer-content-text {
+      color: rgba(255,255,255,0.4);
+      a { color: #1f98ff; }
+      .licence { color: rgba(255,255,255,0.25); }
+    }
+  }
+
+  // Code blocks
+  .code {
+    background-color: #262a2d;
+    border-color: #2b2f33;
+    color: #fff;
+  }
+
+  // Docs / project panels
+  div.panel {
+    background-color: #262a2d;
+    border-color: #2b2f33;
+    .panel-title { border-bottom-color: #2b2f33; }
+    .panel-content { background-color: #262a2d; }
+  }
+
+  // Version badges — keep them readable
+  span.version {
+    background: darken($reactorPrimary, 5%);
+    &.releasetrain { background: #3a3a3a; }
+    &.pre { background: darkorchid; }
+    &.releasetrain.eol { background: #3a3a3a; }
+    &.releasetrain.maintenance { background: #555; }
+  }
+
+  // Tables (table-2 class used in docs panels)
+  table.table-2 {
+    tr:nth-of-type(even),
+    tr:nth-of-type(odd) { background: #262a2d; }
+    tr { border-bottom-color: #2b2f33; }
+  }
+
+  // Support table — inline bgcolor attributes need !important to override
+  .suptable {
+    table {
+      background: #1b1f23 !important;
+      border-color: #2b2f33 !important;
+      thead, tfoot { background: #262a2d !important; }
+      thead tr, tfoot tr { background: #262a2d !important; }
+      tr { border-color: #2b2f33 !important; border-top-color: #2b2f33 !important; }
+      th, td { color: rgba(255,255,255,0.85) !important; background: transparent !important; }
+    }
+  }
+  .enterprise-support {
+    table {
+      background: #1b1f23 !important;
+      tr { border-color: #2b2f33 !important; border-top-color: #2b2f33 !important; }
+      th, td { color: rgba(255,255,255,0.85) !important; }
+    }
+    h3 { color: #fff; }
+    p { color: rgba(255,255,255,0.7); }
+  }
+
+  // Docs page — #main and #applications section
+  #main {
+    color: #fff;
+    section#applications {
+      article {
+        border-bottom-color: #2b2f33;
+        div.title {
+          h1 { color: #fff; }
+          p  { color: rgba(255,255,255,0.6); }
+        }
+        div.version table {
+          background: transparent;
+          border-color: #2b2f33;
+          tr { border-bottom-color: #2b2f33; background: transparent; }
+          td { color: rgba(255,255,255,0.8); }
+        }
+        div.github a, div.javadoc a, div.reference a { color: #1f98ff; }
+        div.github a span.fa, div.javadoc strong, div.reference strong { color: rgba(255,255,255,0.7); }
+      }
+    }
+    div.details {
+      color: rgba(255,255,255,0.7);
+      ul li { color: rgba(255,255,255,0.7); }
+    }
+  }
+
+  // Support and docs shared: .support, .project
+  .support {
+    color: #fff;
+    h1, h2, h3, h4, p { color: rgba(255,255,255,0.85); }
+    a { color: #1f98ff; }
+  }
+
+  .project {
+    h1 { color: #fff; }
+    p, ul { color: rgba(255,255,255,0.7); }
+  }
+
+  // General table overrides for docs.scss tables (no special class)
+  // The docs.scss sets table { background: #fff } which needs overriding
+  #main table,
+  .support table,
+  .project table {
+    background: #1b1f23 !important;
+    border-color: #2b2f33 !important;
+
+    thead, tfoot {
+      background: #262a2d !important;
+      tr { background: #262a2d !important; }
+      th, td { color: rgba(255,255,255,0.85) !important; }
+    }
+
+    tbody tr {
+      background: #1b1f23 !important;
+      &:nth-of-type(even) { background: #222629 !important; }
+    }
+
+    tr.even, tr.alt, tr:nth-of-type(even) { background: #222629 !important; }
+
+    th, td {
+      color: rgba(255,255,255,0.8) !important;
+      border-color: #2b2f33 !important;
+    }
+  }
+
+  // Docs page-specific: tbody th (used as row headers in asciidoc tables)
+  tbody tr th { background: #262a2d !important; color: rgba(255,255,255,0.85) !important; }
+
+  // Docs.scss sets hardcoded colors on various elements
+  .book, #main {
+    code { color: rgba(255,255,255,0.85); background: #262a2d; }
+    blockquote, blockquote p { color: rgba(255,255,255,0.7); border-left-color: #2b2f33; }
+    hr { border-color: #2b2f33; }
+    .sect1 + .sect1 { border-top-color: #2b2f33; }
+    #toc {
+      background: #262a2d !important;
+      border-color: #2b2f33 !important;
+      a { color: #1f98ff; }
+    }
+    .sidebarblock {
+      background: #262a2d;
+      border-color: #2b2f33;
+    }
+    .exampleblock > .content {
+      background: #222629;
+      border-color: #2b2f33;
+    }
+    .admonitionblock > table td.content {
+      border-left-color: #2b2f33;
+      color: rgba(255,255,255,0.7);
+    }
+  }
+
+  // Learn articles
+  .learn {
+    color: #fff;
+    article { color: rgba(255,255,255,0.85); }
+  }
+
+  // 404
+  section.page404 h1 { color: #fff; }
+}

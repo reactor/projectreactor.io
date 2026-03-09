@@ -17,7 +17,7 @@
 // General styles
 
 a {
-  color: $reactorPrimary;
+  color: $reactorLinkColor;
   text-decoration: none;
   &:hover { text-decoration: underline; }
 }
@@ -39,11 +39,11 @@ h1, h2, h3, h4 { font-family: $reactorFontSpecial }
 
 body {
   font: normal 16px/1.5em $reactorFontMain;
-  background-color: #f1f1f1;
-  color: $reactorTextColor;
+  background-color: var(--bg);
+  color: var(--color);
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased
+  -webkit-font-smoothing: antialiased;
 }
 
 // Size Application
@@ -53,64 +53,76 @@ body {
   margin: 0 auto;
 }
 
+// Logo
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  &:hover { text-decoration: none; }
+
+  svg {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    .logo-fill {
+      fill: $reactorPrimary;
+    }
+  }
+  span.logo-text {
+    font-family: $reactorFontSpecial;
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color);
+    strong {
+      color: $reactorPrimary;
+      font-weight: 400;
+    }
+  }
+}
+
 // Header
 
 #header {
-  border-top: 4px solid $reactorPrimary;
-  background: $reactorBackgroundLight;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
   .heading {
     @extend .container;
     @include clearfix();
-    position: relative;
-    max-width: 1100px;
-    // padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5em;
+    height: 80px;
+    border-bottom: 1px solid var(--border);
   }
+
   h1#logo {
-    margin: 7px 0 0 10px;
-    padding: 0;
-    float: left;
-    a {
-      display: block;
-      background: url(../img/logo-2x.png) no-repeat 0 0;
-      height: 40px;
-      width: 253px;
-      background-size: 253px 80px;
-      text-indent: -6000em;
-      margin: 8px 0;
-      &:hover {
-        strong{
-          opacity: 1;
-        }
-      }
-      strong {
-        display: block;
-        background: url(../img/logo-2x.png) no-repeat 0 -40px;
-        background-size: 253px 80px;
-        height: 40px;
-        width: 253px;
-        text-indent: -6000em;
-        margin: 8px 0;
-        transition-property: opacity;
-        transition-duration: $reactorDurationTransition;
-        opacity: 0;
-      }
-    }
-  }
-  #nav, #nav ul {
-    display: block;
-    font-family: $reactorFontSpecial;
     margin: 0;
     padding: 0;
+    line-height: 1;
   }
+
   #nav {
     @include clearfix();
-    float: right;
-    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+    font-family: $reactorFontSpecial;
   }
   #nav ul {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
     li {
       display: block;
-      float: left;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -118,28 +130,62 @@ body {
         display: none;
       }
       a {
-        color: white;
+        color: var(--color);
         text-decoration: none;
         font-weight: 500;
         display: block;
-        text-transform: uppercase;
-        font-size: 0.9em;
-        line-height: 71px;
-        margin: 0;
-        padding: 0 12px;
-        transition-property: background-color;
-        transition-duration: $reactorDurationTransition;
+        font-size: 1em;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color $reactorDurationTransition, color $reactorDurationTransition;
         &:hover {
-          background: $reactorPrimary;
+          background: $reactorBgLight;
+          color: $reactorPrimary;
+          text-decoration: none;
         }
       }
-      &:last-child {
-        border: 0 none;
-      }
-      &.active {
-        background: $reactorPrimary;
+      &.active a {
+        color: $reactorPrimary;
       }
     }
+  }
+}
+
+// Theme toggler — pill track with sliding icon circle (matches reactor-website)
+
+.theme-toggler {
+  display: inline-block;
+  height: 10px;
+  width: 36px;
+  background: #d7e7e7;
+  align-self: center;
+  position: relative;
+  border-radius: 5px;
+  font-size: 13px;
+  margin-left: 14px;
+  margin-right: 6px;
+  cursor: pointer;
+  user-select: none;
+
+  .moon { display: none; }
+  .sun  { display: block; }
+
+  .toggle-icon {
+    $s: 24px;
+    position: absolute;
+    top: -7px;
+    left: -1px;
+    display: block;
+    background: #111;
+    color: #fff;
+    width: $s;
+    height: $s;
+    border-radius: 12px;
+    transition: left 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
   }
 }
 
@@ -147,35 +193,68 @@ body {
 
 #footer {
   text-align: left;
-  background-color: $reactorBackgroundLight;
-  color: white;
+  background-color: var(--bg);
+  color: var(--color);
+  border-top: 1px solid var(--border);
+
   .footer-content {
-    background: #423e3c;
-    padding: 1em 0 1em;
+    background: var(--bg);
+    padding: 2em 0 1.5em;
   }
   .footer-note {
     text-align: center;
-    color: rgba(255,255,255,.3);
+    color: #888;
     display: block;
-    font-size: 0.9em;
-    padding: 0.4em 0;
+    font-size: 0.85em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--border);
   }
+  .footer-social {
+    @extend .container;
+    padding: 0.75em 1.5em 0.5em;
+    text-align: right;
+
+    .footer-social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color);
+      color: var(--bg);
+      font-size: 22px;
+      margin-left: 8px;
+      text-decoration: none;
+      transition: background-color $reactorDurationTransition, color $reactorDurationTransition;
+      &:hover {
+        background: $reactorPrimary;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+
   .footer-content-text {
     @include clearfix();
     @extend .container;
-    max-width: 1100px;
-    padding: 1em 0.5em;
+    padding: 1em 1.5em;
+    font-size: 0.85em;
+    color: #666;
+    a {
+      color: $reactorLinkColor;
+      &:hover { color: $reactorPrimary; text-decoration: underline; }
+    }
     .licence {
-      color: rgba(255,255,255,.3);
       display: block;
       font-size: 0.9em;
       padding-bottom: 0.4em;
+      color: #999;
     }
   }
   .row {
     @include clearfix();
     @extend .container;
-    max-width: 1100px;
     padding: 0 1.5em;
     nav {
       float: left;
@@ -186,22 +265,21 @@ body {
     margin: 0;
     padding: 0;
     a {
-      color: white;
-      //text-transform: uppercase;
+      color: var(--footer-nav-color);
       font-size: 0.9em;
       cursor: pointer;
+      &:hover { color: $reactorPrimary; text-decoration: none; }
     }
-  }
-  nav {
   }
   ul {
     li {
-      //display: inline;
       list-style: none;
+      padding: 3px 0;
       &.heading {
         font-weight: bold;
         text-transform: uppercase;
         color: $reactorPrimary;
+        margin-bottom: 6px;
       }
     }
   }
@@ -218,46 +296,46 @@ body {
 // Welcome
 
 section#welcome {
-  padding: 2.2em 0 3em;
-  //margin: 2em 0 2em;
-  text-align: left;
-  font-size: 1.2em;
-  height: 360px;
+  padding: 5em 0;
+  text-align: center;
+  background: var(--bg);
   font-family: $reactorFontSpecial;
-  background:  url(../img/homepage-bg.png) center 0 no-repeat rgb(147, 173, 160);
+
   article {
-    color: white;
-    text-align: center;
-    span.logo-reactor {
-      display: block;
-      margin-top: 80px;
-      margin-bottom: 60px;
-    }
+    @extend .container;
+    padding: 0 1.5em;
+    color: var(--color);
+
+    span.logo-reactor { display: none; }
+
     h1 {
-      color: white;
-      font: normal 1.8em/0.7em $reactorFontSpecial;
+      color: var(--color);
+      font-family: $reactorFontSpecial;
+      font-size: 3.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin: 0 0 0.6em;
       strong {
         display: inline;
-        font-weight: normal;
-        text-align: left;
-        background: rgba(52,48,45,.7);
-        font-size: 1.3em;
-        padding: 2px 10px;
+        font-weight: 500;
+        background: none;
+        font-size: 1em;
+        padding: 0;
       }
     }
-    a {
-      color: white;
-    }
+    a { color: $reactorLinkColor; }
     p {
-      font-weight: lighter;
-      line-height: 40px;
-      font-size: 20px;
-      max-width: 1000px;
+      font-family: $reactorFontMain;
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 720px;
       margin: 0 auto;
-      text-align: center;
+      color: #555;
       span {
-        background: rgba(52,48,45,.7);
-        padding: 8px 10px;
+        background: none;
+        padding: 0;
+        display: inline;
       }
     }
   }
@@ -268,7 +346,7 @@ section#welcome {
 section#applications {
   //@extend .container;
   padding: 1.5em 1em 1em;
-  font-family: $reactorFontSpecial3;
+  font-family: $reactorFontMain;
   //margin: 0 -1.5em;
 
   article {
@@ -290,7 +368,7 @@ section#applications {
       h1 {
         font-size: 1.5em;
         color: $reactorTextColor;
-        font-family: $reactorFontSpecial3;
+        font-family: $reactorFontMain;
         font-weight: bold;
         margin: 0;
       }
@@ -425,7 +503,7 @@ section#applications {
         border-radius: 3px;
         font-size: 10px;
         font-weight: bold;
-        padding: 1Px 4px 2px;
+        padding: 1px 4px 2px;
         line-height: 14px;
         a {
           color: white;
@@ -469,179 +547,94 @@ section#applications {
   }*/
 }
 
-span.logo-reactor {
-  display: block;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  background: url('../img/reactor.png') no-repeat 0 0;
-  background-size: 100px 100px;
-}
+.img-light { display: inline-block; }
+.img-dark  { display: none; }
 
-span.logo-io {
-  display: block;
-  margin: 0 auto;
-  width: 132px;
-  height: 100px;
-  background: url('../img/io.png') no-repeat 0 0;
-  background-size: 132px 100px;
-}
+section#brands {
+  background: $reactorBgLight;
+  color: var(--color);
+  font-family: $reactorFontMain;
+  padding: 3.5em 0 4em;
+  border-top: 1px solid $reactorBorderLight;
+  border-bottom: 1px solid $reactorBorderLight;
 
-
-span.logo-stream {
-  display: block;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  background: url('../img/stream.png') no-repeat 0 0;
-  background-size: 100px 100px;
-}
-
-span.logo-reactor {
-  display: block;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  background: url('../img/reactor.png') no-repeat 0 0;
-  background-size: 100px 100px;
+  div.row {
+    @extend .container;
+    @include clearfix();
+    display: flex;
+    gap: 2em;
+    padding: 0 1.5em;
+  }
+  article {
+    flex: 1;
+    text-align: center;
+    span.version { display: none; }
+    a { color: $reactorLinkColor; }
+    p {
+      margin: 0;
+      padding: 0 1.5em;
+      font-size: 1em;
+      line-height: 1.6;
+      color: #555;
+    }
+    h1 {
+      font-family: $reactorFontSpecial;
+      font-weight: 500;
+      line-height: 1.3;
+      font-size: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    span.icon {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 120px;
+      margin-bottom: 20px;
+      img {
+        max-width: 120px;
+        max-height: 120px;
+        width: auto;
+        height: auto;
+      }
+    }
+  }
 }
 
 section#key-features {
   article {
-    border-top: 1px solid #CCC;
-    font-family: $reactorFontSpecial3;
+    font-family: $reactorFontMain;
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;
-    &:first-child {
-      border-top: 0 none;
+    &:first-child > div { border-top: 0 none; }
+    > div {
+      @extend .container;
+      display: flex;
+      gap: 3em;
+      align-items: flex-start;
+      padding-top: 3em;
+      padding-bottom: 3em;
+      border-top: 2px solid var(--color);
     }
-    div {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 3.5em 0 4em;
-      padding-right: 350px;
-      padding-left: 20px;
-      position: relative;
-    }
-    h1 {
-      font-family: $reactorFontSpecial;
-      font-size: 30px;
-      line-height: 30px;
-      font-weight: 400;
-    }
-    span.icon {
-      position: absolute;
-      top: 70px;
-      right: 10px;
-
-    }
-    &.turbo-message-passing {
-      div {
-        background: url('../img/turbomessage-bg.jpg') no-repeat right 20px;
-        background-size: 446px 353px;
-      }
-      span.icon {
-        display: block;
-        width: 166px;
-        height: 166px;
-        right: 100px;
-        background: url('../img/clock.png') no-repeat right center;
-        background-size: 166px 166px;
-      }
-
-    }
-    &.friendly-adoption {
-      background: white;
-      div {
-        background: white url('../img/friendlyadoption-bg.jpg') no-repeat right;
-        background-size: 360px 391px;
-      }
-      //background: #ebf1e7;
-    }
-    &.use-reactor {
-      background-color: white;
-      padding: 2em 0;
-      div {
-        padding: 0;
-        text-align: center;
-        width: auto;
-        max-width: 1000px;
-        margin: 0 auto;
-        h1 {
-          margin: 0;
-          padding: 0;
-          font-size: 14px;
-          font-weight: bold;
-          padding-bottom: 0.5em;
-        }
-        p {
-          padding: 0;
-          margin: 0;
-        }
-        a {
-          padding: 0 10px;
-        }
+    .feature-title {
+      flex: 0 0 30%;
+      padding-left: 1.5em;
+      h1 {
+        font-family: $reactorFontSpecial;
+        font-size: 1.5em;
+        line-height: 1.2;
+        font-weight: 500;
+        margin: 0;
+        color: var(--color);
       }
     }
-    &.guardian-of-the-latency {
-      div {
-        background: url('../img/guardian-bg.jpg') no-repeat right center;
-        background-size: 520px 309px;
-      }
-
-      span.icon {
-        display: block;
-        width: 216px;
-        height: 140px;
-        right: 40px;
-        background: url('../img/cloudfoundry.png') no-repeat right center;
-        background-size: 216px 140px;
-      }
-
+    .feature-body {
+      flex: 0 0 50%;
+      p { margin: 0 0 0.8em; }
+      p:last-child { margin-bottom: 0; }
+      ul { padding-left: 1.5em; margin: 0.5em 0 0; }
     }
-  }
-}
-
-section#brands {
-  background: $reactorPrimary;
-  color: white;
-  font-family: $reactorFontSpecial3;
-  padding: 3.5em 0 5em;
-  div.row {
-    @extend .container;
-    @include clearfix();
-  }
-  article {
-    float: left;
-    width: 33%;
-    text-align: center;
-    span.version {
-      display: none;
-    }
-    a {
-      color: white;
-    }
-    p {
-      margin: 0;
-      padding: 0 2em;
-      font-size: 1.1em;
-    }
-    h1 {
-      text-transform: uppercase;
-      font-family: $reactorFontSpecial;
-      font-weight: 400;
-      line-height: 20px;
-      font-size: 25px;
-
-    }
-    span.icon {
-      display: block;
-      height: 100px;
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-    }
+    &.friendly-adoption { background: var(--bg); }
   }
 }
 
@@ -669,12 +662,13 @@ section.page404 {
 }
 
 .page-summary {
-  background: #dedede;
+  background: $reactorBgLight;
+  border-bottom: 1px solid $reactorBorderLight;
   margin-bottom: 0.5em;
   .page-summary-content {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 4em 0;
+    padding: 3em 0;
     .page-summary-wrap {
       padding-left: 2em;
       padding-right: 2em;
@@ -684,15 +678,13 @@ section.page404 {
       max-width: 700px;
       margin: 0;
       font-size: 1.5em;
-      color: $reactorTextColor;
+      color: var(--color);
       font-family: $reactorFontSpecial;
-      font-weight:bold;
+      font-weight: 500;
       a.link-github {
-        color: $reactorTextColor;
+        color: var(--color);
         margin-left: 10px;
-        span.fa {
-          font-size:  26px;
-        }
+        span.fa { font-size: 26px; }
         &:hover {
           text-decoration: none;
           color: $reactorPrimary;
@@ -701,8 +693,9 @@ section.page404 {
     }
     div.details {
       max-width: 700px;
-      font-family: $reactorFontSpecial3;
+      font-family: $reactorFontMain;
       padding: 0.4em 0 0 0;
+      color: #555;
     }
   }
 }
@@ -711,7 +704,7 @@ section.page404 {
   .project-content {
     padding: 0 2em;
     p, ul {
-      font-family: $reactorFontSpecial3;
+      font-family: $reactorFontMain;
       font-size: 0.9em;
     }
   }
@@ -737,7 +730,7 @@ section.page404 {
 div.panel {
   border: 1px solid $reactorTextColor;
   font-size: 0.9rem;
-  font-family: $reactorFontSpecial3;
+  font-family: $reactorFontMain;
   background-color: #f5f5f5;
   .panel-title {
     border-bottom: 1px solid $reactorTextColor;
@@ -756,7 +749,7 @@ div.panel {
 }
 
 table.table-2 {
-  font-family: $reactorFontSpecial3;
+  font-family: $reactorFontMain;
   width: 100%;
   margin: 0;
   border: 0 none;

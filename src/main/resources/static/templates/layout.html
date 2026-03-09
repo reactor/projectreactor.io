@@ -74,7 +74,19 @@
    th:replace="${description}"
   />
   <!--/* Common stylesheet */-->
-  <link href="/assets/css/reactor.css?v=2" media="all" rel="stylesheet" />
+  <link href="/assets/css/reactor.css?v=4" media="all" rel="stylesheet" />
+  <!--/* Dark mode: set class before first paint to avoid flash */-->
+  <script>
+   (function() {
+    try {
+     var saved = localStorage.getItem('theme');
+     var prefer = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+     if ((saved || prefer) === 'dark') {
+      document.documentElement.classList.add('dark');
+     }
+    } catch(e) {}
+   })();
+  </script>
   <!--/* Page-specific stylesheet(s) */-->
   <th:block th:replace="${links}" />
 
@@ -157,12 +169,30 @@
    <div class="application-main-content website">
     <div class="application-content">
      <header id="header">
-      <a href="#" data-toggle=".application-container" id="sidebar-toggle">
-       <span class="fa fa-bars"></span>
-      </a>
       <div class="heading">
        <h1 id="logo">
-        <a href="/"><strong>Project Reactor</strong></a>
+        <a href="/" class="logo">
+         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" aria-hidden="true">
+          <circle class="logo-fill" cx="248.8" cy="243.3" r="54.3"/>
+          <path class="logo-fill" d="M248.5,397.5c-63.2,0-122.7-15.8-167.5-44.5C35.5,324,10.5,285.1,10.5,243.6s25-80.3,70.5-109.4
+           c44.8-28.7,104.3-44.5,167.5-44.5s122.7,15.8,167.5,44.5c45.4,29.1,70.5,67.9,70.5,109.4S461.5,324,416,353
+           C371.2,381.7,311.7,397.5,248.5,397.5z M248.5,98.7c-126.3,0-229,65-229,144.9s102.7,144.9,229,144.9s229-65,229-144.9
+           S374.8,98.7,248.5,98.7z"/>
+          <path class="logo-fill" d="M183.8,463.8c-19.7,0-38.1-4.7-54.3-14.1C93.6,429,72.4,387.9,70,334c-2.4-53.1,13.7-112.6,45.3-167.3
+           c31.6-54.7,75-98.4,122.3-122.9c47.9-24.8,94.1-27.1,130-6.3c35.9,20.7,57.1,61.8,59.5,115.7
+           c2.4,53.1-13.7,112.6-45.3,167.3c-31.6,54.7-75,98.4-122.3,122.9C233.3,457,207.6,463.8,183.8,463.8z M313.1,32.4
+           c-22.3,0-46.6,6.5-71.5,19.4c-45.7,23.7-87.9,66.1-118.6,119.4c-30.8,53.3-46.4,111-44.1,162.4c2.3,50.7,21.9,89.2,55,108.3
+           c33.2,19.2,76.3,16.8,121.3-6.5c45.7-23.7,87.9-66.1,118.6-119.4c30.8-53.3,46.4-111,44.1-162.4c-2.3-50.7-21.9-89.2-55-108.3
+           C348.1,36.7,331.3,32.4,313.1,32.4z"/>
+          <path class="logo-fill" d="M313.2,463.8c-23.8,0-49.4-6.8-75.6-20.4c-47.2-24.5-90.7-68.1-122.3-122.9C83.6,265.8,67.6,206.4,70,153.2
+           c2.5-53.9,23.6-95,59.5-115.7c35.9-20.7,82.1-18.5,130,6.3c47.2,24.5,90.7,68.1,122.3,122.9c31.6,54.7,47.7,114.2,45.3,167.3
+           c-2.5,53.9-23.6,95-59.5,115.7C351.2,459.1,332.8,463.8,313.2,463.8z M183.9,32.4c-18.1,0-35,4.3-49.9,12.9
+           c-33.2,19.2-52.7,57.6-55,108.3C76.6,205.1,92.3,262.8,123,316c30.8,53.3,72.9,95.7,118.6,119.4c45.1,23.4,88.2,25.7,121.3,6.5
+           c33.2-19.2,52.7-57.6,55-108.3c2.3-51.5-13.3-109.1-44.1-162.4c-30.8-53.3-72.9-95.7-118.6-119.4
+           C230.5,38.9,206.2,32.4,183.9,32.4z"/>
+         </svg>
+         <span class="logo-text">Project <strong>Reactor</strong></span>
+        </a>
        </h1>
        <nav id="nav">
         <ul>
@@ -172,43 +202,16 @@
          <li th:class="${page == 'learn'}? 'active'">
           <a href="/learn">Learn</a>
          </li>
-         <li>
-          <a
-           href="https://github.com/reactor"
-           class="fa fa-github-alt"
-           target="_blank"
-           title="Github"
-           >&nbsp;</a
-          >
-         </li>
-         <li>
-          <a
-           href="https://gitter.im/reactor/reactor"
-           class="fa fa-group"
-           target="_blank"
-           title="Join the community chat on Gitter"
-           >&nbsp;</a
-          >
-         </li>
-         <li>
-          <a
-           href="https://twitter.com/projectreactor"
-           class="fa fa-twitter"
-           target="_blank"
-           title="Follow us on Twitter"
-           >&nbsp;</a
-          >
-         </li>
-         <li>
-          <a
-           href="https://stackoverflow.com/questions/tagged/project-reactor"
-           class="fa fa-stack-overflow"
-           target="_blank"
-           title="Ask questions on Stack Overflow"
-           >&nbsp;</a
-          >
+         <li th:class="${page == 'support'}? 'active'">
+          <a href="/support">Support</a>
          </li>
         </ul>
+        <label class="theme-toggler" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+         <span class="toggle-icon">
+          <span class="fa fa-moon-o moon"></span>
+          <span class="fa fa-sun-o sun"></span>
+         </span>
+        </label>
        </nav>
       </div>
      </header>
@@ -305,6 +308,17 @@
         </nav>
        </div>
       </div>
+      <div class="footer-social">
+       <a href="https://github.com/reactor/reactor" class="footer-social-btn" aria-label="GitHub" target="_blank" title="GitHub">
+        <span class="fa fa-github"></span>
+       </a>
+       <a href="https://stackoverflow.com/questions/tagged/project-reactor" class="footer-social-btn" aria-label="Stack Overflow" target="_blank" title="Stack Overflow">
+        <span class="fa fa-stack-overflow"></span>
+       </a>
+       <a href="https://gitter.im/reactor/reactor" class="footer-social-btn" aria-label="Gitter" target="_blank" title="Gitter">
+        <span class="fa fa-comments"></span>
+       </a>
+      </div>
       <div class="footer-content-text">
        <span class="licence"
         >Project Reactor regroups multiple open source projects licensed under
@@ -342,5 +356,15 @@
 -->
 
   <script src="assets/js/sidebar.js"></script>
+  <script>
+   (function() {
+    var toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function() {
+     var isDark = document.documentElement.classList.toggle('dark');
+     try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch(e) {}
+    });
+   })();
+  </script>
  </body>
 </html>

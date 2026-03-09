@@ -406,8 +406,11 @@ public final class Application {
 	}
 
 	private HttpServerResponse cssInterceptor(HttpServerResponse resp) {
-		if (resp.path().endsWith(".css"))
+		String path = resp.path();
+		if (path.endsWith(".css"))
 			resp.header("Content-Type", "text/css");
+		else if (path.endsWith(".svg"))
+			resp.header(HttpHeaderNames.CONTENT_TYPE, CONTENT_TYPE_IMAGE_SVG);
 		return resp;
 	}
 
