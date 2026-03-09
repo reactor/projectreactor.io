@@ -87,6 +87,8 @@ html.dark {
     border-bottom-color: #2b2f33;
     .page-summary-content {
       h1 { color: #fff; }
+      span.author { color: rgba(255,255,255,0.55); }
+      ul li { color: rgba(255,255,255,0.8); }
       div.details { color: rgba(255,255,255,0.6); }
     }
   }
@@ -182,6 +184,12 @@ html.dark {
         div.github a, div.javadoc a, div.reference a { color: #1f98ff; }
         div.github a span.fa, div.javadoc strong, div.reference strong { color: rgba(255,255,255,0.7); }
       }
+    }
+    &.book > .details {
+      background: #262a2d;
+      border-top-color: #2b2f33;
+      color: rgba(255,255,255,0.7);
+      ul li { color: rgba(255,255,255,0.7); }
     }
     div.details {
       color: rgba(255,255,255,0.7);

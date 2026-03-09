@@ -361,7 +361,7 @@ section#welcome {
 // Applications (documentations)
 
 section#applications {
-  padding: 1.5em 1em 1em;
+  padding: 1.5em 1.5em 1em;
   font-family: $reactorFontMain;
 
   article {
@@ -592,6 +592,31 @@ section#applications {
   }*/
 }
 
+#main.book > .details {
+  background: $reactorBgLight;
+  border-top: 1px solid $reactorBorderLight;
+  padding: 1.5em calc(50vw - 550px + 1.5em);
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  font-family: $reactorFontMain;
+  font-size: 1em;
+  color: var(--color);
+  p {
+    margin: 0 0 0.5em;
+    font-weight: 500;
+    font-size: 1.5em;
+    font-family: $reactorFontSpecial;
+  }
+  ul {
+    margin: 0;
+    padding-left: 1.5em;
+    li {
+      padding: 0.2em 0;
+      color: var(--color);
+    }
+  }
+}
+
 .img-light { display: inline-block; }
 .img-dark  { display: none; }
 
@@ -712,15 +737,15 @@ section.page404 {
   .page-summary-content {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3em 0;
+    padding: 2em 1.5em;
     .page-summary-wrap {
-      padding-left: 2em;
-      padding-right: 2em;
+      padding-left: 0;
+      padding-right: 0;
     }
     h1 {
       position: relative;
       max-width: 700px;
-      margin: 0;
+      margin: 0 0 0.5em;
       font-size: 1.5em;
       color: var(--color);
       font-family: $reactorFontSpecial;
@@ -733,6 +758,24 @@ section.page404 {
           text-decoration: none;
           color: $reactorPrimary;
         }
+      }
+    }
+    span.author {
+      display: block;
+      font-family: $reactorFontMain;
+      font-size: 1em;
+      color: #666;
+      margin-bottom: 1em;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        font-family: $reactorFontMain;
+        font-size: 0.95em;
+        padding: 0.25em 0;
+        color: var(--color);
       }
     }
     div.details {
