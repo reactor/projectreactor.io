@@ -213,6 +213,11 @@
          </span>
         </label>
        </nav>
+       <button class="hamburger" id="hamburger" data-toggle=".application-container" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+       </button>
       </div>
      </header>
 
@@ -293,9 +298,9 @@
   <script src="assets/js/sidebar.js"></script>
   <script>
    (function() {
-    var toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
-    toggle.addEventListener('click', function() {
+    document.body.addEventListener('click', function(e) {
+     var toggle = e.target.closest('.theme-toggler');
+     if (!toggle) return;
      var isDark = document.documentElement.classList.toggle('dark');
      try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch(e) {}
     });

@@ -64,9 +64,23 @@
       display: none;
     }
     h1#logo {
-      margin: 0 auto;
+      margin: 0;
       float: none;
     }
+    .hamburger {
+      display: flex;
+    }
+  }
+
+  #sidebar {
+    top: 80px;
+    left: -100%;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .application-container.open-sidebar #sidebar {
+    left: 0;
   }
 
   section#key-features article {

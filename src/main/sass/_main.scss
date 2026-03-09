@@ -149,6 +149,37 @@ body {
       }
     }
   }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 8px;
+    border-radius: 4px;
+    transition: background-color $reactorDurationTransition;
+
+    &:hover {
+      background: $reactorBgLight;
+    }
+
+    .bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--color);
+      border-radius: 2px;
+      transition: background-color $reactorDurationTransition;
+    }
+
+    &:hover .bar {
+      background: $reactorPrimary;
+    }
+  }
 }
 
 // Theme toggler — pill track with sliding icon circle (matches reactor-website)

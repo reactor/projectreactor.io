@@ -38,7 +38,8 @@ $(function(){
         }
     });
 
-    var uls = $("#nav").html();
-    $("#sidebar").html(uls);
+    var $clone = $("#nav").clone();
+    $clone.find("#theme-toggle").removeAttr("id");
+    $("#sidebar").html($clone.html());
 
 });
