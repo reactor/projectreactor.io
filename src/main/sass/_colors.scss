@@ -1,0 +1,88 @@
+/*
+ * Copyright (c) 2011-2025 VMware Inc. or its affiliates, All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// =============================================================================
+// Consolidated colour palette — shared with reactor-website
+//
+// reactor-website equivalent names are noted in comments for cross-reference.
+// =============================================================================
+
+// --- Brand / primary ---
+$reactorPrimary:        #6db33f;   // reactor-website: $secondaryColor
+$reactorPrimaryDark:    #6cb52d;   // reactor-website: logo strong colour (SVG .st0)
+$reactorHighlight:      #80ea6e;   // reactor-website: $highlightColor  (dark-mode hover green)
+
+// --- Text ---
+$reactorTextColor:      #111;      // reactor-website: $color
+$reactorTextWarm:       #34302d;   // reactor-website: Spring warm dark body text (learn/support/docs)
+$reactorTextMuted:      #555;      // secondary body copy
+$reactorTextLight:      #666;      // captions, copyright
+$reactorTextFaint:      #888;      // subdued labels
+$reactorTextSubtle:     #999;      // licence line, placeholders
+
+// --- Links ---
+$reactorLinkColor:      #086dc3;   // reactor-website: $linkColor / $blueColor (#06c ≈ same hue)
+$reactorLinkDark:       #1f98ff;   // reactor-website: dark-mode link colour
+
+// --- Backgrounds ---
+$reactorBgWhite:        #fff;      // reactor-website: $background
+$reactorBgLight:        #ebf2f2;   // reactor-website: $backgroundLight / $borderColorLight
+$reactorBgPanel:        #f5f5f5;   // panel / code block light background
+$reactorBgRow:          #f1f1f1;   // table alternate row
+$reactorBgTerminal:     #191e1e;   // reactor-website: .terminal / .wrapper background
+
+// --- Borders ---
+$reactorBorderLight:    #ebf2f2;   // reactor-website: $borderColorLight
+$reactorBorderColor:    #d9e9e9;   // reactor-website: $borderColor
+$reactorBorderMid:      #ccc;      // table borders, generic mid-grey border
+$reactorBorderHighlight: #6d7579;  // reactor-website: --borderHighlight / $inputBorder-ish
+
+// --- Theme-toggler track ---
+$reactorToggleTrack:    #d7e7e7;   // both sites: .theme-toggler background (light mode)
+
+// --- Dark mode palette ---
+$reactorDarkBg:         #1b1f23;   // reactor-website: --bg (dark)
+$reactorDarkBgElevated: #262a2d;   // reactor-website: elevated surface (cards, code blocks)
+$reactorDarkBgHover:    #1f2327;   // reactor-website: hover state on dark cards
+$reactorDarkBgAlt:      #222629;   // table even rows in dark mode
+$reactorDarkBorder:     #2b2f33;   // reactor-website: --border (dark)
+$reactorDarkToggle:     #41464b;   // reactor-website: .theme-toggler (dark mode track)
+
+// --- Button / UI chrome ---
+$reactorBtnDefault:     #e4e8ea;   // .btn-default background
+$reactorBtnDefaultText: #444;      // .btn-default text
+
+// --- Terminal colours (used in reactor-website .terminal) ---
+$reactorTerminalBlue:   #85d9eb;
+$reactorTerminalGreen:  #56e27a;
+$reactorTerminalLime:   #d4f088;
+$reactorTerminalCircle: #cccccc;
+$reactorTerminalRed:    #ff3333;   // x-circle (close button)
+
+// --- Release-calendar status colours (reactor-website _support / _calendar-releases) ---
+$reactorCalActive:      #99e67d;   // $active  — OSS support
+$reactorCalMigrate:     #ffe88e;   // $migrate — commercial/enterprise support
+$reactorCalFuture:      #c1edff;   // $future  — upcoming
+$reactorCalDefault:     #ebf2f2;   // default legend swatch
+
+
+// --- CSS custom properties (light mode defaults) ---
+:root {
+  --bg:               #{$reactorBgWhite};
+  --color:            #{$reactorTextColor};
+  --border:           #{$reactorBorderLight};
+  --border-highlight: #{$reactorBorderHighlight};
+}

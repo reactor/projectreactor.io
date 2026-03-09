@@ -82,21 +82,11 @@ $fontPath: "/assets/fonts/";
   font-display: swap;
 }
 
-// Main colors
-$reactorPrimary: #6db33f;
-$reactorTextColor: #111;
-$reactorBackgroundLight: #191e1e;
-$reactorLinkColor: #086dc3;
-$reactorBorderLight: #ebf2f2;
-$reactorBgLight: #ebf2f2;
+// Colours — consolidated palette shared with reactor-website
+@import 'colors';
 
-// CSS custom properties for dark mode theming
-:root {
-  --bg: #fff;
-  --color: #111;
-  --border: #ebf2f2;
-  --border-highlight: #6d7579;
-}
+// Aliases kept for backward compat with existing partials
+$reactorBackgroundLight: $reactorBgTerminal;
 
 // Duration effect
 $reactorDurationTransition: 0.2s;

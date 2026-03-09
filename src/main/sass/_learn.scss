@@ -23,7 +23,7 @@
   //padding: 0 3.5em;
   @include clearfix();
   padding: 1.5em 0;
-  color: #34302d;
+  color: $reactorTextWarm;
   margin: 0 auto;
 
   a {
@@ -44,7 +44,7 @@
 
   article {
     line-height: 1.45em;
-    color: #34302d;
+    color: $reactorTextWarm;
     padding: 1em 5em 1em 7em;
     font-family: $reactorFontMain;
     p {

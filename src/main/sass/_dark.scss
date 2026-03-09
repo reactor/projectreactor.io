@@ -21,72 +21,72 @@ html.dark {
   .img-light { display: none !important; }
   .img-dark  { display: inline-block !important; }
 
-  --bg: #1b1f23;
-  --color: #fff;
-  --border: #2b2f33;
-  --border-highlight: #6d7579;
+  --bg:               #{$reactorDarkBg};
+  --color:            #{$reactorBgWhite};
+  --border:           #{$reactorDarkBorder};
+  --border-highlight: #{$reactorBorderHighlight};
   body {
-    background-color: #1b1f23;
-    color: #fff;
+    background-color: $reactorDarkBg;
+    color: $reactorBgWhite;
   }
 
-  a { color: #1f98ff; }
+  a { color: $reactorLinkDark; }
 
   // Header
   #header {
-    background: #1b1f23;
-    .heading { border-bottom-color: #2b2f33; }
+    background: $reactorDarkBg;
+    .heading { border-bottom-color: $reactorDarkBorder; }
   }
 
   #header #nav ul li a {
-    color: #fff;
+    color: $reactorBgWhite;
     &:hover {
-      background: #262a2d;
+      background: $reactorDarkBgElevated;
       color: $reactorPrimary;
     }
   }
   #header #nav ul li.active a { color: $reactorPrimary; }
 
   .theme-toggler {
-    background: #41464b;
+    background: $reactorDarkToggle;
     .moon { display: block; }
     .sun  { display: none; }
     .toggle-icon {
       left: 13px;
-      background: #fff;
-      color: #1b1f23;
+      background: $reactorBgWhite;
+      color: $reactorDarkBg;
     }
   }
 
   // Logo
-  .logo span.logo-text { color: #fff; }
+  .logo span.logo-text { color: $reactorBgWhite; }
 
   // Welcome hero
   section#welcome article {
-    color: #fff;
+    color: $reactorBgWhite;
     p { color: rgba(255,255,255,0.7); }
   }
 
   // Brands strip
   section#brands {
-    background: #262a2d;
-    border-color: #2b2f33;
+    background: $reactorDarkBgElevated;
+    border-color: $reactorDarkBorder;
     p { color: rgba(255,255,255,0.7); }
-    a { color: #1f98ff; }
+    a { color: $reactorLinkDark; }
   }
 
   // Key features
   section#key-features article {
-    > div { border-top-color: #2b2f33; }
-    &.friendly-adoption { background: #1b1f23; }
+    > div { border-top-color: $reactorDarkBorder; }
+    &.friendly-adoption { background: $reactorDarkBg; }
   }
 
   // Page summary banner
   .page-summary {
-    background: #262a2d;
-    border-bottom-color: #2b2f33;
+    background: $reactorDarkBgElevated;
+    border-bottom-color: $reactorDarkBorder;
     .page-summary-content {
-      h1 { color: #fff; }
+      h1 { color: $reactorBgWhite; }
       span.author { color: rgba(255,255,255,0.55); }
       ul li { color: rgba(255,255,255,0.8); }
       div.details { color: rgba(255,255,255,0.6); }
@@ -107,28 +107,28 @@ html.dark {
   #footer {
     .footer-copyright {
       color: rgba(255,255,255,0.4);
-      a { color: #1f98ff; }
-      .ot-sdk-show-settings { color: #1f98ff; }
+      a { color: $reactorLinkDark; }
+      .ot-sdk-show-settings { color: $reactorLinkDark; }
     }
     .footer-licence { color: rgba(255,255,255,0.25); }
   }
 
   // Code blocks
   .code {
-    background-color: #262a2d;
-    border-color: #2b2f33;
-    color: #fff;
+    background-color: $reactorDarkBgElevated;
+    border-color: $reactorDarkBorder;
+    color: $reactorBgWhite;
   }
 
   // Docs / project panels
   div.panel {
-    background-color: #262a2d;
-    border-color: #2b2f33;
-    .panel-title { border-bottom-color: #2b2f33; }
-    .panel-content { background-color: #262a2d; }
+    background-color: $reactorDarkBgElevated;
+    border-color: $reactorDarkBorder;
+    .panel-title { border-bottom-color: $reactorDarkBorder; }
+    .panel-content { background-color: $reactorDarkBgElevated; }
   }
 
-  // Version badges — keep them readable
+  // Version badges — keep them readable on dark backgrounds
   span.version {
     background: darken($reactorPrimary, 5%);
     &.releasetrain { background: #3a3a3a; }
@@ -140,54 +140,54 @@ html.dark {
   // Tables (table-2 class used in docs panels)
   table.table-2 {
     tr:nth-of-type(even),
-    tr:nth-of-type(odd) { background: #262a2d; }
-    tr { border-bottom-color: #2b2f33; }
+    tr:nth-of-type(odd) { background: $reactorDarkBgElevated; }
+    tr { border-bottom-color: $reactorDarkBorder; }
   }
 
   // Support table — inline bgcolor attributes need !important to override
   .suptable {
     table {
-      background: #1b1f23 !important;
-      border-color: #2b2f33 !important;
-      thead, tfoot { background: #262a2d !important; }
-      thead tr, tfoot tr { background: #262a2d !important; }
-      tr { border-color: #2b2f33 !important; border-top-color: #2b2f33 !important; }
+      background: $reactorDarkBg !important;
+      border-color: $reactorDarkBorder !important;
+      thead, tfoot { background: $reactorDarkBgElevated !important; }
+      thead tr, tfoot tr { background: $reactorDarkBgElevated !important; }
+      tr { border-color: $reactorDarkBorder !important; border-top-color: $reactorDarkBorder !important; }
       th, td { color: rgba(255,255,255,0.85) !important; background: transparent !important; }
     }
   }
   .enterprise-support {
     table {
-      background: #1b1f23 !important;
-      tr { border-color: #2b2f33 !important; border-top-color: #2b2f33 !important; }
+      background: $reactorDarkBg !important;
+      tr { border-color: $reactorDarkBorder !important; border-top-color: $reactorDarkBorder !important; }
       th, td { color: rgba(255,255,255,0.85) !important; }
     }
-    h3 { color: #fff; }
+    h3 { color: $reactorBgWhite; }
     p { color: rgba(255,255,255,0.7); }
   }
 
   // Docs page — #main and #applications section
   #main {
-    color: #fff;
+    color: $reactorBgWhite;
     section#applications {
       article {
-        border-bottom-color: #2b2f33;
+        border-bottom-color: $reactorDarkBorder;
         div.title {
-          h1 { color: #fff; }
+          h1 { color: $reactorBgWhite; }
           p  { color: rgba(255,255,255,0.6); }
         }
         div.version table {
           background: transparent;
-          border-color: #2b2f33;
-          tr { border-bottom-color: #2b2f33; background: transparent; }
+          border-color: $reactorDarkBorder;
+          tr { border-bottom-color: $reactorDarkBorder; background: transparent; }
           td { color: rgba(255,255,255,0.8); }
         }
-        div.github a, div.javadoc a, div.reference a { color: #1f98ff; }
+        div.github a, div.javadoc a, div.reference a { color: $reactorLinkDark; }
         div.github a span.fa, div.javadoc strong, div.reference strong { color: rgba(255,255,255,0.7); }
       }
     }
     &.book > .details {
-      background: #262a2d;
-      border-top-color: #2b2f33;
+      background: $reactorDarkBgElevated;
+      border-top-color: $reactorDarkBorder;
       color: rgba(255,255,255,0.7);
       ul li { color: rgba(255,255,255,0.7); }
     }
@@ -199,77 +199,77 @@ html.dark {
 
   // Support and docs shared: .support, .project
   .support {
-    color: #fff;
+    color: $reactorBgWhite;
     h1, h2, h3, h4, p { color: rgba(255,255,255,0.85); }
-    a { color: #1f98ff; }
+    a { color: $reactorLinkDark; }
   }
 
   .project {
-    h1 { color: #fff; }
+    h1 { color: $reactorBgWhite; }
     p, ul { color: rgba(255,255,255,0.7); }
   }
 
   // General table overrides for docs.scss tables (no special class)
-  // The docs.scss sets table { background: #fff } which needs overriding
+  // The docs.scss sets table { background: white } which needs overriding
   #main table,
   .support table,
   .project table {
-    background: #1b1f23 !important;
-    border-color: #2b2f33 !important;
+    background: $reactorDarkBg !important;
+    border-color: $reactorDarkBorder !important;
 
     thead, tfoot {
-      background: #262a2d !important;
-      tr { background: #262a2d !important; }
+      background: $reactorDarkBgElevated !important;
+      tr { background: $reactorDarkBgElevated !important; }
       th, td { color: rgba(255,255,255,0.85) !important; }
     }
 
     tbody tr {
-      background: #1b1f23 !important;
-      &:nth-of-type(even) { background: #222629 !important; }
+      background: $reactorDarkBg !important;
+      &:nth-of-type(even) { background: $reactorDarkBgAlt !important; }
     }
 
-    tr.even, tr.alt, tr:nth-of-type(even) { background: #222629 !important; }
+    tr.even, tr.alt, tr:nth-of-type(even) { background: $reactorDarkBgAlt !important; }
 
     th, td {
       color: rgba(255,255,255,0.8) !important;
-      border-color: #2b2f33 !important;
+      border-color: $reactorDarkBorder !important;
     }
   }
 
   // Docs page-specific: tbody th (used as row headers in asciidoc tables)
-  tbody tr th { background: #262a2d !important; color: rgba(255,255,255,0.85) !important; }
+  tbody tr th { background: $reactorDarkBgElevated !important; color: rgba(255,255,255,0.85) !important; }
 
   // Docs.scss sets hardcoded colors on various elements
   .book, #main {
-    code { color: rgba(255,255,255,0.85); background: #262a2d; }
-    blockquote, blockquote p { color: rgba(255,255,255,0.7); border-left-color: #2b2f33; }
-    hr { border-color: #2b2f33; }
-    .sect1 + .sect1 { border-top-color: #2b2f33; }
+    code { color: rgba(255,255,255,0.85); background: $reactorDarkBgElevated; }
+    blockquote, blockquote p { color: rgba(255,255,255,0.7); border-left-color: $reactorDarkBorder; }
+    hr { border-color: $reactorDarkBorder; }
+    .sect1 + .sect1 { border-top-color: $reactorDarkBorder; }
     #toc {
-      background: #262a2d !important;
-      border-color: #2b2f33 !important;
-      a { color: #1f98ff; }
+      background: $reactorDarkBgElevated !important;
+      border-color: $reactorDarkBorder !important;
+      a { color: $reactorLinkDark; }
     }
     .sidebarblock {
-      background: #262a2d;
-      border-color: #2b2f33;
+      background: $reactorDarkBgElevated;
+      border-color: $reactorDarkBorder;
     }
     .exampleblock > .content {
-      background: #222629;
-      border-color: #2b2f33;
+      background: $reactorDarkBgAlt;
+      border-color: $reactorDarkBorder;
     }
     .admonitionblock > table td.content {
-      border-left-color: #2b2f33;
+      border-left-color: $reactorDarkBorder;
       color: rgba(255,255,255,0.7);
     }
   }
 
   // Learn articles
   .learn {
-    color: #fff;
+    color: $reactorBgWhite;
     article { color: rgba(255,255,255,0.85); }
   }
 
   // 404
-  section.page404 h1 { color: #fff; }
+  section.page404 h1 { color: $reactorBgWhite; }
 }

@@ -11,7 +11,7 @@ $btn-border-radius: 3px;
 $font-size-base: 15px;
 $line-height: 15px;
 
-$btn-primary-color: #fff !default;
+$btn-primary-color: $reactorBgWhite !default;
 $btn-primary-bg: $reactorPrimary;
 $btn-primary-border: $reactorPrimary;
 
@@ -109,12 +109,12 @@ $btn-primary-border: $reactorPrimary;
   &:active,
   &.active,
   .open > &.dropdown-toggle {
-    color: #fff;
+    color: $reactorBgWhite;
     background-color: $color;
     border-color: $color;
   }
   @include hover {
-    color: #fff;
+    color: $reactorBgWhite;
     background-color: $color;
     border-color: $color;
   }
@@ -203,5 +203,5 @@ fieldset[disabled] a.btn {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 .btn-default {
-  @include button-variant(#444, #e4e8ea, #e4e8ea);
+  @include button-variant($reactorBtnDefaultText, $reactorBtnDefault, $reactorBtnDefault);
 }

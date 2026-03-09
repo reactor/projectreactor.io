@@ -35,7 +35,7 @@
   transition:  background 0.3s ease-in-out;
 }
 #sidebar ul li:hover a {
-  background: #494542;
+  background: $reactorBgTerminal;
 }
 .application-main-content #sidebar-toggle {
   display: none;

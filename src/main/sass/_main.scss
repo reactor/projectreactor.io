@@ -24,16 +24,6 @@ a {
 
 h1, h2, h3, h4 { font-family: $reactorFontSpecial }
 
-::-moz-selection {
-  background: $reactorPrimary;
-  color: white;
-  text-shadow: 0 0 0 white;
-}
-::selection {
-  background: $reactorPrimary;
-  color: white;
-  text-shadow: 0 0 0 white;
-}
 
 // Application
 
@@ -191,7 +181,7 @@ body {
   display: inline-block;
   height: 10px;
   width: 36px;
-  background: #d7e7e7;
+  background: $reactorToggleTrack;
   align-self: center;
   position: relative;
   border-radius: 5px;
@@ -210,8 +200,8 @@ body {
     top: -7px;
     left: -1px;
     display: block;
-    background: #111;
-    color: #fff;
+    background: $reactorTextColor;
+    color: $reactorBgWhite;
     width: $s;
     height: $s;
     border-radius: 12px;
@@ -274,7 +264,7 @@ body {
       transition: background-color $reactorDurationTransition, color $reactorDurationTransition;
       &:hover {
         background: $reactorPrimary;
-        color: #fff;
+        color: $reactorBgWhite;
         text-decoration: none;
       }
     }
@@ -282,7 +272,7 @@ body {
 
   .footer-copyright {
     font-size: 0.85em;
-    color: #666;
+    color: $reactorTextLight;
     margin: 0 0 0.4em;
     a {
       color: $reactorLinkColor;
@@ -297,7 +287,7 @@ body {
 
   .footer-licence {
     font-size: 0.85em;
-    color: #999;
+    color: $reactorTextSubtle;
     margin: 0;
   }
 }
@@ -348,7 +338,7 @@ section#welcome {
       line-height: 1.8;
       max-width: 720px;
       margin: 0 auto;
-      color: #555;
+      color: $reactorTextMuted;
       span {
         background: none;
         padding: 0;
@@ -389,7 +379,7 @@ section#applications {
       }
       p {
         font-size: 1em;
-        color: #888;
+        color: $reactorTextFaint;
         margin: 0;
       }
       > a {
@@ -645,7 +635,7 @@ section#brands {
       padding: 0 1.5em;
       font-size: 1em;
       line-height: 1.6;
-      color: #555;
+      color: $reactorTextMuted;
     }
     h1 {
       font-family: $reactorFontSpecial;
@@ -764,7 +754,7 @@ section.page404 {
       display: block;
       font-family: $reactorFontMain;
       font-size: 1em;
-      color: #666;
+      color: $reactorTextLight;
       margin-bottom: 1em;
     }
     ul {
@@ -782,7 +772,7 @@ section.page404 {
       max-width: 700px;
       font-family: $reactorFontMain;
       padding: 0.4em 0 0 0;
-      color: #555;
+      color: $reactorTextMuted;
       a {
         color: $reactorLinkColor;
         &:hover { text-decoration: underline; }
@@ -822,7 +812,7 @@ div.panel {
   border: 1px solid $reactorTextColor;
   font-size: 0.9rem;
   font-family: $reactorFontMain;
-  background-color: #f5f5f5;
+  background-color: $reactorBgPanel;
   .panel-title {
     border-bottom: 1px solid $reactorTextColor;
     padding: 1em 1em;
@@ -831,9 +821,9 @@ div.panel {
   .panel-content {
     padding: 1em;
     .table-2 {
-      background-color: #f5f5f5;
+      background-color: $reactorBgPanel;
       tr:nth-of-type(even), tr:nth-of-type(odd) {
-        background-color: #f5f5f5;
+        background-color: $reactorBgPanel;
       }
     }
   }
@@ -852,10 +842,10 @@ table.table-2 {
     }
   }
   tr:nth-of-type(even), tr:nth-of-type(odd) {
-    background: #f1f1f1;
+    background: $reactorBgRow;
   }
   tr {
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid $reactorBorderMid;
     &:last-child {
       border-bottom: 0 none;
     }
@@ -864,8 +854,8 @@ table.table-2 {
 
 .code {
   margin: 0.5em 0 1em;
-  border: 1px solid #CCC;
-  background-color: #f5f5f5;
+  border: 1px solid $reactorBorderMid;
+  background-color: $reactorBgPanel;
   padding: 1em;
   font-size: 13px;
 }
