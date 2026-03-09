@@ -91,6 +91,16 @@ html.dark {
     }
   }
 
+  // Docs page
+  section#applications {
+    article {
+      div.title p { color: rgba(255,255,255,0.45); }
+    }
+  }
+  .page-summary {
+    div.details { color: rgba(255,255,255,0.5); }
+  }
+
   // Footer
   #footer {
     .footer-copyright {

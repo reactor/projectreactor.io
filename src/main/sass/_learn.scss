@@ -27,7 +27,7 @@
   margin: 0 auto;
 
   a {
-    color: $reactorPrimary;
+    color: $reactorLinkColor;
     text-decoration: none;
     &:hover { text-decoration: underline; }
   }
@@ -68,8 +68,8 @@
     }
     .link {
       padding-top: 0.2em;
-      a {
-        color: $reactorPrimary;
+        a {
+        color: $reactorLinkColor;
         position: relative;
         font-weight:bold;
         .fa {

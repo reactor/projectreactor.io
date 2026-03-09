@@ -286,12 +286,12 @@ body {
     margin: 0 0 0.4em;
     a {
       color: $reactorLinkColor;
-      &:hover { color: $reactorPrimary; text-decoration: underline; }
+      &:hover { text-decoration: underline; }
     }
     .ot-sdk-show-settings {
       color: $reactorLinkColor;
       cursor: pointer;
-      &:hover { color: $reactorPrimary; text-decoration: underline; }
+      &:hover { text-decoration: underline; }
     }
   }
 
@@ -361,19 +361,17 @@ section#welcome {
 // Applications (documentations)
 
 section#applications {
-  //@extend .container;
   padding: 1.5em 1em 1em;
   font-family: $reactorFontMain;
-  //margin: 0 -1.5em;
 
   article {
     @include clearfix();
-    border-bottom:1px solid #CCC;
+    border-bottom: 1px solid var(--border);
     padding: 1.4em 0;
     font-size: 1em;
 
     &:last-child {
-      border-bottom:0 none;
+      border-bottom: 0 none;
     }
 
     div.title, div.github, div.javadoc, div.reference {
@@ -384,14 +382,20 @@ section#applications {
 
       h1 {
         font-size: 1.5em;
-        color: $reactorTextColor;
-        font-family: $reactorFontMain;
-        font-weight: bold;
+        color: var(--color);
+        font-family: $reactorFontSpecial;
+        font-weight: 500;
         margin: 0;
       }
       p {
         font-size: 1em;
+        color: #888;
         margin: 0;
+      }
+      > a {
+        font-size: 0.85em;
+        color: $reactorLinkColor;
+        &:hover { text-decoration: underline; }
       }
     }
     div.version {
@@ -400,6 +404,20 @@ section#applications {
       table {
         text-align: left;
         width: 100%;
+        border-collapse: collapse;
+        background: transparent;
+        border: none;
+        margin: 0;
+        td {
+          padding: 2px 6px 2px 0;
+          color: var(--color);
+          background: transparent;
+          border: none;
+        }
+        a {
+          color: $reactorLinkColor;
+          &:hover { text-decoration: underline; }
+        }
       }
     }
     div.github, div.npm, div.nuget {
@@ -411,11 +429,11 @@ section#applications {
         width: 100px;
         padding: 5px 0;
         margin: 0 auto;
-        color: $reactorTextColor;
+        color: var(--color);
         span.fa {
           display: block;
           text-align: center;
-          font-size:  26px;
+          font-size: 26px;
         }
         &:hover {
           text-decoration: none;
@@ -426,12 +444,22 @@ section#applications {
     div.javadoc {
       width: 20%;
       text-align: center;
-      padding-top:5px;
+      padding-top: 5px;
+      color: var(--color);
+      a {
+        color: $reactorLinkColor;
+        &:hover { text-decoration: underline; }
+      }
     }
     div.reference {
       width: 20%;
       text-align: center;
-      padding-top:5px;
+      padding-top: 5px;
+      color: var(--color);
+      a {
+        color: $reactorLinkColor;
+        &:hover { text-decoration: underline; }
+      }
     }
   }
 
@@ -712,6 +740,10 @@ section.page404 {
       font-family: $reactorFontMain;
       padding: 0.4em 0 0 0;
       color: #555;
+      a {
+        color: $reactorLinkColor;
+        &:hover { text-decoration: underline; }
+      }
     }
   }
 }

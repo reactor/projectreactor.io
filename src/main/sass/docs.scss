@@ -304,13 +304,13 @@ div, dl, dt, dd, ul, ol, li, h1, h2, h3, #toctitle, .sidebarblock > .content > .
 }
 
 a {
-  color: #71b741;
+  color: #086dc3;
   line-height: inherit;
   text-decoration: none;
 }
 
 a:hover, a:focus {
-  color: #71b741;
+  color: #086dc3;
   text-decoration: underline;
 }
 
@@ -2339,4 +2339,51 @@ table.CodeRay td.code > pre {
   color: #34302d;
   font-family: 'Montserrat', sans-serif;
   margin: 0 auto;
+}
+
+// Versions list page
+section#versions {
+  max-width: 1100px;
+  margin: 2em auto;
+  padding: 0 1.5em;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    background: var(--bg);
+    color: var(--color);
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.95em;
+    margin-bottom: 0;
+
+    tr {
+      border-bottom: 1px solid var(--border);
+      &:last-child { border-bottom: none; }
+    }
+
+    td {
+      padding: 0.5em 0.75em;
+      color: var(--color);
+      background: var(--bg);
+      vertical-align: middle;
+
+      a {
+        color: #086dc3;
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+      }
+    }
+
+    td.versionListGen {
+      font-family: "Metropolis", sans-serif;
+      font-weight: 500;
+      font-size: 1em;
+      color: #6db33f;
+      padding-top: 1.5em;
+      padding-bottom: 0.4em;
+      border-bottom: 2px solid var(--color);
+      background: var(--bg);
+    }
+  }
 }
