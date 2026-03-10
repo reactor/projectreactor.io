@@ -16,6 +16,13 @@
 
 // Dark mode overrides — applied via html.dark class set before first paint
 // to avoid flash of unstyled content.
+//
+// Text colour scale aligned with reactor-website _dark.scss:
+//   #fff                    — all primary text (body, headings, paragraphs, labels)
+//   rgba(255,255,255,0.7)   — genuinely secondary: captions, icon labels, table icon cols
+//   rgba(255,255,255,0.6)   — footer copyright line (reactor-website: hsla(0,0%,100%,0.6))
+//   rgba(255,255,255,0.3)   — footer licence / EOL-row text
+//   rgba(255,255,255,0.5)   — dim column-header labels (keeps them readable but subdued)
 
 html.dark {
   .img-light { display: none !important; }
@@ -31,6 +38,8 @@ html.dark {
   }
 
   a { color: $reactorLinkDark; }
+
+  strong { color: $reactorBgWhite; }
 
   code {
     background-color: $reactorDarkBgElevated;
@@ -75,14 +84,14 @@ html.dark {
   // Welcome hero
   section#welcome article {
     color: $reactorBgWhite;
-    p { color: rgba(255,255,255,0.7); }
+    p { color: $reactorBgWhite; }
   }
 
   // Brands strip
   section#brands {
     background: $reactorDarkBgElevated;
     border-color: $reactorDarkBorder;
-    p { color: rgba(255,255,255,0.7); }
+    p { color: $reactorBgWhite; }
     a { color: $reactorLinkDark; }
   }
 
@@ -98,30 +107,20 @@ html.dark {
     border-bottom-color: $reactorDarkBorder;
     .page-summary-content {
       h1 { color: $reactorBgWhite; }
-      span.author { color: rgba(255,255,255,0.55); }
-      ul li { color: rgba(255,255,255,0.8); }
-      div.details { color: rgba(255,255,255,0.6); }
+      span.author { color: $reactorBgWhite; }
+      ul li { color: $reactorBgWhite; }
+      div.details { color: $reactorBgWhite; }
     }
   }
 
-  // Docs page
-  section#applications {
-    article {
-      div.title p { color: rgba(255,255,255,0.45); }
-    }
-  }
-  .page-summary {
-    div.details { color: rgba(255,255,255,0.5); }
-  }
-
-  // Footer
+  // Footer — matches reactor-website: .footer color: hsla(0,0%,100%,0.6)
   #footer {
     .footer-copyright {
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.6);
       a { color: $reactorLinkDark; }
       .ot-sdk-show-settings { color: $reactorLinkDark; }
     }
-    .footer-licence { color: rgba(255,255,255,0.25); }
+    .footer-licence { color: rgba(255,255,255,0.3); }
   }
 
   // Code blocks
@@ -171,7 +170,7 @@ html.dark {
     thead th { color: rgba(255,255,255,0.5); }
 
     tbody td {
-      color: rgba(255,255,255,0.85);
+      color: $reactorBgWhite;
       border-bottom-color: $reactorDarkBorder;
     }
   }
@@ -182,7 +181,7 @@ html.dark {
     td { border-bottom-color: $reactorDarkBorder !important; }
   }
 
-  .support-lib-name { color: rgba(255,255,255,0.45); }
+  .support-lib-name { color: rgba(255,255,255,0.5); }
 
   .support-row {
     &--eol td { color: rgba(255,255,255,0.3); }
@@ -216,8 +215,8 @@ html.dark {
     border-color: $reactorDarkBorder;
     background: $reactorDarkBgElevated;
 
-    strong { color: rgba(255,255,255,0.85); }
-    p { color: rgba(255,255,255,0.5); }
+    strong { color: $reactorBgWhite; }
+    p { color: $reactorBgWhite; }
     a { color: $reactorLinkDark; }
   }
 
@@ -229,13 +228,13 @@ html.dark {
         border-bottom-color: $reactorDarkBorder;
         div.title {
           h1 { color: $reactorBgWhite; }
-          p  { color: rgba(255,255,255,0.6); }
+          p  { color: $reactorBgWhite; }
         }
         div.version table {
           background: transparent;
           border-color: $reactorDarkBorder;
           tr { border-bottom-color: $reactorDarkBorder; background: transparent; }
-          td { color: rgba(255,255,255,0.8); }
+          td { color: $reactorBgWhite; }
         }
         div.github a, div.javadoc a, div.reference a { color: $reactorLinkDark; }
         div.github a span.fa, div.javadoc strong, div.reference strong { color: rgba(255,255,255,0.7); }
@@ -244,25 +243,25 @@ html.dark {
     &.book > .details {
       background: $reactorDarkBgElevated;
       border-top-color: $reactorDarkBorder;
-      color: rgba(255,255,255,0.7);
-      ul li { color: rgba(255,255,255,0.7); }
+      color: $reactorBgWhite;
+      ul li { color: $reactorBgWhite; }
     }
     div.details {
-      color: rgba(255,255,255,0.7);
-      ul li { color: rgba(255,255,255,0.7); }
+      color: $reactorBgWhite;
+      ul li { color: $reactorBgWhite; }
     }
   }
 
   // Support and docs shared: .support, .project
   .support {
     color: $reactorBgWhite;
-    h1, h2, h3, h4, p { color: rgba(255,255,255,0.85); }
+    h1, h2, h3, h4, p { color: $reactorBgWhite; }
     a { color: $reactorLinkDark; }
   }
 
   .project {
     h1 { color: $reactorBgWhite; }
-    p, ul { color: rgba(255,255,255,0.7); }
+    p, ul { color: $reactorBgWhite; }
   }
 
   // General table overrides for docs.scss tables (no special class)
@@ -276,7 +275,7 @@ html.dark {
     thead, tfoot {
       background: $reactorDarkBgElevated !important;
       tr { background: $reactorDarkBgElevated !important; }
-      th, td { color: rgba(255,255,255,0.85) !important; }
+      th, td { color: $reactorBgWhite !important; }
     }
 
     tbody tr {
@@ -287,18 +286,18 @@ html.dark {
     tr.even, tr.alt, tr:nth-of-type(even) { background: $reactorDarkBgAlt !important; }
 
     th, td {
-      color: rgba(255,255,255,0.8) !important;
+      color: $reactorBgWhite !important;
       border-color: $reactorDarkBorder !important;
     }
   }
 
   // Docs page-specific: tbody th (used as row headers in asciidoc tables)
-  tbody tr th { background: $reactorDarkBgElevated !important; color: rgba(255,255,255,0.85) !important; }
+  tbody tr th { background: $reactorDarkBgElevated !important; color: $reactorBgWhite !important; }
 
   // Docs.scss sets hardcoded colors on various elements
   .book, #main {
-    code { color: rgba(255,255,255,0.85); background: $reactorDarkBgElevated; }
-    blockquote, blockquote p { color: rgba(255,255,255,0.7); border-left-color: $reactorDarkBorder; }
+    code { color: $reactorBgWhite; background: $reactorDarkBgElevated; }
+    blockquote, blockquote p { color: $reactorBgWhite; border-left-color: $reactorDarkBorder; }
     hr { border-color: $reactorDarkBorder; }
     .sect1 + .sect1 { border-top-color: $reactorDarkBorder; }
     #toc {
@@ -316,14 +315,14 @@ html.dark {
     }
     .admonitionblock > table td.content {
       border-left-color: $reactorDarkBorder;
-      color: rgba(255,255,255,0.7);
+      color: $reactorBgWhite;
     }
   }
 
   // Learn articles
   .learn {
     color: $reactorBgWhite;
-    article { color: rgba(255,255,255,0.85); }
+    article { color: $reactorBgWhite; }
   }
 
   // 404
