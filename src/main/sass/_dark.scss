@@ -155,25 +155,70 @@ html.dark {
     tr { border-bottom-color: $reactorDarkBorder; }
   }
 
-  // Support table — inline bgcolor attributes need !important to override
-  .suptable {
-    table {
-      background: $reactorDarkBg !important;
-      border-color: $reactorDarkBorder !important;
-      thead, tfoot { background: $reactorDarkBgElevated !important; }
-      thead tr, tfoot tr { background: $reactorDarkBgElevated !important; }
-      tr { border-color: $reactorDarkBorder !important; border-top-color: $reactorDarkBorder !important; }
-      th, td { color: rgba(255,255,255,0.85) !important; background: transparent !important; }
+  // Support page
+  .support-table-wrap {
+    border-color: $reactorDarkBorder;
+  }
+
+  .support-table {
+    background: $reactorDarkBg;
+
+    thead tr {
+      background: $reactorDarkBgElevated;
+      border-bottom-color: $reactorDarkBorder;
+    }
+
+    thead th { color: rgba(255,255,255,0.5); }
+
+    tbody td {
+      color: rgba(255,255,255,0.85);
+      border-bottom-color: $reactorDarkBorder;
     }
   }
-  .enterprise-support {
-    table {
-      background: $reactorDarkBg !important;
-      tr { border-color: $reactorDarkBorder !important; border-top-color: $reactorDarkBorder !important; }
-      th, td { color: rgba(255,255,255,0.85) !important; }
+
+  .support-group-header {
+    background: $reactorDarkBgElevated !important;
+
+    td { border-bottom-color: $reactorDarkBorder !important; }
+  }
+
+  .support-lib-name { color: rgba(255,255,255,0.45); }
+
+  .support-row {
+    &--eol td { color: rgba(255,255,255,0.3); }
+    &:hover td { background: $reactorDarkBgHover; }
+  }
+
+  .support-badge {
+    &--active {
+      background: rgba($reactorCalActive, 0.15);
+      color: $reactorCalActive;
+      border-color: rgba($reactorCalActive, 0.4);
     }
-    h3 { color: $reactorBgWhite; }
-    p { color: rgba(255,255,255,0.7); }
+    &--enterprise {
+      background: rgba($reactorCalMigrate, 0.12);
+      color: $reactorCalMigrate;
+      border-color: rgba($reactorCalMigrate, 0.35);
+    }
+    &--future {
+      background: rgba($reactorCalFuture, 0.12);
+      color: $reactorCalFuture;
+      border-color: rgba($reactorCalFuture, 0.35);
+    }
+    &--eol {
+      background: $reactorDarkBgElevated;
+      color: rgba(255,255,255,0.3);
+      border-color: $reactorDarkBorder;
+    }
+  }
+
+  .support-legend-item {
+    border-color: $reactorDarkBorder;
+    background: $reactorDarkBgElevated;
+
+    strong { color: rgba(255,255,255,0.85); }
+    p { color: rgba(255,255,255,0.5); }
+    a { color: $reactorLinkDark; }
   }
 
   // Docs page — #main and #applications section

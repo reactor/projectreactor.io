@@ -26,67 +26,62 @@
         <div class="page-summary-content">
             <div class="page-summary-wrap">
                 <h1>Project Reactor Support Timeline</h1>
-
                 <div class="details">
-                                    <span>This the listing of support dates for Project Reactor libraries.</span>
+                    <span>Listing of support dates for Project Reactor libraries.</span>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="support">
-        <div class="project">
-            <div class="project-row">
-                <div class="project-col-left">
-                    <div class="suptable">
-                        <section id="supportTable">
-                            <table>
-                                <thead align="left" bgcolor="#dedede">
-                                    <tr>
-                                    <th>Version</th>
-                                    <th>Initial Release</th>
-                                    <th>End of OSS Support</th>
-                                    <th>End of Enterprise Support</th>
-                                    <th>Date Published in BOM</th>
-                                    </tr>
-                                    <tr bgcolor="#f1f1f1">
-                                        <td>&nbsp;</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </thead>
-                                <tbody id="supportTableBody">
-                                    <!-- Support data will be loaded here dynamically -->
-                                    <tr>
-                                        <td colspan="5" style="text-align: center; padding: 20px;">
-                                            Loading support data...
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>
-                    </div>
-                    <div class="enterprise-support">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h3>OSS Support</h3>
-                                        <p>Includes support from the Reactor community for the OSS support timeline.<br/>See our <a href="https://spring.io/support-policy">OSS support policy</a> for more details.
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h3>Enterprise Support</h3>
-                                        <p>Includes dedicated support from Reactor experts, covering OSS and extended Enterprise support timelines to ensure long-term reliability.<br/>See <a href="https://enterprise.spring.io" rel="nofollow">Tanzu Spring</a> to learn more about enterprise support.</p>
-                                    </td>
-                                </tr>
-                                </tbody>
-                        </table>
-                        
-                    </div>
+        <div class="support-table-wrap">
+            <section id="supportTable">
+                <table class="support-table">
+                    <thead>
+                        <tr>
+                            <th>Version</th>
+                            <th>Initial Release</th>
+                            <th>End of OSS Support</th>
+                            <th>End of Enterprise Support</th>
+                            <th>Published in BOM</th>
+                        </tr>
+                    </thead>
+                    <tbody id="supportTableBody">
+                        <tr class="support-loading">
+                            <td colspan="5">Loading support data&hellip;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="support-legend">
+            <div class="support-legend-item">
+                <span class="support-badge support-badge--active">active</span>
+                <div>
+                    <strong>OSS Support</strong>
+                    <p>Community support for the OSS support timeline. See our <a href="https://spring.io/support-policy">OSS support policy</a> for details.</p>
+                </div>
+            </div>
+            <div class="support-legend-item">
+                <span class="support-badge support-badge--enterprise">enterprise</span>
+                <div>
+                    <strong>Enterprise Support</strong>
+                    <p>Dedicated support from Reactor experts covering OSS and extended Enterprise timelines. Learn more at <a href="https://enterprise.spring.io" rel="nofollow">Tanzu Spring</a>.</p>
+                </div>
+            </div>
+            <div class="support-legend-item">
+                <span class="support-badge support-badge--future">upcoming</span>
+                <div>
+                    <strong>Upcoming</strong>
+                    <p>Release is scheduled but OSS support has not yet started.</p>
+                </div>
+            </div>
+            <div class="support-legend-item">
+                <span class="support-badge support-badge--eol">end of life</span>
+                <div>
+                    <strong>End of Life</strong>
+                    <p>Both OSS and Enterprise support windows have closed.</p>
                 </div>
             </div>
         </div>
@@ -94,59 +89,66 @@
 </div>
 
 <script>
-// Load support data from JSON file
 async function loadSupportData() {
     try {
         const response = await fetch('/support.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
-        
-        // Populate the support table
         populateSupportTable(data);
-        
-        
     } catch (error) {
         console.error('Error loading support data:', error);
-        document.getElementById('supportTableBody').innerHTML = 
-            '<tr><td colspan="5" style="text-align: center; padding: 20px; color: red;">Error loading support data. Please try again later.</td></tr>';
+        document.getElementById('supportTableBody').innerHTML =
+            '<tr class="support-error"><td colspan="5">Error loading support data. Please try again later.</td></tr>';
     }
+}
+
+function statusFor(version) {
+    const today = new Date();
+    const parse = (s) => s && s !== '-' ? new Date(s) : null;
+
+    const initial    = parse(version.initialRelease);
+    const endOss     = parse(version.endOfOssSupport);
+    const endEnt     = parse(version.endOfEnterpriseSupport);
+
+    if (initial && initial > today)          return 'future';
+    if (endOss  && endOss  > today)          return 'active';
+    if (endEnt  && endEnt  > today)          return 'enterprise';
+    return 'eol';
+}
+
+function statusLabel(status) {
+    return { future: 'upcoming', active: 'active', enterprise: 'enterprise', eol: 'end of life' }[status] || status;
 }
 
 function populateSupportTable(data) {
     const tbody = document.getElementById('supportTableBody');
     tbody.innerHTML = '';
-    
+
     data.libraries.forEach(library => {
-        // Add library header row
-        const headerRow = document.createElement('tr');
-        headerRow.setAttribute('bgcolor', '#dedede');
-        headerRow.innerHTML = `
-            <td><p dir="auto"><strong>${library.displayName}</strong></p></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        `;
-        tbody.appendChild(headerRow);
-        
-        // Add version rows
+        const groupRow = document.createElement('tr');
+        groupRow.className = 'support-group-header';
+        groupRow.innerHTML = `<td colspan="5"><span class="support-lib-name">${library.displayName}</span></td>`;
+        tbody.appendChild(groupRow);
+
         library.versions.forEach(version => {
-            const versionRow = document.createElement('tr');
-            versionRow.innerHTML = `
-                <td><p dir="auto">${version.version}</p></td>
-                <td><p dir="auto">${version.initialRelease}</p></td>
-                <td><p dir="auto">${version.endOfOssSupport}</p></td>
-                <td><p dir="auto">${version.endOfEnterpriseSupport}</p></td>
-                <td><p dir="auto">${version.datePublishedInBom}</p></td>
+            const status = statusFor(version);
+            const row = document.createElement('tr');
+            row.className = `support-row support-row--${status}`;
+            row.innerHTML = `
+                <td class="support-version">
+                    ${version.version}
+                    <span class="support-badge support-badge--${status}">${statusLabel(status)}</span>
+                </td>
+                <td>${version.initialRelease}</td>
+                <td>${version.endOfOssSupport}</td>
+                <td>${version.endOfEnterpriseSupport}</td>
+                <td>${version.datePublishedInBom}</td>
             `;
-            tbody.appendChild(versionRow);
+            tbody.appendChild(row);
         });
     });
 }
 
-// Load data when the page loads
 document.addEventListener('DOMContentLoaded', loadSupportData);
 </script>
 
