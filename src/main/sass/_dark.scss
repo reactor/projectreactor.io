@@ -32,6 +32,17 @@ html.dark {
 
   a { color: $reactorLinkDark; }
 
+  code {
+    background-color: $reactorDarkBgElevated;
+    border-color: $reactorDarkBorder;
+    color: $reactorTerminalBlue;
+  }
+  pre code {
+    background-color: transparent;
+    border: 0 none;
+    color: currentColor;
+  }
+
   // Header
   #header {
     background: $reactorDarkBg;
@@ -273,6 +284,5 @@ html.dark {
   // 404
   section.page404 {
     h1 { color: $reactorHighlight; }
-    p  { color: rgba(255,255,255,0.7); }
   }
 }

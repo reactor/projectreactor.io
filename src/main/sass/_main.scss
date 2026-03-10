@@ -36,6 +36,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+// Inline code
+
+code {
+  white-space: nowrap;
+  background-color: $reactorBgWhite;
+  border: 1px solid #e1e1e8;
+  color: #009;
+  padding: 2px 6px;
+  font-size: 0.875rem;
+  font-family: Monaco, monospace;
+  border-radius: 2px;
+}
+
+pre code {
+  white-space: pre;
+  background-color: transparent;
+  border: 0 none;
+  color: currentColor;
+  font-size: 1em;
+  padding: 0;
+}
+
 // Size Application
 
 .container {
@@ -282,7 +304,7 @@ body {
 
   .footer-copyright {
     font-size: 0.85em;
-    color: $reactorTextLight;
+    color: var(--color);
     margin: 0 0 0.4em;
     a {
       color: $reactorLinkColor;
@@ -328,7 +350,7 @@ section#welcome {
     h1 {
       color: var(--color);
       font-family: $reactorFontSpecial;
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       font-weight: 500;
       line-height: 1.2;
       margin: 0 0 0.6em;
@@ -348,7 +370,7 @@ section#welcome {
       line-height: 1.8;
       max-width: 720px;
       margin: 0 auto;
-      color: $reactorTextMuted;
+      color: var(--color);
       span {
         background: none;
         padding: 0;
@@ -389,7 +411,7 @@ section#applications {
       }
       p {
         font-size: 1em;
-        color: $reactorTextFaint;
+        color: var(--color);
         margin: 0;
       }
       > a {
@@ -645,13 +667,13 @@ section#brands {
       padding: 0 1.5em;
       font-size: 1em;
       line-height: 1.6;
-      color: $reactorTextMuted;
+      color: var(--color);
     }
     h1 {
       font-family: $reactorFontSpecial;
       font-weight: 500;
       line-height: 1.3;
-      font-size: 1.2em;
+      font-size: 2rem;
       margin-bottom: 0.5em;
     }
     span.icon {
@@ -690,7 +712,7 @@ section#key-features {
       padding-left: 1.5em;
       h1 {
         font-family: $reactorFontSpecial;
-        font-size: 1.5em;
+        font-size: 2rem;
         line-height: 1.2;
         font-weight: 500;
         margin: 0;
@@ -726,7 +748,7 @@ section.page404 {
   }
   p {
     font-size: 16px;
-    color: $reactorTextMuted;
+    color: var(--color);
     a { font-weight: 600; }
   }
 }
@@ -765,7 +787,7 @@ section.page404 {
       display: block;
       font-family: $reactorFontMain;
       font-size: 1em;
-      color: $reactorTextLight;
+      color: var(--color);
       margin-bottom: 1em;
     }
     ul {
@@ -783,7 +805,7 @@ section.page404 {
       max-width: 700px;
       font-family: $reactorFontMain;
       padding: 0.4em 0 0 0;
-      color: $reactorTextMuted;
+      color: var(--color);
       a {
         color: $reactorLinkColor;
         &:hover { text-decoration: underline; }

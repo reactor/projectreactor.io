@@ -126,34 +126,34 @@ span.version {
   padding: 2px 4px 2px;
   line-height: 14px;
   &.releasetrain {
-    background: $reactorTextColor;
+    background: $reactorBorderHighlight;
     &.partial {
       padding-left: 0;
     }
     &.partial::before {
       content: "WIP";
       background: darkorange;
-      color: $reactorTextColor;
+      color: white;
       padding: 2px 4px;
       margin-right: 6px;
     }
     &.maintenance {
-      background: dimgrey;
+      background: $reactorTextMuted;
     }
     &.eol {
-      background: darkgrey;
+      background: $reactorTextFaint;
       color: white;
       padding-left: 0;
     }
     &.eol::before {
       content: "EOL";
       background: darkorange;
-      color: $reactorTextColor;
+      color: white;
       padding: 2px 4px;
       margin-right: 6px;
     }
     &.pre {
-      background: $reactorTextColor;
+      background: $reactorBorderHighlight;
       color: white;
       padding-left: 0;
     }
