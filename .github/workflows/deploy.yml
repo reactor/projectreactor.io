@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: ./gradlew build -x spotlessCheck
       - name: Login Via Azure CLI
-        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2
+        uses: azure/login@f5d393ae46f8fde4be8b75f32e3fc50e654ad0ca # v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_SPRING_ASA }}
       - name: Set up Azure Spring Extension
