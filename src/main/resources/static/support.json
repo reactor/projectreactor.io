@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Project Reactor Support Timeline",
     "description": "The listing of support dates for Project Reactor libraries.",
-    "lastUpdated": "2025-08-26",
+    "lastUpdated": "2026-10-15",
     "version": "1.0.0"
   },
   "libraries": [
@@ -13,8 +13,8 @@
         {
           "version": "3.8",
           "initialRelease": "2025-11-07",
-          "endOfOssSupport": "2027-06-30",
-          "endOfEnterpriseSupport": "2028-06-30",
+          "endOfOssSupport": "2027-07-31",
+          "endOfEnterpriseSupport": "2028-07-31",
           "datePublishedInBom": "2025"
         },
         {
@@ -54,8 +54,8 @@
         {
           "version": "1.3",
           "initialRelease": "2025-11-07",
-          "endOfOssSupport": "2027-06-30",
-          "endOfEnterpriseSupport": "2028-06-30",
+          "endOfOssSupport": "2027-07-31",
+          "endOfEnterpriseSupport": "2028-07-31",
           "datePublishedInBom": "2025"
         },
         {
@@ -101,8 +101,8 @@
         {
           "version": "1.2",
           "initialRelease": "2025-11-07",
-          "endOfOssSupport": "2027-06-30",
-          "endOfEnterpriseSupport": "2028-06-30",
+          "endOfOssSupport": "2027-07-31",
+          "endOfEnterpriseSupport": "2028-07-31",
           "datePublishedInBom": "2025"
         },
         {
@@ -135,8 +135,8 @@
         {
           "version": "3.6",
           "initialRelease": "2025-11-07",
-          "endOfOssSupport": "2027-06-30",
-          "endOfEnterpriseSupport": "2028-06-30",
+          "endOfOssSupport": "2027-07-31",
+          "endOfEnterpriseSupport": "2028-07-31",
           "datePublishedInBom": "2025"
         },
         {
@@ -162,8 +162,8 @@
         {
           "version": "1.3",
           "initialRelease": "2025-11-07",
-          "endOfOssSupport": "2027-06-30",
-          "endOfEnterpriseSupport": "2028-06-30",
+          "endOfOssSupport": "2027-07-31",
+          "endOfEnterpriseSupport": "2028-07-31",
           "datePublishedInBom": "2025"
         },
         {
@@ -202,8 +202,8 @@
         {
           "version": "2025",
           "initialRelease": "2025-11-07",
-          "endOfOssSupport": "2027-06-30",
-          "endOfEnterpriseSupport": "2028-06-30",
+          "endOfOssSupport": "2027-07-31",
+          "endOfEnterpriseSupport": "2028-07-31",
           "datePublishedInBom": "-"
         },
         {
